@@ -14,3 +14,9 @@ npm install
 npm start
 ```
 
+Deploy with Docker
+```
+docker build -t donate-now .
+docker run -d --rm -p 5000:5000 donate-now
+```
+
