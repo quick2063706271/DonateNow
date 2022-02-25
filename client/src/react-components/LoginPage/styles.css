@@ -1,0 +1,61 @@
+.loginPage {
+    margin: 0;
+    height: 100%;
+}
+
+.logo {
+    top: 120px;
+    left: 200px;
+    width: 30%;
+    position: absolute;
+  }
+
+.loginImage {
+    top: 220px;
+    left: 40px;
+    width: 50%;
+    position: relative;
+  }
+
+  #main-holder {
+    top: 180px;
+    right: 100px;
+    width: 30%;
+    height: 50%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background-color: rgba(230, 230, 230);
+    /*border-style: solid;
+    border-color: black;
+    border-width: 2px;*/
+    position: absolute;
+  }
+
+  .login-form-header {
+    font-size: 40px;
+  }
+
+  .login-form-text {
+    font-size: x-large;
+    margin-right: 20px;
+  }
+
+  .login-form-field {
+    height: 1cm;
+    width: 6.5cm;
+    font-size: x-large;
+    border: none;
+  }
+
+  .login-form-submit {
+    width: 200%;
+    height: 1cm;
+    font-size: large;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: PaleVioletRed;
+  }
+
