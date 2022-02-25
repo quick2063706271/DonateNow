@@ -1,0 +1,10 @@
+.navigationMenu {
+    float:left;
+}
+
+.navigationMenu nav ul li{
+    font-weight: bold;
+    margin-right: 20px;
+    text-align: center;
+    display: inline-block;
+}

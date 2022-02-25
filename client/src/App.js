@@ -1,25 +1,22 @@
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
+import SearchBox from './react-components/SearchBox';
+import NavigationMenu from './react-components/NavigationMenu';
+// Importing react-router-dom to use the React Router
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
+class App extends React.Component {
+  render() {
+    return (
+      <header className="Header">
+        <img src={logo} className="logo" alt="logo" />
+        <SearchBox/>
+        <NavigationMenu/>
       </header>
-    </div>
-  );
+    );
+  }
 }
+
 
 export default App;
