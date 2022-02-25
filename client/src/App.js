@@ -3,6 +3,7 @@ import './App.css';
 import SearchBox from './react-components/SearchBox';
 import NavigationMenu from './react-components/NavigationMenu';
 import LoginPage from './react-components/LoginPage';
+import UserPage from './react-components/UserPage';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
 
@@ -20,6 +21,7 @@ class App extends React.Component {
         <Routes>
           <Route path='/' element={<LoginPage/>} />
           <Route path='/navigationmenu' element={<NavigationMenu/>} />
+          <Route path='/userpage' element={<UserPage/>} />
         </Routes>
       </BrowserRouter>
     );
