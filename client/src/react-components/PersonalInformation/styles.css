@@ -1,5 +1,6 @@
 .personalInformation {
-    position: relative;
+    position: absolute;
+    left: 560px;
     border-radius: 7.5px;
     padding-left: 80px;
     padding-right: 80px;

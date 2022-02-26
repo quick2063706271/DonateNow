@@ -1,1 +1,24 @@
+.side-menu-container {
+  width: 250px; 
+  height: 680px;
+  border-radius: 7.5px;
+  position: absolute; 
+  z-index: 1; 
+  top: 100px; 
+  left: 280px;
+  background-color: #DCDBDA; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
 
+/* The navigation menu links */
+.side-menu-container a {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    display: block;
+  }
