@@ -8,11 +8,11 @@ class PersonalInformation extends React.Component {
         return(
             <div>
                 <Box component="form" 
-                sx={{ display: 'flex', flexWrap: 'wrap', '& .MuiTextField-root': { m: 1 }}}
+                sx={{ display: 'flex', flexWrap: 'wrap', '& .MuiTextField-root': { m: 1 }, pl: '170px', pt: '100px'}}
                 noValidate
                 autoComplete="off"
                 >
-                    <div>
+                    <div className="personalInformation">
                         <TextField
                         className="inputField"
                         label="Username"
@@ -20,7 +20,7 @@ class PersonalInformation extends React.Component {
                         InputProps={{
                             readOnly: true,
                         }}
-                        sx={{ m: 1, width: '25ch' }}
+                        sx={{width: '20ch' }}
                         />
                         
                         <TextField
@@ -30,7 +30,7 @@ class PersonalInformation extends React.Component {
                         InputProps={{
                             readOnly: true,
                         }}
-                        
+                        sx={{width: '20ch' }}
                         />
                         <br />
                         <TextField
@@ -40,6 +40,7 @@ class PersonalInformation extends React.Component {
                         InputProps={{
                             readOnly: true,
                         }}
+                        sx={{width: '20ch' }}
                         />
                         <TextField
                         className="inputField"
@@ -48,6 +49,7 @@ class PersonalInformation extends React.Component {
                         InputProps={{
                             readOnly: true,
                         }}
+                        sx={{width: '20ch' }}
                         />
                         <br />
                         <TextField
@@ -58,7 +60,7 @@ class PersonalInformation extends React.Component {
                             readOnly: true,
                         }}
                         multiline
-                        sx={{ m: 1, width: '35ch' }}
+                        sx={{width: '41.5ch' }}
                         />
                         <br />
                         <TextField
@@ -69,7 +71,7 @@ class PersonalInformation extends React.Component {
                             readOnly: true,
                         }}
                         multiline
-                        sx={{ m: 1, width: '35ch' }}
+                        sx={{width: '41.5ch' }}
                         />
                         <br />
                         <TextField
@@ -79,6 +81,7 @@ class PersonalInformation extends React.Component {
                         InputProps={{
                             readOnly: true,
                         }}
+                        sx={{width: '20ch' }}
                         />
                         <TextField
                         className="inputField"
@@ -87,6 +90,7 @@ class PersonalInformation extends React.Component {
                         InputProps={{
                             readOnly: true,
                         }}
+                        sx={{width: '20ch' }}
                         />
                         <br />
                         <TextField
@@ -96,6 +100,8 @@ class PersonalInformation extends React.Component {
                         InputProps={{
                             readOnly: true,
                         }}
+                        multiline
+                        sx={{width: '41.5ch' }}
                         />
                         <br />
                         <TextField
@@ -106,7 +112,7 @@ class PersonalInformation extends React.Component {
                             readOnly: true,
                         }}
                         multiline
-                        sx={{ m: 1, width: '35ch' }}
+                        sx={{width: '41.5ch' }}
                         />
                     </div>
                 </Box>
