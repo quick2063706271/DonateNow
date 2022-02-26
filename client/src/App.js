@@ -35,11 +35,11 @@ class App extends React.Component {
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/navigationmenu' element={<NavigationMenu/>} />
           <Route path='/userpage' element={<UserPage/>} />
-          <Route paht='/createpost' element={<CreatePost/>} />
-          <Route paht='/postpage' element={<PostPage/>} />
-          <Route paht='/wishlist' element={<WishList/>} />
-          <Route paht='/choosedonee' element={<ChooseDonee/>} />
-          <Route paht='/admin/blocklist' element={<AdminBlockList/>} />
+          <Route path='/createpost' element={<CreatePost/>} />
+          <Route path='/postpage' element={<PostPage/>} />
+          <Route path='/wishlist' element={<WishList/>} />
+          <Route path='/choosedonee' element={<ChooseDonee/>} />
+          <Route path='/admin/blocklist' element={<AdminBlockList/>} />
           <Route path='/admin/userpage' element={<AdminUserPage/>} />
           <Route path='/admin/postpage' element={<AdminPostPage/>} /> 
           <Route path='/admin/feedback' element={<AdminFeedback/>} /> 
