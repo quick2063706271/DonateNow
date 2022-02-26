@@ -1,9 +1,14 @@
 .personalInformation {
     position: relative;
-    border-radius: 15px;
+    border-radius: 7.5px;
     padding-left: 80px;
     padding-right: 80px;
     padding-top: 40px;
     padding-bottom: 40px;
     background-color: #DCDBDA
+}
+
+.edit-button {
+    position: relative;
+    left: 372.5px;
 }

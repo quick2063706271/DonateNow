@@ -2,13 +2,14 @@ import React from "react";
 import "./styles.css";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { Button } from "@material-ui/core";
 
 class PersonalInformation extends React.Component {
     render() {
         return(
             <div>
                 <Box component="form" 
-                sx={{ display: 'flex', flexWrap: 'wrap', '& .MuiTextField-root': { m: 1 }, pl: '170px', pt: '100px'}}
+                sx={{ display: 'flex', flexWrap: 'wrap', '& .MuiTextField-root': { m: 1.5 }, pl: '170px', pt: '100px'}}
                 noValidate
                 autoComplete="off"
                 >
@@ -60,7 +61,7 @@ class PersonalInformation extends React.Component {
                             readOnly: true,
                         }}
                         multiline
-                        sx={{width: '41.5ch' }}
+                        sx={{width: '42.5ch' }}
                         />
                         <br />
                         <TextField
@@ -71,7 +72,7 @@ class PersonalInformation extends React.Component {
                             readOnly: true,
                         }}
                         multiline
-                        sx={{width: '41.5ch' }}
+                        sx={{width: '42.5ch' }}
                         />
                         <br />
                         <TextField
@@ -101,7 +102,7 @@ class PersonalInformation extends React.Component {
                             readOnly: true,
                         }}
                         multiline
-                        sx={{width: '41.5ch' }}
+                        sx={{width: '42.5ch' }}
                         />
                         <br />
                         <TextField
@@ -112,9 +113,13 @@ class PersonalInformation extends React.Component {
                             readOnly: true,
                         }}
                         multiline
-                        sx={{width: '41.5ch' }}
+                        sx={{width: '42.5ch' }}
                         />
+                        <div className="edit-button" >
+                            <Button variant="contained">Edit</Button>
+                        </div>
                     </div>
+
                 </Box>
             </div>
         )
