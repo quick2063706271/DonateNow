@@ -2,6 +2,7 @@ import React from 'react';
 import "./styles.css";
 import { Button } from '@mui/material';
 
+// to-do: change
 function SideMenu() {
   return (
     <div className="side-menu">
@@ -17,4 +18,4 @@ function SideMenu() {
 
 
 
-export default (SideMenu);
+export default (SideMenu); 

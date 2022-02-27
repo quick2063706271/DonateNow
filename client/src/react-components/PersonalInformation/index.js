@@ -4,7 +4,35 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from "@material-ui/core";
 
+// To-do 
+// profile picture
+
 class PersonalInformation extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            isEdit: true
+        }
+        this.handleEdit.bind(this);
+        console.log(this.state.isEdit)
+    }
+    handleEdit = event => {
+        this.setState({
+            isEdit: !this.state.isEdit
+        });
+        // this.changeButtonText();
+        console.log(this.state.isEdit);
+    }
+
+    // changeButtonText = () => {
+    //     const buttonElement = document.querySelector(".edit-button").children[0];
+    //     if (this.state.isEdit === true) {
+    //         buttonElement.innerText = "SAVE";
+    //     } else {
+    //         buttonElement.innerText = "EDIT";
+    //     }
+    // }
+
     render() {
         return(
             <div>
@@ -15,7 +43,8 @@ class PersonalInformation extends React.Component {
                 >
                     <div className="personalInformation">
                         <TextField
-                        className="inputField"
+                        className="inputFieldId"
+                        disabled // Username cannot be changed
                         label="Username"
                         defaultValue="John2022"
                         InputProps={{
@@ -27,9 +56,9 @@ class PersonalInformation extends React.Component {
                         <TextField
                         className="inputField"
                         label="Password"
-                        defaultValue="John2022"
+                        defaultValue="12341234"
                         InputProps={{
-                            readOnly: true,
+                            readOnly: this.state.isEdit,
                         }}
                         sx={{width: '20ch' }}
                         />
@@ -39,7 +68,7 @@ class PersonalInformation extends React.Component {
                         label="Date Of Birth"
                         defaultValue="1990-01-01"
                         InputProps={{
-                            readOnly: true,
+                            readOnly: this.state.isEdit,
                         }}
                         sx={{width: '20ch' }}
                         />
@@ -48,7 +77,7 @@ class PersonalInformation extends React.Component {
                         label="Gender"
                         defaultValue="Male"
                         InputProps={{
-                            readOnly: true,
+                            readOnly: this.state.isEdit,
                         }}
                         sx={{width: '20ch' }}
                         />
@@ -58,7 +87,7 @@ class PersonalInformation extends React.Component {
                         label="Address 1"
                         defaultValue="1 King St W, Toronto, ON M5C 1T4"
                         InputProps={{
-                            readOnly: true,
+                            readOnly: this.state.isEdit,
                         }}
                         multiline
                         sx={{width: '42.5ch' }}
@@ -69,7 +98,7 @@ class PersonalInformation extends React.Component {
                         label="Address 2"
                         defaultValue="4650 Eglinton Ave W, Etobicoke, ON M9R 4C8"
                         InputProps={{
-                            readOnly: true,
+                            readOnly: this.state.isEdit,
                         }}
                         multiline
                         sx={{width: '42.5ch' }}
@@ -80,7 +109,7 @@ class PersonalInformation extends React.Component {
                         label="Phone number"
                         defaultValue="123-456-7890"
                         InputProps={{
-                            readOnly: true,
+                            readOnly: this.state.isEdit,
                         }}
                         sx={{width: '20ch' }}
                         />
@@ -89,7 +118,7 @@ class PersonalInformation extends React.Component {
                         label="E-mail"
                         defaultValue="John2022@gmail.com"
                         InputProps={{
-                            readOnly: true,
+                            readOnly: this.state.isEdit,
                         }}
                         sx={{width: '20ch' }}
                         />
@@ -99,7 +128,7 @@ class PersonalInformation extends React.Component {
                         label="Preference"
                         defaultValue="Books, Travel"
                         InputProps={{
-                            readOnly: true,
+                            readOnly: this.state.isEdit,
                         }}
                         multiline
                         sx={{width: '42.5ch' }}
@@ -110,13 +139,15 @@ class PersonalInformation extends React.Component {
                         label="Biography"
                         defaultValue="I enjoy reading books and travelling and travelling and travelling and travelling."
                         InputProps={{
-                            readOnly: true,
+                            readOnly: this.state.isEdit,
                         }}
                         multiline
                         sx={{width: '42.5ch' }}
                         />
                         <div className="edit-button" >
-                            <Button variant="contained">Edit</Button>
+                            <Button variant="contained" onClick={this.handleEdit}>
+                                {this.state.isEdit ? "edit" : "save"}
+                            </Button>
                         </div>
                     </div>
 
