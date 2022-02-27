@@ -1,14 +1,16 @@
 import React from 'react';
 import "./styles.css";
+import { Button } from '@mui/material';
 
 function SideMenu() {
   return (
-    <div className="side-menu-container">
-        <a href="#">My information</a>
-        <a href="#">Transaction History</a>
-        <a href="#">Donated History</a>
-        <a href="#">Credit Score</a>
-        <a href="#">Submit Feedback</a>
+    <div className="side-menu">
+        <div className="side-menu-container">
+            <Button variant="text" size="large">My information</Button>
+            <Button variant="text" size="large">Donated History</Button>
+            <Button variant="text" size="large">Credit Score</Button>
+            <Button variant="text" size="large">Submit Feedback</Button>
+        </div>
     </div>
   );
 }

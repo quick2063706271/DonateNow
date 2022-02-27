@@ -1,4 +1,4 @@
-.side-menu-container {
+.side-menu {
   width: 250px; 
   height: 680px;
   border-radius: 7.5px;
@@ -12,13 +12,11 @@
 }
 
 /* The navigation menu links */
-.side-menu-container a {
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-decoration: none;
-    font-size: 20px;
-    color: black;
-    display: block;
+.side-menu-container {
+    position: relative;
+    left:40px
   }
+
+Button {
+    display: block;
+}
