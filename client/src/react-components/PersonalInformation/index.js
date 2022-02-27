@@ -3,9 +3,8 @@ import "./styles.css";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from "@material-ui/core";
+import { Avatar } from "@mui/material";
 
-// To-do 
-// profile picture
 
 class PersonalInformation extends React.Component {
     constructor() {
@@ -42,6 +41,9 @@ class PersonalInformation extends React.Component {
                 autoComplete="off"
                 >
                     <div className="personalInformation">
+                        <div>
+                            <Avatar id="avatar" sx={{height: 80, width: 80}}>JO</Avatar>
+                        </div>
                         <TextField
                         className="inputFieldId"
                         disabled // Username cannot be changed
