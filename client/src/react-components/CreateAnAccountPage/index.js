@@ -4,14 +4,16 @@ import { Link, Navigate } from 'react-router-dom';
 import logo from './logo.png';
 import loginImage from './LoginPageImage.jpeg';
 
-class LoginPage extends React.Component {
+class CreateAnAccountPage extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
             username: "",
             password: "",
-            errormsg: false,
+            retypePassword: "",
+            error: false,
+            errormsg: "",
             valid: false
         }
     }
@@ -44,27 +46,26 @@ class LoginPage extends React.Component {
 
         // Verify user information
         if (userData) {
-            if (userData.password !== this.state.password) {
-                // Invalid password
-                console.log("invalid password")
+            this.setState({
+                error: true,
+                errormsg: "Duplicate username!"
+            })
+        } else {
+            if (this.state.password !== this.state.retypePassword) {
                 this.setState({
-                    errormsg: true
+                    error: true,
+                    errormsg: "Passwords do not match!"
                 })
             } else {
-                console.log("valid")
                 this.setState({
-                    valid: true
+                    valid: true,
+                    error: false
                 })
+                // Add a new pair of username and password to server
+                // Code below requires server call
+                database.push({username: this.state.username, password: this.state.password})
             }
-        } else {
-            // Username not found
-            //setErrorMessages({ name: "uname", message: errors.uname });
-            console.log("username not found")
-            this.setState({
-                errormsg: true
-            })
-        }
-        
+        }  
     }
 
     render() {
@@ -73,7 +74,7 @@ class LoginPage extends React.Component {
             <div><img src={logo} className="logo" alt="logo"/></div>
             <div><img src={loginImage} className="loginImage" alt="loginImage"/></div>
             <main id="main-holder">
-                <h1 className="login-form-header">Sign-In</h1>
+                <h1 className="login-form-header">Create an Account</h1>
                     <div>
                         <label className="login-form-text"><b>Username</b></label>
                         <input type="text" name="username" className="login-form-field" value={this.state.username} onChange = {event => this.handleInputChange(event)} required/>
@@ -83,13 +84,17 @@ class LoginPage extends React.Component {
                         <input type="password" name="password" className="login-form-field" value={this.state.password} onChange = {event => this.handleInputChange(event)} required/>
                     </div>
                     <div>
-                        <input type="submit" name="submit" className="login-form-submit" onClick={(event) => this.handleClick(event)}/>
-                        {this.state.valid ? <Navigate to='/home'/> : null}
+                        <label className="login-form-text"><b>Retype Password</b></label>
+                        <input type="password" name="retypePassword" className="login-form-field-retype" value={this.state.retypePassword} onChange = {event => this.handleInputChange(event)} required/>
                     </div>
-                    {this.state.errormsg ? <div className="login-form-error">Incorrect username or password!</div> : null}
-                    
-                    <Link to={'/createanaccount'}>
-                        <div className="login-form-create"><u>Create an Account</u></div>
+                    <div>
+                        <input type="submit" name="submit" className="login-form-submit" onClick={(event) => this.handleClick(event)}/>
+                    </div>
+                    {(this.state.error) ? <div className="login-form-error">{this.state.errormsg}</div> : null}
+                    {(this.state.valid) ? <div className="login-form-success">Success! Account Created!</div> : null}
+
+                    <Link to={'/login'}>
+                        <div className="login-form-create"><u>Back to Sign-In</u></div>
                     </Link>
 
             </main>
@@ -100,4 +105,4 @@ class LoginPage extends React.Component {
   }
 
 
-export default LoginPage;
+export default CreateAnAccountPage;

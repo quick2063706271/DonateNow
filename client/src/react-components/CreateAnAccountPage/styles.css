@@ -48,6 +48,14 @@
     border: none;
   }
 
+  .login-form-field-retype {
+    height: 1cm;
+    width: 4.5cm;
+    font-size: x-large;
+    border: none;
+    align-items: left;
+  }
+
   .login-form-submit {
     width: 200%;
     height: 1cm;
@@ -63,6 +71,11 @@
       font-size: small;
       color: red;
     }
+
+  .login-form-success {
+    font-size: small;
+    color: green;
+  }
   
   .login-form-create {
     font-size: small;
