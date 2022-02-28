@@ -27,41 +27,58 @@
     font-size: 18px;
     color:cornsilk;
     margin-right: 3%;
+    margin-top: 15px;
+}
+
+#uploadButton{
+    float: left;
+    margin-left: 35%;
+    margin-top: 8%;
+    background-color: rgb(220, 70, 127);
+    font-size: 18px;
+    color:cornsilk;
 }
 
 .postImageArea{
     float: left;
-    margin-top: 3%;
+    margin-top: 50px;
     margin-left: 4%;
     width: 30%;
-    height: 300px;
+    height: 450px;
     background-color: gainsboro;
-    position: relative;
 }
 
 .postImageDiv{
-    float: left;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-    width: 150px;
-    position: absolute;
-    top: 10px;
 }
 
 .postImage{
-    width: 100%;
+    width: 200%;
 }
 
 .postContentArea{
     float: left;
-    margin-top: 3%;
+    margin-top: 40px;
     margin-left: 4%;
     margin-right: 2%;
     width: 59%;
-    height: 500px;
+    height: 650px;
     background-color: gainsboro;
     margin-bottom: 50px;
+}
+
+.postContentItem{
+    float: left;
+    height: 40px;
+    margin-bottom: 2%;
+    margin-right: 4%;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.textBox{
+    float: left;
+    max-height: fit-content;
 }
 
 .deliveryOptionArea{
@@ -70,18 +87,27 @@
     margin-left: 4%;
     margin-bottom: 50px;
     width: 30%;
-    height: 170px;
+    height: 185px;
     background-color: gainsboro;
     position: absolute;
-    top: 400px;
+    top: 550px;
 }
 
 .text{
-    margin-top: 20px;
     margin-left: 5%;
     font-size: 28px;
     font-weight: bold;
     font-family: fantasy;
+}
+
+.textItem{
+    float: left;
+    margin-top: 10px;
+    margin-left: 2%;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: fantasy;
+    margin-right: 10px;
 }
 
 .deliveryOption{
