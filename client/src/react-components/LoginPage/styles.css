@@ -59,3 +59,7 @@
     background-color: PaleVioletRed;
   }
 
+  .login-form-error {
+      font-size: small;
+      color: red;
+    }
