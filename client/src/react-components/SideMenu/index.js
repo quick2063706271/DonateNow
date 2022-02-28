@@ -13,7 +13,6 @@ class SideMenu extends React.Component{
     }
 
     handleClick = (event) => {
-        console.log(event.target)
         console.log(event.target.innerText)
         let panel = 0
         if (event.target.innerText === 'MY INFORMATION') {
