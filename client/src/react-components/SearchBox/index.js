@@ -4,9 +4,12 @@ import "./styles.css";
 class SearchBox extends React.Component {
     render() {
       return (
-        <div className="searchBox">
-            <input placeholder="Enter keywords here ..."/>
-        </div>
+        <form id='searchArea'>
+            <input type="search" id="searchBox" placeholder="Enter keywords here ..."/>
+            <button type="submit" id="searchButton">
+                            Search
+            </button>
+        </form>
       );
     }
   }

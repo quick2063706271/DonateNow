@@ -4,7 +4,9 @@ import "./styles.css";
 class CreatePost extends React.Component {
     render() {
         return (
-            <div></div>
+            <div>
+                <input>create post page</input>
+            </div>
         );
     }
 

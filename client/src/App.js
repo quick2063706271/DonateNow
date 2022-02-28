@@ -1,7 +1,7 @@
 import logo from './logo.png';
 import './App.css';
-import SearchBox from './react-components/SearchBox';
-import NavigationMenu from './react-components/NavigationMenu';
+// import SearchBox from './react-components/SearchBox';
+// import NavigationMenu from './react-components/NavigationMenu';
 import LoginPage from './react-components/LoginPage';
 import CreateAnAccountPage from './react-components/CreateAnAccountPage';
 import UserPage from './react-components/UserPage';
@@ -35,7 +35,7 @@ class App extends React.Component {
           <Route path='/' element={<Home/>} />
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
-          <Route path='/navigationmenu' element={<NavigationMenu/>} />
+          {/* <Route path='/navigationmenu' element={<NavigationMenu/>} /> */}
           <Route path='/userpage' element={<UserPage/>} />
           <Route path='/createpost' element={<CreatePost/>} />
           <Route path='/postpage' element={<PostPage/>} />
