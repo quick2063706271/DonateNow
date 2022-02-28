@@ -5,6 +5,10 @@ import UserPage from './react-components/UserPage';
 import Home from './react-components/Home';
 import CreatePost from './react-components/CreatePost';
 import PostPage from './react-components/PostPage';
+import ViewPostPickUp from './react-components/ViewPostPickUp';
+import ViewPostRequestPickUp from './react-components/ViewPostRequestPickUp';
+import ViewPostByCourier from './react-components/ViewPostByCourier';
+import ViewPostRequestByCourier from './react-components/ViewPostRequestByCourier';
 import WishList from './react-components/WishList';
 import AdminBlockList from './react-components/AdminBlockList';
 import AdminFeedback from './react-components/AdminFeedback';
@@ -33,15 +37,19 @@ class App extends React.Component {
           <Route path='/userpage' element={<UserPage/>} />
           <Route path='/createpost' element={<CreatePost/>} />
           <Route path='/postpage' element={<PostPage/>} />
+          <Route path='/viewpost/pickup' element={<ViewPostPickUp/>} />
+          <Route path='/viewpost/requestpickup' element={<ViewPostRequestPickUp/>} />
+          <Route path='/viewpost/bycourier' element={<ViewPostByCourier/>} />
+          <Route path='/viewpost/requestbycourier' element={<ViewPostRequestByCourier/>} />
           <Route path='/wishlist' element={<WishList/>} />
           <Route path='/choosedonee' element={<ChooseDonee/>} />
           <Route path='/admin/blocklist' element={<AdminBlockList/>} />
           <Route path='/admin/userpage' element={<AdminUserPage/>} />
-          <Route path='/admin/postpage' element={<AdminPostPage/>} /> 
-          <Route path='/admin/feedback' element={<AdminFeedback/>} /> 
-          <Route path='/termsconditions' element={<TermsConditons/>} /> 
-          <Route path='/error' element={<ErrorPage/>} /> 
-          <Route path='/faq' element={<FAQpage/>} /> 
+          <Route path='/admin/postpage' element={<AdminPostPage/>} />
+          <Route path='/admin/feedback' element={<AdminFeedback/>} />
+          <Route path='/termsconditions' element={<TermsConditons/>} />
+          <Route path='/error' element={<ErrorPage/>} />
+          <Route path='/faq' element={<FAQpage/>} />
         </Routes>
       </BrowserRouter>
     );
