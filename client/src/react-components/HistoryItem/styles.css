@@ -1,0 +1,26 @@
+#item-card {
+    box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.31);
+    height: 200px;
+    width: 800px;
+    background: rgba(255, 255, 255, 0.90);
+    border-radius: 5px;
+}
+#img-container {
+    float: left;
+}
+#item-information-container {
+    float: left;
+}
+
+#item-information-container h1 {
+    display: block;
+    font-family: serif;
+}
+
+#item-information-container h3 {
+    display: block;
+}
+
+#item-information-container h3 {
+    display: block;
+}
