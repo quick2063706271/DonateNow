@@ -24,10 +24,6 @@
 
 
 #searchBox{
-    /* width: 150%;
-    height: 200%; */
-    /* float: left;
-    display: block; */
     border: none;
     background: transparent;
     margin: 0;
@@ -43,8 +39,6 @@
 #searchButton{
   width: 80px;
   float: left;
-  /* position:relative;
-  left: 30%; */
   font-size: 16px;
 }
 

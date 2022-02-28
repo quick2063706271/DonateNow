@@ -1,7 +1,4 @@
-import logo from './logo.png';
 import './App.css';
-// import SearchBox from './react-components/SearchBox';
-// import NavigationMenu from './react-components/NavigationMenu';
 import LoginPage from './react-components/LoginPage';
 import CreateAnAccountPage from './react-components/CreateAnAccountPage';
 import UserPage from './react-components/UserPage';
@@ -17,6 +14,8 @@ import ChooseDonee from './react-components/ChooseDonee';
 import TermsConditons from './react-components/TermsConditons';
 import ErrorPage from './react-components/ErrorPage';
 import FAQpage from './react-components/FAQpage';
+import SearchPage from './react-components/SearchPage';
+import DefaultSearchPage from './react-components/DefaultSearchPage';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
 
@@ -24,18 +23,13 @@ import React from 'react';
 class App extends React.Component {
   render() {
     return (
-      /*<header className="Header">
-        <img src={logo} className="logo" alt="logo" />
-        <SearchBox/>
-        <NavigationMenu/>
-        <LoginPage />
-      </header>*/
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
-          {/* <Route path='/navigationmenu' element={<NavigationMenu/>} /> */}
+          <Route path='/defaultsearch' element={<DefaultSearchPage/>} />
+          <Route path='/search' element={<SearchPage/>} />
           <Route path='/userpage' element={<UserPage/>} />
           <Route path='/createpost' element={<CreatePost/>} />
           <Route path='/postpage' element={<PostPage/>} />

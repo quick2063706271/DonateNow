@@ -2,7 +2,6 @@ import React from "react";
 import "./styles.css";
 import home_pic from '../../homepage_pic.jpeg'
 import Logo from '../Logo';
-import LoginPage from "../LoginPage";
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import SearchBox from "../SearchBox";

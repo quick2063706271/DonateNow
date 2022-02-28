@@ -1,0 +1,93 @@
+#background{
+    float: left;
+    margin-top: 30px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    max-height: 1000px;
+    background-color: rgb(247, 235, 193);
+    position: relative;
+}
+
+.postHeader{
+    margin-top: 2%;
+    margin-left: 4%;
+    height: 50px;
+}
+
+#createPostText{
+    font-size: 50px;
+    font-weight: bold;
+    font-family: fantasy;
+}
+
+#publishButton{
+    float: right;
+    background-color: rgb(220, 70, 127);
+    font-size: 18px;
+    color:cornsilk;
+    margin-right: 3%;
+}
+
+.postImageArea{
+    float: left;
+    margin-top: 3%;
+    margin-left: 4%;
+    width: 30%;
+    height: 300px;
+    background-color: gainsboro;
+    position: relative;
+}
+
+.postImageDiv{
+    float: left;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+    position: absolute;
+    top: 10px;
+}
+
+.postImage{
+    width: 100%;
+}
+
+.postContentArea{
+    float: left;
+    margin-top: 3%;
+    margin-left: 4%;
+    margin-right: 2%;
+    width: 59%;
+    height: 500px;
+    background-color: gainsboro;
+    margin-bottom: 50px;
+}
+
+.deliveryOptionArea{
+    float: left;
+    margin-top: 3%;
+    margin-left: 4%;
+    margin-bottom: 50px;
+    width: 30%;
+    height: 170px;
+    background-color: gainsboro;
+    position: absolute;
+    top: 400px;
+}
+
+.text{
+    margin-top: 20px;
+    margin-left: 5%;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: fantasy;
+}
+
+.deliveryOption{
+    font-size: 30px;
+}
+
+.deliveryOptionForm{
+    margin-left: 5%;
+}
