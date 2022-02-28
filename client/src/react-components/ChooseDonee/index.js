@@ -4,7 +4,9 @@ import "./styles.css";
 class ChooseDonee extends React.Component {
     render() {
         return (
-            <div></div>
+            <div>
+                <input>choose donee page</input>
+            </div>
         );
     }
 

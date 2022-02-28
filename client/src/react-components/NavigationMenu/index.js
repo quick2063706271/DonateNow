@@ -1,5 +1,8 @@
 import React from "react";
 import "./styles.css";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import { Link } from 'react-router-dom';
 
 class NavigationMenu extends React.Component {
     render() {
@@ -9,13 +12,19 @@ class NavigationMenu extends React.Component {
                 <div>
                     <ul>
                         <li>
-                            <a>Donate Now</a>
+                            <Link Link to={'/createpost'}>
+                            <Button variant="outlined">Donate Now</Button>
+                            </Link>
                         </li>
                         <li>
-                            <a>Wish List</a>
+                            <Link Link to={'/wishlist'}>
+                            <Button variant="outlined">Wish List</Button>
+                            </Link>
                         </li>
                         <li>
-                            <a>My Profile</a>
+                            <Link Link to={'/userpage'}>
+                            <Button variant="outlined">My Profile</Button>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -25,6 +34,7 @@ class NavigationMenu extends React.Component {
       );
     }
   }
+
 
 
 export default NavigationMenu;
