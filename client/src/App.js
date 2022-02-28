@@ -3,6 +3,7 @@ import './App.css';
 import SearchBox from './react-components/SearchBox';
 import NavigationMenu from './react-components/NavigationMenu';
 import LoginPage from './react-components/LoginPage';
+import CreateAnAccountPage from './react-components/CreateAnAccountPage';
 import UserPage from './react-components/UserPage';
 import Home from './react-components/Home';
 import CreatePost from './react-components/CreatePost';
@@ -33,6 +34,7 @@ class App extends React.Component {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/login' element={<LoginPage/>} />
+          <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
           <Route path='/navigationmenu' element={<NavigationMenu/>} />
           <Route path='/userpage' element={<UserPage/>} />
           <Route path='/createpost' element={<CreatePost/>} />
