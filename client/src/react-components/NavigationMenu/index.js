@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles.css";
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
 
 class NavigationMenu extends React.Component {

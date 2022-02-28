@@ -1,6 +1,6 @@
 import React from "react";
 import NavigationMenu from "../NavigationMenu";
-import logo from '../../logo.png';
+import Logo from "../Logo";
 import SearchBox from "../SearchBox";
 
 import "./styles.css";
@@ -9,7 +9,7 @@ class AppBar extends React.Component {
     render() {
         return (
             <div>
-                <div id="appbar-logo" ><img src={logo} id='logo' alt="appbar-logo"/></div>
+                <Logo/>
                 <SearchBox/>
                 <NavigationMenu/>
             </div>

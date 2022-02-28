@@ -1,0 +1,14 @@
+#home{
+    width: 100%;
+    float:left;
+}
+
+#home_pic{
+    width: 100%;
+}
+
+#loginButton{
+    float: right;
+    margin-top: 3%;
+    margin-right: 3%;
+}
