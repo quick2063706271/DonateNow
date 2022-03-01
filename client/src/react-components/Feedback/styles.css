@@ -1,0 +1,25 @@
+.input {
+    display: "flex";
+    flex-direction: "column";
+    justify-content: "center";
+    position: absolute;
+}
+
+#input-container {
+    /* float: left; */
+    background-color: #DCDBDA;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    position: absolute;
+    left: 560px;
+    top: 185px; 
+    height: 740px;
+    border-radius: 7.5px;
+}
+
+#submit-button {
+    /* float: left; */
+    margin-left: 200px;
+}

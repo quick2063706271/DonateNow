@@ -3,6 +3,7 @@ import "./styles.css";
 import PersonalInformation from "../PersonalInformation";
 import NavigationMenu from "../NavigationMenu";
 import HistoryItem from "../HistoryItem";
+import Feedback from "../Feedback";
 import SideMenu from "../SideMenu";
 import AppBar from "../AppBar";
 
@@ -19,8 +20,6 @@ class UserPage extends React.Component {
             <div>
                 <AppBar/>
                 <SideMenu/>
-                <PersonalInformation/>
-                {/* <HistoryItem/> */}
             </div>
         );
     }
