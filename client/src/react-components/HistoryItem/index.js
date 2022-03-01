@@ -1,16 +1,19 @@
 import React from "react";
 import "./styles.css";
-import monitorImg from "./monitor.png"
+import Post from "../Post";
+import monitorImg from "../../monitor.png"
 
 class HistoryItem extends React.Component{
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
+        console.log(Post.state)
     }
 
     render() {
         // type: {transaction, donated} 
         // status: {Received, Requested, Accepted, Pending, Failed, Posted, Order Placed, Completed}
         const { name, type, status, date } = this.props;
+        console.log(Post.state)
         return (
             <div id="item-card">
                 <div id="img-container">

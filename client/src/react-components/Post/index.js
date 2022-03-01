@@ -1,5 +1,6 @@
 import React from "react";
 import toys from "../../toys.png"
+import monitor from "../../monitor.png"
 
 class Post extends React.Component {
 
@@ -14,7 +15,7 @@ class Post extends React.Component {
         categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
         newCategory: "",
         posts: [
-            { img_src={toys}, 
+            { img_src: toys, 
             delivery_option: "Pickup",
             header: "Toys for Kids 5-6 Year Olds",
             location: "Toronto, ON",
@@ -23,12 +24,20 @@ class Post extends React.Component {
             categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
             newCategory: ""
             },
+            { img_src: monitor,
+            delivery_option: "Delivery",
+            header: "Monitor from Microhard",
+            location: "Toronto, ON",
+            description: "I bought the monitor 2 years ago for my son, almost as new. He has new monitor now and we wish to give away to kids who may like it. ",
+            categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
+            newCategory: ""
+            }
         ]
     };
     render() {
         return (
             <div>
-                <AppBar/>
+                {/* <AppBar/> */}
             </div>
         );
     }
