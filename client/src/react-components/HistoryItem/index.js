@@ -3,26 +3,24 @@ import "./styles.css";
 import Post from "../Post";
 import monitorImg from "../../monitor.png"
 
+
 class HistoryItem extends React.Component{
     constructor() {
         super()
-        console.log(Post.state)
     }
 
     render() {
-        // type: {transaction, donated} 
         // status: {Received, Requested, Accepted, Pending, Failed, Posted, Order Placed, Completed}
-        const { name, type, status, date } = this.props;
-        console.log(Post.state)
+        const { header, status, date, img } = this.props;
         return (
             <div id="item-card">
                 <div id="img-container">
-                    <img src={monitorImg} className="itemImage" alt="img" height="200px"/>
+                    <img src={img} className="item-img" alt="img"/>
                 </div>
                 <div id="item-information-container">
-                    <h1>Monitor</h1>
-                    <h3>Request Accepted</h3>
-                    <h3>2021-02-01</h3>
+                    <h1>{header}</h1>
+                    <h3>{status}</h3>
+                    <h3>{date}</h3>
                 </div>
             </div>      
         )

@@ -1,9 +1,11 @@
 #item-card {
     box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.31);
     height: 200px;
-    width: 800px;
+    width: 600px;
     background: rgba(255, 255, 255, 0.90);
-    border-radius: 5px;
+    /* border-radius: 7.5px; */
+    display: block;
+    margin: 5px;
 }
 #img-container {
     float: left;
@@ -23,4 +25,9 @@
 
 #item-information-container h3 {
     display: block;
+}
+
+.item-img{
+    height: 200px;
+    width: 200px
 }
