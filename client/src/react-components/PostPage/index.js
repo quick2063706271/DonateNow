@@ -4,7 +4,8 @@ import "./styles.css";
 class PostPage extends React.Component {
     render() {
         return (
-            <div></div>
+            <div>
+            </div>
         );
     }
 

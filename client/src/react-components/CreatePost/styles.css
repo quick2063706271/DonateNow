@@ -45,15 +45,20 @@
     margin-left: 4%;
     width: 30%;
     height: 450px;
-    background-color: gainsboro;
+    background-color: rgb(220, 217, 217);
+    position: relative;
 }
 
 .postImageDiv{
+    float: left;
+    position: absolute;
+    top: 100px;
+    left: 100px;
     border: 1px solid #ddd;
 }
 
 .postImage{
-    width: 200%;
+    width: 100%;
 }
 
 .postContentArea{

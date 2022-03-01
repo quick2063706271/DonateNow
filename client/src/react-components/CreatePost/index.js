@@ -3,7 +3,6 @@ import React from "react";
 import Button from '@mui/material/Button';
 import "./styles.css";
 import upload from "../../upload.png"
-import books from "../../books.png"
 import PostImage from "../PostImage";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -12,7 +11,6 @@ import Checkbox from '@mui/material/Checkbox';
 import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { breakpoints } from "@mui/system";
 
 class CreatePost extends React.Component {
     render() {
