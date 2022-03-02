@@ -2,7 +2,7 @@ import AppBar from "../AppBar";
 import React from "react";
 import Button from '@mui/material/Button';
 import "./styles.css";
-import upload from "../../upload.png"
+import upload from "../../upload.png" 
 import PostImage from "../PostImage";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
