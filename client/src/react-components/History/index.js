@@ -14,9 +14,9 @@ class History extends React.Component {
                 {items.map((item) => (<HistoryItem 
                                         key={uid(item)} 
                                         header={item.header} 
-                                        status={item.status} 
+                                        status={item.viewerStatus} 
                                         date={item.date}
-                                        img={item.img}
+                                        img={item.img_src}
                                     />)
                 )}
             </div>

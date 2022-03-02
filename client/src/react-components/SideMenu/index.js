@@ -61,10 +61,28 @@ class SideMenu extends React.Component{
     }
 
     render () {
+        // select user to display
         let user = database.users[0]
+
+        // find transaction history
+        let transactionHistories = database.transactions.filter((transaction) => transaction.viwerId === user.userId)
+
+        let transactionPosts=transactionHistories.map((item,i)=>{
+            if(item.postId === database.posts[i].postId){
+                //merging two objects
+              return Object.assign({},item,database.posts[i])
+            }})
+        console.log(transactionPosts)
+
+        // find donation history
+        let donationHistories = database.transactions.filter((transaction) => transaction.ownerId === user.userId)
+        let donationPostIds = donationHistories.map((donationHistory) => donationHistory.postId)
+        let donationPostsInfo = database.posts.filter((post) => donationPostIds.includes(post.postId))
+        console.log(donationPostsInfo)
+        // select panel to display
         let panel
         if (this.state.selectedPanel == 1) {
-            panel = <History items={this.state.transactionPosts}/>
+            panel = <History items={transactionPosts}/>
         } else if (this.state.selectedPanel == 2) {
             panel = <History items={this.state.donatedPosts}/>
         } else if (this.state.selectedPanel == 3) {

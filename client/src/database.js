@@ -1,6 +1,7 @@
 import toys from "./toys.png"
 import clothes from "./clothes.png"
 import monitor from "./monitor.png"
+import marker from "./marker.png"
 
 let ownerStatuses = ["posted", "donation matched", "completed", "failed"]
 
@@ -8,11 +9,30 @@ let viewerStatuses = ["requested", "requst accepted", "completed", "failed"]
 
 let transactions = [
     {
-        // ownerId:
-        // viwerId:
-        // ownerStatus:
-        // viewerStatus: 
-    }
+        postId: 3,
+        ownerId: 1, 
+        viwerId: 2,
+        ownerStatus: "requested",
+        viewerStatus: "posted",
+        requestDate: "2020-01-01"
+    },
+    {
+        postId: 2,
+        ownerId: 1, 
+        viwerId: 2,
+        ownerStatus: "failed",
+        viewerStatus: "failed",
+        requestDate: "2020-02-01"
+    },
+    {
+        postId: 1,
+        ownerId: 2, 
+        viwerId: 1,
+        ownerStatus: "donation matched",
+        viewerStatus: "requested accepted",
+        requestDate: "2020-03-01"
+    },
+
 ]
 
 let posts = [
@@ -81,7 +101,24 @@ let users = [
         // Wishlisted [postId]
         // Donated [postId]
         // Transaction [postId]
+    },
+    {
+        userId: 2,
+        username: "Jolene1997",
+        password: "12345678",
+        dateOfBirth: "2000-01-01",
+        gender: "female",
+        address1: "3 Queen St W, Toronto, ON M5Y 1Y4",
+        address2: "4651 Eglinton Ave W, Etobicoke, ON M9R 4C8",
+        phone: "123-456-7891",
+        email: "Jolene1997@gmail.com",
+        preference: "Food, Travel",
+        bio: "I enjoy reading food and gaming and travelling and travelling and travelling."
+        // User profile stuff
+        // Wishlisted [postId]
+        // Donated [postId]
+        // Transaction [postId]
     }
 ]
 
-export default {posts, users}
+export default {posts, users, transactions}
