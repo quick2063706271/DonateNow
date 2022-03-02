@@ -62,7 +62,7 @@ class SideMenu extends React.Component{
 
     render () {
         // select user to display
-        let user = database.users[3]
+        let user = database.users[1]
 
         // find transaction history
         let transactionHistories = database.transactions.filter((transaction) => transaction.viwerId === user.userId)
@@ -87,7 +87,7 @@ class SideMenu extends React.Component{
 
         // select panel to display
         let panel
-        if (this.state.selectedPanel == 0) {
+        if (this.state.selectedPanel == 1) {
             panel = <History items={transactionPosts} category="transaction"/>
         } else if (this.state.selectedPanel == 2) {
             panel = <History items={donationPosts} category="donation"/>
