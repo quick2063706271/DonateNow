@@ -12,33 +12,65 @@ let transactions = [
         //case 1: posted
         postId: 1,
         ownerId: 1,
-        viwerIds: [],
-        ownerStatus: {1: "posted"},
-        viewerStatuses: []
+        viwerIds: -1, // -1 means no viewer
+        ownerStatus: "posted",
+        viewerStatus: ""
     },
 
     {   //case 2: posted, some viewers requested
         postId: 2,
         ownerId: 2,
-        viwerIds: [1,3],
-        ownerStatus: {2: "posted"},
-        viewerStatuses: [{1: "requested"},{3: "requested"}]
+        viwerId: 1,
+        ownerStatus: "posted",
+        viewerStatus: "requested"
+    },
+
+    { 
+        postId: 2,
+        ownerId: 2,
+        viwerIds: 3,
+        ownerStatus: "posted",
+        viewerStatus: "requested"
     },
 
     {   //case 3: donor has chosen 1 donnee
         postId: 3,
         ownerId: 3,
-        viwerIds: [1,2],
+        viwerIds: 1,
         ownerStatus: {3: "donation matched"},
-        viewerStatuses: [{1: "failed"},{2: "requst accepted"}]
+        viewerStatuses: "failed",
+    },
+
+    {   
+        postId: 3,
+        ownerId: 3,
+        viwerIds: 2,
+        ownerStatus: "donation matched",
+        viewerStatus: "requst accepted"
     },
 
     {   //case 4: posted, some viewers requested
         postId: 4,
         ownerId: 4,
-        viwerIds: [1,2,3],
-        ownerStatus: {4: "completed"},
-        viewerStatuses: [{1: "failed"},{2: "completed"},{3: "failed"}]
+        viwerIds: 1,
+        ownerStatus: "completed",
+        viewerStatus: "failed"
+    },
+
+    {   
+        postId: 4,
+        ownerId: 4,
+        viwerIds: 2,
+        ownerStatus: "completed",
+        viewerStatus: "completed"
+    },
+
+    {   
+        postId: 4,
+        ownerId: 4,
+        viwerIds: 3,
+        ownerStatus: "completed",
+        viewerStatus: "failed"
     }
 ]
 
