@@ -62,29 +62,35 @@ class SideMenu extends React.Component{
 
     render () {
         // select user to display
-        let user = database.users[0]
+        let user = database.users[3]
 
         // find transaction history
         let transactionHistories = database.transactions.filter((transaction) => transaction.viwerId === user.userId)
+        
+        const mergeById = (a1, a2) =>
+         a1.map(itm => ({
+            ...a2.find((item) => (item.postId === itm.postId) && item),
+            ...itm
+        }));
+    
+        let transactionPosts = mergeById(transactionHistories, database.posts);
 
-        let transactionPosts=transactionHistories.map((item,i)=>{
-            if(item.postId === database.posts[i].postId){
-                //merging two objects
-              return Object.assign({},item,database.posts[i])
-            }})
+
+
         console.log(transactionPosts)
-
         // find donation history
         let donationHistories = database.transactions.filter((transaction) => transaction.ownerId === user.userId)
-        let donationPostIds = donationHistories.map((donationHistory) => donationHistory.postId)
-        let donationPostsInfo = database.posts.filter((post) => donationPostIds.includes(post.postId))
-        console.log(donationPostsInfo)
+        
+        let donationPosts = mergeById(donationHistories, database.posts);
+
+        console.log(donationPosts)
+
         // select panel to display
         let panel
-        if (this.state.selectedPanel == 1) {
-            panel = <History items={transactionPosts}/>
+        if (this.state.selectedPanel == 0) {
+            panel = <History items={transactionPosts} category="transaction"/>
         } else if (this.state.selectedPanel == 2) {
-            panel = <History items={this.state.donatedPosts}/>
+            panel = <History items={donationPosts} category="donation"/>
         } else if (this.state.selectedPanel == 3) {
             panel = <Feedback/>
         } else {

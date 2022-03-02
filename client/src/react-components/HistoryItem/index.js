@@ -20,7 +20,7 @@ class HistoryItem extends React.Component{
                 <div id="item-information-container">
                     <h1>{header}</h1>
                     <h3>{status}</h3>
-                    <h3>{date}</h3>
+                    {/* <h3>{date}</h3> */}
                 </div>
             </div>      
         )

@@ -8,18 +8,24 @@ class History extends React.Component {
         super()
     }
     render() {
-        const {items} = this.props;
+        const {items, category} = this.props;
+        let histories
+        if (items.length === 0) {
+            histories = <div id="history-container"></div>
+        } else {
+            histories = <div id="history-container">
+                            {items.map((item) => (<HistoryItem 
+                                                    key={uid(item)} 
+                                                    header={item.header} 
+                                                    status={category === "transaction" ? item.viewerStatus: item.ownerStatus} 
+                                                    date={item.requestDate}
+                                                    img={item.img_src}
+                                                />)
+                            )}
+                        </div>
+        }
         return (
-            <div id="history-container">
-                {items.map((item) => (<HistoryItem 
-                                        key={uid(item)} 
-                                        header={item.header} 
-                                        status={item.viewerStatus} 
-                                        date={item.date}
-                                        img={item.img_src}
-                                    />)
-                )}
-            </div>
+            histories
         )
     }
 }
