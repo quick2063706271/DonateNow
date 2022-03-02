@@ -1,0 +1,46 @@
+.wishlist {
+    margin: 0;
+    height: 100%;
+}
+
+.wishlist h1 {
+    top: 140px;
+    left: 40px;
+    position: absolute;
+}
+
+.block {  
+    border: 1px solid black;  
+    padding: 10px;  
+    max-width: 1000px;  
+    margin-top: 10px;  
+    left: 40px;
+    float: left;
+}  
+  
+.block p {  
+    margin: 2px;  
+}  
+  
+  
+.block span {  
+    font-weight: bold;  
+}  
+
+table {  
+    border: 1px solid black;  
+    padding: 10px;  
+    max-width: 1000px;  
+    margin-top: 10px; 
+    position:relative;
+    float:left;
+} 
+
+table, td, th {  
+    border-collapse: collapse;  
+    border: 1px solid black;  
+}  
+  
+td, th {  
+    min-width: 200px;  
+} 
