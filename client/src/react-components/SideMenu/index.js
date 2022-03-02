@@ -62,7 +62,7 @@ class SideMenu extends React.Component{
 
     render () {
         // select user to display
-        let user = database.users[1]
+        let user = database.users[0]
 
         // find transaction history
         let transactionHistories = database.transactions.filter((transaction) => transaction.viwerId === user.userId)
@@ -74,7 +74,7 @@ class SideMenu extends React.Component{
         }));
     
         let transactionPosts = mergeById(transactionHistories, database.posts);
-
+        const uniqueTransactionPosts = [...new Map(transactionPosts.map((item, postId) => [item[postId], item])).values()]
 
 
         console.log(transactionPosts)
@@ -83,14 +83,16 @@ class SideMenu extends React.Component{
         
         let donationPosts = mergeById(donationHistories, database.posts);
 
+        const uniqueDonationPosts = [...new Map(donationPosts.map((item, postId) => [item[postId], item])).values()]
+        // console.log(unique)
         console.log(donationPosts)
 
         // select panel to display
         let panel
         if (this.state.selectedPanel == 1) {
-            panel = <History items={transactionPosts} category="transaction"/>
+            panel = <History items={uniqueTransactionPosts} category="transaction"/>
         } else if (this.state.selectedPanel == 2) {
-            panel = <History items={donationPosts} category="donation"/>
+            panel = <History items={uniqueDonationPosts} category="donation"/>
         } else if (this.state.selectedPanel == 3) {
             panel = <Feedback/>
         } else {
