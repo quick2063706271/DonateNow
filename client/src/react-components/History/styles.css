@@ -8,5 +8,6 @@
     left: 560px;
     top: 185px; 
     min-height: 740px;
+    min-width: 620px;
     border-radius: 7.5px;
 }
