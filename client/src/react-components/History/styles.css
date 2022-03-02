@@ -1,0 +1,12 @@
+#history-container {
+    background-color: #DCDBDA;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: absolute;
+    left: 560px;
+    top: 185px; 
+    height: 740px;
+    border-radius: 7.5px;
+}
