@@ -1,6 +1,7 @@
 import toys from "./toys.png"
 import clothes from "./clothes.png"
 import monitor from "./monitor.png"
+import marker from "./marker.png"
 
 // let ownerStatuses = ["posted", "donation matched", "completed", "failed"]
 
