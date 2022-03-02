@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-import Post from "../Post";
 import monitorImg from "../../monitor.png"
 
 

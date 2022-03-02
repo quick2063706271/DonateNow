@@ -5,7 +5,8 @@ import PersonalInformation from '../PersonalInformation';
 import Feedback from '../Feedback';
 import History from '../History';
 import monitor from '../../monitor.png'
-import toys from "../../toys.png"
+// import toys from "../../toys.png"
+// import toys from "/toys.png"
 import marker from "../../marker.png"
 import bottle from "../../bottle.png"
 import database from "../../database"
@@ -19,7 +20,7 @@ class SideMenu extends React.Component{
                 { header: "Toys for Kids 5-6 Year Olds", 
                   status: "request accepted",
                   date: "2021-02-01",
-                  img: toys
+                  img: '/toys.png'
                 },
                 { header: "Monitor", 
                   status: "Failed",

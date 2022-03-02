@@ -18,7 +18,7 @@ class CreatePost extends React.Component {
             <div>
                 <AppBar/>
 
-                <div id="background">
+                <div className="postBackground">
                     <div className="postHeader">
                         <text id="createPostText">Post Your Donation Now</text>
                         <Button id="publishButton" variant="outlined">Publsih</Button>

@@ -1,0 +1,38 @@
+
+
+#requestNowButton, #saveButton{
+    float: right;
+    background-color: rgb(220, 70, 127);
+    font-size: 18px;
+    color:cornsilk;
+    margin-right: 3%;
+    margin-top: 15px;
+}
+
+.textTitleItem{
+    float: left;
+    margin-top: 10px;
+    margin-left: 2%;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: fantasy;
+}
+
+
+.textContentItem{
+    float: left;
+    margin-top: 10px;
+    margin-left: 2%;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: fantasy;
+    margin-right: 10px;
+}
+
+.viewPostText{
+    /* width: 100%; */
+    margin-left: 5%;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: fantasy;
+}

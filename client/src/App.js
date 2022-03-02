@@ -21,6 +21,9 @@ import React from 'react';
 
 
 class App extends React.Component {
+  state = {
+    userId: -1
+  }
   render() {
     return (
       <BrowserRouter>
@@ -30,7 +33,7 @@ class App extends React.Component {
           <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
           <Route path='/defaultsearch' element={<DefaultSearchPage/>} />
           <Route path='/search' element={<SearchPage/>} />
-          <Route path='/userpage' element={<UserPage/>} />
+          <Route path='/userpage' element={<UserPage userId={this.state.userId}/>} />
           <Route path='/createpost' element={<CreatePost/>} />
           <Route path='/postpage' element={<PostPage/>} />
           <Route path='/wishlist' element={<WishList/>} />

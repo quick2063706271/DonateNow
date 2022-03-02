@@ -1,4 +1,4 @@
-import toys from "./toys.png"
+
 import clothes from "./clothes.png"
 import monitor from "./monitor.png"
 import marker from "./marker.png"
@@ -78,7 +78,9 @@ let posts = [
 
     { 
         postId: 1,
-        img_src: toys, 
+        ownerId: 1,
+        viewerIds: [],
+        img_src: "/toys.png", 
         delivery_option: {"Pickup": 1, "Delivery": 0},
         header: "Toys for Kids 5-6 Year Olds",
         location: "Toronto, ON",
@@ -93,6 +95,8 @@ let posts = [
 
     { 
         postId: 2,
+        ownerId: 2,
+        viewerIds: [1, 3],
         img_src: monitor,
         delivery_option: {"Pickup": 0, "By Courier": 1},
         header: "Monitor from Microhard",
@@ -106,6 +110,8 @@ let posts = [
 
     { 
         postId: 3,
+        ownerId: 3,
+        viewerIds: [1, 2],
         img_src: clothes,
         delivery_option: {"Pickup": 0, "By Courier": 1},
         header: "Clothes for Kids 5-6 Year Olds",
@@ -119,6 +125,8 @@ let posts = [
 
     { 
         postId: 4,
+        ownerId: 4,
+        viewerIds: [1, 2, 3],
         img_src: marker,
         delivery_option: {"Pickup": 1, "By Courier": 0},
         header: "Marker",
@@ -132,7 +140,7 @@ let posts = [
 
 ]
 
-let users = [
+  let users = [
     {
         userId: 1,
         username: "John2022",
@@ -201,4 +209,4 @@ let users = [
     }
 ]
 
-export default {transactions, posts, users}
+export default {transactions, posts, users};
