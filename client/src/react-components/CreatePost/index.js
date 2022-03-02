@@ -108,6 +108,10 @@ class CreatePost extends React.Component {
                                     control={<Checkbox name="Sports" />}
                                     label="Sports"
                                 />
+                                <FormControlLabel
+                                    control={<Checkbox name="Electronics" />}
+                                    label="Electronics"
+                                />
                             </FormGroup>
                             <FormHelperText>Check all that applies</FormHelperText>
                                 

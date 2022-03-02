@@ -12,20 +12,54 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './styles.css'
 
+function DeliveryOptionGenerator(props){
+    if (props.deliveryOption == "Pickup"){
+        return(
+            <FormGroup className="deliveryOptionForm">
+                <FormControlLabel  className="deliveryOption" control={<Checkbox size="large" disabled/>} label={<Typography variant="h5">By Courier</Typography>} />
+                <FormControlLabel  className="deliveryOption" control={<Checkbox size="large" disabled checked />} label={<Typography variant="h5">Pick Up</Typography>} />
+            </FormGroup>
+        )
+    }else{
+        return(
+            <FormGroup className="deliveryOptionForm">
+                <FormControlLabel  className="deliveryOption" control={<Checkbox size="large" disabled checked/>} label={<Typography variant="h5">By Courier</Typography>} />
+                <FormControlLabel  className="deliveryOption" control={<Checkbox size="large" disabled  />} label={<Typography variant="h5">Pick Up</Typography>} />
+            </FormGroup>
+        )
+    }
+}
+
+
+function CategoryGenerator(props){
+    // console.log(props.category)
+    return(
+        <Box className="postPageTextBox" id="categoryBox"
+            sx={{
+                width: 500,
+                maxWidth: '76%',
+                height: 350,
+            }}
+        >
+        <FormGroup className="deliveryOptionForm">
+            {console.log(props.category)}
+            {props.category.map(
+                (category) => {
+                    return (<FormControlLabel
+                        control={<Checkbox name={category} disabled checked/>}
+                        label={category}
+                    /> )
+            })}
+        </FormGroup>
+        </Box>
+    )
+}
+
 class PostPageHelp extends React.Component {
-
-    // renderPostHeader (){
-    //     if (this.props.transaction.viewerId === this.props.postID){ //post owner
-    //         return (
-    //             <>
-    //                 <Button className="postButton" id="requestNowButton" variant="outlined">Save to WishList</Button>
-    //                 <Button className="postButton" id="saveButton" variant="outlined">Request Now</Button>
-    //             </>
-    //         )
-    //     }
-    // }
-
+    
     render() {
+        // const {userId, postId, transaction, post, user} = this.props
+        // {console.log(this.props)}
         return (
             <div className="postBackground">
                 <div className="postHeader">
@@ -41,18 +75,38 @@ class PostPageHelp extends React.Component {
                         <text className="viewPostText"> Details of this donation post:</text>
                     </div>
                     
-                    <div className="postContentItem">
-                            <text className="textTitleItem"> Location:</text>
+                    <div className="postContentItems">
+                            <text className="textTitleItem"> <u>Location:</u></text>
                             <text className="textContentItem"> {this.props.post.location}</text>
+                    </div>
+                    <div className="postContentItems">
+                        <div styles="height: 100%">
+                            <text className="textTitleItem">  <u>Description:</u></text>
                         </div>
+                            <text className="textContentItem"> {this.props.post.description}</text>
+                    </div>
+                    <div className="postContentItems">
+                            <text className="textTitleItem">  <u>Views:</u></text>
+                            <text className="textContentItem"> {this.props.post.views}</text>
+                    </div>
+                    <div className="postContentItems">
+                            <text className="textTitleItem">  <u>Requests:</u></text>
+                            <text className="textContentItem"> {this.props.post.requests}</text>
+                    </div>
+                    <div className="postContentItems">
+                            <text className="textTitleItem">  <u>Saved:</u></text>
+                            <text className="textContentItem"> {this.props.post.saved}</text>
+                    </div>
+                    <div className="postContentItems">
+                            <text className="textTitleItem">  <u>Categories:</u></text>
+                            <CategoryGenerator category={this.props.post.category}/>
+                    </div>
                 </div>
 
                 <div className="deliveryOptionArea">
                         <text className="text">Delivery Option:</text>
-                        <FormGroup className="deliveryOptionForm">
-                            <FormControlLabel  className="deliveryOption" control={<Checkbox size="large"/>} label={<Typography variant="h5">By Courier</Typography>} />
-                            <FormControlLabel  className="deliveryOption" control={<Checkbox size="large"/>} label={<Typography variant="h5">Pick Up</Typography>} />
-                        </FormGroup>
+                        {console.log(this.props)}
+                        <DeliveryOptionGenerator deliveryOption={this.props.post.deliveryOption}/>
                     </div>
             </div>
         );

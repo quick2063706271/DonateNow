@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import monitorImg from "../../monitor.png"
+// import monitorImg from "./monitor.png"
 import { Button } from "@mui/material";
 
 
