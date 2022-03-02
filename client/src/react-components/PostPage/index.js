@@ -7,9 +7,9 @@ import AppBar from "../AppBar";
 class PostPage extends React.Component {
     state = {
         postId: 1,
-        transaction: {},
-        post: {},  
-        user: {}, 
+        transaction: null,
+        post: null,  
+        user: null, 
         // postPath: "/postpage/" + this.state.PostId.toString(),
     };
 
@@ -23,11 +23,10 @@ class PostPage extends React.Component {
 
     getTransaction = (transaction) => {
         return transaction.postId === this.state.postId && 
-            ((transaction.ownerId === this.props.userId)||(transaction.viewerId === this.state.userId));
+            ((transaction.ownerId === this.props.userId)||(transaction.viewerId === this.props.userId));
     }
 
     initStateInfo = () =>{
-        // console.log(database.posts.filter(this.getPost))
         this.setState({
             post: database.posts.filter(this.getPost)[0],
             user: database.users.filter(this.getUser)[0],
@@ -43,13 +42,13 @@ class PostPage extends React.Component {
         return (
             <div>
                 <AppBar/>
-                <PostPageHelp 
+                {this.state.post ? <PostPageHelp 
                     userId = {this.props.userId}
                     postId = {this.state.postId}
                     transaction = {this.state.transaction}
                     post = {this.state.post}
                     user = {this.state.user}
-                    />
+                    /> : null}
             </div>
         );
     }

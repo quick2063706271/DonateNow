@@ -1,8 +1,4 @@
 
-import clothes from "./clothes.png"
-import monitor from "./monitor.png"
-import marker from "./marker.png"
-
 // let ownerStatuses = ["posted", "donation matched", "completed", "failed"]
 
 // let viewerStatuses = ["requested", "requst accepted", "completed", "failed"]
@@ -81,61 +77,67 @@ let posts = [
         ownerId: 1,
         viewerIds: [],
         img_src: "/toys.png", 
-        delivery_option: {"Pickup": 1, "Delivery": 0},
+        deliveryOption: "Pickup",
         header: "Toys for Kids 5-6 Year Olds",
         location: "Toronto, ON",
         description: "I bought the toys 2 years ago for my son, almost as new. He has new toys now and we wish to give away to kids who may like it. " +
         "Please request only if you can pick it up in Toronto DT, thanks.",
-        categories: {"clothing": 0, "Toys, Kids, Parents": 1, "Art": 0, "Furniture": 0, "Books & Stationary": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
+        // categories: {"clothing": 0, "Toys, Kids, Parents": 1, "Art": 0, "Furniture": 0, "Books & Stationary": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
+        category: ["Toys, Kids, Parents", "Interests"],
         blocked: 0,
         views: 50,
-        Requests: 12,	 
-        Saved: 26
+        requests: 0,	 
+        saved: 26
     },
 
     { 
         postId: 2,
         ownerId: 2,
         viewerIds: [1, 3],
-        img_src: monitor,
-        delivery_option: {"Pickup": 0, "By Courier": 1},
+        img_src: './monitor.png',
+        deliveryOption: "By Courier",
         header: "Monitor from Microhard",
         location: "Toronto, ON",
         description: "I bought the monitor 2 years ago for my son, almost as new. He has new monitor now and we wish to give away to kids who may like it. ",
-        categories: {"clothing": 1, "Toys, Kids, Parents": 1, "Art": 0, "Furniture": 0, "Books & Stationary": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
+        // categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books & Stationary": 1, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
+        category: ["Electronics"],
         views: 65,	
         requests: 20, 
-        Saved: 32
+        saved: 32
     },
 
     { 
         postId: 3,
         ownerId: 3,
         viewerIds: [1, 2],
-        img_src: clothes,
-        delivery_option: {"Pickup": 0, "By Courier": 1},
+        img_src: './clothes.png',
+        deliveryOption: "By Courier",
         header: "Clothes for Kids 5-6 Year Olds",
         location: "Toronto, ON",
         description: "My son grows really fast, these clothes are almost new. We wish to give away to kids who may need it. ",
-        categories: {"clothing": 1, "Toys, Kids, Parents": 1, "Art": 0, "Furniture": 0, "Books & Stationary": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
+        // categories: {"clothing": 1, "Toys, Kids, Parents": 1, "Art": 0, "Furniture": 0, "Books & Stationary": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
+        categories: ["Clothing", "Toys, Kids, Parents"],
+        // category: "Clothing",
         views: 65,	
         requests: 20, 
-        Saved: 32
+        saved: 32
     },
 
     { 
         postId: 4,
         ownerId: 4,
         viewerIds: [1, 2, 3],
-        img_src: marker,
-        delivery_option: {"Pickup": 1, "By Courier": 0},
+        img_src: './marker.png',
+        deliveryOption: "Pickup",
         header: "Marker",
         location: "Toronto, ON",
         description: "Some spare markers. Please pick it up",
-        categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books & Stationary": 1, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
+        // categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books & Stationary": 1, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
+        // categories: ["Books & Stationary"],
+        category: ["Books & Stationary"],
         views: 65,	
         requests: 20, 
-        Saved: 32
+        saved: 32
     }
 
 ]
@@ -153,8 +155,8 @@ let posts = [
         email: "John2022@gmail.com",
         preference: "Books & Stationary, Travel",
         bio: "I enjoy reading Books & Stationary and gaming and travelling and travelling and travelling.",
-        Wishlisted: [2,4],
-        Donated: [1],
+        wishlisted: [2,4],
+        donated: [1],
         transaction: [2, 3, 4]
     },
     {
@@ -169,8 +171,8 @@ let posts = [
         email: "user@user.com",
         preference: "Books & Stationary, Travel",
         bio: "I enjoy reading Books & Stationary and gaming and travelling and travelling and travelling.",
-        Wishlisted: [1, 3, 4],
-        Donated: [2],
+        wishlisted: [1, 3, 4],
+        donated: [2],
         transaction: [3, 4]
     },
 
@@ -186,8 +188,8 @@ let posts = [
         email: "amy2000@user.com",
         preference: "Nothing really",
         bio: "Looking for coding books",
-        Wishlisted: [],
-        Donated: [3],
+        wishlisted: [],
+        donated: [3],
         transaction: [2, 4]
     },
 
@@ -203,8 +205,8 @@ let posts = [
         email: "andy2000@user.com",
         preference: "furniture hunter",
         bio: "Fun guy",
-        Wishlisted: [1, 2],
-        Donated: [4],
+        wishlisted: [1, 2],
+        donated: [4],
         transaction: []
     }
 ]

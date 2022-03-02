@@ -67,9 +67,10 @@
     margin-left: 4%;
     margin-right: 2%;
     width: 59%;
-    height: 650px;
+    height: 700px;
     background-color: gainsboro;
     margin-bottom: 50px;
+    overflow: auto;
 }
 
 .postContentItem{
@@ -87,12 +88,13 @@
 }
 
 .deliveryOptionArea{
+    overflow: auto;
     float: left;
     margin-top: 3%;
     margin-left: 4%;
     margin-bottom: 50px;
     width: 30%;
-    height: 185px;
+    height: 200px;
     background-color: gainsboro;
     position: absolute;
     top: 550px;

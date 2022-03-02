@@ -4,10 +4,10 @@ import { Button } from '@mui/material';
 import PersonalInformation from '../PersonalInformation';
 import Feedback from '../Feedback';
 import History from '../History';
-import monitor from '../../monitor.png'
+// import monitor from '../../monitor.png'
 // import toys from "../../toys.png"
 // import toys from "/toys.png"
-import marker from "../../marker.png"
+// import marker from "./marker.png"
 import bottle from "../../bottle.png"
 import database from "../../database"
 
@@ -25,14 +25,14 @@ class SideMenu extends React.Component{
                 { header: "Monitor", 
                   status: "Failed",
                   date: "2021-02-02",
-                  img: monitor
+                  img: './monitor.png'
                 }
             ],
             donatedPosts: [
                 { header: "Marker", 
                   status: "Requested",
                   date: "2021-02-03",
-                  img: marker
+                  img: './marker.png'
                 },
                 { header: "Bottle", 
                   status: "Order Placed",
