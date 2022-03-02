@@ -67,8 +67,16 @@ let posts = [
 let users = [
     {
         userId: 1,
-        username: "user@user.com",
-        password: "user",
+        username: "John2022",
+        password: "12341234",
+        dateOfBirth: "1990-01-01",
+        gender: "male",
+        address1: "1 King St W, Toronto, ON M5C 1T4",
+        address2: "4650 Eglinton Ave W, Etobicoke, ON M9R 4C8",
+        phone: "123-456-7890",
+        email: "John2022@gmail.com",
+        preference: "Books, Travel",
+        bio: "I enjoy reading books and gaming and travelling and travelling and travelling."
         // User profile stuff
         // Wishlisted [postId]
         // Donated [postId]

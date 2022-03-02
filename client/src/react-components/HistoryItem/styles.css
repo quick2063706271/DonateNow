@@ -1,3 +1,4 @@
+
 #item-card {
     box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.31);
     height: 200px;
@@ -16,7 +17,7 @@
 
 #item-information-container h1 {
     display: block;
-    font-family: serif;
+    font-family: serif
 }
 
 #item-information-container h3 {

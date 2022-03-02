@@ -7,6 +7,6 @@
     position: absolute;
     left: 560px;
     top: 185px; 
-    height: 740px;
+    min-height: 740px;
     border-radius: 7.5px;
 }

@@ -33,6 +33,16 @@ class PersonalInformation extends React.Component {
     // }
 
     render() {
+        const {username, 
+               password, 
+               dateOfBirth,
+               gender,
+               address1,
+               address2,
+               phone,
+               email,
+               preference,
+               bio} = this.props;
         return(
             <div>
                 <Box component="form" 
@@ -48,7 +58,7 @@ class PersonalInformation extends React.Component {
                         className="inputFieldId"
                         disabled // Username cannot be changed
                         label="Username"
-                        defaultValue="John2022"
+                        defaultValue={username}
                         InputProps={{
                             readOnly: true,
                         }}
@@ -58,7 +68,7 @@ class PersonalInformation extends React.Component {
                         <TextField
                         className="inputField"
                         label="Password"
-                        defaultValue="12341234"
+                        defaultValue={password}
                         InputProps={{
                             readOnly: this.state.isEdit,
                         }}
@@ -68,7 +78,7 @@ class PersonalInformation extends React.Component {
                         <TextField
                         className="inputField"
                         label="Date Of Birth"
-                        defaultValue="1990-01-01"
+                        defaultValue={dateOfBirth}
                         InputProps={{
                             readOnly: this.state.isEdit,
                         }}
@@ -77,7 +87,7 @@ class PersonalInformation extends React.Component {
                         <TextField
                         className="inputField"
                         label="Gender"
-                        defaultValue="Male"
+                        defaultValue={gender}
                         InputProps={{
                             readOnly: this.state.isEdit,
                         }}
@@ -87,7 +97,7 @@ class PersonalInformation extends React.Component {
                         <TextField
                         className="inputField"
                         label="Address 1"
-                        defaultValue="1 King St W, Toronto, ON M5C 1T4"
+                        defaultValue={address1}
                         InputProps={{
                             readOnly: this.state.isEdit,
                         }}
@@ -98,7 +108,7 @@ class PersonalInformation extends React.Component {
                         <TextField
                         className="inputField"
                         label="Address 2"
-                        defaultValue="4650 Eglinton Ave W, Etobicoke, ON M9R 4C8"
+                        defaultValue={address2}
                         InputProps={{
                             readOnly: this.state.isEdit,
                         }}
@@ -109,7 +119,7 @@ class PersonalInformation extends React.Component {
                         <TextField
                         className="inputField"
                         label="Phone number"
-                        defaultValue="123-456-7890"
+                        defaultValue={phone}
                         InputProps={{
                             readOnly: this.state.isEdit,
                         }}
@@ -118,7 +128,7 @@ class PersonalInformation extends React.Component {
                         <TextField
                         className="inputField"
                         label="E-mail"
-                        defaultValue="John2022@gmail.com"
+                        defaultValue={email}
                         InputProps={{
                             readOnly: this.state.isEdit,
                         }}
@@ -128,7 +138,7 @@ class PersonalInformation extends React.Component {
                         <TextField
                         className="inputField"
                         label="Preference"
-                        defaultValue="Books, Travel"
+                        defaultValue={preference}
                         InputProps={{
                             readOnly: this.state.isEdit,
                         }}
@@ -139,7 +149,7 @@ class PersonalInformation extends React.Component {
                         <TextField
                         id="outlined-read-only-input"
                         label="Biography"
-                        defaultValue="I enjoy reading books and travelling and travelling and travelling and travelling."
+                        defaultValue={bio}
                         InputProps={{
                             readOnly: this.state.isEdit,
                         }}

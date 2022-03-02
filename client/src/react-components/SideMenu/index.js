@@ -8,7 +8,7 @@ import monitor from '../../monitor.png'
 import toys from "../../toys.png"
 import marker from "../../marker.png"
 import bottle from "../../bottle.png"
-// to-do: change
+import database from "../../database"
 
 class SideMenu extends React.Component{
     constructor() {
@@ -61,17 +61,27 @@ class SideMenu extends React.Component{
     }
 
     render () {
+        let user = database.users[0]
         let panel
-        if (this.state.selectedPanel === 0) {
-            panel = <PersonalInformation/>
-        } else if (this.state.selectedPanel == 1) {
+        if (this.state.selectedPanel == 1) {
             panel = <History items={this.state.transactionPosts}/>
         } else if (this.state.selectedPanel == 2) {
             panel = <History items={this.state.donatedPosts}/>
         } else if (this.state.selectedPanel == 3) {
             panel = <Feedback/>
         } else {
-            panel = <PersonalInformation/>
+            panel = <PersonalInformation 
+                        username={user.username}
+                        password={user.password}
+                        dateOfBirth={user.dateOfBirth}
+                        gender={user.gender}
+                        address1={user.address1}
+                        address2={user.address2}
+                        phone={user.phone}
+                        email={user.email}
+                        preference={user.preference}
+                        bio={user.bio}
+                    />
         }
 
         return (
