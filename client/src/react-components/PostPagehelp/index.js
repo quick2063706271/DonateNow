@@ -1,16 +1,12 @@
-import AppBar from "../AppBar";
 import React from "react";
 import Button from '@mui/material/Button';
-import upload from "../../upload.png" 
-import PostImage from "../PostImage";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import './styles.css'
+import './styles.css';
+import { Link } from "react-router-dom";
 
 function DeliveryOptionGenerator(props){
     if (props.deliveryOption == "Pickup"){
@@ -42,7 +38,7 @@ function CategoryGenerator(props){
             }}
         >
         <FormGroup className="deliveryOptionForm">
-            {console.log(props.categories)}
+            {/* {console.log(props.categories)} */}
             {props.categories.map(
                 (category) => {
                     return (<FormControlLabel
@@ -55,6 +51,41 @@ function CategoryGenerator(props){
     )
 }
 
+function PostHeaderHelper(props){
+    if (props.transaction == null){//undefined
+        return (
+            <span styles="float: left">
+                <Button className="postButton" id="requestNowButton" variant="outlined">Save to WishList</Button>
+                <Button className="postButton" id="saveButton" variant="outlined">Request Now</Button>
+            </span>
+        )
+    }else if (props.transaction.ownerId == props.userId){
+        if (props.transaction.viewerId === -1){
+            return (
+                <span styles="float: right">
+                    <text className="textContentItem">Owner Status: {props.transaction.ownerStatus}</text>
+                </span>
+            )
+        }else{
+            return (
+                <span styles="float: right">
+                    <text className="textContentItem">Owner Status: {props.transaction.ownerStatus}</text>
+                    <Link to="/choosedonee">
+                        <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
+                    </Link>
+                </span>
+            )
+        }
+        
+    }else{
+        return (
+            <span styles="float: right">
+                <text className="textContentItem">Viewer Status: {props.transaction.viewerStatus}</text>
+            </span>
+        )
+    }
+}
+
 class PostPageHelp extends React.Component {
     
     render() {
@@ -64,11 +95,13 @@ class PostPageHelp extends React.Component {
             <div className="postBackground">
                 <div className="postHeader">
                     <text id="createPostText"> {this.props.post.header} </text> 
-                    <Button className="postButton" id="requestNowButton" variant="outlined">Save to WishList</Button>
-                    <Button className="postButton" id="saveButton" variant="outlined">Request Now</Button>
+                    {/* <Button className="postButton" id="requestNowButton" variant="outlined">Save to WishList</Button>
+                    <Button className="postButton" id="saveButton" variant="outlined">Request Now</Button> */}
+                    <PostHeaderHelper transaction={this.props.transaction} 
+                                      userId={this.props.userId}
+                    />
                 </div>
                 <div className="postImageArea">
-                    {/* <PostImage imageSrc={this.props.post.imageSrc}/> */}
                     <div id="postpageImageDiv" >
                             <img src={this.props.post.imageSrc} id="postpageImage" alt="postImage"/>
                             <text id="imagelabel">[image: {this.props.post.imageSrc}]</text>
@@ -109,7 +142,7 @@ class PostPageHelp extends React.Component {
 
                 <div className="deliveryOptionArea">
                         <text className="text">Delivery Option:</text>
-                        {console.log(this.props)}
+                        {/* {console.log(this.props)} */}
                         <DeliveryOptionGenerator deliveryOption={this.props.post.deliveryOption}/>
                     </div>
             </div>
