@@ -16,30 +16,6 @@ class SideMenu extends React.Component{
         super();
         this.state = {
             selectedPanel: 0,
-            transactionPosts: [
-                { header: "Toys for Kids 5-6 Year Olds", 
-                  status: "request accepted",
-                  date: "2021-02-01",
-                  img: '/toys.png'
-                },
-                { header: "Monitor", 
-                  status: "Failed",
-                  date: "2021-02-02",
-                  img: './monitor.png'
-                }
-            ],
-            donatedPosts: [
-                { header: "Marker", 
-                  status: "Requested",
-                  date: "2021-02-03",
-                  img: './marker.png'
-                },
-                { header: "Bottle", 
-                  status: "Order Placed",
-                  date: "2021-02-02",
-                  img: bottle
-                }
-            ],
         }
 
     }
@@ -66,7 +42,7 @@ class SideMenu extends React.Component{
         let user = database.users[0]
 
         // find transaction history
-        let transactionHistories = database.transactions.filter((transaction) => transaction.viwerId === user.userId)
+        let transactionHistories = database.transactions.filter((transaction) => transaction.viewerId === user.userId)
         
         const mergeById = (a1, a2) =>
          a1.map(itm => ({
@@ -77,7 +53,7 @@ class SideMenu extends React.Component{
         let transactionPosts = mergeById(transactionHistories, database.posts);
         const uniqueTransactionPosts = [...new Map(transactionPosts.map((item, postId) => [item[postId], item])).values()]
 
-
+        console.log(transactionHistories)
         console.log(transactionPosts)
         // find donation history
         let donationHistories = database.transactions.filter((transaction) => transaction.ownerId === user.userId)
