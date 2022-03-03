@@ -6,7 +6,7 @@ import AppBar from "../AppBar";
 
 class PostPage extends React.Component {
     state = {
-        postId: 2,
+        postId: 3,
         transaction: null,
         post: null,  
         user: null, 

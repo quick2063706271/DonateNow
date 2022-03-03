@@ -42,8 +42,8 @@ function CategoryGenerator(props){
             }}
         >
         <FormGroup className="deliveryOptionForm">
-            {console.log(props.category)}
-            {props.category.map(
+            {console.log(props.categories)}
+            {props.categories.map(
                 (category) => {
                     return (<FormControlLabel
                         control={<Checkbox name={category} disabled checked/>}
@@ -103,7 +103,7 @@ class PostPageHelp extends React.Component {
                     </div>
                     <div className="postContentItems">
                             <text className="textTitleItem">  <u>Categories:</u></text>
-                            <CategoryGenerator category={this.props.post.category}/>
+                            <CategoryGenerator categories={this.props.post.categories}/>
                     </div>
                 </div>
 
