@@ -6,7 +6,7 @@ import AppBar from "../AppBar";
 
 class PostPage extends React.Component {
     state = {
-        postId: 3,
+        postId: 2,
         transaction: null,
         post: null,  
         user: null, 
@@ -22,8 +22,11 @@ class PostPage extends React.Component {
     }
 
     getTransaction = (transaction) => {
-        return transaction.postId === this.state.postId && 
-            ((transaction.ownerId === this.props.userId)||(transaction.viewerId === this.props.userId));
+        return (
+            (transaction.postId === this.state.postId && transaction.ownerId === this.props.userId)
+            ||
+            (transaction.postId === this.state.postId && transaction.viewerId === this.props.userId)
+            );
     }
 
     initStateInfo = () =>{

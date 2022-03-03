@@ -8,7 +8,7 @@ let transactions = [
         //case 1: posted
         postId: 1,
         ownerId: 1,
-        viwerIds: -1, // -1 means no viewer
+        viewerId: -1, // -1 means no viewer
         ownerStatus: "posted",
         viewerStatus: ""
     },
@@ -16,7 +16,7 @@ let transactions = [
     {   //case 2: posted, some viewers requested
         postId: 2,
         ownerId: 2,
-        viwerId: 1,
+        viewerId: 1,
         ownerStatus: "posted",
         viewerStatus: "requested"
     },
@@ -24,7 +24,7 @@ let transactions = [
     { 
         postId: 2,
         ownerId: 2,
-        viwerId: 3,
+        viewerId: 3,
         ownerStatus: "posted",
         viewerStatus: "requested"
     },
@@ -32,7 +32,7 @@ let transactions = [
     {   //case 3: donor has chosen 1 donnee
         postId: 3,
         ownerId: 3,
-        viwerId: 1,
+        viewerId: 1,
         ownerStatus: {3: "donation matched"},
         viewerStatuses: "failed",
     },
@@ -40,7 +40,7 @@ let transactions = [
     {   
         postId: 3,
         ownerId: 3,
-        viwerId: 2,
+        viewerId: 2,
         ownerStatus: "donation matched",
         viewerStatus: "requst accepted"
     },
@@ -48,7 +48,7 @@ let transactions = [
     {   //case 4: posted, some viewers requested
         postId: 4,
         ownerId: 4,
-        viwerId: 1,
+        viewerId: 1,
         ownerStatus: "completed",
         viewerStatus: "failed"
     },
@@ -56,7 +56,7 @@ let transactions = [
     {   
         postId: 4,
         ownerId: 4,
-        viwerId: 2,
+        viewerId: 2,
         ownerStatus: "completed",
         viewerStatus: "completed"
     },
@@ -64,7 +64,7 @@ let transactions = [
     {   
         postId: 4,
         ownerId: 4,
-        viwerId: 3,
+        viewerId: 3,
         ownerStatus: "completed",
         viewerStatus: "failed"
     }
