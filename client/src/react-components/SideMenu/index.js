@@ -16,30 +16,6 @@ class SideMenu extends React.Component{
         super();
         this.state = {
             selectedPanel: 0,
-            transactionPosts: [
-                { header: "Toys for Kids 5-6 Year Olds", 
-                  status: "request accepted",
-                  date: "2021-02-01",
-                  img: '/toys.png'
-                },
-                { header: "Monitor", 
-                  status: "Failed",
-                  date: "2021-02-02",
-                  img: './monitor.png'
-                }
-            ],
-            donatedPosts: [
-                { header: "Marker", 
-                  status: "Requested",
-                  date: "2021-02-03",
-                  img: './marker.png'
-                },
-                { header: "Bottle", 
-                  status: "Order Placed",
-                  date: "2021-02-02",
-                  img: bottle
-                }
-            ],
         }
 
     }

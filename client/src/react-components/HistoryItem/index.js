@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 // import monitorImg from "./monitor.png"
 import { Button } from "@mui/material";
+import ChooseDonee from "../ChooseDonee";
 
 
 class HistoryItem extends React.Component{
@@ -15,7 +16,7 @@ class HistoryItem extends React.Component{
         let chooseDoneeButton
         if (status === "posted") {
             chooseDoneeButton = <div > 
-                                    <Button id="choose-donee-button" variant="outlined">Choose your Donee</Button>
+                                    <ChooseDonee/>
                                 </div>
         } else {
             chooseDoneeButton = <div></div>
