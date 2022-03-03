@@ -11,6 +11,8 @@ class WishList extends React.Component {
         user: {}, 
     };
 
+    //const categories = this.state.post.categories.filter(pilot => pilot.faction === "Rebels");
+
     getPost = (post) => {
         return post.postId === this.state.postId;
     }
@@ -39,17 +41,23 @@ class WishList extends React.Component {
                     <div>  
                         <div className="block">  
                             <p><b><u>{this.state.post.header}</u></b></p>
-                            <div>
+                            {/*<div>
                                 <img src={this.state.post.img_src} className="logo" alt="logo"/>
-                            </div>
-                            
-                            {/*<p><b>Categories: </b>{this.state.post.categories.filter(this.getCategory)[0]}</p>
-                            <p><b>Delivery Option: </b>{this.state.post.delivery_option}</p> */}
-                            <p><b>Location: </b>{this.state.post.location}</p>
-                            
-                            <span><b>Views: </b>{this.state.post.views}</span>
-                            <span><b>Requests: </b>{this.state.post.Requests}</span>
-                            <span><b>Saved: </b>{this.state.post.Saved}</span>
+                            </div>*/}
+
+                            <ul>
+                                <li><b>Categories: </b>{this.state.post.category}</li>
+                                <li><b>Date Posted: </b>{this.state.post.datePosted}</li>
+                            </ul>
+                            <ul>
+                                <li><b>Location: </b>{this.state.post.location}</li>
+                                <li><b>Delivery Option: </b>{this.state.post.deliveryOption}</li>
+                            </ul>
+                            <ul>
+                                <li><b>Views: </b>{this.state.post.views}</li>
+                                <li><b>Requests: </b>{this.state.post.requests}</li>
+                                <li><b>Saved: </b>{this.state.post.saved}</li>
+                            </ul>
                             
                         </div>  
                     </div>

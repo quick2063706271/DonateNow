@@ -83,11 +83,12 @@ let posts = [
         description: "I bought the toys 2 years ago for my son, almost as new. He has new toys now and we wish to give away to kids who may like it. " +
         "Please request only if you can pick it up in Toronto DT, thanks.",
         // categories: {"clothing": 0, "Toys, Kids, Parents": 1, "Art": 0, "Furniture": 0, "Books & Stationary": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
-        category: ["Toys, Kids, Parents", "Interests"],
+        category: ["Toys", "Kids", "Parents", "Interests"],
         blocked: 0,
         views: 50,
         requests: 0,	 
-        saved: 26
+        saved: 26,
+        datePosted: "Mar 1, 2022"
     },
 
     { 
@@ -103,7 +104,8 @@ let posts = [
         category: ["Electronics"],
         views: 65,	
         requests: 20, 
-        saved: 32
+        saved: 32,
+        datePosted: "Mar 2, 2022"
     },
 
     { 
@@ -120,7 +122,8 @@ let posts = [
         // category: "Clothing",
         views: 65,	
         requests: 20, 
-        saved: 32
+        saved: 32,
+        datePosted: "Mar 3, 2022"
     },
 
     { 
@@ -137,7 +140,8 @@ let posts = [
         category: ["Books & Stationary"],
         views: 65,	
         requests: 20, 
-        saved: 32
+        saved: 32,
+        datePosted: "Mar 4, 2022"
     }
 
 ]
