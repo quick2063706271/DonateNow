@@ -24,19 +24,21 @@ class CreatePost extends React.Component {
                         <Button id="publishButton" variant="outlined">Publsih</Button>
                     </div>
                     <div className="postImageArea">
-                        <PostImage imageSrc={upload}/>
-                        {/* <PostImage imageSrc={books}/> */}
-                        <Button id="uploadButton" variant="outlined">Upload</Button>
+                        <div id="postImageDiv" >
+                            <img src={upload} id="postImage" alt="postImage"/>
+                            <Button id="uploadButton" variant="outlined">Upload</Button>
+                        </div>
+                        
                     </div>
                     <div className="postContentArea">
-                        <text className="text"> Please enter details of your donation post below:</text>
+                        <text className="text"> Please enter details of your donation below:</text>
                         
                         <div className="postContentItem">
                             <text className="textItem"> Header:</text>
                             <Box className="textBox"
                                 sx={{
                                     width: 600,
-                                    maxWidth: '83%',
+                                    maxWidth: '75%',
                                 }}
                                 >
                                 <TextField fullWidth label="Enter Your Header Here..." id="header" />
@@ -48,7 +50,7 @@ class CreatePost extends React.Component {
                             <Box className="textBox"
                                 sx={{
                                     width: 600,
-                                    maxWidth: '81%',
+                                    maxWidth: '73%',
                                 }}
                                 >
                                 <TextField fullWidth label="Enter Your Location Here..." id="location" />
@@ -59,7 +61,7 @@ class CreatePost extends React.Component {
                             <Box className="textBox"
                                 sx={{
                                     width: 600,
-                                    maxWidth: '76%',
+                                    maxWidth: '68%',
                                     height: 400,
                                 }}
                                 >

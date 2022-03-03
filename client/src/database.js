@@ -24,7 +24,7 @@ let transactions = [
     { 
         postId: 2,
         ownerId: 2,
-        viwerIds: 3,
+        viwerId: 3,
         ownerStatus: "posted",
         viewerStatus: "requested"
     },
@@ -32,7 +32,7 @@ let transactions = [
     {   //case 3: donor has chosen 1 donnee
         postId: 3,
         ownerId: 3,
-        viwerIds: 1,
+        viwerId: 1,
         ownerStatus: {3: "donation matched"},
         viewerStatuses: "failed",
     },
@@ -40,7 +40,7 @@ let transactions = [
     {   
         postId: 3,
         ownerId: 3,
-        viwerIds: 2,
+        viwerId: 2,
         ownerStatus: "donation matched",
         viewerStatus: "requst accepted"
     },
@@ -48,7 +48,7 @@ let transactions = [
     {   //case 4: posted, some viewers requested
         postId: 4,
         ownerId: 4,
-        viwerIds: 1,
+        viwerId: 1,
         ownerStatus: "completed",
         viewerStatus: "failed"
     },
@@ -56,7 +56,7 @@ let transactions = [
     {   
         postId: 4,
         ownerId: 4,
-        viwerIds: 2,
+        viwerId: 2,
         ownerStatus: "completed",
         viewerStatus: "completed"
     },
@@ -64,7 +64,7 @@ let transactions = [
     {   
         postId: 4,
         ownerId: 4,
-        viwerIds: 3,
+        viwerId: 3,
         ownerStatus: "completed",
         viewerStatus: "failed"
     }
@@ -76,7 +76,7 @@ let posts = [
         postId: 1,
         ownerId: 1,
         viewerIds: [],
-        img_src: "/toys.png", 
+        imageSrc: "/toys.png", 
         deliveryOption: "Pickup",
         header: "Toys for Kids 5-6 Year Olds",
         location: "Toronto, ON",
@@ -94,7 +94,7 @@ let posts = [
         postId: 2,
         ownerId: 2,
         viewerIds: [1, 3],
-        img_src: './monitor.png',
+        imageSrc: './monitor.png',
         deliveryOption: "By Courier",
         header: "Monitor from Microhard",
         location: "Toronto, ON",
@@ -110,7 +110,7 @@ let posts = [
         postId: 3,
         ownerId: 3,
         viewerIds: [1, 2],
-        img_src: './clothes.png',
+        imageSrc: './clothes.png',
         deliveryOption: "By Courier",
         header: "Clothes for Kids 5-6 Year Olds",
         location: "Toronto, ON",
@@ -127,7 +127,7 @@ let posts = [
         postId: 4,
         ownerId: 4,
         viewerIds: [1, 2, 3],
-        img_src: './marker.png',
+        imageSrc: './marker.png',
         deliveryOption: "Pickup",
         header: "Marker",
         location: "Toronto, ON",

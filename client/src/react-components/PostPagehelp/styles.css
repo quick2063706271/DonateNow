@@ -32,7 +32,7 @@
 
 .textContentItem{
     margin-left: 2%;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
     font-family: fantasy;
     margin-right: 10px;
@@ -44,4 +44,28 @@
     font-size: 28px;
     font-weight: bold;
     font-family: fantasy;
+}
+
+#postpageImageDiv{
+    float: left;
+    position: absolute;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    border: 1px solid #ddd;
+}
+
+#postpageImage{
+    max-width:100%;
+    max-height:100%;
+    object-fit: contain;
+}
+
+#imagelabel{
+    margin-left: 30%;
+    margin-top: 50px;
+}
+
+#categoryBox{
+    margin-left: 20%;
 }

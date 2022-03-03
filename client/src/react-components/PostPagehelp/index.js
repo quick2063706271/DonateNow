@@ -68,7 +68,11 @@ class PostPageHelp extends React.Component {
                     <Button className="postButton" id="saveButton" variant="outlined">Request Now</Button>
                 </div>
                 <div className="postImageArea">
-                    <PostImage imageSrc={this.props.post.imageSrc}/>
+                    {/* <PostImage imageSrc={this.props.post.imageSrc}/> */}
+                    <div id="postpageImageDiv" >
+                            <img src={this.props.post.imageSrc} id="postpageImage" alt="postImage"/>
+                            <text id="imagelabel">[image: {this.props.post.imageSrc}]</text>
+                    </div>
                 </div>
                 <div className="postContentArea">
                     <div>
@@ -80,7 +84,7 @@ class PostPageHelp extends React.Component {
                             <text className="textContentItem"> {this.props.post.location}</text>
                     </div>
                     <div className="postContentItems">
-                        <div styles="height: 100%">
+                        <div styles="height: 100%; width: 100%">
                             <text className="textTitleItem">  <u>Description:</u></text>
                         </div>
                             <text className="textContentItem"> {this.props.post.description}</text>
