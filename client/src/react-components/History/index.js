@@ -19,7 +19,7 @@ class History extends React.Component {
                                                     header={item.header} 
                                                     status={category === "transaction" ? item.viewerStatus: item.ownerStatus} 
                                                     date={item.requestDate}
-                                                    img={item.img_src}
+                                                    img={item.imageSrc}
                                                 />)
                             )}
                         </div>
