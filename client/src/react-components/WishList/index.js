@@ -37,7 +37,9 @@ class WishList extends React.Component {
             <div>
                 <AppBar/>
                 <div className="wishlist">
-                    <h1><b>My Wish List:</b></h1>
+                    <div className="header">
+                        <h1><b>My Wish List:</b></h1>
+                    </div>
                     <div>  
                         <div className="block">  
                             <p><b><u>{this.state.post.header}</u></b></p>
@@ -53,6 +55,7 @@ class WishList extends React.Component {
                                 <li><b>Location: </b>{this.state.post.location}</li>
                                 <li><b>Delivery Option: </b>{this.state.post.deliveryOption}</li>
                             </ul>
+                            <br></br>
                             <ul>
                                 <li><b>Views: </b>{this.state.post.views}</li>
                                 <li><b>Requests: </b>{this.state.post.requests}</li>
