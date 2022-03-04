@@ -42,26 +42,27 @@ class WishList extends React.Component {
                     </div>
                     <div>  
                         <div className="block">  
-                            <p><b><u>{this.state.post.header}</u></b></p>
-                            {/*<div>
-                                <img src={this.state.post.img_src} className="logo" alt="logo"/>
-                            </div>*/}
-
-                            <ul>
-                                <li><b>Categories: </b>{this.state.post.category}</li>
-                                <li><b>Date Posted: </b>{this.state.post.datePosted}</li>
-                            </ul>
-                            <ul>
-                                <li><b>Location: </b>{this.state.post.location}</li>
-                                <li><b>Delivery Option: </b>{this.state.post.deliveryOption}</li>
-                            </ul>
-                            <br></br>
-                            <ul>
-                                <li><b>Views: </b>{this.state.post.views}</li>
-                                <li><b>Requests: </b>{this.state.post.requests}</li>
-                                <li><b>Saved: </b>{this.state.post.saved}</li>
-                            </ul>
-                            
+                            <p className="title"><b><u>{this.state.post.header}</u></b></p>
+                            {/*<img src={this.state.post.imageSrc} className="logo" alt="logo"/>*/}
+                            <div className="post">
+                                <img src="../toys.png" className="image" alt="image"/>
+                                <div className="summary">
+                                    <ul>
+                                        <li><b>Categories: </b>{this.state.post.categories}</li>
+                                        <li><b>Date Posted: </b>{this.state.post.datePosted}</li>
+                                    </ul>
+                                    <ul>
+                                        <li><b>Location: </b>{this.state.post.location}</li>
+                                        <li><b>Delivery Option: </b>{this.state.post.deliveryOption}</li>
+                                    </ul>
+                                    <br></br>
+                                    <ul>
+                                        <li><b>Views: </b>{this.state.post.views}</li>
+                                        <li><b>Requests: </b>{this.state.post.requests}</li>
+                                        <li><b>Saved: </b>{this.state.post.saved}</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>  
                     </div>
                 </div>
