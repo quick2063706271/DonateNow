@@ -17,6 +17,7 @@ import FAQpage from './react-components/FAQpage';
 import SearchPage from './react-components/SearchPage';
 import DefaultSearchPage from './react-components/DefaultSearchPage';
 import StickyFooter from './react-components/StickyFooter';
+import AppBar from './react-components/AppBar';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
 
@@ -32,8 +33,9 @@ class App extends React.Component {
           <Route path='/' element={<Home/>} />
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
-          <Route path='/defaultsearch' element={<DefaultSearchPage/>} />
-          <Route path='/search' element={<SearchPage/>} />
+          <Route path='/search' element={<AppBar/>} />
+          {/*<Route path='/defaultsearch' element={<DefaultSearchPage/>} />
+          <Route path='/search' element={<SearchPage/>} />*/}
           <Route path='/userpage' element={<UserPage/>} />
           <Route path='/createpost' element={<CreatePost/>} />
           <Route path='/postpage' element={<PostPage  userId={this.state.userId}/>} />
