@@ -171,6 +171,7 @@ let posts = [
         complaintNum: [2],
         accountBlocked: false
     },
+
     {
         userId: 2,
         username: "user@user.com",
@@ -229,4 +230,36 @@ let posts = [
     }
 ]
 
-export default {categories, locations, deliveryOptions, transactions, posts, users};
+let allfaqs = [
+    {
+        id: 1,
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit."
+    },
+
+    {
+        id: 2,
+        content: "Fusce elementum lectus et magna vestibulum, at blandit nibh pellentesque.  In sapien massa, auctor auctor ultricies at, ultricies sed sem. Suspendisse a ex nulla. Fusce nec sagittis leo."
+    },
+
+    {
+        id: 3,
+        content: "Phasellus rhoncus laoreet dictum. Nullam consectetur justo ut lectus sodales, a lacinia magna aliquet. "
+    },
+
+    {
+        id: 4,
+        content: "Sed eget condimentum ligula, sit amet accumsan purus. Morbi egestas arcu rutrum arcu mattis, nec iaculis sapien sodales."
+    },
+
+    {
+        id: 5,
+        content: "Vestibulum vehicula porta massa. Fusce vitae nibh a nunc tincidunt ullamcorper. Sed nec magna placerat tortor pharetra gravida eu et ex."
+    },
+
+    {
+        id: 6,
+        content: "Vivamus et justo pellentesque, luctus mauris vel, venenatis felis. In elit erat, auctor in fermentum sed, blandit eget nibh. Curabitur vel arcu eu sapien tempus pellentesque. "
+    }
+]
+
+export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs};

@@ -16,7 +16,6 @@ import ErrorPage from './react-components/ErrorPage';
 import FAQpage from './react-components/FAQpage';
 import SearchPage from './react-components/SearchPage';
 import DefaultSearchPage from './react-components/DefaultSearchPage';
-import StickyFooter from './react-components/StickyFooter';
 import AppBar from './react-components/AppBar';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
@@ -48,7 +47,6 @@ class App extends React.Component {
           <Route path='/termsconditions' element={<TermsConditions/>} />
           <Route path='/error' element={<ErrorPage/>} />
           <Route path='/faqpage' element={<FAQpage/>} />
-          <Route path='/footer' element={<StickyFooter/>} />
         </Routes>
       </BrowserRouter>
     );
