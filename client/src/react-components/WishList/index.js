@@ -7,23 +7,38 @@ import { uid } from "react-uid";
 class WishList extends React.Component {
 
     state = {
-        userId: 1,
+        userId: 2,
         user: {},
         post: {},
-        postId: [1,2],
-        //wishlisted: [],
+        //postId: [1,2],
     };
 
-    getPost = (post) => {
+    /*getPost = (post) => {
         //return post.postId === this.state.postId;
         //return this.state.postId.some(item => post.postId === item.postId);
-        console.log(this.state.user.wishlisted);
         return this.state.postId.includes(post.postId);
+    }*/
+
+    getPost = (post) => {
+        const wishlisted = database.users.filter(this.getUser)[0].wishlisted;
+        return wishlisted.includes(post.postId);
     }
 
     getUser = (user) => {
         //return user.userId === this.props.userId[0];
         return user.userId === this.state.userId;
+    }
+
+    initStateInfo = () =>{
+        this.setState({
+            user: database.users.filter(this.getUser)[0],
+            wishlist: database.users.filter(this.getUser)[0].wishlisted,
+            post: database.posts.filter(this.getPost),
+          }, () => console.log(this.state))
+    }
+
+    componentDidMount() {
+        this.initStateInfo();
     }
 
     /*loopThroughPosts = () => {
@@ -75,14 +90,6 @@ class WishList extends React.Component {
         return components;
     }
 
-    initStateInfo = () =>{
-        this.setState({
-            post: database.posts.filter(this.getPost),
-            user: database.users.filter(this.getUser)[0],
-            //wishlisted: this.state.user.wishlisted,
-          }, () => console.log(this.state))
-    }
-
     getCategories = (categories) => {
         /*const len = categories.length;
         var str = "";
@@ -95,10 +102,6 @@ class WishList extends React.Component {
         }*/
         //console.log(categories);
         return (<li><b>Categories: </b>{categories}</li>);
-    }
-
-    componentDidMount() {
-        this.initStateInfo()
     }
 
     render() {
