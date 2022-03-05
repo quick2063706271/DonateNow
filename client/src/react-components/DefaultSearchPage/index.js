@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import database from '../../database'
-import AppBar from "../AppBar";
+//import AppBar from "../AppBar";
 import { uid } from "react-uid";
 
 class DefaultSearchPage extends React.Component {
@@ -137,7 +137,7 @@ class DefaultSearchPage extends React.Component {
     render() {
         return (
             <div>
-                <AppBar/>
+                {/*<AppBar/>*/}
                 <div className="defaultSearchPage">
                     <div className="filterbar">
                         <h1 className="filter">Filter by</h1>

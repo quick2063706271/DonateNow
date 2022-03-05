@@ -38,9 +38,15 @@ class SideMenu extends React.Component{
     }
 
     render () {
+        // check if it is reading other users
+        let isRead = false;
+        const {readibility} = this.props;
+        if (readibility === true) {
+            isRead = true;
+        }
+        
         // select user to display
         let user = database.users[0]
-
         // find transaction history
         let transactionHistories = database.transactions.filter((transaction) => transaction.viewerId === user.userId)
 
@@ -87,6 +93,7 @@ class SideMenu extends React.Component{
                         complaintNum={user.complaintNum}
                         accountBlocked={user.accountBlocked}
                         admin = {false}
+                        isRead = {isRead}
                     />
         }
 
@@ -96,9 +103,15 @@ class SideMenu extends React.Component{
                     <div className="side-menu-one">
                         <div className="side-menu-container">
                             <Button variant={this.state.selectedPanel === 0 ? "contained" : "text"} onClick={this.handleClick} size="large">MY INFORMATION</Button>
-                            <Button variant={this.state.selectedPanel === 1 ? "contained" : "text"} onClick={this.handleClick} size="large">TRANSACTION HISTORY</Button>
-                            <Button variant={this.state.selectedPanel === 2 ? "contained" : "text"} onClick={this.handleClick} size="large">DONATED HISTORY</Button>
-                            <Button variant={this.state.selectedPanel === 3 ? "contained" : "text"} onClick={this.handleClick} size="large">SUBMIT FEEDBACK</Button>
+                            {isRead === false &&
+                                <Button variant={this.state.selectedPanel === 1 ? "contained" : "text"} onClick={this.handleClick} size="large">TRANSACTION HISTORY</Button>
+                            }
+                            {isRead === false &&
+                                <Button variant={this.state.selectedPanel === 2 ? "contained" : "text"} onClick={this.handleClick} size="large">DONATED HISTORY</Button>
+                            }
+                            {isRead === false &&
+                                <Button variant={this.state.selectedPanel === 3 ? "contained" : "text"} onClick={this.handleClick} size="large">SUBMIT FEEDBACK</Button>
+                            }
                         </div>
                     </div>
                 </div>
