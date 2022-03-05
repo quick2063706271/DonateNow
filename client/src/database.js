@@ -118,7 +118,7 @@ let posts = [
         location: "Toronto, ON",
         description: "My son grows really fast, these clothes are almost new. We wish to give away to kids who may need it. ",
         // categories: {"clothing": 1, "Toys, Kids, Parents": 1, "Art": 0, "Furniture": 0, "Books & Stationary": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
-        categories: ["Clothing", "Toys, Kids, Parents"],
+        categories: ["Clothing", "Toys", "Kids", "Parents"],
         // category: "Clothing",
         views: 65,	
         requests: 20, 

@@ -65,9 +65,7 @@ class WishList extends React.Component {
                                 <img src={`..${value.imageSrc}`} className="image" alt="image"/>
                                 <div className="summary">
                                     <ul>
-                                        {/*<li><b>Categories: </b>{this.state.post.categories}</li>*/}
-                                        <li><b>Categories: </b>{this.getCategories(value.categories)}</li>
-                                        {/*{this.getCategories()}*/}
+                                        <li><b>Categories: </b>{value.categories.join(", ")}</li>
                                         <li><b>Date Posted: </b>{value.datePosted}</li>
                                     </ul>
                                     <ul>
@@ -90,20 +88,6 @@ class WishList extends React.Component {
         return components;
     }
 
-    getCategories = (categories) => {
-        /*const len = categories.length;
-        var str = "";
-        for (var i = 0; i < len; i++) {
-            if (i === len - 1){
-                str += categories[i]
-            } else {
-                str += categories[i] + ", "
-            }
-        }*/
-        //console.log(categories);
-        return (<li><b>Categories: </b>{categories}</li>);
-    }
-
     render() {
         return (
             <div>
@@ -113,33 +97,7 @@ class WishList extends React.Component {
                         <h1><b>My Wish List:</b></h1>
                     </div>
                     
-                    {/*{this.getCategories()}*/}
                     {this.loopThroughPosts()}
-
-                    {/*<div>  
-                        <div className="block">  
-                            <p className="title"><b><u>{this.state.post.header}</u></b></p>
-                            <div className="post">
-                                <img src={`..${this.state.post.imageSrc}`} className="image" alt="image"/>
-                                <div className="summary">
-                                    <ul>
-                                        <li><b>Categories: </b>{this.getCategories}</li>
-                                        <li><b>Date Posted: </b>{this.state.post.datePosted}</li>
-                                    </ul>
-                                    <ul>
-                                        <li><b>Location: </b>{this.state.post.location}</li>
-                                        <li><b>Delivery Option: </b>{this.state.post.deliveryOption}</li>
-                                    </ul>
-                                    <br></br>
-                                    <ul>
-                                        <li><b>Views: </b>{this.state.post.views}</li>
-                                        <li><b>Requests: </b>{this.state.post.requests}</li>
-                                        <li><b>Saved: </b>{this.state.post.saved}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>  
-                    </div>*/}
                 
                 </div>
                 
