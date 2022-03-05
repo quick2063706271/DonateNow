@@ -36,8 +36,8 @@ class DefaultSearchPage extends React.Component {
         const components = []
         for (const [key, value] of Object.entries(this.state.post)) {
             components.push (
-                <div>  
-                    <div className="block">  
+                <div>
+                    <div className="block">
                         <p className="title"><b><u>{value.header}</u></b></p>
                         <div className="post">
                             <img src={`..${value.imageSrc}`} className="image" alt="image"/>
@@ -58,7 +58,7 @@ class DefaultSearchPage extends React.Component {
                                 </ul>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             );
         }
@@ -73,11 +73,11 @@ class DefaultSearchPage extends React.Component {
                     <div className="header">
                         <h1><b>Search: </b></h1>
                     </div>
-                    
+
                     {this.loopThroughPosts()}
-                
+
                 </div>
-                
+
             </div>
         );
     }

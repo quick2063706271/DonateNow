@@ -4,7 +4,7 @@
 // let viewerStatuses = ["requested", "requst accepted", "completed", "failed"]
 
 let transactions = [
-    {   
+    {
         //case 1: posted
         postId: 1,
         ownerId: 1,
@@ -21,7 +21,7 @@ let transactions = [
         viewerStatus: "requested"
     },
 
-    { 
+    {
         postId: 2,
         ownerId: 2,
         viewerId: 3,
@@ -37,7 +37,7 @@ let transactions = [
         viewerStatuses: "failed",
     },
 
-    {   
+    {
         postId: 3,
         ownerId: 3,
         viewerId: 2,
@@ -53,7 +53,7 @@ let transactions = [
         viewerStatus: "failed"
     },
 
-    {   
+    {
         postId: 4,
         ownerId: 4,
         viewerId: 2,
@@ -61,7 +61,7 @@ let transactions = [
         viewerStatus: "completed"
     },
 
-    {   
+    {
         postId: 4,
         ownerId: 4,
         viewerId: 3,
@@ -72,11 +72,11 @@ let transactions = [
 
 let posts = [
 
-    { 
+    {
         postId: 1,
         ownerId: 1,
         viewerIds: [],
-        imageSrc: "/toys.png", 
+        imageSrc: "/toys.png",
         deliveryOption: "Pickup",
         header: "Toys for Kids 5-6 Year Olds",
         location: "Toronto, ON",
@@ -86,12 +86,12 @@ let posts = [
         categories: ["Toys", "Kids", "Parents", "Interests"],
         blocked: 0,
         views: 50,
-        requests: 0,	 
+        requests: 0,
         saved: 26,
         datePosted: "Mar 1, 2022"
     },
 
-    { 
+    {
         postId: 2,
         ownerId: 2,
         viewerIds: [1, 3],
@@ -102,13 +102,13 @@ let posts = [
         description: "I bought the monitor 2 years ago for my son, almost as new. He has new monitor now and we wish to give away to kids who may like it. ",
         // categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books & Stationary": 1, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
         categories: ["Electronics"],
-        views: 65,	
-        requests: 20, 
+        views: 65,
+        requests: 20,
         saved: 32,
         datePosted: "Mar 2, 2022"
     },
 
-    { 
+    {
         postId: 3,
         ownerId: 3,
         viewerIds: [1, 2],
@@ -120,13 +120,13 @@ let posts = [
         // categories: {"clothing": 1, "Toys, Kids, Parents": 1, "Art": 0, "Furniture": 0, "Books & Stationary": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
         categories: ["Clothing", "Toys", "Kids", "Parents"],
         // category: "Clothing",
-        views: 65,	
-        requests: 20, 
+        views: 65,
+        requests: 20,
         saved: 32,
         datePosted: "Mar 3, 2022"
     },
 
-    { 
+    {
         postId: 4,
         ownerId: 4,
         viewerIds: [1, 2, 3],
@@ -138,8 +138,8 @@ let posts = [
         // categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books & Stationary": 1, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
         // categories: ["Books & Stationary"],
         categories: ["Books & Stationary"],
-        views: 65,	
-        requests: 20, 
+        views: 65,
+        requests: 20,
         saved: 32,
         datePosted: "Mar 4, 2022"
     }
@@ -161,7 +161,9 @@ let posts = [
         bio: "I enjoy reading Books & Stationary and gaming and travelling and travelling and travelling.",
         wishlisted: [2,4],
         donated: [1],
-        transaction: [2, 3, 4]
+        transaction: [2, 3, 4],
+        complaintNum: [2],
+        accountBlocked: false
     },
     {
         userId: 2,
@@ -177,7 +179,9 @@ let posts = [
         bio: "I enjoy reading Books & Stationary and gaming and travelling and travelling and travelling.",
         wishlisted: [1, 3, 4],
         donated: [2],
-        transaction: [3, 4]
+        transaction: [3, 4],
+        complaintNum: [],
+        accountBlocked: false
     },
 
     {
@@ -194,7 +198,9 @@ let posts = [
         bio: "Looking for coding books",
         wishlisted: [],
         donated: [3],
-        transaction: [2, 4]
+        transaction: [2, 4],
+        complaintNum: [3],
+        accountBlocked: true
     },
 
     {
@@ -211,7 +217,9 @@ let posts = [
         bio: "Fun guy",
         wishlisted: [1, 2],
         donated: [4],
-        transaction: []
+        transaction: [],
+        complaintNum: [1],
+        accountBlocked: false
     }
 ]
 
