@@ -20,6 +20,10 @@ class DefaultSearchPage extends React.Component {
         //searchClicked: this.props.searchClicked,
     };
 
+    /*check = () => {
+        console.log(this.state)
+    }*/
+
     getDropdownContent = (drpdwn) => {
         const options = []
         if (drpdwn === "categories") {
@@ -83,10 +87,6 @@ class DefaultSearchPage extends React.Component {
         }, () => console.log(this.state))*/
         return posts
     }
-
-    /*getUser = (user) => {
-        return user.userId === this.state.userId;
-    }*/
 
     initStateInfo = () =>{
         this.setState({
