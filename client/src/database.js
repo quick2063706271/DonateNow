@@ -3,6 +3,12 @@
 
 // let viewerStatuses = ["requested", "requst accepted", "completed", "failed"]
 
+let categories = ["Toys", "Kids", "Parents", "Interests", "Electronics", "Clothing", "Books & Stationary"]
+
+let locations = ["Toronto, ON", "Montreal, QC"]
+
+let deliveryOptions = ["Pickup", "By Courier"]
+
 let transactions = [
     {
         //case 1: posted
@@ -133,7 +139,7 @@ let posts = [
         imageSrc: '/marker.png',
         deliveryOption: "Pickup",
         header: "Marker",
-        location: "Toronto, ON",
+        location: "Montreal, QC",
         description: "Some spare markers. Please pick it up",
         // categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books & Stationary": 1, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
         // categories: ["Books & Stationary"],
@@ -223,4 +229,4 @@ let posts = [
     }
 ]
 
-export default {transactions, posts, users};
+export default {categories, locations, deliveryOptions, transactions, posts, users};
