@@ -233,6 +233,38 @@ let posts = [
 let allfaqs = [
     {
         id: 1,
+        content: "Q: Lorem ipsum dolor sit amet, consectetur adipiscing elit? A: Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit."
+    },
+
+    {
+        id: 2,
+        content: "Q: Fusce elementum lectus et magna vestibulum, at blandit nibh pellentesque? A: In sapien massa, auctor auctor ultricies at, ultricies sed sem. Suspendisse a ex nulla. Fusce nec sagittis leo."
+    },
+
+    {
+        id: 3,
+        content: "Q: Phasellus rhoncus laoreet dictum. Nullam consectetur justo ut lectus sodales? A: a lacinia magna aliquet. "
+    },
+
+    {
+        id: 4,
+        content: "Q: Sed eget condimentum ligula, sit amet accumsan purus? A: Morbi egestas arcu rutrum arcu mattis, nec iaculis sapien sodales."
+    },
+
+    {
+        id: 5,
+        content: "Q: Vestibulum vehicula porta massa. Fusce vitae nibh a nunc tincidunt ullamcorper? A: Sed nec magna placerat tortor pharetra gravida eu et ex."
+    },
+
+    {
+        id: 6,
+        content: "Q: Vivamus et justo pellentesque, luctus mauris vel, venenatis felis? A:In elit erat, auctor in fermentum sed, blandit eget nibh. Curabitur vel arcu eu sapien tempus pellentesque. "
+    }
+]
+
+let allterms = [
+    {
+        id: 1,
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit."
     },
 
@@ -262,4 +294,4 @@ let allfaqs = [
     }
 ]
 
-export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs};
+export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, allterms};
