@@ -5,6 +5,8 @@ import AppBar from "../AppBar";
 import { uid } from "react-uid";
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import StickyFooter from '../StickyFooter';
+
 
 class TermsConditions extends React.Component {
     render() {
@@ -19,6 +21,7 @@ class TermsConditions extends React.Component {
 
                 </div>
 
+                <StickyFooter/>
             </div>
 
         );

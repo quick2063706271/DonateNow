@@ -3,13 +3,14 @@ import "./styles.css";
 import database from '../../database'
 import PostPageHelp from "../PostPagehelp";
 import AppBar from "../AppBar";
+import StickyFooter from "../StickyFooter";
 
 class PostPage extends React.Component {
     state = {
         postId: 2,
         transaction: null,
-        post: null,  
-        user: null, 
+        post: null,
+        user: null,
         // postPath: "/postpage/" + this.state.PostId.toString(),
     };
 
@@ -45,13 +46,18 @@ class PostPage extends React.Component {
         return (
             <div>
                 <AppBar/>
-                {this.state.post ? <PostPageHelp 
+                {this.state.post ? <PostPageHelp
                     userId = {this.props.userId}
                     postId = {this.state.postId}
                     transaction = {this.state.transaction}
                     post = {this.state.post}
                     user = {this.state.user}
                     /> : null}
+
+                <div>
+                    <StickyFooter/>
+                </div>
+
             </div>
         );
     }

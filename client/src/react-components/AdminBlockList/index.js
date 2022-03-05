@@ -10,6 +10,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import StickyFooter from "../StickyFooter";
+
 
 function createData(number, username, numCom, action) {
         return { number, username, numCom, action };
@@ -33,9 +35,9 @@ class AdminBlockList extends React.Component {
                 <div className="blocklist">
                     <div className="header">
                         <h1><b>All Blocked Users:</b></h1>
-           </div>
+                    </div>
 
-           </div>
+                </div>
                <TableContainer component={Paper}>
                 <Table aria-label="simple table">
                   <TableHead>
@@ -60,8 +62,14 @@ class AdminBlockList extends React.Component {
                   </TableBody>
                 </Table>
               </TableContainer>`
+
+              <div>
+                  <StickyFooter/>
+              </div>
+
             </div>
-            
+
+
          );
     }
 

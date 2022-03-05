@@ -2,7 +2,7 @@ import AppBar from "../AppBar";
 import React from "react";
 import Button from '@mui/material/Button';
 import "./styles.css";
-import upload from "../../upload.png" 
+import upload from "../../upload.png"
 import PostImage from "../PostImage";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -11,6 +11,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import StickyFooter from "../StickyFooter";
 
 class CreatePost extends React.Component {
     render() {
@@ -28,11 +29,11 @@ class CreatePost extends React.Component {
                             <img src={upload} id="postImage" alt="postImage"/>
                             <Button id="uploadButton" variant="outlined">Upload</Button>
                         </div>
-                        
+
                     </div>
                     <div className="postContentArea">
                         <text className="text"> Please enter details of your donation below:</text>
-                        
+
                         <div className="postContentItem">
                             <text className="textItem"> Header:</text>
                             <Box className="textBox"
@@ -116,12 +117,12 @@ class CreatePost extends React.Component {
                                 />
                             </FormGroup>
                             <FormHelperText>Check all that applies</FormHelperText>
-                                
+
                             </Box>
-                            
-                            
+
+
                         </div>
-                   
+
                     </div>
                     <div className="deliveryOptionArea">
                         <text className="text">Delivery Option:</text>
@@ -130,8 +131,12 @@ class CreatePost extends React.Component {
                             <FormControlLabel  className="deliveryOption" control={<Checkbox size="large"/>} label={<Typography variant="h5">Pick Up</Typography>} />
                         </FormGroup>
                     </div>
-                    
-                    
+
+
+                </div>
+
+                <div>
+                    <StickyFooter/>
                 </div>
             </div>
         );
