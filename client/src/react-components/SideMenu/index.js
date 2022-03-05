@@ -91,18 +91,20 @@ class SideMenu extends React.Component{
         }
 
         return (
-            <div>
-            <div className="side-menu">
-                <div className="side-menu-container">
-                    <Button variant={this.state.selectedPanel === 0 ? "contained" : "text"} onClick={this.handleClick} size="large">MY INFORMATION</Button>
-                    <Button variant={this.state.selectedPanel === 1 ? "contained" : "text"} onClick={this.handleClick} size="large">TRANSACTION HISTORY</Button>
-                    <Button variant={this.state.selectedPanel === 2 ? "contained" : "text"} onClick={this.handleClick} size="large">DONATED HISTORY</Button>
-                    <Button variant={this.state.selectedPanel === 3 ? "contained" : "text"} onClick={this.handleClick} size="large">SUBMIT FEEDBACK</Button>
+            <div className="side-menu-and-panel-container">
+                <div className="side-menu-and-panel grid-item-1">
+                    <div className="side-menu-one">
+                        <div className="side-menu-container">
+                            <Button variant={this.state.selectedPanel === 0 ? "contained" : "text"} onClick={this.handleClick} size="large">MY INFORMATION</Button>
+                            <Button variant={this.state.selectedPanel === 1 ? "contained" : "text"} onClick={this.handleClick} size="large">TRANSACTION HISTORY</Button>
+                            <Button variant={this.state.selectedPanel === 2 ? "contained" : "text"} onClick={this.handleClick} size="large">DONATED HISTORY</Button>
+                            <Button variant={this.state.selectedPanel === 3 ? "contained" : "text"} onClick={this.handleClick} size="large">SUBMIT FEEDBACK</Button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div>
-                {panel}
-            </div>
+                <div className="side-menu-and-panel grid-item-2">
+                    {panel}
+                </div>
             </div>
           )
     }
