@@ -69,7 +69,12 @@ class AppBar extends React.Component {
                         </div>
                     </nav>
                 </div>
-                <DefaultSearchPage/>
+
+                {this.state.searchClicked ? <DefaultSearchPage
+                searchText = {this.state.searchText}
+                searchClicked = {this.state.searchClicked}
+                /> : null}
+                
                 {/*<Logo/>
                 <SearchBox/>
                 <NavigationMenu/>*/}
