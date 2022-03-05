@@ -19,9 +19,15 @@ class UserPage extends React.Component {
 
     render() {
         return (
-            <div>
-                <AppBar/>
-                <SideMenu/>
+            <div className="grid-container">
+                <div className="grid-item grid-item-1">
+                    <AppBar />
+                </div>
+                
+                <div className="grid-item grid-item-2">
+                    <SideMenu className="grid-item grid-item-2"/>
+                </div>
+
                 <StickyFooter/>
             </div>
         );

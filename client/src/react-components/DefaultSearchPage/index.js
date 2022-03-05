@@ -16,7 +16,13 @@ class DefaultSearchPage extends React.Component {
         locationVal: "All",
         deliveryOptionBtnText: "Delivery Option: All",
         deliveryOptionVal: "All",
+        //searchText: this.props.searchText,
+        //searchClicked: this.props.searchClicked,
     };
+
+    /*check = () => {
+        console.log(this.state)
+    }*/
 
     getDropdownContent = (drpdwn) => {
         const options = []
@@ -81,10 +87,6 @@ class DefaultSearchPage extends React.Component {
         }, () => console.log(this.state))*/
         return posts
     }
-
-    /*getUser = (user) => {
-        return user.userId === this.state.userId;
-    }*/
 
     initStateInfo = () =>{
         this.setState({

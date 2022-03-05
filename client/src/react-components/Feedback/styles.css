@@ -12,10 +12,11 @@
     padding-right: 80px;
     padding-top: 40px;
     padding-bottom: 40px;
-    position: absolute;
+    /* position: absolute; */
     left: 560px;
     top: 185px; 
     height: 740px;
+    min-width: 450px;
     border-radius: 7.5px;
 }
 

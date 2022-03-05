@@ -83,7 +83,7 @@ class PersonalInformation extends React.Component {
         return(
             <div>
                 <Box component="form"
-                sx={{ display: 'flex', flexWrap: 'wrap', '& .MuiTextField-root': { m: 1.5 }, pl: '170px', pt: '100px'}}
+                sx={{ display: 'flex', flexWrap: 'wrap', '& .MuiTextField-root': { m: 1.5 }}}
                 noValidate
                 autoComplete="off"
                 >
