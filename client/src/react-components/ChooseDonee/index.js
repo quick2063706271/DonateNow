@@ -20,6 +20,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
+import { Link } from "react-router-dom";
 
 
 class ChooseDonee extends React.Component {
@@ -65,9 +66,11 @@ class ChooseDonee extends React.Component {
                                 <FormControlLabel
                                     value={row.username}
                                     control={<Radio />}
-                                    label={row.username}
-                                    
-
+                                    label={(
+                                        <div>
+                                            <Link to={'../userpage'} target="_blank" >{row.username}   </Link>
+                                        </div>
+                                    )}
                                 />
                             ))}
                         </RadioGroup>

@@ -25,7 +25,7 @@ class UserPage extends React.Component {
                 </div>
                 
                 <div className="grid-item grid-item-2">
-                    <SideMenu className="grid-item grid-item-2" readibility={true}/>
+                    <SideMenu className="grid-item grid-item-2" readibility={false}/>
                 </div>
 
                 <StickyFooter/>
