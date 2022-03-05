@@ -6,6 +6,8 @@ import HistoryItem from "../HistoryItem";
 import Feedback from "../Feedback";
 import SideMenu from "../SideMenu";
 import AppBar from "../AppBar";
+import StickyFooter from "../StickyFooter";
+
 
 class UserPage extends React.Component {
     constructor() {
@@ -21,10 +23,12 @@ class UserPage extends React.Component {
                 <div className="grid-item grid-item-1">
                     <AppBar />
                 </div>
-                <div className="grid-item grid-item-2">
-                    <SideMenu className="grid-item grid-item-2"/>
-                </div>
                 
+                <div className="grid-item grid-item-2">
+                    <SideMenu className="grid-item grid-item-2" readibility={false}/>
+                </div>
+
+                <StickyFooter/>
             </div>
         );
     }

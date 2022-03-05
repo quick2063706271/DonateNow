@@ -5,6 +5,8 @@ import AppBar from "../AppBar";
 import { uid } from "react-uid";
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import StickyFooter from "../StickyFooter";
+
 
 class WishList extends React.Component {
 
@@ -93,6 +95,7 @@ class WishList extends React.Component {
         return (
             <div>
                 <AppBar/>
+
                 <div className="wishlist">
                     <div className="header">
                         <h1><b>My Wish List:</b></h1>
@@ -102,6 +105,9 @@ class WishList extends React.Component {
 
                 </div>
 
+                <div>
+                    <StickyFooter/>
+                </div>
             </div>
         );
     }

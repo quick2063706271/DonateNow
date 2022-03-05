@@ -39,7 +39,7 @@ class StickyFooter extends React.Component {
         var phantom = {
           display: 'block',
           padding: '20px',
-          height: '60px',
+          height: '30px',
           width: '100%',
         }
 
@@ -54,7 +54,7 @@ class StickyFooter extends React.Component {
                             </Link>
                         </li>
                         <li>
-                            <Link Link to={'/TermsConditons'}>
+                            <Link Link to={'/TermsConditions'}>
                             <Button variant="outlined">Terms and Conditions</Button>
                             </Link>
                         </li>
@@ -63,15 +63,16 @@ class StickyFooter extends React.Component {
             </nav>
         </div>
 
-        stickyfooter = Footer({ footerChildren })
+        //stickyfooter = Footer({ footerChildren })
         //
         // //stickyfooter = "123";
 
         return (
 
             <div>
-                {stickyfooter}
-                footer below
+            <Footer>
+                {footerChildren}
+            </Footer>
             </div>
 
         );
