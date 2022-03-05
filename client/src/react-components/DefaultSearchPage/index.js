@@ -70,8 +70,50 @@ class DefaultSearchPage extends React.Component {
             <div>
                 <AppBar/>
                 <div className="defaultSearchPage">
+                    {/*<div className="filter">
+                        <h1>Filter by</h1>
+                    </div>*/}
+                    <div className="filterbar">
+                        <h1 className="filter">Filter by</h1>
+                        <div class="dropdown">
+                            <button class="button">Categories</button>
+                            <div class="dropdown-content">
+                                <a href="#">Toys</a>
+                                <a href="#">Children</a>
+                                <a href="#">Parents</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="button">Location</button>
+                            <div class="dropdown-content">
+                                <a href="#">Toronto</a>
+                                <a href="#">Montreal</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="button">Distance</button>
+                            <div class="dropdown-content">
+                                <a href="#">5km</a>
+                                <a href="#">10km</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="button">Delivery Option</button>
+                            <div class="dropdown-content">
+                                <a href="#">Pickup</a>
+                                <a href="#">By Courier</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="button">Date Posted</button>
+                            <div class="dropdown-content">
+                                <a href="#">February</a>
+                                <a href="#">March</a>
+                            </div>
+                        </div>
+                    </div>
                     <div className="header">
-                        <h1><b>Search: </b></h1>
+                        <h1><b>Search Results: </b></h1>
                     </div>
                     
                     {this.loopThroughPosts()}
