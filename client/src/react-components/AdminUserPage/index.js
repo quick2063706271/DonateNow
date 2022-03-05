@@ -7,6 +7,7 @@ import HistoryItem from "../HistoryItem";
 import Feedback from "../Feedback";
 import AdminSideMenu from "../AdminSideMenu";
 import AdminAppBar from "../AdminAppBar";
+import StickyFooter from "../StickyFooter";
 
 class AdminUserPage extends React.Component {
     constructor() {
@@ -21,6 +22,8 @@ class AdminUserPage extends React.Component {
             <div>
                 <AdminAppBar/>
                 <AdminSideMenu/>
+
+                <StickyFooter/>
             </div>
         );
     }

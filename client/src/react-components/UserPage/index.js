@@ -6,6 +6,8 @@ import HistoryItem from "../HistoryItem";
 import Feedback from "../Feedback";
 import SideMenu from "../SideMenu";
 import AppBar from "../AppBar";
+import StickyFooter from "../StickyFooter";
+
 
 class UserPage extends React.Component {
     constructor() {
@@ -20,6 +22,7 @@ class UserPage extends React.Component {
             <div>
                 <AppBar/>
                 <SideMenu/>
+                <StickyFooter/>
             </div>
         );
     }

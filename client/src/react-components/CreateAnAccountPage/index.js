@@ -3,6 +3,7 @@ import "./styles.css";
 import { Link, Navigate } from 'react-router-dom';
 import logo from './logo.png';
 import loginImage from './LoginPageImage.jpeg';
+import StickyFooter from "../StickyFooter";
 
 class CreateAnAccountPage extends React.Component {
 
@@ -17,7 +18,7 @@ class CreateAnAccountPage extends React.Component {
             valid: false
         }
     }
-    
+
     handleInputChange(event) {
         const target = event.target
         const value = target.value
@@ -65,7 +66,7 @@ class CreateAnAccountPage extends React.Component {
                 // Code below requires server call
                 database.push({username: this.state.username, password: this.state.password})
             }
-        }  
+        }
     }
 
     render() {
@@ -98,6 +99,10 @@ class CreateAnAccountPage extends React.Component {
                     </Link>
 
             </main>
+
+            <div>
+                <StickyFooter/>
+            </div>
 
         </div>
       );

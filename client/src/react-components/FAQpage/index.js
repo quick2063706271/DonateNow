@@ -3,6 +3,8 @@ import "./styles.css";
 import database from '../../database';
 import PostPageHelp from '../PostPagehelp';
 import AppBar from '../AppBar';
+import StickyFooter from '../StickyFooter';
+
 
 class FAQpage extends React.Component {
     render() {
@@ -16,6 +18,8 @@ class FAQpage extends React.Component {
                     </div>
 
                 </div>
+
+                <StickyFooter/>
 
             </div>
 
