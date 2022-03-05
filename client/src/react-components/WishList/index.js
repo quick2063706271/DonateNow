@@ -32,7 +32,6 @@ class WishList extends React.Component {
     initStateInfo = () =>{
         this.setState({
             user: database.users.filter(this.getUser)[0],
-            wishlist: database.users.filter(this.getUser)[0].wishlisted,
             post: database.posts.filter(this.getPost),
           }, () => console.log(this.state))
     }
