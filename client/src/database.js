@@ -7,6 +7,8 @@ let categories = ["Toys", "Kids", "Parents", "Interests", "Electronics", "Clothi
 
 let locations = ["Toronto, ON", "Montreal, QC"]
 
+let deliveryOptions = ["Pickup", "By Courier"]
+
 let transactions = [
     {
         //case 1: posted
@@ -227,4 +229,4 @@ let posts = [
     }
 ]
 
-export default {categories, locations, transactions, posts, users};
+export default {categories, locations, deliveryOptions, transactions, posts, users};
