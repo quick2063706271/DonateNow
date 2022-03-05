@@ -16,6 +16,8 @@ class DefaultSearchPage extends React.Component {
         locationVal: "All",
         deliveryOptionBtnText: "Delivery Option: All",
         deliveryOptionVal: "All",
+        //searchText: this.props.searchText,
+        //searchClicked: this.props.searchClicked,
     };
 
     getDropdownContent = (drpdwn) => {
