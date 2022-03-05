@@ -25,6 +25,7 @@ class FAQpage extends React.Component {
 
             <div>
                 <AppBar/>
+
                 <div className="faqpage">
                     <div className="header">
                         <h1><b>FAQs (Frequently Asked Questions):</b></h1>

@@ -32,32 +32,32 @@ class StickyFooter extends React.Component {
             position: "fixed",
             left: "0",
             bottom: "0",
-            height: "60px",
+            height: "40px",
             width: "100%",
         }
 
         var phantom = {
           display: 'block',
           padding: '20px',
-          height: '30px',
+          height: '10px',
           width: '100%',
         }
 
         let footerChildren, stickyfooter;
-        footerChildren = <div className="navigationMenu">
+        footerChildren = <div className="footerMenu">
             <nav>
                 <div>
                     <ul>
-                        <li>
+
                             <Link Link to={'/FAQpage'}>
                             <Button variant="outlined">FAQ Page</Button>
                             </Link>
-                        </li>
-                        <li>
+
+
                             <Link Link to={'/TermsConditions'}>
                             <Button variant="outlined">Terms and Conditions</Button>
                             </Link>
-                        </li>
+
                     </ul>
                 </div>
             </nav>
