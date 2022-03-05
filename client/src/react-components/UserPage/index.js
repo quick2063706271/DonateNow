@@ -22,7 +22,7 @@ class UserPage extends React.Component {
                     <AppBar />
                 </div>
                 <div className="grid-item grid-item-2">
-                    <SideMenu className="grid-item grid-item-2"/>
+                    <SideMenu className="grid-item grid-item-2" readibility={true}/>
                 </div>
                 
             </div>

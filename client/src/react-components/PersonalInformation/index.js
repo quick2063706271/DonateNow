@@ -64,7 +64,8 @@ class PersonalInformation extends React.Component {
                bio,
                complaintNum,
                accountBlocked,
-               admin
+               admin,
+               isRead
                } = this.props;
         //const isAdmin = this.state.admin;
         const isAdmin = this.props.admin;
@@ -107,76 +108,96 @@ class PersonalInformation extends React.Component {
                         }}
                         sx={{width: '20ch' }}
                         />
-
-                        <TextField
-                        className="inputField"
-                        label="Password"
-                        defaultValue={password}
-                        InputProps={{
-                            readOnly: this.state.isEdit,
-                        }}
-                        sx={{width: '20ch' }}
-                        />
+                        {
+                            isRead === false &&
+                            <TextField
+                            className="inputField"
+                            label="Password"
+                            defaultValue={password}
+                            InputProps={{
+                                readOnly: this.state.isEdit,
+                            }}
+                            sx={{width: '20ch' }}
+                            />
+                        }
                         <br />
-                        <TextField
-                        className="inputField"
-                        label="Date Of Birth"
-                        defaultValue={dateOfBirth}
-                        InputProps={{
-                            readOnly: this.state.isEdit,
-                        }}
-                        sx={{width: '20ch' }}
+                        {
+                            isRead == false &&
+                            <TextField
+                            className="inputField"
+                            label="Date Of Birth"
+                            defaultValue={dateOfBirth}
+                            InputProps={{
+                                readOnly: this.state.isEdit,
+                            }}
+                            sx={{width: '20ch' }}
                         />
-                        <TextField
-                        className="inputField"
-                        label="Gender"
-                        defaultValue={gender}
-                        InputProps={{
-                            readOnly: this.state.isEdit,
-                        }}
-                        sx={{width: '20ch' }}
-                        />
+                        }
+                        {
+                            isRead == false &&
+                            <TextField
+                            className="inputField"
+                            label="Gender"
+                            defaultValue={gender}
+                            InputProps={{
+                                readOnly: this.state.isEdit,
+                            }}
+                            sx={{width: '20ch' }}
+                            />
+                        }
                         <br />
-                        <TextField
-                        className="inputField"
-                        label="Address 1"
-                        defaultValue={address1}
-                        InputProps={{
-                            readOnly: this.state.isEdit,
-                        }}
-                        multiline
-                        sx={{width: '42.5ch' }}
-                        />
+                        {
+                            isRead == false &&
+                            <TextField
+                            className="inputField"
+                            label="Address 1"
+                            defaultValue={address1}
+                            InputProps={{
+                                readOnly: this.state.isEdit,
+                            }}
+                            multiline
+                            sx={{width: '42.5ch' }}
+                            />
+                        }
                         <br />
-                        <TextField
-                        className="inputField"
-                        label="Address 2"
-                        defaultValue={address2}
-                        InputProps={{
-                            readOnly: this.state.isEdit,
-                        }}
-                        multiline
-                        sx={{width: '42.5ch' }}
-                        />
+                        {
+                            isRead == false &&
+                            <TextField
+                            className="inputField"
+                            label="Address 2"
+                            defaultValue={address2}
+                            InputProps={{
+                                readOnly: this.state.isEdit,
+                            }}
+                            multiline
+                            sx={{width: '42.5ch' }}
+                            />
+                        }
                         <br />
-                        <TextField
-                        className="inputField"
-                        label="Phone number"
-                        defaultValue={phone}
-                        InputProps={{
-                            readOnly: this.state.isEdit,
-                        }}
-                        sx={{width: '20ch' }}
-                        />
-                        <TextField
-                        className="inputField"
-                        label="E-mail"
-                        defaultValue={email}
-                        InputProps={{
-                            readOnly: this.state.isEdit,
-                        }}
-                        sx={{width: '20ch' }}
-                        />
+                        {
+                            isRead == false &&
+                            <TextField
+                            className="inputField"
+                            label="Phone number"
+                            defaultValue={phone}
+                            InputProps={{
+                                readOnly: this.state.isEdit,
+                            }}
+                            sx={{width: '20ch' }}
+                            />
+                        }
+                        {
+                            isRead == false &&
+                            <TextField
+                            className="inputField"
+                            label="E-mail"
+                            defaultValue={email}
+                            InputProps={{
+                                readOnly: this.state.isEdit,
+                            }}
+                            sx={{width: '20ch' }}
+                            />
+                        }
                         <br />
                         <TextField
                         className="inputField"
@@ -199,11 +220,14 @@ class PersonalInformation extends React.Component {
                         multiline
                         sx={{width: '42.5ch' }}
                         />
-                        <div className="edit-button" >
-                            <Button variant="contained" onClick={this.handleEdit}>
-                                {this.state.isEdit ? "edit" : "save"}
-                            </Button>
-                        </div>
+                        {
+                            isRead == false &&
+                            <div className="edit-button" >
+                                <Button variant="contained" onClick={this.handleEdit}>
+                                    {this.state.isEdit ? "edit" : "save"}
+                                </Button>
+                            </div>
+                        }   
                     </div>
 
                 </Box>

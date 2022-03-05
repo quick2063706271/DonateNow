@@ -14,7 +14,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Checkbox } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
 
 
 class ChooseDonee extends React.Component {
@@ -51,8 +56,24 @@ class ChooseDonee extends React.Component {
                 >
                 <DialogTitle id="form-dialog-title">Select Your Donee</DialogTitle>
                 <DialogContent>
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <FormControl>
+                        <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            name="radio-buttons-group"
+                        >
+                            {this.state.choices.map((row) => (
+                                <FormControlLabel
+                                    value={row.username}
+                                    control={<Radio />}
+                                    label={row.username}
+                                    
+
+                                />
+                            ))}
+                        </RadioGroup>
+                    </FormControl>
+                    {/* <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 150 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell align="right">Username</TableCell>
@@ -68,12 +89,12 @@ class ChooseDonee extends React.Component {
                                 >
                                     <TableCell align="right">{row.username}</TableCell>
                                     <TableCell align="right">{row.post}</TableCell>
-                                    <TableCell align="right"><Checkbox /></TableCell>
+                                    <TableCell align="right"><Checkbox/></TableCell>
                                 </TableRow>
                             ))}
                             </TableBody>
                         </Table>
-                    </TableContainer>
+                    </TableContainer> */}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.handleClose} color="primary">
