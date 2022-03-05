@@ -10,10 +10,13 @@ class PersonalInformation extends React.Component {
     constructor() {
         super();
         this.state = {
-            isEdit: true
+            isEdit: true,
+            isComplained: false
         }
         this.handleEdit.bind(this);
+        this.handleComplaint.bind(this);
         console.log(this.state.isEdit)
+        console.log(this.state.isComplained)
     }
     handleEdit = event => {
         this.setState({
@@ -21,6 +24,22 @@ class PersonalInformation extends React.Component {
         });
         // this.changeButtonText();
         console.log(this.state.isEdit);
+    }
+    handleComplaint = event => {
+        this.setState({
+            isComplained: !this.state.isComplained
+        });
+        this.props.complaintNum++;
+        // this.changeButtonText();
+        console.log(this.state.isComplained);
+    }
+    handleBlock = event => {
+        this.setState({
+            accountBlocked: !this.state.accountBlocked
+        });
+        this.props.accountBlocked = true;
+        // this.changeButtonText();
+        console.log(this.state.accountBlocked);
     }
 
     // changeButtonText = () => {
@@ -33,8 +52,8 @@ class PersonalInformation extends React.Component {
     // }
 
     render() {
-        const {username, 
-               password, 
+        const {username,
+               password,
                dateOfBirth,
                gender,
                address1,
@@ -42,10 +61,28 @@ class PersonalInformation extends React.Component {
                phone,
                email,
                preference,
-               bio} = this.props;
+               bio,
+               complaintNum,
+               accountBlocked,
+               admin
+               } = this.props;
+        //const isAdmin = this.state.admin;
+        const isAdmin = this.props.admin;
+        let complaint, block;
+        if (isAdmin) {
+            complaint = <Button variant="contained" display="inline-block" onClick={this.handleComplaint}>
+                {this.state.isComplained ? "Complaint logged!" : "Complain the User"}
+            </Button>
+            block = <Button variant="contained" display="inline-block" onClick={this.handleBlock}>
+                {this.state.accountBlocked ? "Blocked" : "Block the User"}
+            </Button>
+        } else {
+            complaint = null
+            block = null
+        }
         return(
             <div>
-                <Box component="form" 
+                <Box component="form"
                 sx={{ display: 'flex', flexWrap: 'wrap', '& .MuiTextField-root': { m: 1.5 }, pl: '170px', pt: '100px'}}
                 noValidate
                 autoComplete="off"
@@ -53,6 +90,12 @@ class PersonalInformation extends React.Component {
                     <div className="personalInformation">
                         <div>
                             <Avatar id="avatar" sx={{height: 80, width: 80}}>JO</Avatar>
+                        </div>
+                        <div className="complaint-button" >
+                            {complaint}
+                        </div>
+                        <div className="block-button" >
+                            {block}
                         </div>
                         <TextField
                         className="inputFieldId"
@@ -64,7 +107,7 @@ class PersonalInformation extends React.Component {
                         }}
                         sx={{width: '20ch' }}
                         />
-                        
+
                         <TextField
                         className="inputField"
                         label="Password"

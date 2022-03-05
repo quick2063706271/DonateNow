@@ -2,7 +2,7 @@ import React from 'react';
 import "./styles.css";
 import { Button } from '@mui/material';
 import PersonalInformation from '../PersonalInformation';
-import Feedback from '../Feedback';
+//import Feedback from '../Feedback';
 import History from '../History';
 // import monitor from '../../monitor.png'
 // import toys from "../../toys.png"
@@ -11,7 +11,7 @@ import History from '../History';
 import bottle from "../../bottle.png"
 import database from "../../database"
 
-class SideMenu extends React.Component{
+class AdminSideMenu extends React.Component{
     constructor() {
         super();
         this.state = {
@@ -23,7 +23,7 @@ class SideMenu extends React.Component{
     handleClick = (event) => {
         console.log(event.target.innerText)
         let panel = 0
-        if (event.target.innerText === 'MY INFORMATION') {
+        if (event.target.innerText === 'USER INFORMATION') {
             panel = 0
         } else if (event.target.innerText === 'TRANSACTION HISTORY') {
             panel = 1
@@ -70,9 +70,11 @@ class SideMenu extends React.Component{
             panel = <History items={uniqueTransactionPosts} category="transaction"/>
         } else if (this.state.selectedPanel == 2) {
             panel = <History items={uniqueDonationPosts} category="donation"/>
-        } else if (this.state.selectedPanel == 3) {
+        }
+        /* else if (this.state.selectedPanel == 3) {
             panel = <Feedback/>
-        } else {
+        } */
+        else {
             panel = <PersonalInformation
                         username={user.username}
                         password={user.password}
@@ -86,7 +88,7 @@ class SideMenu extends React.Component{
                         bio={user.bio}
                         complaintNum={user.complaintNum}
                         accountBlocked={user.accountBlocked}
-                        admin = {false}
+                        admin = {true}
                     />
         }
 
@@ -94,10 +96,10 @@ class SideMenu extends React.Component{
             <div>
             <div className="side-menu">
                 <div className="side-menu-container">
-                    <Button variant={this.state.selectedPanel === 0 ? "contained" : "text"} onClick={this.handleClick} size="large">MY INFORMATION</Button>
+                    <Button variant={this.state.selectedPanel === 0 ? "contained" : "text"} onClick={this.handleClick} size="large">USER INFORMATION</Button>
                     <Button variant={this.state.selectedPanel === 1 ? "contained" : "text"} onClick={this.handleClick} size="large">TRANSACTION HISTORY</Button>
                     <Button variant={this.state.selectedPanel === 2 ? "contained" : "text"} onClick={this.handleClick} size="large">DONATED HISTORY</Button>
-                    <Button variant={this.state.selectedPanel === 3 ? "contained" : "text"} onClick={this.handleClick} size="large">SUBMIT FEEDBACK</Button>
+
                 </div>
             </div>
             <div>
@@ -111,4 +113,4 @@ class SideMenu extends React.Component{
 
 
 
-export default (SideMenu);
+export default (AdminSideMenu);
