@@ -12,6 +12,22 @@ class DefaultSearchPage extends React.Component {
         post: {},
     };
 
+    getDropdownContent = (drpdwn) => {
+        const options = []
+        if (drpdwn === "categories") {
+            const cats = database.categories
+            for (var i = 0; i < cats.length; i++) {
+                options.push(<a href="#">{cats[i]}</a>)
+            }
+        } else if (drpdwn === "locations") {
+            const locs = database.locations
+            for (var i = 0; i < locs.length; i++) {
+                options.push(<a href="#">{locs[i]}</a>)
+            }
+        }
+        return options
+    }
+
     /*getPost = (post) => {
         const wishlisted = database.users.filter(this.getUser)[0].wishlisted;
         return wishlisted.includes(post.postId);
@@ -25,6 +41,7 @@ class DefaultSearchPage extends React.Component {
         this.setState({
             //user: database.users.filter(this.getUser)[0],
             post: database.posts,
+            locations: database.locations,
           }, () => console.log(this.state))
     }
 
@@ -70,31 +87,18 @@ class DefaultSearchPage extends React.Component {
             <div>
                 <AppBar/>
                 <div className="defaultSearchPage">
-                    {/*<div className="filter">
-                        <h1>Filter by</h1>
-                    </div>*/}
                     <div className="filterbar">
                         <h1 className="filter">Filter by</h1>
                         <div class="dropdown">
                             <button class="button">Categories</button>
                             <div class="dropdown-content">
-                                <a href="#">Toys</a>
-                                <a href="#">Children</a>
-                                <a href="#">Parents</a>
+                                {this.getDropdownContent("categories")}
                             </div>
                         </div>
                         <div class="dropdown">
                             <button class="button">Location</button>
                             <div class="dropdown-content">
-                                <a href="#">Toronto</a>
-                                <a href="#">Montreal</a>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button class="button">Distance</button>
-                            <div class="dropdown-content">
-                                <a href="#">5km</a>
-                                <a href="#">10km</a>
+                                {this.getDropdownContent("locations")}
                             </div>
                         </div>
                         <div class="dropdown">
@@ -102,6 +106,13 @@ class DefaultSearchPage extends React.Component {
                             <div class="dropdown-content">
                                 <a href="#">Pickup</a>
                                 <a href="#">By Courier</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="button">Distance</button>
+                            <div class="dropdown-content">
+                                <a href="#">5km</a>
+                                <a href="#">10km</a>
                             </div>
                         </div>
                         <div class="dropdown">
