@@ -3,11 +3,11 @@
 
 // let viewerStatuses = ["requested", "requst accepted", "completed", "failed"]
 
-let categories = ["Toys", "Kids", "Parents", "Interests", "Electronics", "Clothing", "Books & Stationary"]
+let categories = ["Toys", "Kids", "Parents", "Interests", "Electronics", "Clothing", "Books & Stationary", "All"]
 
-let locations = ["Toronto, ON", "Montreal, QC"]
+let locations = ["Toronto, ON", "Montreal, QC", "All"]
 
-let deliveryOptions = ["Pickup", "By Courier"]
+let deliveryOptions = ["Pickup", "By Courier", "All"]
 
 let transactions = [
     {

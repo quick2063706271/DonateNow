@@ -10,9 +10,12 @@ class DefaultSearchPage extends React.Component {
         //userId: 2,
         //user: {},
         post: {},
-        categoryBtnText: "Category",
-        locationBtnText: "Location",
-        deliveryOptionBtnText: "Delivery Option",
+        categoryBtnText: "Category: All",
+        categoryVal: "All",
+        locationBtnText: "Location: All",
+        locationVal: "All",
+        deliveryOptionBtnText: "Delivery Option: All",
+        deliveryOptionVal: "All",
     };
 
     getDropdownContent = (drpdwn) => {
@@ -42,24 +45,44 @@ class DefaultSearchPage extends React.Component {
         if (drpdwn === "category") {
             this.setState({
                 categoryBtnText: "Category: " + event.target.name,
+                categoryVal: event.target.name,
             }, () => console.log(this.state))
         } else if (drpdwn === "location") {
             this.setState({
                 locationBtnText: "Location: " + event.target.name,
+                locationVal: event.target.name,
             }, () => console.log(this.state))
         } else if (drpdwn === "delivery option") {
             this.setState({
                 deliveryOptionBtnText: "Delivery Option: " + event.target.name,
+                deliveryOptionVal: event.target.name,
             }, () => console.log(this.state))
         }
     }
 
-    /*getPost = (post) => {
-        const wishlisted = database.users.filter(this.getUser)[0].wishlisted;
-        return wishlisted.includes(post.postId);
+    // not used
+    appliedFilter = () => {
+        return (this.state.categoryVal !== "All") || (this.state.locationVal !== "All") || (this.state.deliveryOptionVal !== "All")
     }
 
-    getUser = (user) => {
+    getPost = () => {
+        var posts = database.posts;
+        if (this.state.categoryVal !== "All") {
+            posts = posts.filter(post => post.categories.some(item => this.state.categoryVal === item))
+        }
+        if (this.state.locationVal !== "All") {
+            posts = posts.filter(post => post.location === this.state.locationVal)
+        }
+        if (this.state.deliveryOptionVal !== "All") {
+            posts = posts.filter(post => post.deliveryOption === this.state.deliveryOptionVal)
+        }
+        /*this.setState({
+            post: posts,
+        }, () => console.log(this.state))*/
+        return posts
+    }
+
+    /*getUser = (user) => {
         return user.userId === this.state.userId;
     }*/
 
@@ -75,8 +98,10 @@ class DefaultSearchPage extends React.Component {
     }
 
     loopThroughPosts = () => {
+        const posts = this.getPost()
         const components = []
-        for (const [key, value] of Object.entries(this.state.post)) {
+        //for (const [key, value] of Object.entries(this.state.post)) {
+        for (const [key, value] of Object.entries(posts)) {
             components.push (
                 <div>
                     <div className="block">
@@ -150,9 +175,7 @@ class DefaultSearchPage extends React.Component {
                     <div className="header">
                         <h1><b>Search Results: </b></h1>
                     </div>
-
                     {this.loopThroughPosts()}
-
                 </div>
 
             </div>
