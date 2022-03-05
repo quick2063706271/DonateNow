@@ -3,6 +3,8 @@ import "./styles.css";
 import database from '../../database'
 import AppBar from "../AppBar";
 import { uid } from "react-uid";
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 class WishList extends React.Component {
 
@@ -57,8 +59,8 @@ class WishList extends React.Component {
         for (const [key, value] of Object.entries(this.state.post)) {
             //for (const [k, v] of Object.entries(value)) {
                 components.push (
-                    <div>  
-                        <div className="block">  
+                    <div>
+                        <div className="block">
                             <p className="title"><b><u>{value.header}</u></b></p>
                             <div className="post">
                                 <img src={`..${value.imageSrc}`} className="image" alt="image"/>
@@ -79,7 +81,7 @@ class WishList extends React.Component {
                                     </ul>
                                 </div>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                 );
             //}
@@ -95,11 +97,11 @@ class WishList extends React.Component {
                     <div className="header">
                         <h1><b>My Wish List:</b></h1>
                     </div>
-                    
+
                     {this.loopThroughPosts()}
-                
+
                 </div>
-                
+
             </div>
         );
     }
