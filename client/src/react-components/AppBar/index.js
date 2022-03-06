@@ -12,6 +12,7 @@ class AppBar extends React.Component {
     state = {
         searchText: "",
         searchClicked: false,
+        navigateFromSearchPage: false,
     };
   
     handleInputChange(event) {
@@ -25,35 +26,34 @@ class AppBar extends React.Component {
         event.preventDefault();
         this.setState({
           searchClicked: true,
+          navigateFromSearchPage: false,
         }, () => console.log(this.state))
     }
 
-    /*
-    setSearchPage = () => {
-        if (window.location.pathname === "/search") {
-            if (this.state.onSearchPage !== true) {
-                this.setState({
-                    onSearchPage: true,
-                }, () => console.log(this.state))
-            }
-        } else {
-            this.setState({
-                onSearchPage: false,
-            }, () => console.log(this.state))
-        }
+    setNavigateFromSearchPage = (event) => {
+        event.preventDefault();
+        this.setState({
+            navigateFromSearchPage: true,
+        }, () => console.log(this.state))
     }
 
-    /*navigateToSearch = () => {
+    navigateToSearch = () => {
         var actions = []
-        if (this.state.searchClicked) {
-            actions.push(<Navigate to='/searchpage'/>)
-            actions.push(<SearchPage
-                searchText = {this.state.searchText}
-                searchClicked = {this.state.searchClicked}
-                />)
+        if (this.state.navigateFromSearchPage === false) {
+            if (this.state.searchClicked) {
+                actions.push(<SearchPage
+                    searchText = {this.state.searchText}
+                    searchClicked = {this.state.searchClicked}/>)
+            } else {
+                actions.push(<DefaultSearchPage
+                    searchText = {this.state.searchText}
+                    searchClicked = {this.state.searchClicked}/>)
+            }            
+        } else {
+            actions.push(null)
         }
         return actions
-    }*/
+    }
 
     render() {
         return (
@@ -79,32 +79,40 @@ class AppBar extends React.Component {
                         <div>
                             <ul>
                                 <li>
-                                    <Link Link to={'/createpost'}>
-                                    <Button variant="outlined">Donate Now</Button>
-                                    </Link>
+                                    <Button variant="outlined" onClick={(event) => this.setNavigateFromSearchPage(event)}>
+                                        <Link Link to={'/createpost'}>
+                                            Donate Now
+                                        </Link>
+                                    </Button>
                                 </li>
                                 <li>
-                                    <Link Link to={'/wishlist'}>
-                                    <Button variant="outlined">Wish List</Button>
-                                    </Link>
+                                    <Button variant="outlined" onClick={(event) => this.setNavigateFromSearchPage(event)}>
+                                        <Link Link to={'/wishlist'}>
+                                            Wish List
+                                        </Link>
+                                    </Button>
                                 </li>
                                 <li>
-                                    <Link Link to={'/userpage'}>
-                                    <Button variant="outlined">My Profile</Button>
-                                    </Link>
+                                    <Button variant="outlined" onClick={(event) => this.setNavigateFromSearchPage(event)}>
+                                        <Link Link to={'/userpage'}>
+                                            My Profile
+                                        </Link>
+                                    </Button>
                                 </li>
                             </ul>
                         </div>
                     </nav>
                 </div>
 
-                {this.state.searchClicked ? <SearchPage
+                {this.navigateToSearch()}
+
+                {/*{this.state.navigateFromSearchPage ? null : this.state.searchClicked ? <SearchPage
                 searchText = {this.state.searchText}
                 searchClicked = {this.state.searchClicked}
                 /> : <DefaultSearchPage
                 searchText = {this.state.searchText}
                 searchClicked = {this.state.searchClicked}
-                />}
+                />}*/}
 
                 {/*{(this.state.searchClicked) && (window.location.pathname !== "/searchpage") ? <Navigate to='/searchpage'/> : null}*/}
                 {/*{this.state.searchClicked ? <Navigate to='/search'/> : null}
