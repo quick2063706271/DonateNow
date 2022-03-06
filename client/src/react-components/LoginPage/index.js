@@ -14,20 +14,12 @@ class LoginPage extends React.Component {
             password: "",
             errormsg: false,
             valid: false,
-            users: {},
+            user: null
         }
     }
 
-    // Get usernames and passwords from server
-    // Code below requires server call
-    initStateInfo = () =>{
-        this.setState({
-            users: database.users,
-          }, () => console.log(this.state))
-    }
-
     componentDidMount() {
-        this.initStateInfo();
+
     }
 
     handleInputChange(event) {
@@ -40,7 +32,7 @@ class LoginPage extends React.Component {
     }
 
     handleClick (event) {
-        const userData = this.state.users.find((user) => user.username === this.state.username);
+        const userData = this.database.users.filter((user) => user.username === this.state.username)[0];
         if (userData) {
             if (userData.password !== this.state.password) {
                 console.log("invalid password")
@@ -52,7 +44,6 @@ class LoginPage extends React.Component {
                 this.setState({
                     valid: true
                 })
-                console.log(userData)
                 this.props.setUserId(userData.userId);
             }
         } else {
@@ -81,7 +72,7 @@ class LoginPage extends React.Component {
                     </div>
                     <div>
                         <input type="submit" name="submit" className="login-form-submit" onClick={(event) => this.handleClick(event)}/>
-                        {this.state.valid ? <Navigate to='/search'/> : null}
+                        {(!this.state.valid) ? null : this.state.user.admin ? <Navigate to='/admin/blocklist'/> : <Navigate to='/search'/>}
                     </div>
                     {this.state.errormsg ? <div className="login-form-error">Incorrect username or password!</div> : null}
 

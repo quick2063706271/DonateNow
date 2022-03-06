@@ -169,7 +169,8 @@ let posts = [
         donated: [1],
         transaction: [2, 3, 4],
         complaintNum: [2],
-        accountBlocked: false
+        accountBlocked: false,
+        admin: false
     },
 
     {
@@ -188,7 +189,8 @@ let posts = [
         donated: [2],
         transaction: [3, 4],
         complaintNum: [],
-        accountBlocked: false
+        accountBlocked: false,
+        admin: false
     },
 
     {
@@ -207,7 +209,8 @@ let posts = [
         donated: [3],
         transaction: [2, 4],
         complaintNum: [3],
-        accountBlocked: true
+        accountBlocked: true,
+        admin: false
     },
 
     {
@@ -226,7 +229,28 @@ let posts = [
         donated: [4],
         transaction: [],
         complaintNum: [1],
-        accountBlocked: false
+        accountBlocked: false,
+        admin: false
+    },
+
+    {
+        userId: 5,
+        username: "admin@admin.com",
+        password: "admin",
+        dateOfBirth: "2000-02-20",
+        gender: "female",
+        address1: "115 Eglinton Ave E, Toronto, ON M4P 1H4",
+        address2: "1757 Victoria Park Ave, Scarborough, ON M1R 1S1",
+        phone: "333-666-9999",
+        email: "admin@admin.com",
+        preference: "Pets, Books",
+        bio: "I love pets. I have three parrots, two cats, and a dog.",
+        wishlisted: [],
+        donated: [],
+        transaction: [],
+        complaintNum: [],
+        accountBlocked: false,
+        admin: true
     }
 ]
 
