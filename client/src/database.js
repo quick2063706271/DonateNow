@@ -372,7 +372,7 @@ function createPost(userId, header, location, description, deliveryOption, categ
 
 }
 
-export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, allterms, changeStatus,createPost};
+
 let feedbacks = [
     {
         feedbackId: 1,
@@ -407,4 +407,4 @@ let feedbacks = [
     }
 ]
 
-export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, feedbacks};
+export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, feedbacks, allterms, createPost, changeStatus};
