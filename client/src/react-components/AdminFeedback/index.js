@@ -16,6 +16,11 @@ class AdminFeedback extends React.Component {
                     </div>
                 </div>
 
+
+                <div>
+                    //{this.loopThroughFeedback()}
+                </div>
+
               <div>
                   <StickyFooter/>
               </div>

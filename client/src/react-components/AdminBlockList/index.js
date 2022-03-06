@@ -51,7 +51,7 @@ class AdminBlockList extends React.Component {
         const users = database.users;
 
         let action;
-        action = <Button variant="contained" display="inline-block" onClick={this.handleBlock}> {this.state.accountBlocked? "Block the User" : "Blocked" } </Button>
+        action = <Button variant="contained" display="inline-block" onClick={this.handleBlock}> {this.state.accountBlocked? "Block the User" : "⠀ ⠀ Blocked ⠀ ⠀ " } </Button>
 
         return (
 

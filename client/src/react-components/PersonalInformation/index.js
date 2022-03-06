@@ -75,7 +75,7 @@ class PersonalInformation extends React.Component {
                 {this.state.isComplained ? "Complaint logged!" : "Complain the User"}
             </Button>
             block = <Button variant="contained" display="inline-block" onClick={this.handleBlock}>
-                {this.state.accountBlocked ? "Blocked" : "Block the User"}
+                {this.state.accountBlocked ? "⠀ ⠀ Blocked ⠀ ⠀ " : "Block the User"}
             </Button>
         } else {
             complaint = null
@@ -227,7 +227,7 @@ class PersonalInformation extends React.Component {
                                     {this.state.isEdit ? "edit" : "save"}
                                 </Button>
                             </div>
-                        }   
+                        }
                     </div>
 
                 </Box>

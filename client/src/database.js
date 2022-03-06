@@ -253,12 +253,12 @@ let allfaqs = [
 
     {
         id: 5,
-        content: "Q: Vestibulum vehicula porta massa. Fusce vitae nibh a nunc tincidunt ullamcorper? A: Sed nec magna placerat tortor pharetra gravida eu et ex."
+        content: "Q: Vestibulum vehicula porta massa. Fusce vitae nibh a nunc tincidunt ullamcorper? \nA: Sed nec magna placerat tortor pharetra gravida eu et ex."
     },
 
     {
         id: 6,
-        content: "Q: Vivamus et justo pellentesque, luctus mauris vel, venenatis felis? A:In elit erat, auctor in fermentum sed, blandit eget nibh. Curabitur vel arcu eu sapien tempus pellentesque. "
+        content: "Q: Vivamus et justo pellentesque, luctus mauris vel, venenatis felis? \nA: In elit erat, auctor in fermentum sed, blandit eget nibh. Curabitur vel arcu eu sapien tempus pellentesque. "
     }
 ]
 
