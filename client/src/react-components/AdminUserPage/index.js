@@ -21,7 +21,10 @@ class AdminUserPage extends React.Component {
         return (
             <div>
                 <AdminAppBar/>
-                <AdminSideMenu/>
+
+                <div>
+                    <AdminSideMenu/>
+                </div>
 
                 <StickyFooter/>
             </div>
