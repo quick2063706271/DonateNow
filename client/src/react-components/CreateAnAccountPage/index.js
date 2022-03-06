@@ -4,6 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 import logo from './logo.png';
 import loginImage from './LoginPageImage.jpeg';
 import StickyFooter from "../StickyFooter";
+import database from '../../database'
 
 class CreateAnAccountPage extends React.Component {
 
@@ -15,8 +16,21 @@ class CreateAnAccountPage extends React.Component {
             retypePassword: "",
             error: false,
             errormsg: "",
-            valid: false
+            valid: false,
+            users: {}
         }
+    }
+
+    // Get usernames and passwords from server
+    // Code below requires server call
+    initStateInfo = () =>{
+        this.setState({
+            users: database.users,
+          }, () => console.log(this.state))
+    }
+
+    componentDidMount() {
+        this.initStateInfo();
     }
 
     handleInputChange(event) {
@@ -29,23 +43,8 @@ class CreateAnAccountPage extends React.Component {
     }
 
     handleClick (event) {
-        // Get usernames and passwords from server
-        // Code below requires server call
-        const database = [
-            {
-                username: "user@user.com",
-                password: "user"
-            },
-            {
-                username: "admin@admin.com",
-                password: "admin"
-            }
-        ];
+        const userData = this.state.users.find((user) => user.username === this.state.username);
 
-        // Find user in database
-        const userData = database.find((user) => user.username === this.state.username);
-
-        // Verify user information
         if (userData) {
             this.setState({
                 error: true,
@@ -64,7 +63,8 @@ class CreateAnAccountPage extends React.Component {
                 })
                 // Add a new pair of username and password to server
                 // Code below requires server call
-                database.push({username: this.state.username, password: this.state.password})
+                const maxUserId = this.state.users.reduce((prev, curr) => (prev.userId > curr.userId) ? prev : curr, 0)
+                database.users.push({userId: maxUserId.userId+1, username: this.state.username, password: this.state.password})
             }
         }
     }
