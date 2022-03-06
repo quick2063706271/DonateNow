@@ -83,7 +83,7 @@ class AdminFeedback extends React.Component {
 
         return (
             <div>
-                <AdminAppBar/>
+                <AdminAppBar handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
 
                 <div className="feedback">
                     <div className="header">

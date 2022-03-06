@@ -56,7 +56,7 @@ class AdminBlockList extends React.Component {
         return (
 
             <div>
-                <AdminAppBar/>
+                <AdminAppBar handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
                 <div className="blocklist">
                     <div className="header">
                         <h1><b>All Blocked Users:</b></h1>

@@ -22,7 +22,7 @@ class AdminUserPage extends React.Component {
 
             <div className="grid-container">
                 <div className="grid-item grid-item-1">
-                    <AdminAppBar />
+                    <AdminAppBar handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
                 </div>
 
                 <div className="grid-item grid-item-2">

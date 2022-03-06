@@ -32,12 +32,6 @@ class App extends React.Component {
 		this.setState({
 			userId: id
 		}, () => console.log(this.state.userId))
-
-		if (database.getUserData(id).admin){
-			this.setState({
-				admin: true
-			}, () => console.log(this.state.admin))
-		}
 	} 
   
   	render() {
@@ -49,7 +43,7 @@ class App extends React.Component {
 					<Route path='/login' element={<LoginPage userId={this.state.userId} 
 															 setUserId={this.setUserId}/>} />
 					<Route path='/createanaccount' element={<CreateAnAccountPage/>} />
-					<Route path='/search' element={<SearchPage/>} />
+					<Route path='/search' element={<SearchPage userId={this.state.userId}/>} />
 					<Route path='/userpage' element={<UserPage userId={this.state.userId}/>} />
 					<Route path='/createpost' element={<CreatePost userId={this.state.userId}/>} />
 					<Route path='/postpage/:id' element={<PostPage  userId={this.state.userId}/>} />
