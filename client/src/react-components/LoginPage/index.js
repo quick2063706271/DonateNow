@@ -3,6 +3,7 @@ import "./styles.css";
 import { Link, Navigate } from 'react-router-dom';
 import logo from './logo.png';
 import loginImage from './LoginPageImage.jpeg';
+import database from '../../database'
 
 class LoginPage extends React.Component {
 
@@ -12,8 +13,21 @@ class LoginPage extends React.Component {
             username: "",
             password: "",
             errormsg: false,
-            valid: false
+            valid: false,
+            users: {},
         }
+    }
+
+    // Get usernames and passwords from server
+    // Code below requires server call
+    initStateInfo = () =>{
+        this.setState({
+            users: database.users,
+          }, () => console.log(this.state))
+    }
+
+    componentDidMount() {
+        this.initStateInfo();
     }
 
     handleInputChange(event) {
@@ -26,26 +40,9 @@ class LoginPage extends React.Component {
     }
 
     handleClick (event) {
-        // Get usernames and passwords from server
-        // Code below requires server call
-        const database = [
-            {
-                username: "user@user.com",
-                password: "user"
-            },
-            {
-                username: "admin@admin.com",
-                password: "admin"
-            }
-        ];
-
-        // Find user in database
-        const userData = database.find((user) => user.username === this.state.username);
-
-        // Verify user information
+        const userData = this.state.users.find((user) => user.username === this.state.username);
         if (userData) {
             if (userData.password !== this.state.password) {
-                // Invalid password
                 console.log("invalid password")
                 this.setState({
                     errormsg: true
@@ -57,8 +54,6 @@ class LoginPage extends React.Component {
                 })
             }
         } else {
-            // Username not found
-            //setErrorMessages({ name: "uname", message: errors.uname });
             console.log("username not found")
             this.setState({
                 errormsg: true
