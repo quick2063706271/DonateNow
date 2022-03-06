@@ -321,11 +321,11 @@ let feedbacks = [
 
     {
         feedbackId: 4,
-        userId: 1, 
+        userId: 1,
         title: "My received tableware is completed broken",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit.",
         isResolved: false
     }
 ]
 
-export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, allterms};
+export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, feedbacks};
