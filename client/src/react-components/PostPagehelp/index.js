@@ -52,6 +52,14 @@ function CategoryGenerator(props){
 }
 
 function PostHeaderHelper(props){
+    if (props.ifAdmin){
+        return (
+            <span styles="float: left">
+                <Button className="postButton" id="requestNowButton" variant="outlined">User Profile</Button>
+                <Button className="postButton" id="saveButton" variant="outlined">Delete Post</Button>
+            </span>
+        )
+    }
     // console.log(props)
     if (props.transaction == null){//undefined
         return (
@@ -134,6 +142,7 @@ class PostPageHelp extends React.Component {
                     <text id="createPostText"> {this.props.post.header} </text> 
                     <PostHeaderHelper transaction={this.props.transaction} 
                                       userId={this.props.userId}
+                                      ifAdmin={this.props.user.admin}
                     />
                 </div>
 
