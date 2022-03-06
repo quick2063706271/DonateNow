@@ -106,7 +106,7 @@ class DefaultSearchPage extends React.Component {
             components.push (
                 <div>
                     <div className="block">
-                        <p className="title"><b><u>{value.header}</u></b></p>
+                        <a className="title" href={`postpage/${value.postId}`}><b><u>{value.header}</u></b></a>
                         <div className="post">
                             <img src={`..${value.imageSrc}`} className="image" alt="image"/>
                             <div className="summary">
