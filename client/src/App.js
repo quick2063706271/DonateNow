@@ -24,13 +24,15 @@ class App extends React.Component {
 	// User Id in top level will be deleted once the front end is served with server
 	// This mimics using session in server.
 	state = {
-		userId: -1,
+		userId: 2,
 	};
 
 	setUserId = (id) => {
+		// console.log(id)
 		this.setState({
 			userId: id
 		})
+		// console.log(this.state.userId)
 	} 
   
   	render() {
@@ -39,11 +41,11 @@ class App extends React.Component {
         		<Routes>
 					<Route path='/' element={<Home/>} />
 					<Route exact path='/userpage/:userId' element={<UserPage/>}/>
-					<Route path='/login' element={<LoginPage setUserId={this.setUserId}/>} />
+					<Route path='/login' element={<LoginPage userId={this.state.userId} 
+															 setUserId={this.setUserId}/>} />
 					<Route path='/createanaccount' element={<CreateAnAccountPage/>} />
 					<Route path='/search' element={<SearchPage/>} />
 					<Route path='/defaultsearch' element={<DefaultSearchPage/>} />
-					
 					<Route path='/userpage' element={<UserPage userId={this.state.userId}/>} />
 					<Route path='/createpost' element={<CreatePost/>} />
 					<Route path='/postpage/:id' element={<PostPage  userId={this.state.userId}/>} />

@@ -30,15 +30,14 @@ function DeliveryOptionGenerator(props){
 function CategoryGenerator(props){
     // console.log(props.category)
     return(
-        <Box className="postPageTextBox" id="categoryBox"
+        <Box  id="postpageCategoryBox"
             sx={{
                 width: 500,
                 maxWidth: '76%',
-                height: 350,
+                height: 1,
             }}
         >
-        <FormGroup className="deliveryOptionForm">
-            {/* {console.log(props.categories)} */}
+        <FormGroup className="postPageDeliveryOptionForm">
             {props.categories.map(
                 (category) => {
                     return (<FormControlLabel
@@ -52,25 +51,25 @@ function CategoryGenerator(props){
 }
 
 function PostHeaderHelper(props){
+    console.log(props)
     if (props.transaction == null){//undefined
         return (
             <span styles="float: left">
                 <Button className="postButton" id="requestNowButton" variant="outlined">Request Now</Button>
                 <Button className="postButton" id="saveButton" variant="outlined">Save to WishList</Button>
-    
             </span>
         )
     }else if (props.transaction.ownerId == props.userId){
         if (props.transaction.viewerId === -1){
             return (
                 <span styles="float: right">
-                    <text className="textContentItem">Owner Status: {props.transaction.ownerStatus}</text>
+                    <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                 </span>
             )
         }else{
             return (
                 <span styles="float: right">
-                    <text className="textContentItem">Owner Status: {props.transaction.ownerStatus}</text>
+                    <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                     <Link to="/choosedonee">
                         <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
                     </Link>
@@ -80,8 +79,8 @@ function PostHeaderHelper(props){
         
     }else{
         return (
-            <span styles="float: right">
-                <text className="textContentItem">Viewer Status: {props.transaction.viewerStatus}</text>
+            <span styles="float: left">
+                <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
             </span>
         )
     }
@@ -90,8 +89,6 @@ function PostHeaderHelper(props){
 class PostPageHelp extends React.Component {
     
     render() {
-        // const {userId, postId, transaction, post, user} = this.props
-        // {console.log(this.props)}
         return (
             <div>
                 <div className="postHeader">
@@ -111,19 +108,37 @@ class PostPageHelp extends React.Component {
                 </div>
                 <div className="postContentArea">
                     <div>
-                        <text className="viewPostText"> Details of this donation post:</text>
+                        <text className="viewPostText">Details of this donation post:</text>
                     </div>
-                    
+                    <div className="postContentItems">
+                            <text className="textTitleItem">  <u>Categories:</u></text>
+                            <CategoryGenerator categories={this.props.post.categories}/>
+                    </div>
                     <div className="postContentItems">
                             <text className="textTitleItem"> <u>Location:</u></text>
                             <text className="textContentItem"> {this.props.post.location}</text>
                     </div>
                     <div className="postContentItems">
-                        <div styles="height: 100%; width: 100%">
-                            <text className="textTitleItem">  <u>Description:</u></text>
+                        
+                        <div id="description">
+                            <text className="textTitleItem">  <u>Description: </u></text>
                         </div>
-                            <text className="textContentItem"> {this.props.post.description}</text>
+                        <br></br>
+                        <br></br>
+                        <Box  id="descriptionBox"
+                            sx={{
+                                width: 700,
+                                maxWidth: '100%',
+                                height: 1,
+                            }}
+                         >
+                             <text className="descriptionContentItem">{this.props.post.description}</text>
+                         </Box>
+                            
                     </div>
+                    
+                    
+
                     <div className="postContentItems">
                             <text className="textTitleItem">  <u>Views:</u></text>
                             <text className="textContentItem"> {this.props.post.views}</text>
@@ -136,13 +151,9 @@ class PostPageHelp extends React.Component {
                             <text className="textTitleItem">  <u>Saved:</u></text>
                             <text className="textContentItem"> {this.props.post.saved}</text>
                     </div>
-                    <div className="postContentItems">
-                            <text className="textTitleItem">  <u>Categories:</u></text>
-                            <CategoryGenerator categories={this.props.post.categories}/>
-                    </div>
                 </div>
 
-                <div className="deliveryOptionArea">
+                <div className="postpageDeliveryOptionArea">
                         <text className="text">Delivery Option:</text>
                         {/* {console.log(this.props)} */}
                         <DeliveryOptionGenerator deliveryOption={this.props.post.deliveryOption}/>

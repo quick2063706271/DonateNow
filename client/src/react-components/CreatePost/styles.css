@@ -4,7 +4,8 @@
     margin-left: 5%;
     margin-right: 8%;
     width: 90%;
-    max-height: 1000px;
+    height: fit-content;
+    /* max-height: 1000px; */
     background-color: blanchedalmond;
     position: relative;
 }
@@ -25,12 +26,13 @@
 }
 
 #publishButton{
-    float: right;
+    float:right;
     background-color: rgb(220, 70, 127);
     font-size: 18px;
     color:cornsilk;
     margin-right: 8%;
-    margin-top: 15px;
+    margin-left: 2%;
+    margin-top: 10px;
 }
 
 #uploadButton{
@@ -93,6 +95,7 @@
     /* float: left; */
     max-height: fit-content;
     margin-left: 5%;
+    margin-top: 1%;
 }
 
 .deliveryOptionArea{
@@ -107,19 +110,14 @@
 }
 
 .text{
-    /* margin-left: 5%; */
     font-size: 28px;
     font-weight: bold;
-    /* font-family: fantasy; */
 }
 
 .textItem{
     float: left;
     margin-top: 10px;
-    margin-left: 2%;
     font-size: 25px;
-    /* font-weight: bold; */
-    /* font-family: fantasy; */
     margin-right: 10px;
 }
 
@@ -128,5 +126,5 @@
 }
 
 .deliveryOptionForm{
-    margin-left: 5%;
+    margin-top: 2%;
 }

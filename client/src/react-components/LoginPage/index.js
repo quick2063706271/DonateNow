@@ -15,7 +15,7 @@ class LoginPage extends React.Component {
             errormsg: false,
             valid: false,
             user: null
-        }
+        };
     }
 
     componentDidMount() {
@@ -45,7 +45,9 @@ class LoginPage extends React.Component {
                     valid: true,
                     user: userData
                 })
+                // console.log("login success", userData.userId)
                 this.props.setUserId(userData.userId);
+                // console.log("setUid success", this.props.userId)
             }
         } else {
             console.log("username not found")
