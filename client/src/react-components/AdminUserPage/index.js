@@ -9,12 +9,22 @@ import AdminSideMenu from "../AdminSideMenu";
 import AdminAppBar from "../AdminAppBar";
 import StickyFooter from "../StickyFooter";
 
+import ComponentParamsWrapper from "../ParamsWrapper";
+
 class AdminUserPage extends React.Component {
     constructor() {
         super()
         this.state = {
             selectedPanel: 0
         }
+    }
+
+    getUserId = () => {
+        console.log("this.props.params")
+        console.log(this.props)
+        console.log(this.props.userId)
+        console.log(this.props.params.userId !== undefined)
+        return this.props.params.userId || this.props.userId;
     }
 
     render() {
@@ -26,7 +36,7 @@ class AdminUserPage extends React.Component {
                 </div>
 
                 <div className="grid-item grid-item-2">
-                    <AdminSideMenu className="grid-item grid-item-2" readibility={false}/>
+                    <AdminSideMenu className="grid-item grid-item-2" readibility={false} userId={this.getUserId()} readibility={this.props.params.userId !== undefined}/>
                 </div>
 
                 <StickyFooter/>
@@ -36,4 +46,4 @@ class AdminUserPage extends React.Component {
 
 }
 
-export default AdminUserPage;
+export default ComponentParamsWrapper(AdminUserPage);
