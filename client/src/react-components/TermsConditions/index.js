@@ -12,7 +12,7 @@ class TermsConditions extends React.Component {
     render() {
 
         function Term(props) {
-            return <li> { props.content }</li>;
+            return <li> { props.content } <br/></li>;
         }
 
         // const  = [
@@ -27,24 +27,30 @@ class TermsConditions extends React.Component {
 
             <div>
                 <AppBar/>
+
+
                 <div className="termsconditions">
                     <div className="header">
-                        <h1><b>Terms and Conditions</b></h1>
+                        <h1><b>Terms and Conditions:</b></h1>
+                    </div>
+
+                    <div className="block">
+                        <div className="post">
+                            <div className="summary">
+                                <ul>
+                                    <li><h3>{terms.map((term) => <Term key={term.id} content={term.content} />)  }  </h3></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
 
-                <div className="termslist">
-                    <nav>
-                        <ul>
-                            <h3>{terms.map((term) => <Term key={term.id} content={term.content} />)}</h3>
-                        </ul>
-                    </nav>
-                </div>
-
                 <StickyFooter/>
             </div>
+
+
 
         );
     }

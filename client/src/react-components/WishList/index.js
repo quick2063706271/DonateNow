@@ -4,7 +4,7 @@ import database from '../../database'
 import AppBar from "../AppBar";
 import { uid } from "react-uid";
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import StickyFooter from "../StickyFooter";
 
 
@@ -15,6 +15,8 @@ class WishList extends React.Component {
         this.state = {
             user: {},
             posts: {},
+            redirect: false,
+            redirectPostId: -1
         }
     }
 
@@ -44,6 +46,16 @@ class WishList extends React.Component {
         this.initStateInfo();
     }
 
+    handlePostOnClick = (value) => {
+        this.setState({
+            redirectPostId: value.postId
+        }, () => {
+            this.setState({
+                redirect: true
+            })
+        })
+    }
+
     /*loopThroughPosts = () => {
 
         for (const [key, value] of Object.entries(this.state.posts)) {
@@ -63,9 +75,15 @@ class WishList extends React.Component {
                 components.push (
                     <div>
                         <div className="block">
-                            <a className="title" href={`postpage/${value.postId}`}><b><u>{value.header}</u></b></a>
+                            {/*<a className="title" href={`postpage/${value.postId}`}><b><u>{value.header}</u></b></a>*/}
+                            <a className="title" onClick={this.handlePostOnClick.bind(this, value)}><b><u>{value.header}</u></b></a>
                             <div className="post">
-                                <img src={`..${value.imageSrc}`} className="image" alt="image"/>
+                                <img
+                                    src={`..${value.imageSrc}`} 
+                                    className="image" 
+                                    alt="image"
+                                    onClick={this.handlePostOnClick.bind(this, value)}
+                                />
                                 <div className="summary">
                                     <ul>
                                         <li><b>Categories: </b>{value.categories.join(", ")}</li>
@@ -94,6 +112,7 @@ class WishList extends React.Component {
     render() {
         return (
             <div>
+                {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}
                 <AppBar/>
 
                 <div className="wishlist">

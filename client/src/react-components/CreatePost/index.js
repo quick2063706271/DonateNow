@@ -28,6 +28,7 @@ class CreatePost extends React.Component {
             deliveryOption: "",
             errormsg: false,
             newPostId: -1,
+            redirect: false
         };
     }
 
@@ -79,9 +80,11 @@ class CreatePost extends React.Component {
                 this.state.header, this.state.location, this.state.description, 
                 this.state.deliveryOption, this.state.categories)
             this.setState({
-                newPostId: postId})
-            console.log(postId)
-            window.location.href=`postpage/${postId}`
+                newPostId: postId
+            }, () => this.setState({
+                    redirect: true
+                }
+            ))
         }
     }
 
@@ -89,15 +92,18 @@ class CreatePost extends React.Component {
         return (
             <div>
                 <AppBar/>
+                {this.state.redirect ? <Navigate to={`/postpage/${this.state.newPostId}`}/> : null}
                 <div className="postHeader">
                     <text id="createPostText">Post Your Donation Now:</text>
                     {/* <text id="errorMsg"><u>You must fill in all entries to publish!</u></text> */}
                     {this.state.errormsg ? 
                         <text id="errorMsg"><u>You must fill in all entries to publish!</u></text>  : null
                         }
-                        <Button type="submit" id="publishButton" 
+                        <Button type="submit"
+                                id="publishButton" 
                                 onClick={(event) => this.handlePublish(event)}
-                                variant="outlined">Publsih</Button>
+                                variant="outlined">Publsih
+                        </Button>
                 </div>
                 
                 <div className="postBackground">

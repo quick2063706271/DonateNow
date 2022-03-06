@@ -1,8 +1,10 @@
 import React from "react";
 import "./styles.css";
 import database from '../../database';
-import PostPageHelp from '../PostPagehelp';
-import AppBar from '../AppBar';
+import AppBar from "../AppBar";
+import { uid } from "react-uid";
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import StickyFooter from '../StickyFooter';
 
 
@@ -23,25 +25,30 @@ class FAQpage extends React.Component {
 
         return (
 
+
             <div>
                 <AppBar/>
+
 
                 <div className="faqpage">
                     <div className="header">
                         <h1><b>FAQs (Frequently Asked Questions):</b></h1>
                     </div>
+
+                    <div className="block">
+                        <div className="post">
+                            <div className="summary">
+                                <ul>
+                                    <li><h3>{faqs.map((faq) => <Faq key={faq.id} content={faq.content} />)}</h3></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div className="faqlist">
-                    <nav>
-                        <ul>
-                            <h3>{faqs.map((faq) => <Faq key={faq.id} content={faq.content} />)}</h3>
-                        </ul>
-                    </nav>
-                </div>
 
                 <StickyFooter/>
-
             </div>
 
         );
