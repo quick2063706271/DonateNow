@@ -50,12 +50,12 @@ class StickyFooter extends React.Component {
                     <ul>
 
                             <Link Link to={'/FAQpage'}>
-                            <Button variant="outlined">FAQ Page</Button>
+                            <Button id="faqBtn"variant="outlined">FAQ Page</Button>
                             </Link>
 
 
                             <Link Link to={'/TermsConditions'}>
-                            <Button variant="outlined">Terms and Conditions</Button>
+                            <Button id="termsBtn"variant="outlined">Terms and Conditions</Button>
                             </Link>
 
                     </ul>
