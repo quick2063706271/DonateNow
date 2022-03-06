@@ -37,7 +37,7 @@ class AppBar extends React.Component {
         }, () => console.log(this.state))
     }
 
-    navigateToSearch = () => {
+    /*navigateToSearch = () => {
         var actions = []
         if (this.state.navigateFromSearchPage === false) {
             if (this.state.searchClicked) {
@@ -53,7 +53,7 @@ class AppBar extends React.Component {
             actions.push(null)
         }
         return actions
-    }
+    }*/
 
     render() {
         return (
@@ -79,21 +79,21 @@ class AppBar extends React.Component {
                         <div>
                             <ul>
                                 <li>
-                                    <Button variant="outlined" onClick={(event) => this.setNavigateFromSearchPage(event)}>
+                                    <Button variant="outlined" /*onClick={(event) => this.setNavigateFromSearchPage(event)}*/>
                                         <Link Link to={'/createpost'}>
                                             Donate Now
                                         </Link>
                                     </Button>
                                 </li>
                                 <li>
-                                    <Button variant="outlined" onClick={(event) => this.setNavigateFromSearchPage(event)}>
+                                    <Button variant="outlined" /*onClick={(event) => this.setNavigateFromSearchPage(event)}*/>
                                         <Link Link to={'/wishlist'}>
                                             Wish List
                                         </Link>
                                     </Button>
                                 </li>
                                 <li>
-                                    <Button variant="outlined" onClick={(event) => this.setNavigateFromSearchPage(event)}>
+                                    <Button variant="outlined" /*onClick={(event) => this.setNavigateFromSearchPage(event)}*/>
                                         <Link Link to={'/userpage'}>
                                             My Profile
                                         </Link>
@@ -104,7 +104,12 @@ class AppBar extends React.Component {
                     </nav>
                 </div>
 
-                {this.navigateToSearch()}
+                {/*{this.navigateToSearch()}*/}
+
+                {this.state.searchClicked ? <SearchPage
+                searchText = {this.state.searchText}
+                searchClicked = {this.state.searchClicked}
+                /> : null}
 
                 {/*{this.state.navigateFromSearchPage ? null : this.state.searchClicked ? <SearchPage
                 searchText = {this.state.searchText}
