@@ -32,7 +32,7 @@ class LoginPage extends React.Component {
     }
 
     handleClick (event) {
-        const userData = this.database.users.filter((user) => user.username === this.state.username)[0];
+        const userData = database.users.filter((user) => user.username === this.state.username)[0];
         if (userData) {
             if (userData.password !== this.state.password) {
                 console.log("invalid password")
@@ -42,7 +42,8 @@ class LoginPage extends React.Component {
             } else {
                 console.log("valid")
                 this.setState({
-                    valid: true
+                    valid: true,
+                    user: userData
                 })
                 this.props.setUserId(userData.userId);
             }
