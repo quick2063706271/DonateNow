@@ -143,11 +143,16 @@ class SearchPage extends React.Component {
             <div>
                 {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}
 
-                {database.getUserData(this.props.userId).admin ? 
-                <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
-                :
-                <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
-                }
+                {this.props.userId === -1 ? 
+                    <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                    
+                    :
+                    database.getUserData(this.props.userId).admin ? 
+                    <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                    :
+                    <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                    }
+
                 
                 <div className="searchPage">
                     <div className="filterbar">
