@@ -28,7 +28,7 @@ class SearchBox extends React.Component {
         <form id='searchArea'>
             <input type="search" id="searchBox" placeholder="Enter keywords here ..." value={this.state.searchText} onChange={event => this.handleInputChange(event)}/>
             <button type="submit" id="searchButton" onClick={(event) => this.setSearchClicked(event)}>
-              <Link to={'/defaultsearch'} className="searchBox">
+              <Link to={'/search'} className="searchBox">
                 Search
               </Link>
             </button>

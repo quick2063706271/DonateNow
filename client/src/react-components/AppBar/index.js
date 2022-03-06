@@ -8,9 +8,14 @@ import DefaultSearchPage from '../DefaultSearchPage';
 
 class AppBar extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     state = {
         searchText: "",
         searchClicked: false,
+        onSearchPage: false,
     };
   
     handleInputChange(event) {
@@ -25,6 +30,21 @@ class AppBar extends React.Component {
         this.setState({
           searchClicked: true,
         }, () => console.log(this.state))
+        //this.setSearchPage();
+    }
+
+    setSearchPage = () => {
+        if (window.location.pathname === "/search") {
+            if (this.state.onSearchPage !== true) {
+                this.setState({
+                    onSearchPage: true,
+                }, () => console.log(this.state))
+            }
+        } else {
+            this.setState({
+                onSearchPage: false,
+            }, () => console.log(this.state))
+        }
     }
 
     navigateToSearch = () => {
@@ -51,9 +71,10 @@ class AppBar extends React.Component {
                 <form id='searchArea'>
                     <input type="search" id="searchBox" placeholder="Enter keywords here ..." value={this.state.searchText} onChange={event => this.handleInputChange(event)}/>
                     <button type="submit" id="searchButton" onClick={(event) => this.setSearchClicked(event)}>
-                        <Link to={'/search'} className="searchBoxLink">
+                        Search
+                        {/*<Link to={'/search'} className="searchBoxLink">
                             Search
-                        </Link>
+                        </Link>*/}
                     </button>
                     {/*{this.state.searchClicked ? <Navigate to='/defaultsearch'/> : null}*/}
                 </form>
@@ -86,6 +107,7 @@ class AppBar extends React.Component {
                 searchText = {this.state.searchText}
                 searchClicked = {this.state.searchClicked}
                 /> : null}
+                {(this.state.searchClicked) && (window.location.pathname !== "/search") ? <Navigate to='/search'/> : null}
                 {/*{this.state.searchClicked ? <Navigate to='/search'/> : null}
                 {this.navigateToSearch}*/}
                 
