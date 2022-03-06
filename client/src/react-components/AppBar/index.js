@@ -3,6 +3,7 @@ import logo from '../../logo.png';
 import { Link, Navigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import "./styles.css";
+import SearchPage from '../SearchPage';
 import DefaultSearchPage from '../DefaultSearchPage';
 // Logo, SearchBox, and NavigationMenu are not used
 
@@ -33,6 +34,7 @@ class AppBar extends React.Component {
         //this.setSearchPage();
     }
 
+    /*
     setSearchPage = () => {
         if (window.location.pathname === "/search") {
             if (this.state.onSearchPage !== true) {
@@ -47,17 +49,17 @@ class AppBar extends React.Component {
         }
     }
 
-    navigateToSearch = () => {
+    /*navigateToSearch = () => {
         var actions = []
         if (this.state.searchClicked) {
-            actions.push(<Navigate to='/search'/>)
-            actions.push(<DefaultSearchPage
+            actions.push(<Navigate to='/searchpage'/>)
+            actions.push(<SearchPage
                 searchText = {this.state.searchText}
                 searchClicked = {this.state.searchClicked}
                 />)
         }
         return actions
-    }
+    }*/
 
     render() {
         return (
@@ -71,10 +73,9 @@ class AppBar extends React.Component {
                 <form id='searchArea'>
                     <input type="search" id="searchBox" placeholder="Enter keywords here ..." value={this.state.searchText} onChange={event => this.handleInputChange(event)}/>
                     <button type="submit" id="searchButton" onClick={(event) => this.setSearchClicked(event)}>
-                        Search
-                        {/*<Link to={'/search'} className="searchBoxLink">
+                        <Link to={'/search'} className="searchBoxLink">
                             Search
-                        </Link>*/}
+                        </Link>
                     </button>
                     {/*{this.state.searchClicked ? <Navigate to='/defaultsearch'/> : null}*/}
                 </form>
@@ -103,11 +104,17 @@ class AppBar extends React.Component {
                     </nav>
                 </div>
 
-                {this.state.searchClicked ? <DefaultSearchPage
+                {this.state.searchClicked ? <SearchPage
                 searchText = {this.state.searchText}
                 searchClicked = {this.state.searchClicked}
                 /> : null}
-                {(this.state.searchClicked) && (window.location.pathname !== "/search") ? <Navigate to='/search'/> : null}
+
+                {/*{this.state.searchClicked ? <SearchPage
+                searchText = {this.state.searchText}
+                searchClicked = {this.state.searchClicked}
+                /> : null}*/}
+
+                {/*{(this.state.searchClicked) && (window.location.pathname !== "/searchpage") ? <Navigate to='/searchpage'/> : null}*/}
                 {/*{this.state.searchClicked ? <Navigate to='/search'/> : null}
                 {this.navigateToSearch}*/}
                 
