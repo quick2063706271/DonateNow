@@ -46,7 +46,7 @@ class SideMenu extends React.Component{
         }
         
         // select user to display
-        let user = database.users[userId]
+        let user = database.users[userId-1]
         // find transaction history
         let transactionHistories = database.transactions.filter((transaction) => transaction.viewerId === user.userId)
 

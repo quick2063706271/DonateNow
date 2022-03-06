@@ -12,7 +12,7 @@ class HistoryItem extends React.Component{
 
     render() {
         // status: {Received, Requested, Accepted, Pending, Failed, Posted, Order Placed, Completed}
-        const { header, status, date, img } = this.props;
+        const { header, status, date, img, postId } = this.props;
         let chooseDoneeButton
         if (status === "posted") {
             chooseDoneeButton = <div > 
@@ -27,8 +27,8 @@ class HistoryItem extends React.Component{
                     <img src={img} className="item-img" alt="img"/>
                 </div>
                 <div id="item-information-container">
-                    <h1>{header}</h1>
-                    <h3>Status: {status}</h3>
+                    <h2>{header}</h2>
+                    <h4>Status: {status}</h4>
                     {/* <h3>{date}</h3> */}
                 </div>
                 {chooseDoneeButton}
