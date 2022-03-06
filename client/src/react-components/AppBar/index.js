@@ -93,8 +93,8 @@ class AppBar extends React.Component {
                                     </Button>
                                 </li>
                                 <li>
-                                    <Button variant="outlined" /*onClick={(event) => this.setNavigateFromSearchPage(event)}*/>
-                                        <Link Link to={'/userpage'}>
+                                    <Button variant="outlined" onClick={(event) => this.setNavigateFromSearchPage(event)}>
+                                        <Link Link to={'/userpage/2/'}>
                                             My Profile
                                         </Link>
                                     </Button>
