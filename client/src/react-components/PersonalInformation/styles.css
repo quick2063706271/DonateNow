@@ -19,3 +19,15 @@
     position: relative;
     left: 160px;
 }
+
+.complaint-button {
+    position: relative;
+    top: 60px;
+    left: 250px
+}
+
+.block-button {
+    position: relative;
+    top: 80px;
+    left: 250px
+}

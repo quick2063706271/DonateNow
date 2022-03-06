@@ -7,7 +7,28 @@ import { Button } from "@mui/material";
 class Feedback extends React.Component {
     constructor() {
         super()
+        this.state = {
+            title: "",
+            content: "",
+            isEmpty: false
+        }
     }
+
+    handleSubmit = (event) => {
+        if (this.state.title.length === 0 || this.state.content.length === 0) {
+            console.log("error: empty feedback")
+            this.setState({isEmpty: true})
+        }
+    }
+
+    handleTitleChange = (event) => {
+        this.setState({title: event.target.value})
+    }
+
+    handleContentChange = (event) => {
+        this.setState({content: event.target.value})
+    }
+
 
     render() {
         return(
@@ -25,6 +46,8 @@ class Feedback extends React.Component {
                         className="input"
                         placeholder="Enter your header here …"
                         variant="outlined"
+                        value={this.state.title}
+                        onChange = {event => this.handleTitleChange(event)}
                     />
                     {/* <br/> */}
                     <TextField
@@ -33,10 +56,19 @@ class Feedback extends React.Component {
                         multiline
                         rows={10}
                         variant="outlined"
+                        value={this.state.content}
+                        onChange = {event => this.handleContentChange(event)}
                     />
                     <div>
                         <Button variant="contained">UPLOAD PHOTO</Button>
-                        <Button id="submit-button" variant="outlined">SUBMIT</Button>
+                        <Button 
+                            id="submit-button" 
+                            variant="outlined" 
+                            onClick={this.handleSubmit}
+                            >SUBMIT</Button>
+                        {this.state.isEmpty ? 
+                            <h4 id="errorMsg"><u>You must fill in all entries to submit!</u></h4>  : null
+                        }
                     </div>
                 </Stack>
 

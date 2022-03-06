@@ -23,7 +23,7 @@ class SideMenu extends React.Component{
     handleClick = (event) => {
         console.log(event.target.innerText)
         let panel = 0
-        if (event.target.innerText === 'MY INFORMATION') {
+        if (event.target.innerText === 'USER INFORMATION') {
             panel = 0
         } else if (event.target.innerText === 'TRANSACTION HISTORY') {
             panel = 1
@@ -102,7 +102,7 @@ class SideMenu extends React.Component{
                 <div className="side-menu-and-panel grid-item-1">
                     <div className="side-menu-one">
                         <div className="side-menu-container">
-                            <Button variant={this.state.selectedPanel === 0 ? "contained" : "text"} onClick={this.handleClick} size="large">MY INFORMATION</Button>
+                            <Button variant={this.state.selectedPanel === 0 ? "contained" : "text"} onClick={this.handleClick} size="large">USER INFORMATION</Button>
                             {isRead === false &&
                                 <Button variant={this.state.selectedPanel === 1 ? "contained" : "text"} onClick={this.handleClick} size="large">TRANSACTION HISTORY</Button>
                             }
