@@ -52,10 +52,14 @@ function CategoryGenerator(props){
 }
 
 function PostHeaderHelper(props){
+    const {post} = props
+    console.log(props)
     if (props.ifAdmin){
         return (
             <span styles="float: left">
-                <Button className="postButton" id="requestNowButton" variant="outlined">User Profile</Button>
+                <Link Link to={'/userpage/' + post.ownerId}>
+                    <Button className="postButton" id="requestNowButton" variant="outlined" >User Profile</Button>
+                </Link>
                 <Button className="postButton" id="saveButton" variant="outlined">Delete Post</Button>
             </span>
         )
@@ -143,6 +147,7 @@ class PostPageHelp extends React.Component {
                     <PostHeaderHelper transaction={this.props.transaction} 
                                       userId={this.props.userId}
                                       ifAdmin={this.props.user.admin}
+                                      post={this.props.post}
                     />
                 </div>
 

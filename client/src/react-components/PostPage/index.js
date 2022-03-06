@@ -48,6 +48,8 @@ class PostPage extends React.Component {
     }
 
     render() {
+        console.log("transaction.post")
+        console.log(this.state)
         return (
             <div>
                 <AppBar/>
@@ -57,6 +59,8 @@ class PostPage extends React.Component {
                     transaction = {this.state.transaction}
                     post = {this.state.post}
                     user = {this.state.user}
+
+                    // ownerId = {this.state.transaction.ownerId}
                     /> : null}
 
                 <div>
