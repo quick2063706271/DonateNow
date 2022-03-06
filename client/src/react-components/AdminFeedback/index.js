@@ -4,100 +4,80 @@ import database from '../../database'
 import AdminAppBar from "../AdminAppBar";
 import { uid } from "react-uid";
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import StickyFooter from "../StickyFooter";
-
-// class AdminFeedback extends React.Component {
-//     render() {
-//         return (
-//             <div>
-//                 <AdminAppBar/>
-//                 <div className="blocklist">
-//                     <div className="header">
-//                         <h1><b>All User Feedbacks:</b></h1>
-//                     </div>
-//                 </div>
-//
-//
-//                 <div>
-//                     //{this.loopThroughFeedback()}
-//                 </div>
-//
-//               <div>
-//                   <StickyFooter/>
-//               </div>
-//
-//             </div>
-//         );
-//     }
-//
-// }
 
 class AdminFeedback extends React.Component {
 
-    // state = {
-    //     feedbacks: {},
-    //     feedbackId: [1,2],
-    // };
-
-    /*getFeedback = (feedback) => {
-        return this.state.feedbackId;
-    }*/
-
-
-    /*loopThroughFeedback = () => {
-
-        for (const [key, value] of Object.entries(this.state.feedbacks)) {
-            console.log(`${key}: ${value}`);
-            for (const [k, v] of Object.entries(value)) {
-                console.log(`${k}: ${v}`);
-                console.log(value.imageSrc);
-                return (<div>{value.categories}</div>);
-            }
+    constructor() {
+        super()
+        this.state = {
+            feedbacks: {},
+            redirect: false,
+            redirectUserId: -1
         }
-    }*/
+    }
 
+    initStateInfo = () =>{
+        this.setState({
+            feedbacks: database.feedbacks,
+          }, () => console.log(this.state))
+    }
+
+    componentDidMount() {
+        this.initStateInfo();
+    }
+
+    handlePostOnClick = (value) => {
+        this.setState({
+            redirectUserId: value.userId
+        }, () => {
+            this.setState({
+                redirect: true
+            })
+        }, () => console.log(this.state))
+    }
+
+    loopThroughFeedbacks = () => {
+        const components = []
+        for (const [key, value] of Object.entries(this.state.feedbacks)) {
+            //for (const [k, v] of Object.entries(value)) {
+                components.push (
+                    <div>
+                        <div className="block">
+                            <a className="title"><b><u>{value.title}</u></b></a>
+                            <div className="post">
+                                <div className="summary">
+                                    <ul>
+                                        <li><b>Feedback ID: </b>{value.feedbackId}</li>
+                                        <li onClick={this.handlePostOnClick.bind(this, value)}><b>User ID: </b><u>{value.userId}</u></li>
+                                    </ul>
+                                    <ul>
+                                        <li><b>Content: </b>{value.content}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            //}
+        }
+        return components;
+    }
 
     render() {
-        let action;
-        action = <Button variant="contained" display="inline-block" onClick={this.handleBlock}> {this.state.isResolved? "Feedback Resolved" : "⠀ ⠀ Unresolved ⠀ ⠀ " } </Button>
-
-        function eachFeedback(props) {
-            return <div className="block">
-                <p className="title"><b><u>{props.title}</u></b></p>
-                <div className="feedback">
-                        <ul>
-                            <li>{props.userId}</li>
-                        </ul>
-                        <ul>
-                            <li>{props.content}</li>
-                            <li>{action}</li>
-                        </ul>
-
-                </div>
-            </div>;
-        }
-
-        const feedbacks = database.feedbacks;
-
-
         return (
             <div>
+                {this.state.redirect ? <Navigate to={`/userpage/${this.state.redirectUserId}`}/> : null}
                 <AdminAppBar/>
 
                 <div className="feedback">
                     <div className="header">
-                        <h1><b>All User Feedbacks:</b></h1>
+                        <h1><b>View Feedback</b></h1>
                     </div>
-                    {/*this.loopThroughPosts()*/}
-                </div>
 
-                <div className="termslist">
-                    <nav>
-                        <ul>
-                            <h3>{feedbacks.map((feedback) => <eachFeedback key={feedback.id} content={feedback.content} />)}</h3>
-                        </ul>
-                    </nav>
+                    {this.loopThroughFeedbacks()}
+
                 </div>
 
                 <div>
