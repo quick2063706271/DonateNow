@@ -47,7 +47,6 @@ class LoginPage extends React.Component {
                 })
                 // console.log("login success", userData.userId)
                 this.props.setUserId(userData.userId);
-                // console.log("setUid success", this.props.userId)
             }
         } else {
             console.log("username not found")

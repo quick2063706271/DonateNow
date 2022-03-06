@@ -330,10 +330,6 @@ function changeStatus(transac, user, val){
       }
 }
 
-function getUser (user, userId) {
-    return user.userId === userId;
-}
-
 function createPost(userId, header, location, description, deliveryOption, categories){
     let newPostId = posts[posts.length - 1].postId + 1
     
@@ -357,7 +353,7 @@ function createPost(userId, header, location, description, deliveryOption, categ
     console.log(newPost)
 
     let newTransac={
-        postId: 1,
+        postId: newPostId,
         ownerId: userId,
         viewerId: -1, // -1 means no viewer
         ownerStatus: "posted",
@@ -365,9 +361,15 @@ function createPost(userId, header, location, description, deliveryOption, categ
     }
     transactions.push(newTransac)
 
-    let user = users.filter((user) => getUser(user, userId))[0]
-    user.donated.push(newPostId);
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].userId === userId){
+                users[i].donated.push(newPostId);
+            }
+      }
     
+    console.log(posts)
+    console.log(transactions)
+    console.log(users)
     return newPostId;
 
 }
