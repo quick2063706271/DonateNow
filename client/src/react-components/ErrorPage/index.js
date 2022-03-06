@@ -9,28 +9,59 @@ import { Link } from 'react-router-dom';
 class ErrorPage extends React.Component {
     render() {
         return (
+            // <div>
+            //     <AppBar/>
+            //
+            //     <div className="error">
+            //         <div className="header">
+            //             <h1><b>404 ERROR</b></h1>
+            //         </div>
+            //         <h2>Page not found. Please re-check your URL or click on the button below to be redirected to the home page.</h2>
+            //     </div>
+            //
+            //     <div>
+            //     <Link Link to={'/'}>
+            //
+            //         <Button variant="contained" display="inline-block">
+            //             <h2>{"Back to Home Page"}</h2>
+            //         </Button>
+            //     </Link>
+            //     </div>
+            //
+            //   <div>
+            //       <StickyFooter/>
+            //   </div>
+            // </div>
+
             <div>
                 <AppBar/>
 
-                <div className="error">
-                    <div className="header">
-                        <h1><b>404 ERROR</b></h1>
+
+                <div className="errorpage">
+
+                    <div className="block">
+                        <div className="post">
+                            <div className="summary">
+                                <div className="header">
+                                        <h1><b>404 ERROR</b></h1>
+                                </div>
+                                <h2>Page not found. Please re-check your URL or click on the button below to be redirected to the home page.</h2>
+
+                                <div className="button">
+                                    <Link Link to={'/'}>
+                                        <Button variant="contained" display="inline-block">
+                                            <h2>{"Back to Home Page"}</h2>
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h2>Page not found. Please re-check your URL or click on the button below to be redirected to the home page.</h2>
+
                 </div>
 
-                <div>
-                <Link Link to={'/'}>
 
-                    <Button variant="contained" display="inline-block">
-                        <h2>{"Back to Home Page"}</h2>
-                    </Button>
-                </Link>
-                </div>
-
-              <div>
-                  <StickyFooter/>
-              </div>
+                <StickyFooter/>
             </div>
         );
     }
