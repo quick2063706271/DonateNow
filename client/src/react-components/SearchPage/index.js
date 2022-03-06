@@ -1,24 +1,35 @@
 import AppBar from "../AppBar";
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 import "./styles.css";
 import StickyFooter from "../StickyFooter";
 import database from '../../database'
+import SearchBox from "../SearchBox";
 
+function WithMyHook(Component) {
+
+    return function WrappedComponent(props) {
+        let [searchParams, setSearchParams] = useSearchParams();
+        const myHookValue = searchParams;
+        return <Component {...props} myHookValue={myHookValue} />;
+    }
+}
 
 class SearchPage extends React.Component {
     state = {
-        //userId: 2,
-        //user: {},
-        post: {},
+        post: [],
         categoryBtnText: "Category: All",
         categoryVal: "All",
         locationBtnText: "Location: All",
         locationVal: "All",
         deliveryOptionBtnText: "Delivery Option: All",
-        deliveryOptionVal: "All",
-        searchText: this.props.searchText,
-        searchClicked: this.props.searchClicked,
+        deliveryOptionVal: "All"
     };
+
+    handleSearchButtonOnClick = () => {
+        console.log(this.state.post)
+        this.fetchPosts();
+    }
 
     getDropdownContent = (drpdwn) => {
         const options = []
@@ -67,10 +78,12 @@ class SearchPage extends React.Component {
         return (this.state.categoryVal !== "All") || (this.state.locationVal !== "All") || (this.state.deliveryOptionVal !== "All")
     }
 
-    getPost = () => {
+    fetchPosts = () => {
+        const keyword = this.props.myHookValue.get("keyword") || "";
+        console.log(keyword)
         var posts = database.posts;
-        if ((this.state.searchText.trim() !== "") && (this.state.searchClicked)) {
-            posts = posts.filter(post => post.header.toLowerCase().includes(this.state.searchText.trim().toLowerCase()))
+        if (keyword.trim() !== "") {
+            posts = posts.filter(post => post.header.toLowerCase().includes(keyword.trim().toLowerCase()))
         }
         if (this.state.categoryVal !== "All") {
             posts = posts.filter(post => post.categories.some(item => this.state.categoryVal === item))
@@ -81,62 +94,51 @@ class SearchPage extends React.Component {
         if (this.state.deliveryOptionVal !== "All") {
             posts = posts.filter(post => post.deliveryOption === this.state.deliveryOptionVal)
         }
-        /*this.setState({
-            post: posts,
-        }, () => console.log(this.state))*/
-        return posts
-    }
 
-    initStateInfo = () =>{
+        console.log(posts)
+
         this.setState({
-            //user: database.users.filter(this.getUser)[0],
-            post: database.posts,
-          }, () => console.log(this.state))
+            post: posts
+        }, () => {console.log(this.state)})
     }
 
     componentDidMount() {
-        this.initStateInfo();
+        this.fetchPosts();
     }
 
-    loopThroughPosts = () => {
-        const posts = this.getPost()
-        const components = []
-        //for (const [key, value] of Object.entries(this.state.post)) {
-        for (const [key, value] of Object.entries(posts)) {
-            components.push (
-                <div>
-                    <div className="block">
-                        <p className="title"><b><u>{value.header}</u></b></p>
-                        <div className="post">
-                            <img src={`..${value.imageSrc}`} className="image" alt="image"/>
-                            <div className="summary">
-                                <ul>
-                                    <li><b>Categories: </b>{value.categories.join(", ")}</li>
-                                    <li><b>Date Posted: </b>{value.datePosted}</li>
-                                </ul>
-                                <ul>
-                                    <li><b>Location: </b>{value.location}</li>
-                                    <li><b>Delivery Option: </b>{value.deliveryOption}</li>
-                                </ul>
-                                <br></br>
-                                <ul>
-                                    <li><b>Views: </b>{value.views}</li>
-                                    <li><b>Requests: </b>{value.requests}</li>
-                                    <li><b>Saved: </b>{value.saved}</li>
-                                </ul>
-                            </div>
+    renderPost = (value) => {
+        return (
+            <div>
+                <div className="block">
+                    <p className="title"><b><u>{value.header}</u></b></p>
+                    <div className="post">
+                        <img src={`..${value.imageSrc}`} className="image" alt="image"/>
+                        <div className="summary">
+                            <ul>
+                                <li><b>Categories: </b>{value.categories.join(", ")}</li>
+                                <li><b>Date Posted: </b>{value.datePosted}</li>
+                            </ul>
+                            <ul>
+                                <li><b>Location: </b>{value.location}</li>
+                                <li><b>Delivery Option: </b>{value.deliveryOption}</li>
+                            </ul>
+                            <br></br>
+                            <ul>
+                                <li><b>Views: </b>{value.views}</li>
+                                <li><b>Requests: </b>{value.requests}</li>
+                                <li><b>Saved: </b>{value.saved}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            );
-        }
-        return components;
+            </div>
+        )
     }
     
     render() {
         return (
             <div>
-                {/*<AppBar/>*/}
+                <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                 <div className="searchPage">
                     <div className="filterbar">
                         <h1 className="filter">Filter by</h1>
@@ -176,13 +178,14 @@ class SearchPage extends React.Component {
                     <div className="header">
                         <h1><b>Search Results: </b></h1>
                     </div>
-                    {this.loopThroughPosts()}
+                    {this.state.post.map((post) => {
+                        return this.renderPost(post)
+                    })}
                 </div>
                 <StickyFooter/>
             </div>
         );
     }
-
 }
 
-export default SearchPage;
+export default WithMyHook(SearchPage);

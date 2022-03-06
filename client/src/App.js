@@ -20,6 +20,7 @@ import StickyFooter from './react-components/StickyFooter';
 import { Route, Routes, BrowserRouter, useParams } from 'react-router-dom';
 import AppBar from './react-components/AppBar';
 import React from 'react';
+import SearchBox from './react-components/SearchBox';
 
 
 const CreateViewForUser = () => {
@@ -45,7 +46,7 @@ class App extends React.Component {
           <Route exact path='/userpage/:userId' element={<CreateViewForUser/>}/>
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
-          <Route path='/search' element={<AppBar/>} />
+          <Route path='/search' element={<SearchPage/>} />
           <Route path='/defaultsearch' element={<DefaultSearchPage/>} />
           
           <Route path='/userpage' element={<UserPage/>} />
