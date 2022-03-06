@@ -5,6 +5,7 @@ import PostPageHelp from "../PostPagehelp";
 import AppBar from "../AppBar";
 import StickyFooter from "../StickyFooter";
 import ComponentParamsWrapper from "../ParamsWrapper";
+import AdminAppBar from "../AdminAppBar";
 
 class PostPage extends React.Component {
     state = {
@@ -50,7 +51,11 @@ class PostPage extends React.Component {
     render() {
         return (
             <div>
-                <AppBar/>
+                {database.getUserData(this.props.userId).admin ? 
+                <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                :
+                <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                }
                 {this.state.post ? <PostPageHelp
                     userId = {this.props.userId}
                     postId = {this.state.postId}
