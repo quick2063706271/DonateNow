@@ -22,12 +22,12 @@
 
 .complaint-button {
     position: relative;
-    bottom: 160px;
-    left: 550px
+    top: 60px;
+    left: 250px
 }
 
 .block-button {
     position: relative;
-    bottom: 140px;
-    left: 550px
+    top: 80px;
+    left: 250px
 }

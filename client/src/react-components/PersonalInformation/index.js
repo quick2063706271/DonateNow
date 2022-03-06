@@ -120,7 +120,10 @@ class PersonalInformation extends React.Component {
                             sx={{width: '20ch' }}
                             />
                         }
-                        <br />
+                        {
+                            isRead === false &&
+                            <br />
+                        }
                         {
                             isRead == false &&
                             <TextField
@@ -145,7 +148,10 @@ class PersonalInformation extends React.Component {
                             sx={{width: '20ch' }}
                             />
                         }
-                        <br />
+                        {
+                            isRead === false &&
+                            <br />
+                        }
                         {
                             isRead == false &&
                             <TextField
@@ -159,7 +165,10 @@ class PersonalInformation extends React.Component {
                             sx={{width: '42.5ch' }}
                             />
                         }
-                        <br />
+                        {
+                            isRead === false &&
+                            <br />
+                        }
                         {
                             isRead == false &&
                             <TextField
@@ -173,7 +182,10 @@ class PersonalInformation extends React.Component {
                             sx={{width: '42.5ch' }}
                             />
                         }
-                        <br />
+                        {
+                            isRead === false &&
+                            <br />
+                        }
                         {
                             isRead == false &&
                             <TextField
