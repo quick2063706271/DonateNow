@@ -40,13 +40,13 @@ class SideMenu extends React.Component{
     render () {
         // check if it is reading other users
         let isRead = false;
-        const {readibility} = this.props;
+        const {readibility, userId} = this.props;
         if (readibility === true) {
             isRead = true;
         }
         
         // select user to display
-        let user = database.users[0]
+        let user = database.users[userId-1]
         // find transaction history
         let transactionHistories = database.transactions.filter((transaction) => transaction.viewerId === user.userId)
 

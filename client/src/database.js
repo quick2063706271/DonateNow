@@ -39,7 +39,7 @@ let transactions = [
         postId: 3,
         ownerId: 3,
         viewerId: 1,
-        ownerStatus: {3: "donation matched"},
+        ownerStatus: "donation matched",
         viewerStatuses: "failed",
     },
 

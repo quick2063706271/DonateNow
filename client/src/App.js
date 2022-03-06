@@ -16,25 +16,38 @@ import ErrorPage from './react-components/ErrorPage';
 import FAQpage from './react-components/FAQpage';
 import SearchPage from './react-components/SearchPage';
 import DefaultSearchPage from './react-components/DefaultSearchPage';
+import StickyFooter from './react-components/StickyFooter';
+import { Route, Routes, BrowserRouter, useParams } from 'react-router-dom';
 import AppBar from './react-components/AppBar';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
 
+
+const CreateViewForUser = () => {
+  let params = useParams();
+  console.log(params)
+  let userId = params.userId
+  return (
+    <UserPage userId={userId}/>
+  )
+}
 
 class App extends React.Component {
   state = {
     userId: 2,
   };
+  
+
   render() {
     return (
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>} />
+          <Route exact path='/userpage/:userId' element={<CreateViewForUser/>}/>
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
           <Route path='/search' element={<AppBar/>} />
           <Route path='/defaultsearch' element={<DefaultSearchPage/>} />
-          <Route path='/searchpage' element={<SearchPage/>} />
+          
           <Route path='/userpage' element={<UserPage/>} />
           <Route path='/createpost' element={<CreatePost/>} />
           <Route path='/postpage' element={<PostPage  userId={this.state.userId}/>} />

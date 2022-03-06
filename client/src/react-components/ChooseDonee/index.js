@@ -28,9 +28,8 @@ class ChooseDonee extends React.Component {
         super();
         this.state = {
             open: false,
-            choices: [{username: "carol#2134", post: "toys"},
-                      {username: "bella#1121", post: "toys"},
-                      {username: "Jayce#2134", post: "toys"}
+            choices: [{username: "John2022", viewId: 1},
+                      {username: "amy2000", viewId: 3},
             ]
         }
     }
@@ -68,36 +67,13 @@ class ChooseDonee extends React.Component {
                                     control={<Radio />}
                                     label={(
                                         <div>
-                                            <Link to={'../userpage'} target="_blank" >{row.username}   </Link>
+                                            <Link to={'../userpage/' + row.viewId.toString()} target="_blank" >{row.username}  </Link>
                                         </div>
                                     )}
                                 />
                             ))}
                         </RadioGroup>
                     </FormControl>
-                    {/* <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 150 }} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell align="right">Username</TableCell>
-                                    <TableCell align="right">item</TableCell>
-                                    <TableCell align="right">Decision</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                            {this.state.choices.map((row) => (
-                                <TableRow
-                                    key={row.username}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell align="right">{row.username}</TableCell>
-                                    <TableCell align="right">{row.post}</TableCell>
-                                    <TableCell align="right"><Checkbox/></TableCell>
-                                </TableRow>
-                            ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer> */}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.handleClose} color="primary">
