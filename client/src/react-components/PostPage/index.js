@@ -7,7 +7,7 @@ import StickyFooter from "../StickyFooter";
 
 class PostPage extends React.Component {
     state = {
-        postId: 2,
+        postId: -1,
         transaction: null,
         post: null,
         user: null,
@@ -30,12 +30,24 @@ class PostPage extends React.Component {
             );
     }
 
+    getPostIdFromUrl = (url) => {
+        if (!url.includes("?")) {
+            return parseInt(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+        } else {
+            // Handle in the future
+        }
+    }
+
     initStateInfo = () =>{
         this.setState({
-            post: database.posts.filter(this.getPost)[0],
-            user: database.users.filter(this.getUser)[0],
-            transaction: database.transactions.filter(this.getTransaction)[0],
-          }, () => console.log(this.state))
+            postId: this.getPostIdFromUrl(window.location.href)
+        }, () => {
+            this.setState({
+                post: database.posts.filter(this.getPost)[0],
+                user: database.users.filter(this.getUser)[0],
+                transaction: database.transactions.filter(this.getTransaction)[0],
+            }, () => console.log(this.state))
+        })
     }
 
     componentDidMount() {

@@ -51,7 +51,7 @@ class App extends React.Component {
           
           <Route path='/userpage' element={<UserPage/>} />
           <Route path='/createpost' element={<CreatePost/>} />
-          <Route path='/postpage' element={<PostPage  userId={this.state.userId}/>} />
+          <Route path='/postpage/:id' element={<PostPage  userId={this.state.userId}/>} />
           <Route path='/wishlist' element={<WishList/>} />
           <Route path='/choosedonee' element={<ChooseDonee/>} />
           <Route path='/admin/blocklist' element={<AdminBlockList/>} />
