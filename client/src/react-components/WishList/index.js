@@ -10,12 +10,13 @@ import StickyFooter from "../StickyFooter";
 
 class WishList extends React.Component {
 
-    state = {
-        userId: 2,
-        user: {},
-        post: {},
-        //postId: [1,2],
-    };
+    constructor() {
+        super()
+        this.state = {
+            user: {},
+            posts: {},
+        }
+    }
 
     /*getPost = (post) => {
         //return post.postId === this.state.postId;
@@ -29,14 +30,13 @@ class WishList extends React.Component {
     }
 
     getUser = (user) => {
-        //return user.userId === this.props.userId[0];
-        return user.userId === this.state.userId;
+        return user.userId === this.props.userId;
     }
 
     initStateInfo = () =>{
         this.setState({
             user: database.users.filter(this.getUser)[0],
-            post: database.posts.filter(this.getPost),
+            posts: database.posts.filter(this.getPost),
           }, () => console.log(this.state))
     }
 
@@ -46,7 +46,7 @@ class WishList extends React.Component {
 
     /*loopThroughPosts = () => {
 
-        for (const [key, value] of Object.entries(this.state.post)) {
+        for (const [key, value] of Object.entries(this.state.posts)) {
             console.log(`${key}: ${value}`);
             for (const [k, v] of Object.entries(value)) {
                 console.log(`${k}: ${v}`);
@@ -58,7 +58,7 @@ class WishList extends React.Component {
 
     loopThroughPosts = () => {
         const components = []
-        for (const [key, value] of Object.entries(this.state.post)) {
+        for (const [key, value] of Object.entries(this.state.posts)) {
             //for (const [k, v] of Object.entries(value)) {
                 components.push (
                     <div>
