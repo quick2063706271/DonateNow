@@ -1,6 +1,6 @@
 import React from "react";
 import logo from '../../logo.png';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import "./styles.css";
 import DefaultSearchPage from '../DefaultSearchPage';
@@ -27,6 +27,18 @@ class AppBar extends React.Component {
         }, () => console.log(this.state))
     }
 
+    navigateToSearch = () => {
+        var actions = []
+        if (this.state.searchClicked) {
+            actions.push(<Navigate to='/search'/>)
+            actions.push(<DefaultSearchPage
+                searchText = {this.state.searchText}
+                searchClicked = {this.state.searchClicked}
+                />)
+        }
+        return actions
+    }
+
     render() {
         return (
             <div>
@@ -39,9 +51,9 @@ class AppBar extends React.Component {
                 <form id='searchArea'>
                     <input type="search" id="searchBox" placeholder="Enter keywords here ..." value={this.state.searchText} onChange={event => this.handleInputChange(event)}/>
                     <button type="submit" id="searchButton" onClick={(event) => this.setSearchClicked(event)}>
-                    <Link to={'/search'} className="searchBoxLink">
-                        Search
-                    </Link>
+                        <Link to={'/search'} className="searchBoxLink">
+                            Search
+                        </Link>
                     </button>
                     {/*{this.state.searchClicked ? <Navigate to='/defaultsearch'/> : null}*/}
                 </form>
@@ -74,6 +86,8 @@ class AppBar extends React.Component {
                 searchText = {this.state.searchText}
                 searchClicked = {this.state.searchClicked}
                 /> : null}
+                {/*{this.state.searchClicked ? <Navigate to='/search'/> : null}
+                {this.navigateToSearch}*/}
                 
                 {/*<Logo/>
                 <SearchBox/>
