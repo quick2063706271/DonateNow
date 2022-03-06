@@ -352,4 +352,4 @@ let feedbacks = [
     }
 ]
 
-export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, feedbacks};
+export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, allterms, feedbacks};
