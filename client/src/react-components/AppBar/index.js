@@ -1,11 +1,7 @@
 import React from "react";
 import logo from '../../logo.png';
-import { Link, Navigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import "./styles.css";
-import SearchPage from '../SearchPage';
-import DefaultSearchPage from '../DefaultSearchPage';
-// Logo, SearchBox, and NavigationMenu are not used
 import NavigationMenu from "../NavigationMenu";
 import SearchBox from "../SearchBox";
 
