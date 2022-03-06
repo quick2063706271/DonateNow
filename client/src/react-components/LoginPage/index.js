@@ -15,7 +15,7 @@ class LoginPage extends React.Component {
             valid: false
         }
     }
-    
+
     handleInputChange(event) {
         const target = event.target
         const value = target.value
@@ -64,7 +64,7 @@ class LoginPage extends React.Component {
                 errormsg: true
             })
         }
-        
+
     }
 
     render() {
@@ -84,10 +84,10 @@ class LoginPage extends React.Component {
                     </div>
                     <div>
                         <input type="submit" name="submit" className="login-form-submit" onClick={(event) => this.handleClick(event)}/>
-                        {this.state.valid ? <Navigate to='/home'/> : null}
+                        {this.state.valid ? <Navigate to='/search'/> : null}
                     </div>
                     {this.state.errormsg ? <div className="login-form-error">Incorrect username or password!</div> : null}
-                    
+
                     <Link to={'/createanaccount'}>
                         <div className="login-form-create"><u>Create an Account</u></div>
                     </Link>

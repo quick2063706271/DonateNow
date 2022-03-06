@@ -18,6 +18,7 @@ import SearchPage from './react-components/SearchPage';
 import DefaultSearchPage from './react-components/DefaultSearchPage';
 import StickyFooter from './react-components/StickyFooter';
 import { Route, Routes, BrowserRouter, useParams } from 'react-router-dom';
+import AppBar from './react-components/AppBar';
 import React from 'react';
 
 
@@ -43,10 +44,10 @@ class App extends React.Component {
           <Route path='/' element={<Home/>} />
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
+          <Route path='/search' element={<AppBar/>} />
           <Route path='/defaultsearch' element={<DefaultSearchPage/>} />
-          <Route path='/search' element={<SearchPage/>} />
-          <Route path='/userpage/:userId' element={<CreateViewForUser/>}/>
-            {/* <Route path='/userpage' element={<UserPage/>}/> */}
+          <Route exact path='/userpage/:userId' element={<CreateViewForUser/>}/>
+          <Route path='/searchpage' element={<SearchPage/>} />
           <Route path='/createpost' element={<CreatePost/>} />
           <Route path='/postpage' element={<PostPage  userId={this.state.userId}/>} />
           <Route path='/wishlist' element={<WishList/>} />
@@ -58,7 +59,6 @@ class App extends React.Component {
           <Route path='/termsconditions' element={<TermsConditions/>} />
           <Route path='/error' element={<ErrorPage/>} />
           <Route path='/faqpage' element={<FAQpage/>} />
-          <Route path='/footer' element={<StickyFooter/>} />
         </Routes>
       </BrowserRouter>
     );

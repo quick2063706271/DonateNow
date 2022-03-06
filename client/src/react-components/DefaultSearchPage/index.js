@@ -16,13 +16,9 @@ class DefaultSearchPage extends React.Component {
         locationVal: "All",
         deliveryOptionBtnText: "Delivery Option: All",
         deliveryOptionVal: "All",
-        //searchText: this.props.searchText,
-        //searchClicked: this.props.searchClicked,
+        searchText: this.props.searchText,
+        searchClicked: this.props.searchClicked,
     };
-
-    /*check = () => {
-        console.log(this.state)
-    }*/
 
     getDropdownContent = (drpdwn) => {
         const options = []
@@ -73,6 +69,9 @@ class DefaultSearchPage extends React.Component {
 
     getPost = () => {
         var posts = database.posts;
+        /*if ((this.state.searchText.trim() !== "") && (this.state.searchClicked)) {
+            posts = posts.filter(post => post.header.toLowerCase().includes(this.state.searchText.trim().toLowerCase()))
+        }*/
         if (this.state.categoryVal !== "All") {
             posts = posts.filter(post => post.categories.some(item => this.state.categoryVal === item))
         }
@@ -137,7 +136,7 @@ class DefaultSearchPage extends React.Component {
     render() {
         return (
             <div>
-                <AppBar/>
+                {/*<AppBar/>*/}
                 <div className="defaultSearchPage">
                     <div className="filterbar">
                         <h1 className="filter">Filter by</h1>
