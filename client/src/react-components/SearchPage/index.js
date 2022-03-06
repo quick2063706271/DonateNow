@@ -5,6 +5,7 @@ import "./styles.css";
 import StickyFooter from "../StickyFooter";
 import database from '../../database'
 import ComponentParamsWrapper from "../ParamsWrapper";
+import AdminAppBar from "../AdminAppBar";
 
 class SearchPage extends React.Component {
     state = {
@@ -141,7 +142,13 @@ class SearchPage extends React.Component {
         return (
             <div>
                 {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}
+
+                {database.getUserData(this.props.userId).admin ? 
+                <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                :
                 <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                }
+                
                 <div className="searchPage">
                     <div className="filterbar">
                         <h1 className="filter">Filter by</h1>

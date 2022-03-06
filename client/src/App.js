@@ -17,6 +17,7 @@ import FAQpage from './react-components/FAQpage';
 import SearchPage from './react-components/SearchPage';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
+import database from './database';
 
 class App extends React.Component {
 
@@ -24,10 +25,10 @@ class App extends React.Component {
 	// This mimics using session in server.
 	state = {
 		userId: -1,
+		admin: false,
 	};
 
 	setUserId = (id) => {
-		// console.log(id)
 		this.setState({
 			userId: id
 		}, () => console.log(this.state.userId))
@@ -42,7 +43,7 @@ class App extends React.Component {
 					<Route path='/login' element={<LoginPage userId={this.state.userId} 
 															 setUserId={this.setUserId}/>} />
 					<Route path='/createanaccount' element={<CreateAnAccountPage/>} />
-					<Route path='/search' element={<SearchPage/>} />
+					<Route path='/search' element={<SearchPage userId={this.state.userId}/>} />
 					<Route path='/userpage' element={<UserPage userId={this.state.userId}/>} />
 					<Route path='/createpost' element={<CreatePost userId={this.state.userId}/>} />
 					<Route path='/postpage/:id' element={<PostPage  userId={this.state.userId}/>} />

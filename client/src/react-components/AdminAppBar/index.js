@@ -10,7 +10,7 @@ class AdminAppBar extends React.Component {
         return (
             <div>
                 <Logo/>
-                <SearchBox/>
+                <SearchBox handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
                 <AdminNavigation/>
             </div>
         );
