@@ -18,12 +18,12 @@ class CreatePost extends React.Component {
         return (
             <div>
                 <AppBar/>
-
-                <div className="postBackground">
-                    <div className="postHeader">
-                        <text id="createPostText">Post Your Donation Now</text>
+                <div className="postHeader">
+                    <text id="createPostText">Post Your Donation Now:</text>
                         <Button id="publishButton" variant="outlined">Publsih</Button>
-                    </div>
+                </div>
+                
+                <div className="postBackground">
                     <div className="postImageArea">
                         <div id="postImageDiv" >
                             <img src={upload} id="postImage" alt="postImage"/>
@@ -39,7 +39,7 @@ class CreatePost extends React.Component {
                             <Box className="textBox"
                                 sx={{
                                     width: 600,
-                                    maxWidth: '75%',
+                                    maxWidth: '78%',
                                 }}
                                 >
                                 <TextField fullWidth label="Enter Your Header Here..." id="header" />
@@ -51,7 +51,7 @@ class CreatePost extends React.Component {
                             <Box className="textBox"
                                 sx={{
                                     width: 600,
-                                    maxWidth: '73%',
+                                    maxWidth: '74.5%',
                                 }}
                                 >
                                 <TextField fullWidth label="Enter Your Location Here..." id="location" />
@@ -62,7 +62,7 @@ class CreatePost extends React.Component {
                             <Box className="textBox"
                                 sx={{
                                     width: 600,
-                                    maxWidth: '68%',
+                                    maxWidth: '67%',
                                     height: 400,
                                 }}
                                 >
@@ -71,7 +71,7 @@ class CreatePost extends React.Component {
                         </div>
                         <div className="postContentItem">
                             <text className="textItem"> Categories: </text>
-                            <Box className="textBox"
+                            <Box id="categoryBox"
                                 sx={{
                                     width: 500,
                                     maxWidth: '76%',
@@ -115,8 +115,9 @@ class CreatePost extends React.Component {
                                     control={<Checkbox name="Electronics" />}
                                     label="Electronics"
                                 />
+                                <FormHelperText>Check all that applies</FormHelperText>
                             </FormGroup>
-                            <FormHelperText>Check all that applies</FormHelperText>
+                            
 
                             </Box>
 
@@ -131,8 +132,6 @@ class CreatePost extends React.Component {
                             <FormControlLabel  className="deliveryOption" control={<Checkbox size="large"/>} label={<Typography variant="h5">Pick Up</Typography>} />
                         </FormGroup>
                     </div>
-
-
                 </div>
 
                 <div>

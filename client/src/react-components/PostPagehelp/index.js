@@ -55,8 +55,9 @@ function PostHeaderHelper(props){
     if (props.transaction == null){//undefined
         return (
             <span styles="float: left">
-                <Button className="postButton" id="requestNowButton" variant="outlined">Save to WishList</Button>
-                <Button className="postButton" id="saveButton" variant="outlined">Request Now</Button>
+                <Button className="postButton" id="requestNowButton" variant="outlined">Request Now</Button>
+                <Button className="postButton" id="saveButton" variant="outlined">Save to WishList</Button>
+    
             </span>
         )
     }else if (props.transaction.ownerId == props.userId){
@@ -92,15 +93,16 @@ class PostPageHelp extends React.Component {
         // const {userId, postId, transaction, post, user} = this.props
         // {console.log(this.props)}
         return (
-            <div className="postBackground">
+            <div>
                 <div className="postHeader">
                     <text id="createPostText"> {this.props.post.header} </text> 
-                    {/* <Button className="postButton" id="requestNowButton" variant="outlined">Save to WishList</Button>
-                    <Button className="postButton" id="saveButton" variant="outlined">Request Now</Button> */}
                     <PostHeaderHelper transaction={this.props.transaction} 
                                       userId={this.props.userId}
                     />
                 </div>
+
+                <div className="postBackground">
+                
                 <div className="postImageArea">
                     <div id="postpageImageDiv" >
                             <img src={this.props.post.imageSrc} id="postpageImage" alt="postImage"/>
@@ -146,6 +148,8 @@ class PostPageHelp extends React.Component {
                         <DeliveryOptionGenerator deliveryOption={this.props.post.deliveryOption}/>
                     </div>
             </div>
+            </div>
+            
         );
     }
 

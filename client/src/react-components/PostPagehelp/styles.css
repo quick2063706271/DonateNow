@@ -1,12 +1,22 @@
 
 
-#requestNowButton, #saveButton{
-    float: right;
+#requestNowButton{
+    float:right;
     background-color: rgb(220, 70, 127);
     font-size: 18px;
     color:cornsilk;
-    margin-right: 3%;
-    margin-top: 15px;
+    margin-right: 8%;
+    margin-left: 2%;
+    margin-top: 10px;
+}
+
+#saveButton{
+    float:right;
+    background-color: rgb(220, 70, 127);
+    font-size: 18px;
+    color:cornsilk;
+    margin-top: 10px;
+
 }
 
 .postPageTextBox{
@@ -25,7 +35,7 @@
     float: left;
     font-size: 25px;
     font-weight: bold;
-    font-family: fantasy;
+    /* font-family: fantasy; */
     margin-right: 2%;
 }
 
@@ -33,8 +43,8 @@
 .textContentItem{
     margin-left: 2%;
     font-size: 24px;
-    font-weight: bold;
-    font-family: fantasy;
+    /* font-weight: bold; */
+    /* font-family: fantasy; */
     margin-right: 10px;
 }
 
@@ -43,7 +53,7 @@
     margin-left: 5%;
     font-size: 28px;
     font-weight: bold;
-    font-family: fantasy;
+    /* font-family: fantasy; */
 }
 
 #postpageImageDiv{
