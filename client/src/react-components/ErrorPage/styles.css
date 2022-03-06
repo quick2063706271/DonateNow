@@ -1,0 +1,36 @@
+.errorpage {
+    padding-top: 0px;
+    margin: 0;
+    height: 100%;
+}
+
+.header {
+    top: 10px;
+    left: 40px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.block {
+    border: 1px solid black;
+    left: 40px;
+    margin-top: 10px;
+    max-width: 90%;
+    padding: 10px;
+    background-color: blanchedalmond;
+    overflow: hidden;
+    position: relative;
+}
+
+.post {
+    display: flex;
+    align-items: center;
+ }
+
+.summary {
+    font-size: large;
+    vertical-align: middle;
+    float: right;
+    position: relative;
+}
