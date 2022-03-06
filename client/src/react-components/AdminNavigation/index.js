@@ -21,9 +21,8 @@ class AdminNavigation extends React.Component {
                             </Link>
                         </li>
                         <li>
-                            <Link Link to={'/admin/userpage'}>
-                            <Button variant="outlined">Admin</Button>
-                            </Link>
+                            
+                            <Button variant="outlined">Admin Mode</Button>
                         </li>
                     </ul>
                 </div>

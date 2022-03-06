@@ -69,7 +69,7 @@ class AdminFeedback extends React.Component {
         return (
             <div>
                 {this.state.redirect ? <Navigate to={`/userpage/${this.state.redirectUserId}`}/> : null}
-                <AdminAppBar/>
+                <AdminAppBar handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
 
                 <div className="feedback">
                     <div className="header">
@@ -77,7 +77,8 @@ class AdminFeedback extends React.Component {
                     </div>
 
                     {this.loopThroughFeedbacks()}
-
+                    <br></br>
+                    <br></br>
                 </div>
 
                 <div>
