@@ -136,7 +136,7 @@ class DefaultSearchPage extends React.Component {
     render() {
         return (
             <div>
-                <AppBar/>
+                {/*<AppBar/>*/}
                 <div className="defaultSearchPage">
                     <div className="filterbar">
                         <h1 className="filter">Filter by</h1>
