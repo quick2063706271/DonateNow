@@ -37,9 +37,9 @@ class TermsConditions extends React.Component {
 
                 <div className="termslist">
                     <nav>
-                        <div>
+                        <ul>
                             <h3>{terms.map((term) => <Term key={term.id} content={term.content} />)}</h3>
-                        </div>
+                        </ul>
                     </nav>
                 </div>
 

@@ -19,11 +19,23 @@ class AdminUserPage extends React.Component {
 
     render() {
         return (
-            <div>
+            /*<div>
                 <AdminAppBar/>
 
                 <div>
                     <AdminSideMenu/>
+                </div>
+
+                <StickyFooter/>
+            </div>*/
+
+            <div className="grid-container">
+                <div className="grid-item grid-item-1">
+                    <AdminAppBar />
+                </div>
+
+                <div className="grid-item grid-item-2">
+                    <AdminSideMenu className="grid-item grid-item-2" readibility={false}/>
                 </div>
 
                 <StickyFooter/>
