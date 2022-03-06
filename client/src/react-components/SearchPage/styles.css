@@ -87,8 +87,10 @@
     margin: 2px;  
 }
 
-.title {  
+.title {
+    color: black;
     font-size: x-large;
+    left: 15px;
     position: relative;
 }
 
