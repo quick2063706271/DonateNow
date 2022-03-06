@@ -13,92 +13,81 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import StickyFooter from "../StickyFooter";
 
-
-
-function createData(number, username, numCom, action) {
-        return { number, username, numCom, action };
-    }
-
-//// SAMPLE DATA //// to be modified
-const rows = [
-    createData(1, "John", 2, true),
-    createData(2, "Amy", 3, true),
-    createData(3, "Mike", 1, true),
-    createData(4, "Kate", 2, true),
-    ];
-
 class AdminBlockList extends React.Component {
+  
+  constructor() {
+      super();
+      this.state = {
+        users: database.users,
+      }
+  }
 
-    constructor() {
-        super();
-        this.state = {
-            isBlocked: true
-        }
-        this.handleBlock.bind(this);
-        console.log(this.state.isBlocked)
-    }
+  /*initStateInfo = () =>{
+    this.setState({
+        users: database.users,
+      }, () => console.log(this.state))
+  }
 
-    handleBlock = event => {
+  componentDidMount() {
+    this.initStateInfo();
+  }*/
+
+  handleBlock = (event, value) => {
+    event.preventDefault();
+    for (const [k, v] of Object.entries(this.state.users)) {
+      if (v.userId === value.userId) {
+        const blocked = database.users[k].accountBlocked
+        database.users[k].accountBlocked = !blocked
         this.setState({
-            accountBlocked: !this.state.accountBlocked
-        });
-        this.props.accountBlocked = true;
-        // this.changeButtonText();
-        console.log(this.state.accountBlocked);
+          users: database.users,
+        }, () => console.log(this.state))
+      }
     }
+    console.log(database.users)
+  }
 
-    render() {
-        const users = database.users;
-
-        let action;
-        action = <Button variant="contained" display="inline-block" onClick={this.handleBlock}> {this.state.accountBlocked? "Block the User" : "⠀ ⠀ Blocked ⠀ ⠀ " } </Button>
-
-        return (
-
-            <div>
-                <AdminAppBar/>
-                <div className="blocklist">
-                    <div className="header">
-                        <h1><b>All Blocked Users:</b></h1>
-                    </div>
-
-                </div>
-               <TableContainer component={Paper}>
-                <Table aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="center">Number</TableCell>
-                      <TableCell align="center">Username</TableCell>
-                      <TableCell align="center">#Complaint Received</TableCell>
-                      <TableCell align="center">Action to Take</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <TableRow key={row.number}>
-                        <TableCell align="center" component="th" scope="row">
-                          {row.number}
-                        </TableCell>
-                        <TableCell align="center">{row.username}</TableCell>
-                        <TableCell align="center">{row.numCom}</TableCell>
-                        <TableCell align="center">{action}</TableCell>
-                        {/*<TableCell align="center">{row.action}</TableCell>*/}
-
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>`
-
-              <div>
-                  <StickyFooter/>
-              </div>
-
+  render() {
+    return (
+      <div>
+          <AdminAppBar handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
+          <div className="blocklist">
+            <div className="header">
+                <h1><b>Block List</b></h1>
             </div>
+            <div className="App">
+              <table>
+                <tbody>
+                  <tr>
+                    <th>UserId</th>
+                    <th>Username</th>
+                    <th>Is Blocked?</th>
+                    <th>Block the User</th>
+                  </tr>
+                  {this.state.users.map((value, key) => {
+                    return (
+                      <tr key={key}>
+                        <td>{value.userId}</td>
+                        <td>{value.username}</td>
+                        <td>{value.accountBlocked.toString()}</td>
+                        <td><button type="submit" id="blockButton" onClick={(event) => this.handleBlock(event, value)}> {value.accountBlocked ? "Unblock" : "Block" } </button></td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+            
+
+        <div>
+            <StickyFooter/>
+        </div>
+
+      </div>
 
 
-         );
-    }
+    );
+  }
 
 }
 
