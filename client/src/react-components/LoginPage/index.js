@@ -84,7 +84,7 @@ class LoginPage extends React.Component {
                     </div>
                     <div>
                         <input type="submit" name="submit" className="login-form-submit" onClick={(event) => this.handleClick(event)}/>
-                        {this.state.valid ? <Navigate to='/home'/> : null}
+                        {this.state.valid ? <Navigate to='/search'/> : null}
                     </div>
                     {this.state.errormsg ? <div className="login-form-error">Incorrect username or password!</div> : null}
 
