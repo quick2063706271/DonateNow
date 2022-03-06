@@ -15,7 +15,6 @@ import TermsConditions from './react-components/TermsConditions';
 import ErrorPage from './react-components/ErrorPage';
 import FAQpage from './react-components/FAQpage';
 import SearchPage from './react-components/SearchPage';
-import DefaultSearchPage from './react-components/DefaultSearchPage';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
 
@@ -44,12 +43,10 @@ class App extends React.Component {
 															 setUserId={this.setUserId}/>} />
 					<Route path='/createanaccount' element={<CreateAnAccountPage/>} />
 					<Route path='/search' element={<SearchPage/>} />
-					<Route path='/defaultsearch' element={<DefaultSearchPage/>} />
 					<Route path='/userpage' element={<UserPage userId={this.state.userId}/>} />
 					<Route path='/createpost' element={<CreatePost userId={this.state.userId}/>} />
 					<Route path='/postpage/:id' element={<PostPage  userId={this.state.userId}/>} />
 					<Route path='/wishlist' element={<WishList userId={this.state.userId}/>} />
-					<Route path='/choosedonee' element={<ChooseDonee/>} />
 					<Route path='/admin/blocklist' element={<AdminBlockList/>} />
 					<Route path='/admin/userpage' element={<AdminUserPage/>} />
 					<Route path='/admin/postpage' element={<AdminPostPage/>} />
