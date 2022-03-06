@@ -373,3 +373,38 @@ function createPost(userId, header, location, description, deliveryOption, categ
 }
 
 export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, allterms, changeStatus,createPost};
+let feedbacks = [
+    {
+        feedbackId: 1,
+        userId: 2,
+        title: "HELP! My request was cancelled for no reason",
+        content: "I noticed my request for a used computer was cancelled suddenly but I was having a successful transaction. I wonder how this occured? ",
+        isResolved: false
+    },
+
+    {
+        feedbackId: 2,
+        userId: 3,
+        title: "A user posted inappropriate content",
+        content: "When I browsed through the homepage I found a post that contains offensive information, so I want to drag attention to this user.",
+        isResolved: false
+    },
+
+    {
+        feedbackId: 3,
+        userId: 2,
+        title: "My donor never sends out my requested toys",
+        content: "I have submitted a request on Jan 10 through the post https://DonateNow.com/post25 and I was chosen as the donnee, but since then my donor never processed my request. ",
+        isResolved: false
+    },
+
+    {
+        feedbackId: 4,
+        userId: 1,
+        title: "My received tableware is completed broken",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit.",
+        isResolved: false
+    }
+]
+
+export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, feedbacks};
