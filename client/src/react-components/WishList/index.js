@@ -4,18 +4,21 @@ import database from '../../database'
 import AppBar from "../AppBar";
 import { uid } from "react-uid";
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import StickyFooter from "../StickyFooter";
 
 
 class WishList extends React.Component {
 
-    state = {
-        userId: 2,
-        user: {},
-        post: {},
-        //postId: [1,2],
-    };
+    constructor() {
+        super()
+        this.state = {
+            user: {},
+            posts: {},
+            redirect: false,
+            redirectPostId: -1
+        }
+    }
 
     /*getPost = (post) => {
         //return post.postId === this.state.postId;
@@ -29,14 +32,13 @@ class WishList extends React.Component {
     }
 
     getUser = (user) => {
-        //return user.userId === this.props.userId[0];
-        return user.userId === this.state.userId;
+        return user.userId === this.props.userId;
     }
 
     initStateInfo = () =>{
         this.setState({
             user: database.users.filter(this.getUser)[0],
-            post: database.posts.filter(this.getPost),
+            posts: database.posts.filter(this.getPost),
           }, () => console.log(this.state))
     }
 
@@ -44,9 +46,19 @@ class WishList extends React.Component {
         this.initStateInfo();
     }
 
+    handlePostOnClick = (value) => {
+        this.setState({
+            redirectPostId: value.postId
+        }, () => {
+            this.setState({
+                redirect: true
+            })
+        })
+    }
+
     /*loopThroughPosts = () => {
 
-        for (const [key, value] of Object.entries(this.state.post)) {
+        for (const [key, value] of Object.entries(this.state.posts)) {
             console.log(`${key}: ${value}`);
             for (const [k, v] of Object.entries(value)) {
                 console.log(`${k}: ${v}`);
@@ -58,14 +70,20 @@ class WishList extends React.Component {
 
     loopThroughPosts = () => {
         const components = []
-        for (const [key, value] of Object.entries(this.state.post)) {
+        for (const [key, value] of Object.entries(this.state.posts)) {
             //for (const [k, v] of Object.entries(value)) {
                 components.push (
                     <div>
                         <div className="block">
-                            <a className="title" href={`postpage/${value.postId}`}><b><u>{value.header}</u></b></a>
+                            {/*<a className="title" href={`postpage/${value.postId}`}><b><u>{value.header}</u></b></a>*/}
+                            <a className="title" onClick={this.handlePostOnClick.bind(this, value)}><b><u>{value.header}</u></b></a>
                             <div className="post">
-                                <img src={`..${value.imageSrc}`} className="image" alt="image"/>
+                                <img
+                                    src={`..${value.imageSrc}`} 
+                                    className="image" 
+                                    alt="image"
+                                    onClick={this.handlePostOnClick.bind(this, value)}
+                                />
                                 <div className="summary">
                                     <ul>
                                         <li><b>Categories: </b>{value.categories.join(", ")}</li>
@@ -94,6 +112,7 @@ class WishList extends React.Component {
     render() {
         return (
             <div>
+                {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}
                 <AppBar/>
 
                 <div className="wishlist">

@@ -1,5 +1,5 @@
 import AppBar from "../AppBar";
-import { useSearchParams } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 import React from 'react';
 import "./styles.css";
 import StickyFooter from "../StickyFooter";
@@ -14,7 +14,9 @@ class SearchPage extends React.Component {
         locationBtnText: "Location: All",
         locationVal: "All",
         deliveryOptionBtnText: "Delivery Option: All",
-        deliveryOptionVal: "All"
+        deliveryOptionVal: "All",
+        redirect: false,
+        redirectPostId: -1
     };
 
     handleSearchButtonOnClick = () => {
@@ -91,13 +93,28 @@ class SearchPage extends React.Component {
         this.fetchPosts();
     }
 
+    handlePostOnClick = (value) => {
+        this.setState({
+            redirectPostId: value.postId
+        }, () => {
+            this.setState({
+                redirect: true
+            })
+        })
+    }
+
     renderPost = (value) => {
         return (
             <div>
                 <div className="block">
-                    <a className="title" href={`postpage/${value.postId}`}><b><u>{value.header}</u></b></a>
+                    <a className="title" onClick={this.handlePostOnClick.bind(this, value)}><b><u>{value.header}</u></b></a>
                     <div className="post">
-                        <img src={`..${value.imageSrc}`} className="image" alt="image"/>
+                        <img 
+                            src={`..${value.imageSrc}`}
+                            className="image"
+                            alt="image"
+                            onClick={this.handlePostOnClick.bind(this, value)}
+                        />
                         <div className="summary">
                             <ul>
                                 <li><b>Categories: </b>{value.categories.join(", ")}</li>
@@ -123,6 +140,7 @@ class SearchPage extends React.Component {
     render() {
         return (
             <div>
+                {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}
                 <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                 <div className="searchPage">
                     <div className="filterbar">

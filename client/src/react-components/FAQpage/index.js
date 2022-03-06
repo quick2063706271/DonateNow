@@ -25,26 +25,6 @@ class FAQpage extends React.Component {
 
         return (
 
-            // <div>
-            //     <AppBar/>
-            //
-            //     <div className="faqpage">
-            //         <div className="header">
-            //             <h1><b>FAQs (Frequently Asked Questions):</b></h1>
-            //         </div>
-            //     </div>
-            //
-            //     <div className="faqlist">
-            //         <nav>
-            //             <ul>
-            //                 <h3>{faqs.map((faq) => <Faq key={faq.id} content={faq.content} />)}</h3>
-            //             </ul>
-            //         </nav>
-            //     </div>
-            //
-            //     <StickyFooter/>
-            //
-            // </div>
 
             <div>
                 <AppBar/>
