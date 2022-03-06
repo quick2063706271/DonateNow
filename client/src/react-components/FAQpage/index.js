@@ -34,9 +34,9 @@ class FAQpage extends React.Component {
 
                 <div className="faqlist">
                     <nav>
-                        <div>
+                        <ul>
                             <h3>{faqs.map((faq) => <Faq key={faq.id} content={faq.content} />)}</h3>
-                        </div>
+                        </ul>
                     </nav>
                 </div>
 
