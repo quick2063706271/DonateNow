@@ -17,14 +17,25 @@ import FAQpage from './react-components/FAQpage';
 import SearchPage from './react-components/SearchPage';
 import DefaultSearchPage from './react-components/DefaultSearchPage';
 import StickyFooter from './react-components/StickyFooter';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, useParams } from 'react-router-dom';
 import React from 'react';
 
+
+const CreateViewForUser = () => {
+  let params = useParams();
+  console.log(params)
+  let userId = params.userId
+  return (
+    <UserPage userId={userId}/>
+  )
+}
 
 class App extends React.Component {
   state = {
     userId: 2,
   };
+  
+
   render() {
     return (
       <BrowserRouter>
@@ -34,7 +45,8 @@ class App extends React.Component {
           <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
           <Route path='/defaultsearch' element={<DefaultSearchPage/>} />
           <Route path='/search' element={<SearchPage/>} />
-          <Route path='/userpage' element={<UserPage/>} />
+          <Route path='/userpage/:userId' element={<CreateViewForUser/>}/>
+            {/* <Route path='/userpage' element={<UserPage/>}/> */}
           <Route path='/createpost' element={<CreatePost/>} />
           <Route path='/postpage' element={<PostPage  userId={this.state.userId}/>} />
           <Route path='/wishlist' element={<WishList/>} />
