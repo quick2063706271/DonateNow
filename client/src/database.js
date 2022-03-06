@@ -48,7 +48,7 @@ let transactions = [
         ownerId: 3,
         viewerId: 2,
         ownerStatus: "donation matched",
-        viewerStatus: "requst accepted"
+        viewerStatus: "request accepted"
     },
 
     {   //case 4: posted, some viewers requested
@@ -94,7 +94,7 @@ let posts = [
         views: 50,
         requests: 0,
         saved: 26,
-        datePosted: "Mar 1, 2022"
+        datePosted: "3/1/2022"
     },
 
     {
@@ -111,7 +111,7 @@ let posts = [
         views: 65,
         requests: 20,
         saved: 32,
-        datePosted: "Mar 2, 2022"
+        datePosted: "3/2/2022"
     },
 
     {
@@ -129,7 +129,7 @@ let posts = [
         views: 65,
         requests: 20,
         saved: 32,
-        datePosted: "Mar 3, 2022"
+        datePosted: "3/3/2022"
     },
 
     {
@@ -147,7 +147,7 @@ let posts = [
         views: 65,
         requests: 20,
         saved: 32,
-        datePosted: "Mar 4, 2022"
+        datePosted: "3/4/2022"
     }
 
 ]
@@ -318,4 +318,58 @@ let allterms = [
     }
 ]
 
-export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, allterms};
+
+function changeStatus(transac, user, val){
+    console.log(transac, user, val)
+    for (let i = 0; i < transactions.length; i++) {
+        if (transac.postId == transactions[i].postId 
+            && transac.ownerId == transactions[i].ownerId
+            && transac.viewerId == transactions[i].viewerId){
+                transactions[i][user+"Status"] = val
+            }
+      }
+}
+
+function getUser (user, userId) {
+    return user.userId === userId;
+}
+
+function createPost(userId, header, location, description, deliveryOption, categories){
+    let newPostId = posts[posts.length - 1].postId + 1
+    
+    let newPost = {
+        postId: newPostId,
+        ownerId: userId,
+        viewerIds: [],
+        imageSrc: '/upload.png',
+        deliveryOption: deliveryOption,
+        header: header,
+        location: location,
+        description: description,
+        categories: categories,
+        views: 0,
+        requests: 0,
+        saved: 0,
+        datePosted: "3/6/2022"
+        // datePosted: new window.Date.now().toLocaleDateString()
+    }
+    posts.push(newPost)
+    console.log(newPost)
+
+    let newTransac={
+        postId: 1,
+        ownerId: userId,
+        viewerId: -1, // -1 means no viewer
+        ownerStatus: "posted",
+        viewerStatus: ""
+    }
+    transactions.push(newTransac)
+
+    let user = users.filter((user) => getUser(user, userId))[0]
+    user.donated.push(newPostId);
+    
+    return newPostId;
+
+}
+
+export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, allterms, changeStatus,createPost};

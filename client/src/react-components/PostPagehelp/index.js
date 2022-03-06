@@ -7,6 +7,7 @@ import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import './styles.css';
 import { Link } from "react-router-dom";
+import database from "../../database";
 
 function DeliveryOptionGenerator(props){
     if (props.deliveryOption == "Pickup"){
@@ -51,7 +52,7 @@ function CategoryGenerator(props){
 }
 
 function PostHeaderHelper(props){
-    console.log(props)
+    // console.log(props)
     if (props.transaction == null){//undefined
         return (
             <span styles="float: left">
@@ -67,23 +68,61 @@ function PostHeaderHelper(props){
                 </span>
             )
         }else{
-            return (
+            if (props.transaction.ownerStatus == "posted"){
+                return (
+                    <span styles="float: right">
+                        <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
+                        <Link to="/choosedonee">
+                            <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
+                        </Link>
+                    </span>
+                )
+            }else if (props.transaction.ownerStatus == "donation matched"){
+                return (
+                    <span styles="float: right">
+                        <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
+                        <br></br>
+                        <Button className="postButton" id="failButton" 
+                                onClick={ () => handleStatusChange(props.transaction, "owner", "completed")} 
+                                variant="outlined">Failed</Button>
+                        <Button className="postButton" id="completeButton"
+                                onClick={ () => handleStatusChange(props.transaction, "owner", "failed")} 
+                                variant="outlined">Completed</Button>
+                    </span>
+                )
+            }else{
                 <span styles="float: right">
-                    <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
-                    <Link to="/choosedonee">
-                        <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
-                    </Link>
+                        <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                 </span>
-            )
+            }
         }
         
     }else{
-        return (
-            <span styles="float: left">
-                <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
-            </span>
-        )
+        if (props.transaction.viewerStatus == "request accepted"){
+            return (
+                <span styles="float: left">
+                    <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
+                    <br></br>
+                        <Button className="postButton" id="failButton" 
+                                onClick={ () => handleStatusChange(props.transaction, "viewer", "completed")} 
+                                variant="outlined">Failed</Button>
+                        <Button className="postButton" id="completeButton"
+                                onClick={ () => handleStatusChange(props.transaction, "viewer", "failed")} 
+                                variant="outlined">Completed</Button>
+                </span>
+            )
+        }else{
+            return(
+                <span styles="float: left">
+                    <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
+                </span>
+            )
+        }
     }
+}
+
+function handleStatusChange (transaction, user, val) {
+    database.changeStatus(transaction, user, val)
 }
 
 class PostPageHelp extends React.Component {

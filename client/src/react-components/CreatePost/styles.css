@@ -90,7 +90,11 @@
     max-height: fit-content;
     margin-left: 5%;
 }
-
+#errorMsg{
+    margin-left: 25%;
+    font-size: 20px;
+    color: red;
+}
 #categoryBox{
     /* float: left; */
     max-height: fit-content;

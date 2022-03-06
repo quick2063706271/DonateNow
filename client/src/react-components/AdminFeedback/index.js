@@ -18,7 +18,7 @@ class AdminFeedback extends React.Component {
 
 
                 <div>
-                    //{this.loopThroughFeedback()}
+                    {/* //{this.loopThroughFeedback()} */}
                 </div>
 
               <div>
