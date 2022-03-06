@@ -4,6 +4,7 @@ import database from '../../database'
 import PostPageHelp from "../PostPagehelp";
 import AppBar from "../AppBar";
 import StickyFooter from "../StickyFooter";
+import ComponentParamsWrapper from "../ParamsWrapper";
 
 class PostPage extends React.Component {
     state = {
@@ -30,17 +31,9 @@ class PostPage extends React.Component {
             );
     }
 
-    getPostIdFromUrl = (url) => {
-        if (!url.includes("?")) {
-            return parseInt(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
-        } else {
-            // Handle in the future
-        }
-    }
-
-    initStateInfo = () =>{
+    initStateInfo = () => {
         this.setState({
-            postId: this.getPostIdFromUrl(window.location.href)
+            postId: parseInt(this.props.params.id)
         }, () => {
             this.setState({
                 post: database.posts.filter(this.getPost)[0],
@@ -75,4 +68,4 @@ class PostPage extends React.Component {
     }
 }
 
-export default PostPage;
+export default ComponentParamsWrapper(PostPage);

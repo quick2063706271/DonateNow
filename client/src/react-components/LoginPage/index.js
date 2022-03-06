@@ -14,20 +14,12 @@ class LoginPage extends React.Component {
             password: "",
             errormsg: false,
             valid: false,
-            users: {},
-        }
-    }
-
-    // Get usernames and passwords from server
-    // Code below requires server call
-    initStateInfo = () =>{
-        this.setState({
-            users: database.users,
-          }, () => console.log(this.state))
+            user: null
+        };
     }
 
     componentDidMount() {
-        this.initStateInfo();
+
     }
 
     handleInputChange(event) {
@@ -40,7 +32,7 @@ class LoginPage extends React.Component {
     }
 
     handleClick (event) {
-        const userData = this.state.users.find((user) => user.username === this.state.username);
+        const userData = database.users.filter((user) => user.username === this.state.username)[0];
         if (userData) {
             if (userData.password !== this.state.password) {
                 console.log("invalid password")
@@ -50,8 +42,12 @@ class LoginPage extends React.Component {
             } else {
                 console.log("valid")
                 this.setState({
-                    valid: true
+                    valid: true,
+                    user: userData
                 })
+                // console.log("login success", userData.userId)
+                this.props.setUserId(userData.userId);
+                // console.log("setUid success", this.props.userId)
             }
         } else {
             console.log("username not found")
@@ -79,7 +75,7 @@ class LoginPage extends React.Component {
                     </div>
                     <div>
                         <input type="submit" name="submit" className="login-form-submit" onClick={(event) => this.handleClick(event)}/>
-                        {this.state.valid ? <Navigate to='/search'/> : null}
+                        {(!this.state.valid) ? null : this.state.user.admin ? <Navigate to='/admin/blocklist'/> : <Navigate to='/search'/>}
                     </div>
                     {this.state.errormsg ? <div className="login-form-error">Incorrect username or password!</div> : null}
 

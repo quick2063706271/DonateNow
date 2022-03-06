@@ -64,7 +64,7 @@ class CreateAnAccountPage extends React.Component {
                 // Add a new pair of username and password to server
                 // Code below requires server call
                 const maxUserId = this.state.users.reduce((prev, curr) => (prev.userId > curr.userId) ? prev : curr, 0)
-                database.users.push({userId: maxUserId.userId+1, username: this.state.username, password: this.state.password})
+                database.users.push({userId: maxUserId.userId+1, username: this.state.username, password: this.state.password, admin: false})
             }
         }
     }
