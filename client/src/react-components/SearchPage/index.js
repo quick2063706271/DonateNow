@@ -1,13 +1,11 @@
 import AppBar from "../AppBar";
-import React from "react";
 import { useSearchParams } from "react-router-dom";
+import React from 'react';
 import "./styles.css";
 import StickyFooter from "../StickyFooter";
 import database from '../../database'
-import SearchBox from "../SearchBox";
 
-function WithMyHook(Component) {
-
+function SearchPageFunctional(Component) {
     return function WrappedComponent(props) {
         let [searchParams, setSearchParams] = useSearchParams();
         const myHookValue = searchParams;
@@ -27,7 +25,6 @@ class SearchPage extends React.Component {
     };
 
     handleSearchButtonOnClick = () => {
-        console.log(this.state.post)
         this.fetchPosts();
     }
 
@@ -53,23 +50,21 @@ class SearchPage extends React.Component {
     }
 
     changeDrpdwnBtnValue = (event, drpdwn) => {
-        /*var element = document.getElementById("Toys");
-        console.log(element.id);*/
         if (drpdwn === "category") {
             this.setState({
                 categoryBtnText: "Category: " + event.target.name,
                 categoryVal: event.target.name,
-            }, () => console.log(this.state))
+            }, () => this.fetchPosts())
         } else if (drpdwn === "location") {
             this.setState({
                 locationBtnText: "Location: " + event.target.name,
                 locationVal: event.target.name,
-            }, () => console.log(this.state))
+            }, () => this.fetchPosts())
         } else if (drpdwn === "delivery option") {
             this.setState({
                 deliveryOptionBtnText: "Delivery Option: " + event.target.name,
                 deliveryOptionVal: event.target.name,
-            }, () => console.log(this.state))
+            }, () => this.fetchPosts())
         }
     }
 
@@ -80,7 +75,6 @@ class SearchPage extends React.Component {
 
     fetchPosts = () => {
         const keyword = this.props.myHookValue.get("keyword") || "";
-        console.log(keyword)
         var posts = database.posts;
         if (keyword.trim() !== "") {
             posts = posts.filter(post => post.header.toLowerCase().includes(keyword.trim().toLowerCase()))
@@ -95,11 +89,9 @@ class SearchPage extends React.Component {
             posts = posts.filter(post => post.deliveryOption === this.state.deliveryOptionVal)
         }
 
-        console.log(posts)
-
         this.setState({
             post: posts
-        }, () => {console.log(this.state)})
+        })
     }
 
     componentDidMount() {
@@ -188,4 +180,4 @@ class SearchPage extends React.Component {
     }
 }
 
-export default WithMyHook(SearchPage);
+export default SearchPageFunctional(SearchPage);
