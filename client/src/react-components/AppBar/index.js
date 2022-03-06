@@ -9,14 +9,9 @@ import DefaultSearchPage from '../DefaultSearchPage';
 
 class AppBar extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     state = {
         searchText: "",
         searchClicked: false,
-        onSearchPage: false,
     };
   
     handleInputChange(event) {
@@ -31,7 +26,6 @@ class AppBar extends React.Component {
         this.setState({
           searchClicked: true,
         }, () => console.log(this.state))
-        //this.setSearchPage();
     }
 
     /*

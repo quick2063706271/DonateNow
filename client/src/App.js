@@ -33,8 +33,8 @@ class App extends React.Component {
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
           <Route path='/search' element={<AppBar/>} />
-          <Route path='/defaultsearch' element={<DefaultSearchPage/>} />
-          <Route path='/searchpage' element={<SearchPage/>} />
+          {/*<Route path='/defaultsearch' element={<DefaultSearchPage/>} />
+          <Route path='/searchpage' element={<SearchPage/>} />*/}
           <Route path='/userpage' element={<UserPage/>} />
           <Route path='/createpost' element={<CreatePost/>} />
           <Route path='/postpage' element={<PostPage  userId={this.state.userId}/>} />
