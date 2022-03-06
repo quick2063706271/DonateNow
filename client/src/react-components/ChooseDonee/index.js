@@ -39,9 +39,18 @@ class ChooseDonee extends React.Component {
         });
       };
     
-      handleClose = () => {
+    handleClose = () => {
         this.setState({ open: false });
-      };
+    };
+
+    handleSubmit = () => {
+        this.setState({ open: false });
+    }
+
+    updateStatus = () => {
+        // update status in the database
+
+    }
     
     render() {
         return (
@@ -79,7 +88,7 @@ class ChooseDonee extends React.Component {
                     <Button onClick={this.handleClose} color="primary">
                     Cancel
                     </Button>
-                    <Button onClick={this.handleClose} color="primary">
+                    <Button onClick={this.handleSubmit} color="primary">
                     Submit
                     </Button>
                 </DialogActions>

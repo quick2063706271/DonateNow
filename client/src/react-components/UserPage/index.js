@@ -19,6 +19,10 @@ class UserPage extends React.Component {
     }
 
     getUserId = () => {
+        console.log("this.props.params.userId")
+        console.log(this.props.params.userId)
+        console.log(this.props.userId)
+        console.log(this.props.params.userId !== undefined)
         return this.props.params.userId || this.props.userId;
     }
 
@@ -31,7 +35,7 @@ class UserPage extends React.Component {
                     </div>
                     
                     <div className="grid-item grid-item-2">
-                        <SideMenu className="grid-item grid-item-2" userId={this.getUserId()} readibility={false}/>
+                        <SideMenu className="grid-item grid-item-2" userId={this.getUserId()} readibility={this.props.params.userId !== undefined}/>
                     </div>
 
                     <StickyFooter/>
