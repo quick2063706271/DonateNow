@@ -107,12 +107,10 @@ class AppBar extends React.Component {
                 {this.state.searchClicked ? <SearchPage
                 searchText = {this.state.searchText}
                 searchClicked = {this.state.searchClicked}
-                /> : null}
-
-                {/*{this.state.searchClicked ? <SearchPage
+                /> : <DefaultSearchPage
                 searchText = {this.state.searchText}
                 searchClicked = {this.state.searchClicked}
-                /> : null}*/}
+                />}
 
                 {/*{(this.state.searchClicked) && (window.location.pathname !== "/searchpage") ? <Navigate to='/searchpage'/> : null}*/}
                 {/*{this.state.searchClicked ? <Navigate to='/search'/> : null}
