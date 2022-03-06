@@ -4,14 +4,7 @@ import React from 'react';
 import "./styles.css";
 import StickyFooter from "../StickyFooter";
 import database from '../../database'
-
-function SearchPageFunctional(Component) {
-    return function WrappedComponent(props) {
-        let [searchParams, setSearchParams] = useSearchParams();
-        const myHookValue = searchParams;
-        return <Component {...props} myHookValue={myHookValue} />;
-    }
-}
+import ComponentParamsWrapper from "../ParamsWrapper";
 
 class SearchPage extends React.Component {
     state = {
@@ -74,7 +67,7 @@ class SearchPage extends React.Component {
     }
 
     fetchPosts = () => {
-        const keyword = this.props.myHookValue.get("keyword") || "";
+        const keyword = this.props.query.get("keyword") || "";
         var posts = database.posts;
         if (keyword.trim() !== "") {
             posts = posts.filter(post => post.header.toLowerCase().includes(keyword.trim().toLowerCase()))
@@ -180,4 +173,4 @@ class SearchPage extends React.Component {
     }
 }
 
-export default SearchPageFunctional(SearchPage);
+export default ComponentParamsWrapper(SearchPage);

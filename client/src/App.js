@@ -16,55 +16,50 @@ import ErrorPage from './react-components/ErrorPage';
 import FAQpage from './react-components/FAQpage';
 import SearchPage from './react-components/SearchPage';
 import DefaultSearchPage from './react-components/DefaultSearchPage';
-import StickyFooter from './react-components/StickyFooter';
-import { Route, Routes, BrowserRouter, useParams } from 'react-router-dom';
-import AppBar from './react-components/AppBar';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
-import SearchBox from './react-components/SearchBox';
-
-
-const CreateViewForUser = () => {
-  let params = useParams();
-  console.log(params)
-  let userId = params.userId
-  return (
-    <UserPage userId={userId}/>
-  )
-}
 
 class App extends React.Component {
-  state = {
-    userId: 2,
-  };
-  
 
-  render() {
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route exact path='/userpage/:userId' element={<CreateViewForUser/>}/>
-          <Route path='/login' element={<LoginPage/>} />
-          <Route path='/createanaccount' element={<CreateAnAccountPage/>} />
-          <Route path='/search' element={<SearchPage/>} />
-          <Route path='/defaultsearch' element={<DefaultSearchPage/>} />
-          
-          <Route path='/userpage' element={<UserPage/>} />
-          <Route path='/createpost' element={<CreatePost/>} />
-          <Route path='/postpage/:id' element={<PostPage  userId={this.state.userId}/>} />
-          <Route path='/wishlist' element={<WishList/>} />
-          <Route path='/choosedonee' element={<ChooseDonee/>} />
-          <Route path='/admin/blocklist' element={<AdminBlockList/>} />
-          <Route path='/admin/userpage' element={<AdminUserPage/>} />
-          <Route path='/admin/postpage' element={<AdminPostPage/>} />
-          <Route path='/admin/feedback' element={<AdminFeedback/>} />
-          <Route path='/termsconditions' element={<TermsConditions/>} />
-          <Route path='/error' element={<ErrorPage/>} />
-          <Route path='/faqpage' element={<FAQpage/>} />
-        </Routes>
-      </BrowserRouter>
-    );
-  }
+	// User Id in top level will be deleted once the front end is served with server
+	// This mimics using session in server.
+	state = {
+		userId: -1,
+	};
+
+	setUserId = (id) => {
+		this.setState({
+			userId: id
+		})
+	} 
+  
+  	render() {
+   		return (
+      		<BrowserRouter>
+        		<Routes>
+					<Route path='/' element={<Home/>} />
+					<Route exact path='/userpage/:userId' element={<UserPage/>}/>
+					<Route path='/login' element={<LoginPage setUserId={this.setUserId}/>} />
+					<Route path='/createanaccount' element={<CreateAnAccountPage/>} />
+					<Route path='/search' element={<SearchPage/>} />
+					<Route path='/defaultsearch' element={<DefaultSearchPage/>} />
+					
+					<Route path='/userpage' element={<UserPage userId={this.state.userId}/>} />
+					<Route path='/createpost' element={<CreatePost/>} />
+					<Route path='/postpage/:id' element={<PostPage  userId={this.state.userId}/>} />
+					<Route path='/wishlist' element={<WishList/>} />
+					<Route path='/choosedonee' element={<ChooseDonee/>} />
+					<Route path='/admin/blocklist' element={<AdminBlockList/>} />
+					<Route path='/admin/userpage' element={<AdminUserPage/>} />
+					<Route path='/admin/postpage' element={<AdminPostPage/>} />
+					<Route path='/admin/feedback' element={<AdminFeedback/>} />
+					<Route path='/termsconditions' element={<TermsConditions/>} />
+					<Route path='/error' element={<ErrorPage/>} />
+					<Route path='/faqpage' element={<FAQpage/>} />
+        		</Routes>
+      		</BrowserRouter>
+    	);
+  	}
 }
 
 

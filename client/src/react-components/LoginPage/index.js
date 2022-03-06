@@ -52,6 +52,8 @@ class LoginPage extends React.Component {
                 this.setState({
                     valid: true
                 })
+                console.log(userData)
+                this.props.setUserId(userData.userId);
             }
         } else {
             console.log("username not found")
