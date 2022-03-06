@@ -17,6 +17,7 @@ import FAQpage from './react-components/FAQpage';
 import SearchPage from './react-components/SearchPage';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
+import database from './database';
 
 class App extends React.Component {
 
@@ -24,13 +25,19 @@ class App extends React.Component {
 	// This mimics using session in server.
 	state = {
 		userId: -1,
+		admin: false,
 	};
 
 	setUserId = (id) => {
-		// console.log(id)
 		this.setState({
 			userId: id
 		}, () => console.log(this.state.userId))
+
+		if (database.getUserData(id).admin){
+			this.setState({
+				admin: true
+			}, () => console.log(this.state.admin))
+		}
 	} 
   
   	render() {

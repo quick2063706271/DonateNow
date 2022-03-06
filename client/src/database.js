@@ -374,7 +374,13 @@ function createPost(userId, header, location, description, deliveryOption, categ
 
 }
 
-
+function getUserData(userId){
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].userId === userId){
+                return (users[i]);
+            }
+      }
+}
 let feedbacks = [
     {
         feedbackId: 1,
@@ -409,4 +415,4 @@ let feedbacks = [
     }
 ]
 
-export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, feedbacks, allterms, createPost, changeStatus};
+export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, feedbacks, allterms, createPost, changeStatus,getUserData};
