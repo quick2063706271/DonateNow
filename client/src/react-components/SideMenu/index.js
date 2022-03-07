@@ -12,8 +12,8 @@ import bottle from "../../bottle.png"
 import database from "../../database"
 
 class SideMenu extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             selectedPanel: 0,
         }
@@ -73,9 +73,11 @@ class SideMenu extends React.Component{
         // select panel to display
         let panel
         if (this.state.selectedPanel == 1) {
-            panel = <History items={uniqueTransactionPosts} category="transaction"/>
+            panel = <History userId={this.props.userId} 
+                            items={uniqueTransactionPosts} category="transaction"/>
         } else if (this.state.selectedPanel == 2) {
-            panel = <History items={uniqueDonationPosts} category="donation"/>
+            panel = <History userId={this.props.userId}
+                            items={uniqueDonationPosts} category="donation"/>
         } else if (this.state.selectedPanel == 3) {
             panel = <Feedback/>
         } else {

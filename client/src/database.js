@@ -385,6 +385,23 @@ function getUserData(userId){
             }
       }
 }
+
+function findDonees(postId){
+    let doneeIds = []
+    let doneesData = []
+    for (let i = 0; i < posts.length; i++) {
+        if (posts[i].postId === postId){
+            doneeIds = posts[i].viewerIds
+        }
+    }
+    console.log(doneeIds)
+    for (let j = 0; j < doneeIds.length; j++) {  
+        doneesData.push(getUserData(doneeIds[j]))
+    }
+    console.log(doneesData)
+    return doneesData
+    
+}
 let feedbacks = [
     {
         feedbackId: 1,
@@ -419,4 +436,4 @@ let feedbacks = [
     }
 ]
 
-export default {categories, locations, deliveryOptions, sortDatePosted, sortViews, transactions, posts, users, allfaqs, feedbacks, allterms, createPost, changeStatus,getUserData};
+export default {categories, locations, deliveryOptions, sortDatePosted, sortViews, transactions, posts, users, allfaqs, feedbacks, allterms, createPost, changeStatus,getUserData,findDonees};

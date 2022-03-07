@@ -21,6 +21,7 @@ class History extends React.Component {
                                                     date={item.requestDate}
                                                     img={item.imageSrc}
                                                     postId={item.postId}
+                                                    userId={this.props.userId}
                                                 />)
                             )}
                         </div>
