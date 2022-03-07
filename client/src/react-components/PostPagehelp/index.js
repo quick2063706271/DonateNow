@@ -79,7 +79,7 @@ function PostHeaderHelper(props){
     if (props.transaction == null){//undefined
         return (
             <span>
-                <RequestNowDialogue post={props.post}/>
+                <RequestNowDialogue post={props.post} btnId="chooseDoneeButton"/>
                 <Button className="postButton" id="saveButton" variant="outlined">Save to WishList</Button>
             </span>
         )
