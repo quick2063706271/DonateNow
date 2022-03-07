@@ -80,6 +80,7 @@ function PostHeaderHelper(props){
     if (props.transaction == null){//undefined
         return (
             <span>
+                {console.log(props.userId, props.post, props.postId)}
                 <RequestNowDialogue post={props.post} btnId="chooseDoneeButton"/>
                 <WishList post={props.post} />
             </span>
@@ -96,9 +97,6 @@ function PostHeaderHelper(props){
                 return (
                     <span>
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
-                        {/* <Link to="/choosedonee">
-                            <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
-                        </Link> */}
                         <ChooseDonee class="postButton" btnId="chooseDoneeButton"
                                     userId={props.userId}  postId={props.postId}/>
                     </span>
@@ -162,7 +160,7 @@ class PostPageHelp extends React.Component {
                     <PostHeaderHelper transaction={this.props.transaction}
                                       userId={this.props.userId}
                                       post={this.props.post}
-                                      post={this.props.wishlisted}
+                                    
                     />
                 </div>
 
