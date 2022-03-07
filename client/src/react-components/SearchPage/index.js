@@ -16,9 +16,9 @@ class SearchPage extends React.Component {
         locationVal: "All",
         deliveryOptionBtnText: "Delivery Option: All",
         deliveryOptionVal: "All",
-        sortDatePostedBtnText: "Sort Date Posted: None",
+        sortDatePostedBtnText: "Sort by Date Posted: None",
         sortDatePostedVal: "None",
-        sortViewsBtnText: "Sort Views: None",
+        sortViewsBtnText: "Sort by Views: None",
         sortViewsVal: "None",
         redirect: false,
         redirectPostId: -1
@@ -78,16 +78,16 @@ class SearchPage extends React.Component {
             }, () => this.fetchPosts())
         } else if (drpdwn === "sort date posted") {
             this.setState({
-                sortDatePostedBtnText: "Sort Date Posted: " + event.target.name,
+                sortDatePostedBtnText: "Sort by Date Posted: " + event.target.name,
                 sortDatePostedVal: event.target.name,
-                sortViewsBtnText: "Sort Views: None",
+                sortViewsBtnText: "Sort by Views: None",
                 sortViewsVal: "None",
             }, () => this.fetchPosts())
         } else if (drpdwn === "sort views") {
             this.setState({
-                sortViewsBtnText: "Sort Views: " + event.target.name,
+                sortViewsBtnText: "Sort by Views: " + event.target.name,
                 sortViewsVal: event.target.name,
-                sortDatePostedBtnText: "Sort Date Posted: None",
+                sortDatePostedBtnText: "Sort by Date Posted: None",
                 sortDatePostedVal: "None",
             }, () => this.fetchPosts())
         }
