@@ -42,11 +42,13 @@ class RequestNowDialogue extends React.Component {
     
     render() {
         const {post} = this.props
-        console.log(post)
+        let deliveryOption = post.deliveryOption
+        let DeliveryMsg
+        console.log(deliveryOption)
         return (
             <div>
-                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-                Request Now
+                <Button id={this.props.btnId} variant="outlined" color="primary" onClick={this.handleClickOpen}>
+                    Request Now
                 </Button>
                 <Dialog
                     open={this.state.open}
@@ -59,7 +61,9 @@ class RequestNowDialogue extends React.Component {
                     <div>
                     <img className="dialogue-image" src={post.imageSrc} />
                     </div>
-                    <text className="dialogue-text">By clicking on "confirm", I indicate I fully understand terms & conditions, and the consequences for not completing my pickup.</text>
+                    {deliveryOption === "Pickup"? <text>You will pick up this order</text> : <text>You will pay for courier to deliver this order</text>} 
+                    <br/>
+                    <text className="dialogue-text">By clicking on "confirm", I indicate I fully understand terms & conditions, and the consequences for failing to pay to receive the order.</text>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.handleClose} color="primary">
