@@ -11,8 +11,8 @@ import StickyFooter from "../StickyFooter";
 import ComponentParamsWrapper from "../ParamsWrapper";
 
 class UserPage extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             selectedPanel: 0
         }
@@ -20,7 +20,7 @@ class UserPage extends React.Component {
 
     getUserId = () => {
         console.log("this.props.params.userId")
-        console.log(this.props.params.userId)
+        console.log(this.props)
         console.log(this.props.userId)
         console.log(this.props.params.userId !== undefined)
         return this.props.params.userId || this.props.userId;
@@ -31,11 +31,13 @@ class UserPage extends React.Component {
             return (
                 <div className="grid-container">
                     <div className="grid-item grid-item-1">
-                        <AppBar />
+                        <AppBar handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
                     </div>
                     
                     <div className="grid-item grid-item-2">
-                        <SideMenu className="grid-item grid-item-2" userId={this.getUserId()} readibility={this.props.params.userId !== undefined}/>
+                        <SideMenu className="grid-item grid-item-2" 
+                                   userId={this.getUserId()} 
+                                   readibility={this.props.params.userId !== undefined}/>
                     </div>
 
                     <StickyFooter/>

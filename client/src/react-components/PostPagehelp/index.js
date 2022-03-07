@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import './styles.css';
 import { Link } from "react-router-dom";
 import database from "../../database";
+import ChooseDonee from "../ChooseDonee";
+import RequestNowDialogue from "../RequestNowDialogue";
 
 function DeliveryOptionGenerator(props){
     if (props.deliveryOption == "Pickup"){
@@ -29,7 +31,6 @@ function DeliveryOptionGenerator(props){
 
 
 function CategoryGenerator(props){
-    // console.log(props.category)
     return(
         <Box  id="postpageCategoryBox"
             sx={{
@@ -53,20 +54,31 @@ function CategoryGenerator(props){
 
 function PostHeaderHelper(props){
     const {post} = props
-    console.log(props)
-    if (props.ifAdmin){
+    if (props.userId === -1){
         return (
-            <span styles="float: left">
-                <Link Link to={'/userpage/' + post.ownerId}>
+            <span>
+                <Link to={'/login'}>
+                    <Button className="postButton" id="requestNowButton" variant="outlined" >Login to see more</Button>
+                </Link>
+            </span>
+        )
+    }
+   else if (database.getUserData(props.userId).admin){
+        return (
+            <span>
+                <Link Link to={'/admin/userpage/' + post.ownerId}>
                     <Button className="postButton" id="requestNowButton" variant="outlined" >User Profile</Button>
                 </Link>
                 <Button className="postButton" id="saveButton" variant="outlined">Delete Post</Button>
             </span>
         )
     }
-    // console.log(props)
+    else{
+
+    
     if (props.transaction == null){//undefined
         return (
+<<<<<<< HEAD
             <span styles="float: left">
                 <Button className="postButton" id="requestNowButton" variant="outlined">Request Now</Button>
 
@@ -74,28 +86,35 @@ function PostHeaderHelper(props){
 
                 /// original SAVE TO WISHLIST button
                 {/*Button className="postButton" id="saveButton" variant="outlined">Save to WishList</Button>*/}
+=======
+            <span>
+                <RequestNowDialogue post={props.post}/>
+                <Button className="postButton" id="saveButton" variant="outlined">Save to WishList</Button>
+>>>>>>> f4a5f988294ba95daca94bb30ca062a58f08fa97
             </span>
         )
     }else if (props.transaction.ownerId == props.userId){
         if (props.transaction.viewerId === -1){
             return (
-                <span styles="float: right">
+                <span>
                     <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                 </span>
             )
         }else{
             if (props.transaction.ownerStatus == "posted"){
                 return (
-                    <span styles="float: right">
+                    <span>
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
-                        <Link to="/choosedonee">
+                        {/* <Link to="/choosedonee">
                             <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
-                        </Link>
+                        </Link> */}
+                        <ChooseDonee class="postButton" btnId="chooseDoneeButton" 
+                                    userId={props.userId}  postId={props.postId}/>
                     </span>
                 )
             }else if (props.transaction.ownerStatus == "donation matched"){
                 return (
-                    <span styles="float: right">
+                    <span>
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                         <br></br>
                         <Button className="postButton" id="failButton"
@@ -107,7 +126,7 @@ function PostHeaderHelper(props){
                     </span>
                 )
             }else{
-                <span styles="float: right">
+                <span>
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                 </span>
             }
@@ -116,7 +135,7 @@ function PostHeaderHelper(props){
     }else{
         if (props.transaction.viewerStatus == "request accepted"){
             return (
-                <span styles="float: left">
+                <span>
                     <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
                     <br></br>
                         <Button className="postButton" id="failButton"
@@ -129,12 +148,13 @@ function PostHeaderHelper(props){
             )
         }else{
             return(
-                <span styles="float: left">
+                <span>
                     <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
                 </span>
             )
         }
     }
+}
 }
 
 function handleStatusChange (transaction, user, val) {
@@ -150,7 +170,6 @@ class PostPageHelp extends React.Component {
                     <text id="createPostText"> {this.props.post.header} </text>
                     <PostHeaderHelper transaction={this.props.transaction}
                                       userId={this.props.userId}
-                                      ifAdmin={this.props.user.admin}
                                       post={this.props.post}
                                       post={this.props.wishlisted}
                     />
@@ -213,7 +232,6 @@ class PostPageHelp extends React.Component {
 
                 <div className="postpageDeliveryOptionArea">
                         <text className="text">Delivery Option:</text>
-                        {/* {console.log(this.props)} */}
                         <DeliveryOptionGenerator deliveryOption={this.props.post.deliveryOption}/>
                     </div>
             </div>

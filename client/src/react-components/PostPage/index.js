@@ -65,15 +65,20 @@ class PostPage extends React.Component {
     }
 
     render() {
-        console.log("transaction.post")
-        console.log(this.state)
         return (
             <div>
-                {database.getUserData(this.props.userId).admin ?
-                <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
-                :
-                <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
-                }
+                {this.props.userId === -1 ?
+                    <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                    :null
+                    }
+                {this.props.userId != -1 && database.getUserData(this.props.userId).admin ?
+                    <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                    :
+                    null}
+                {this.props.userId != -1 && !database.getUserData(this.props.userId).admin ?
+                    <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                    :null
+                    }
                 {this.state.post ? <PostPageHelp
                     userId = {this.props.userId}
                     postId = {this.state.postId}

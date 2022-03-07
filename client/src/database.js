@@ -9,6 +9,10 @@ let locations = ["Toronto, ON", "Montreal, QC", "All"]
 
 let deliveryOptions = ["Pickup", "By Courier", "All"]
 
+let sortDatePosted = ["Newest to Oldest", "Oldest to Newest"]
+
+let sortViews = ["Largest to Smallest", "Smallest to Largest"]
+
 let transactions = [
     {
         //case 1: posted
@@ -94,7 +98,7 @@ let posts = [
         views: 50,
         requests: 0,
         saved: 26,
-        datePosted: "3/1/2022"
+        datePosted: "3/19/2022"
     },
 
     {
@@ -129,7 +133,7 @@ let posts = [
         views: 65,
         requests: 20,
         saved: 32,
-        datePosted: "3/3/2022"
+        datePosted: "3/15/2022"
     },
 
     {
@@ -381,6 +385,23 @@ function getUserData(userId){
             }
       }
 }
+
+function findDonees(postId){
+    let doneeIds = []
+    let doneesData = []
+    for (let i = 0; i < posts.length; i++) {
+        if (posts[i].postId === postId){
+            doneeIds = posts[i].viewerIds
+        }
+    }
+    console.log(doneeIds)
+    for (let j = 0; j < doneeIds.length; j++) {  
+        doneesData.push(getUserData(doneeIds[j]))
+    }
+    console.log(doneesData)
+    return doneesData
+    
+}
 let feedbacks = [
     {
         feedbackId: 1,
@@ -415,4 +436,4 @@ let feedbacks = [
     }
 ]
 
-export default {categories, locations, deliveryOptions, transactions, posts, users, allfaqs, feedbacks, allterms, createPost, changeStatus,getUserData};
+export default {categories, locations, deliveryOptions, sortDatePosted, sortViews, transactions, posts, users, allfaqs, feedbacks, allterms, createPost, changeStatus,getUserData,findDonees};

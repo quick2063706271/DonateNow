@@ -35,9 +35,6 @@ class Feedback extends React.Component {
             <div id="input-container">
                 <Stack
                         component="form"
-                        sx={{
-                            width: '45ch',
-                        }}
                         spacing={2}
                         noValidate
                         autoComplete="off"

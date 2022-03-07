@@ -21,16 +21,17 @@ import FormLabel from "@mui/material/FormLabel";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import { Link } from "react-router-dom";
+import database from "../../database";
 
 
 class ChooseDonee extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             open: false,
-            choices: [{username: "John2022", viewId: 1},
-                      {username: "amy2000", viewId: 3},
-            ]
+            // choices: [{username: "John2022", viewId: 1},
+            //           {username: "amy2000", viewId: 3},]
+            choices: [],
         }
     }
     handleClickOpen = () => {
@@ -48,14 +49,23 @@ class ChooseDonee extends React.Component {
     }
 
     updateStatus = () => {
+        const doneesData = database.findDonees(this.props.userId, this.props.postId)
+        console.log("donees:",doneesData)
         // update status in the database
+        this.setState({
+            choices: doneesData
+        }, ()=>{console.log(this.state.choices)})
+    }
 
+    componentDidMount(){
+        this.updateStatus();
     }
     
     render() {
         return (
             <div>
-                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+                <Button id={this.props.btnId} className={this.props.class} variant="outlined" 
+                        color="primary" onClick={this.handleClickOpen}>
                 Choose Your Donee
                 </Button>
                 <Dialog
@@ -70,13 +80,13 @@ class ChooseDonee extends React.Component {
                             aria-labelledby="demo-radio-buttons-group-label"
                             name="radio-buttons-group"
                         >
-                            {this.state.choices.map((row) => (
+                            {this.state.choices.map((userData) => (
                                 <FormControlLabel
-                                    value={row.username}
+                                    value={userData.username}
                                     control={<Radio />}
                                     label={(
                                         <div>
-                                            <Link to={'../userpage/' + row.viewId.toString()} target="_blank" >{row.username}  </Link>
+                                            <Link to={'../userpage/' + userData.userId.toString()} target="_blank" >{userData.username}  </Link>
                                         </div>
                                     )}
                                 />
