@@ -60,6 +60,7 @@ class SearchPage extends React.Component {
     }
 
     changeDrpdwnBtnValue = (event, drpdwn) => {
+        event.preventDefault();
         if (drpdwn === "category") {
             this.setState({
                 categoryBtnText: "Category: " + event.target.name,

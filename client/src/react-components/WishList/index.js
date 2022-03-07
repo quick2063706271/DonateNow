@@ -116,7 +116,7 @@ class WishList extends React.Component {
             return (
                 <div>
                     {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}
-                    <AppBar/>
+                    <AppBar handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
 
                     <div className="wishlist">
                         <div className="header">
