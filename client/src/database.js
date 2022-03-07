@@ -9,9 +9,9 @@ let locations = ["Toronto, ON", "Montreal, QC", "All"]
 
 let deliveryOptions = ["Pickup", "By Courier", "All"]
 
-let sortDatePosted = ["Newest to Oldest", "Oldest to Newest"]
+let sortDatePosted = ["Newest", "Oldest"]
 
-let sortViews = ["Largest to Smallest", "Smallest to Largest"]
+let sortViews = ["Largest", "Smallest"]
 
 let transactions = [
     {
@@ -95,7 +95,7 @@ let posts = [
         // categories: {"clothing": 0, "Toys, Kids, Parents": 1, "Art": 0, "Furniture": 0, "Books & Stationary": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
         categories: ["Toys", "Kids", "Parents", "Interests"],
         blocked: 0,
-        views: 50,
+        views: 65,
         requests: 0,
         saved: 26,
         datePosted: "3/19/2022"
@@ -112,7 +112,7 @@ let posts = [
         description: "I bought the monitor 2 years ago for my son, almost as new. He has new monitor now and we wish to give away to kids who may like it. ",
         // categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books & Stationary": 1, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
         categories: ["Electronics"],
-        views: 65,
+        views: 50,
         requests: 20,
         saved: 32,
         datePosted: "3/2/2022"
@@ -130,7 +130,7 @@ let posts = [
         // categories: {"clothing": 1, "Toys, Kids, Parents": 1, "Art": 0, "Furniture": 0, "Books & Stationary": 0, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
         categories: ["Clothing", "Toys", "Kids", "Parents"],
         // category: "Clothing",
-        views: 65,
+        views: 45,
         requests: 20,
         saved: 32,
         datePosted: "3/15/2022"
@@ -148,7 +148,7 @@ let posts = [
         // categories: {"clothing": 0, "Toys, Kids, Parents": 0, "Art": 0, "Furniture": 0, "Books & Stationary": 1, "Shoes & Bags": 0, "Sports" :0, "Music": 0},
         // categories: ["Books & Stationary"],
         categories: ["Books & Stationary"],
-        views: 65,
+        views: 75,
         requests: 20,
         saved: 32,
         datePosted: "3/4/2022"
