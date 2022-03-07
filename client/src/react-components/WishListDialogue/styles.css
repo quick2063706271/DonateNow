@@ -1,0 +1,67 @@
+.wishlist {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.header {
+    top: 10px;
+    left: 40px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.block {  
+    border: 1px solid black;
+    left: 40px;
+    margin-top: 10px;
+    max-width: 90%;  
+    padding: 10px;
+    background-color: blanchedalmond;
+    overflow: hidden;
+    position: relative;
+}
+
+.block p {  
+    margin: 2px;  
+}
+
+.title {  
+    font-size: x-large;
+    position: relative;
+}
+
+.image {  
+    height: 160px;
+    max-width: 30%;
+    margin-right: 50px;
+    padding: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.post {
+    display: flex;
+    align-items: center;
+ }
+
+.summary {
+    font-size: large;
+    vertical-align: middle;
+    float: right;
+    position: relative;
+}
+
+.summary ul {
+    vertical-align: middle;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+    overflow: hidden;
+  }
+  
+.summary li {
+    float: left;
+    margin-right: 20px;
+}
