@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import database from "../../database";
 import ChooseDonee from "../ChooseDonee";
 import RequestNowDialogue from "../RequestNowDialogue";
+import WishList from "../WishList";
 
 function DeliveryOptionGenerator(props){
     if (props.deliveryOption == "Pickup"){
@@ -81,7 +82,7 @@ function PostHeaderHelper(props){
             <span>
                 {console.log(props.userId, props.post, props.postId)}
                 <RequestNowDialogue post={props.post} btnId="chooseDoneeButton"/>
-                <Button className="postButton" id="saveButton" variant="outlined">Save to WishList</Button>
+                <WishList post={props.post} />
             </span>
         )
     }else if (props.transaction.ownerId == props.userId){
