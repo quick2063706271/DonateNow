@@ -48,7 +48,6 @@ class RequestNowDialogue extends React.Component {
         return (
             <div>
                 <Button id={this.props.btnId} variant="outlined" color="primary" onClick={this.handleClickOpen}>
-                    Request Now
                 </Button>
                 <Dialog
                     open={this.state.open}
