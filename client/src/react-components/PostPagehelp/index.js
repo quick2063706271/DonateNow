@@ -63,7 +63,7 @@ function PostHeaderHelper(props){
     }
    else if (database.getUserData(props.userId).admin){
         return (
-            <span className="left">
+            <span>
                 <Link Link to={'/admin/userpage/' + post.ownerId}>
                     <Button className="postButton" id="requestNowButton" variant="outlined" >User Profile</Button>
                 </Link>
@@ -76,7 +76,7 @@ function PostHeaderHelper(props){
     
     if (props.transaction == null){//undefined
         return (
-            <span className="left">
+            <span>
                 <Button className="postButton" id="requestNowButton" variant="outlined">Request Now</Button>
                 <Button className="postButton" id="saveButton" variant="outlined">Save to WishList</Button>
             </span>
@@ -84,14 +84,14 @@ function PostHeaderHelper(props){
     }else if (props.transaction.ownerId == props.userId){
         if (props.transaction.viewerId === -1){
             return (
-                <span className="right">
+                <span>
                     <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                 </span>
             )
         }else{
             if (props.transaction.ownerStatus == "posted"){
                 return (
-                    <span className="right">
+                    <span>
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                         <Link to="/choosedonee">
                             <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
@@ -100,7 +100,7 @@ function PostHeaderHelper(props){
                 )
             }else if (props.transaction.ownerStatus == "donation matched"){
                 return (
-                    <span className="right">
+                    <span>
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                         <br></br>
                         <Button className="postButton" id="failButton" 
@@ -112,7 +112,7 @@ function PostHeaderHelper(props){
                     </span>
                 )
             }else{
-                <span className="right">
+                <span>
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                 </span>
             }
@@ -121,7 +121,7 @@ function PostHeaderHelper(props){
     }else{
         if (props.transaction.viewerStatus == "request accepted"){
             return (
-                <span className="left">
+                <span>
                     <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
                     <br></br>
                         <Button className="postButton" id="failButton" 
@@ -134,7 +134,7 @@ function PostHeaderHelper(props){
             )
         }else{
             return(
-                <span className="left">
+                <span>
                     <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
                 </span>
             )

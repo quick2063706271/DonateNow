@@ -200,6 +200,8 @@ class SearchPage extends React.Component {
                         return this.renderPost(post)
                     })}
                 </div>
+                <br></br>
+                <br></br>
                 <StickyFooter/>
             </div>
         );
