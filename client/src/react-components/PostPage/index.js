@@ -6,9 +6,6 @@ import AppBar from "../AppBar";
 import StickyFooter from "../StickyFooter";
 import ComponentParamsWrapper from "../ParamsWrapper";
 import AdminAppBar from "../AdminAppBar";
-import { Button } from "@material-ui/core";
-import { uid } from "react-uid";
-import { Link } from 'react-router-dom';
 
 class PostPage extends React.Component {
     state = {
@@ -16,10 +13,8 @@ class PostPage extends React.Component {
         transaction: null,
         post: null,
         user: null,
-        wishlisted: null
         // postPath: "/postpage/" + this.state.PostId.toString(),
     };
-
 
     getPost = (post) => {
         return post.postId === this.state.postId;
@@ -37,16 +32,6 @@ class PostPage extends React.Component {
             );
     }
 
-    getWishlist = (user) => {
-        return user.wishlisted.postId === this.state.postId && user.userId === this.props.userId;
-    }
-
-    handleWishlishted = event => {
-        this.setState({
-            wishlisted: !this.state.wishlisted
-        });
-    }
-
     initStateInfo = () => {
         this.setState({
             postId: parseInt(this.props.params.id)
@@ -55,7 +40,6 @@ class PostPage extends React.Component {
                 post: database.posts.filter(this.getPost)[0],
                 user: database.users.filter(this.getUser)[0],
                 transaction: database.transactions.filter(this.getTransaction)[0],
-                wishlisted: database.users.filter(this.wishlisted)[0]
             }, () => console.log(this.state))
         })
     }
@@ -67,11 +51,11 @@ class PostPage extends React.Component {
     render() {
         return (
             <div>
-                {this.props.userId === -1 ?
+                {this.props.userId === -1 ? 
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :null
                     }
-                {this.props.userId != -1 && database.getUserData(this.props.userId).admin ?
+                {this.props.userId != -1 && database.getUserData(this.props.userId).admin ? 
                     <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :
                     null}
@@ -85,7 +69,6 @@ class PostPage extends React.Component {
                     transaction = {this.state.transaction}
                     post = {this.state.post}
                     user = {this.state.user}
-                    wishlisted = {this.state.wishlisted}
 
                     // ownerId = {this.state.transaction.ownerId}
                     /> : null}
