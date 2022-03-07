@@ -15,9 +15,10 @@ import { Link } from "react-router-dom";
 class RequestNowDialogue extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props)
         this.state = {
-            
-            ]
+            open: false
+
         }
     }
     handleClickOpen = () => {
@@ -40,40 +41,32 @@ class RequestNowDialogue extends React.Component {
     }
     
     render() {
+        const {post} = this.props
+        console.log(post)
         return (
             <div>
+                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+                Request Now
+                </Button>
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
-                <DialogTitle id="form-dialog-title">Select Your Donee</DialogTitle>
+                <DialogTitle id="form-dialog-title">You are currently requesting for:</DialogTitle>
                 <DialogContent>
-                    <FormControl>
-                        <RadioGroup
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            name="radio-buttons-group"
-                        >
-                            {this.state.choices.map((row) => (
-                                <FormControlLabel
-                                    value={row.username}
-                                    control={<Radio />}
-                                    label={(
-                                        <div>
-                                            <Link to={'../userpage/' + row.viewId.toString()} target="_blank" >{row.username}  </Link>
-                                        </div>
-                                    )}
-                                />
-                            ))}
-                        </RadioGroup>
-                    </FormControl>
+                    <h2> {post.header} </h2>
+                    <div>
+                    <img className="dialogue-image" src={post.imageSrc} />
+                    </div>
+                    <text className="dialogue-text">By clicking on "confirm", I indicate I fully understand terms & conditions, and the consequences for not completing my pickup.</text>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.handleClose} color="primary">
                     Cancel
                     </Button>
                     <Button onClick={this.handleSubmit} color="primary">
-                    Submit
+                    Confirm
                     </Button>
                 </DialogActions>
                 </Dialog>
