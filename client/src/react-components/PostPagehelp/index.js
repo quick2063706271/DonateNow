@@ -29,7 +29,6 @@ function DeliveryOptionGenerator(props){
 
 
 function CategoryGenerator(props){
-    // console.log(props.category)
     return(
         <Box  id="postpageCategoryBox"
             sx={{
@@ -53,13 +52,18 @@ function CategoryGenerator(props){
 
 function PostHeaderHelper(props){
     const {post} = props
-    console.log(props)
     if (props.userId === -1){
-        return (<div></div>)
+        return (
+            <span>
+                <Link to={'/login'}>
+                    <Button className="postButton" id="requestNowButton" variant="outlined" >Login to see more</Button>
+                </Link>
+            </span>
+        )
     }
    else if (database.getUserData(props.userId).admin){
         return (
-            <span styles="float: left">
+            <span className="left">
                 <Link Link to={'/admin/userpage/' + post.ownerId}>
                     <Button className="postButton" id="requestNowButton" variant="outlined" >User Profile</Button>
                 </Link>
@@ -70,10 +74,9 @@ function PostHeaderHelper(props){
     else{
 
     
-    // console.log(props)
     if (props.transaction == null){//undefined
         return (
-            <span styles="float: left">
+            <span className="left">
                 <Button className="postButton" id="requestNowButton" variant="outlined">Request Now</Button>
                 <Button className="postButton" id="saveButton" variant="outlined">Save to WishList</Button>
             </span>
@@ -81,14 +84,14 @@ function PostHeaderHelper(props){
     }else if (props.transaction.ownerId == props.userId){
         if (props.transaction.viewerId === -1){
             return (
-                <span styles="float: right">
+                <span className="right">
                     <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                 </span>
             )
         }else{
             if (props.transaction.ownerStatus == "posted"){
                 return (
-                    <span styles="float: right">
+                    <span className="right">
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                         <Link to="/choosedonee">
                             <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
@@ -97,7 +100,7 @@ function PostHeaderHelper(props){
                 )
             }else if (props.transaction.ownerStatus == "donation matched"){
                 return (
-                    <span styles="float: right">
+                    <span className="right">
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                         <br></br>
                         <Button className="postButton" id="failButton" 
@@ -109,7 +112,7 @@ function PostHeaderHelper(props){
                     </span>
                 )
             }else{
-                <span styles="float: right">
+                <span className="right">
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                 </span>
             }
@@ -118,7 +121,7 @@ function PostHeaderHelper(props){
     }else{
         if (props.transaction.viewerStatus == "request accepted"){
             return (
-                <span styles="float: left">
+                <span className="left">
                     <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
                     <br></br>
                         <Button className="postButton" id="failButton" 
@@ -131,7 +134,7 @@ function PostHeaderHelper(props){
             )
         }else{
             return(
-                <span styles="float: left">
+                <span className="left">
                     <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
                 </span>
             )
@@ -214,7 +217,6 @@ class PostPageHelp extends React.Component {
 
                 <div className="postpageDeliveryOptionArea">
                         <text className="text">Delivery Option:</text>
-                        {/* {console.log(this.props)} */}
                         <DeliveryOptionGenerator deliveryOption={this.props.post.deliveryOption}/>
                     </div>
             </div>
