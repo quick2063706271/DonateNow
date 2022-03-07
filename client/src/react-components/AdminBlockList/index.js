@@ -2,15 +2,8 @@ import React from "react";
 import "./styles.css";
 import database from '../../database'
 import AdminAppBar from "../AdminAppBar";
+import { Link, Navigate } from 'react-router-dom';
 import { uid } from "react-uid";
-import { Button } from '@mui/material';
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
 import StickyFooter from "../StickyFooter";
 
 class AdminBlockList extends React.Component {
@@ -43,33 +36,43 @@ class AdminBlockList extends React.Component {
         }, () => console.log(this.state))
       }
     }
-    console.log(database.users)
+  }
+
+  handleUserIdOnClick = (value) => {
+    this.setState({
+        redirectUserId: value.userId
+    }, () => {
+        this.setState({
+            redirect: true
+        })
+    }, () => console.log(this.state))
   }
 
   render() {
     return (
       <div>
+          {this.state.redirect ? <Navigate to={`/userpage/${this.state.redirectUserId}`}/> : null}
           <AdminAppBar handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
           <div className="blocklist">
             <div className="header">
                 <h1><b>Block List</b></h1>
             </div>
-            <div className="App">
+            <div className="blocklistTable">
               <table>
                 <tbody>
-                  <tr>
+                  <tr className="header-tr">
                     <th>UserId</th>
                     <th>Username</th>
-                    <th>Is Blocked?</th>
-                    <th>Block the User</th>
+                    <th>Account Blocked</th>
+                    <th>Action</th>
                   </tr>
                   {this.state.users.map((value, key) => {
                     return (
-                      <tr key={key}>
+                      <tr key={key} className="rt-tr-group">
                         <td>{value.userId}</td>
-                        <td>{value.username}</td>
+                        <td onClick={this.handleUserIdOnClick.bind(this, value)}><u>{value.username}</u></td>
                         <td>{value.accountBlocked.toString()}</td>
-                        <td><button type="submit" id="blockButton" onClick={(event) => this.handleBlock(event, value)}> {value.accountBlocked ? "Unblock" : "Block" } </button></td>
+                        <td className="buttonRow"><button type="submit" className="blockButton" onClick={(event) => this.handleBlock(event, value)}> {value.accountBlocked ? "Unblock" : "Block" } </button></td>
                       </tr>
                     )
                   })}
@@ -77,15 +80,10 @@ class AdminBlockList extends React.Component {
               </table>
             </div>
           </div>
-            
-
-        <div>
-            <StickyFooter/>
-        </div>
-
+          <div>
+              <StickyFooter/>
+          </div>
       </div>
-
-
     );
   }
 

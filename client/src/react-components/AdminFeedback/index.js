@@ -28,7 +28,7 @@ class AdminFeedback extends React.Component {
         this.initStateInfo();
     }
 
-    handlePostOnClick = (value) => {
+    handleUserIdOnClick = (value) => {
         this.setState({
             redirectUserId: value.userId
         }, () => {
@@ -50,7 +50,7 @@ class AdminFeedback extends React.Component {
                                 <div className="summary">
                                     <ul>
                                         <li><b>Feedback ID: </b>{value.feedbackId}</li>
-                                        <li onClick={this.handlePostOnClick.bind(this, value)}><b>User ID: </b><u>{value.userId}</u></li>
+                                        <li onClick={this.handleUserIdOnClick.bind(this, value)}><b>User ID: </b><u>{value.userId}</u></li>
                                     </ul>
                                     <ul>
                                         <li><b>Content: </b>{value.content}</li>
