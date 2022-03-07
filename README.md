@@ -62,13 +62,16 @@ docker run -d --rm -p 5000:5000 donate-now
     Username: admin@admin.com
     Password: admin
     ```
-    <br/> - An ADMIN MODE sign appears on the top right corner to remind the admin of its current mode. 
+    - An ADMIN MODE sign appears on the top right corner to remind the admin of its current mode. 
     
 2. Click on VIEW FEEDBACK to find a list of all feedbacks that users have submitted 
     <br/> - Users can submit feedback for review under the SUBMIT FEEDBACK panel in their user profile. 
     <br/> - Click on the User ID in each feedback to have a brief view of basic user information. 
 
 3. Click on BLOCK LIST to find a list of all users 
+    <br/> -  Click on each User ID under the Username column to have a brief view of basic user information. 
+    <br/> -  Click on the BLOCK/UNBLOCK button under the Action column to block or unblock certain users. 
+    
 
 
 
