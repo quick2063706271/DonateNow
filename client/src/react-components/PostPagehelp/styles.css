@@ -44,7 +44,12 @@
     font-size: 25px;
     margin-right: 10px;
 }
-
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
 #descriptionBox{
     height: 100%;
 }
