@@ -43,7 +43,9 @@ class WishList extends React.Component {
     }
 
     componentDidMount() {
-        this.initStateInfo();
+        if (this.props.userId > -1) {
+            this.initStateInfo();
+        }
     }
 
     handlePostOnClick = (value) => {
@@ -110,25 +112,29 @@ class WishList extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}
-                <AppBar/>
+        if (this.props.userId > -1) {
+            return (
+                <div>
+                    {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}
+                    <AppBar/>
 
-                <div className="wishlist">
-                    <div className="header">
-                        <h1><b>My Wish List:</b></h1>
+                    <div className="wishlist">
+                        <div className="header">
+                            <h1><b>My Wish List:</b></h1>
+                        </div>
+
+                        {this.loopThroughPosts()}
+
                     </div>
 
-                    {this.loopThroughPosts()}
-
+                    <div>
+                        <StickyFooter/>
+                    </div>
                 </div>
-
-                <div>
-                    <StickyFooter/>
-                </div>
-            </div>
-        );
+            );
+        } else {
+            return (<h1>Please log in to view this page.</h1>);
+        }
     }
 
 }
