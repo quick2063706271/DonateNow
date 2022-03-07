@@ -75,22 +75,15 @@ function PostHeaderHelper(props){
     }
     else{
 
-    
+
     if (props.transaction == null){//undefined
         return (
-<<<<<<< HEAD
-            <span styles="float: left">
-                <Button className="postButton" id="requestNowButton" variant="outlined">Request Now</Button>
-
+            <span>
+                <RequestNowDialogue post={props.post}/>
                 <Button className="postButton" id="saveButton" variant="outlined" onClick={this.handleWishlishted}>{this.state.wishlisted ? "Save to Wishlist" : "Wishlisted!"} </Button>
 
                 /// original SAVE TO WISHLIST button
                 {/*Button className="postButton" id="saveButton" variant="outlined">Save to WishList</Button>*/}
-=======
-            <span>
-                <RequestNowDialogue post={props.post}/>
-                <Button className="postButton" id="saveButton" variant="outlined">Save to WishList</Button>
->>>>>>> f4a5f988294ba95daca94bb30ca062a58f08fa97
             </span>
         )
     }else if (props.transaction.ownerId == props.userId){
@@ -108,7 +101,7 @@ function PostHeaderHelper(props){
                         {/* <Link to="/choosedonee">
                             <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
                         </Link> */}
-                        <ChooseDonee class="postButton" btnId="chooseDoneeButton" 
+                        <ChooseDonee class="postButton" btnId="chooseDoneeButton"
                                     userId={props.userId}  postId={props.postId}/>
                     </span>
                 )
