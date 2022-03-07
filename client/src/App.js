@@ -40,6 +40,7 @@ class App extends React.Component {
         		<Routes>
 					<Route path='/' element={<Home/>} />
 					<Route exact path='/userpage/:userId' element={<UserPage/>}/>
+          <Route exact path='/admin/userpage/:userId' element={<AdminUserPage/>} />
 					<Route path='/login' element={<LoginPage userId={this.state.userId} 
 															 setUserId={this.setUserId}/>} />
 					<Route path='/createanaccount' element={<CreateAnAccountPage/>} />
@@ -49,7 +50,7 @@ class App extends React.Component {
 					<Route path='/postpage/:id' element={<PostPage  userId={this.state.userId}/>} />
 					<Route path='/wishlist' element={<WishList userId={this.state.userId}/>} />
 					<Route path='/admin/blocklist' element={<AdminBlockList/>} />
-					<Route path='/admin/userpage' element={<AdminUserPage/>} />
+					<Route path='/admin/userpage' element={<AdminUserPage userId={this.state.userId}/>} />
 					<Route path='/admin/postpage' element={<AdminPostPage/>} />
 					<Route path='/admin/feedback' element={<AdminFeedback/>} />
 					<Route path='/termsconditions' element={<TermsConditions/>} />

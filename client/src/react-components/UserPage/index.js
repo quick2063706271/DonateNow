@@ -20,7 +20,7 @@ class UserPage extends React.Component {
 
     getUserId = () => {
         console.log("this.props.params.userId")
-        console.log(this.props.params.userId)
+        console.log(this.props)
         console.log(this.props.userId)
         console.log(this.props.params.userId !== undefined)
         return this.props.params.userId || this.props.userId;

@@ -60,7 +60,7 @@ function PostHeaderHelper(props){
    else if (database.getUserData(props.userId).admin){
         return (
             <span styles="float: left">
-                <Link Link to={'/userpage/' + post.ownerId}>
+                <Link Link to={'/admin/userpage/' + post.ownerId}>
                     <Button className="postButton" id="requestNowButton" variant="outlined" >User Profile</Button>
                 </Link>
                 <Button className="postButton" id="saveButton" variant="outlined">Delete Post</Button>
