@@ -145,12 +145,15 @@ class SearchPage extends React.Component {
 
                 {this.props.userId === -1 ? 
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
-                    
-                    :
-                    database.getUserData(this.props.userId).admin ? 
+                    :null
+                    }
+                {this.props.userId != -1 && database.getUserData(this.props.userId).admin ? 
                     <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :
+                    null}
+                {this.props.userId != -1 && !database.getUserData(this.props.userId).admin ?
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                    :null
                     }
 
                 
