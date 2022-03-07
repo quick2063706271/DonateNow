@@ -79,11 +79,15 @@ class SearchPage extends React.Component {
             this.setState({
                 sortDatePostedBtnText: "Sort Date Posted: " + event.target.name,
                 sortDatePostedVal: event.target.name,
+                sortViewsBtnText: "Sort Views: None",
+                sortViewsVal: "None",
             }, () => this.fetchPosts())
         } else if (drpdwn === "sort views") {
             this.setState({
                 sortViewsBtnText: "Sort Views: " + event.target.name,
                 sortViewsVal: event.target.name,
+                sortDatePostedBtnText: "Sort Date Posted: None",
+                sortDatePostedVal: "None",
             }, () => this.fetchPosts())
         }
     }
