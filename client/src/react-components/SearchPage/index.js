@@ -16,6 +16,10 @@ class SearchPage extends React.Component {
         locationVal: "All",
         deliveryOptionBtnText: "Delivery Option: All",
         deliveryOptionVal: "All",
+        sortDatePostedBtnText: "Sort Date Posted: None",
+        sortDatePostedVal: "None",
+        sortViewsBtnText: "Sort Views: None",
+        sortViewsVal: "None",
         redirect: false,
         redirectPostId: -1
     };
@@ -41,6 +45,16 @@ class SearchPage extends React.Component {
             for (var i = 0; i < delivery.length; i++) {
                 options.push(<a href="#" name={delivery[i]} onClick={(event) => this.changeDrpdwnBtnValue(event, "delivery option")}>{delivery[i]}</a>)
             }
+        } else if (drpdwn === "sort date posted") {
+            const sortDate = database.sortDatePosted
+            for (var i = 0; i < sortDate.length; i++) {
+                options.push(<a href="#" name={sortDate[i]} onClick={(event) => this.changeDrpdwnBtnValue(event, "sort date posted")}>{sortDate[i]}</a>)
+            }
+        } else if (drpdwn === "sort views") {
+            const sortViews = database.sortViews
+            for (var i = 0; i < sortViews.length; i++) {
+                options.push(<a href="#" name={sortViews[i]} onClick={(event) => this.changeDrpdwnBtnValue(event, "sort views")}>{sortViews[i]}</a>)
+            }
         }
         return options
     }
@@ -60,6 +74,16 @@ class SearchPage extends React.Component {
             this.setState({
                 deliveryOptionBtnText: "Delivery Option: " + event.target.name,
                 deliveryOptionVal: event.target.name,
+            }, () => this.fetchPosts())
+        } else if (drpdwn === "sort date posted") {
+            this.setState({
+                sortDatePostedBtnText: "Sort Date Posted: " + event.target.name,
+                sortDatePostedVal: event.target.name,
+            }, () => this.fetchPosts())
+        } else if (drpdwn === "sort views") {
+            this.setState({
+                sortViewsBtnText: "Sort Views: " + event.target.name,
+                sortViewsVal: event.target.name,
             }, () => this.fetchPosts())
         }
     }
@@ -84,6 +108,18 @@ class SearchPage extends React.Component {
         if (this.state.deliveryOptionVal !== "All") {
             posts = posts.filter(post => post.deliveryOption === this.state.deliveryOptionVal)
         }
+        if (this.state.sortDatePostedVal === "Oldest") {
+            posts = this.sortPosts("Oldest")
+        }
+        if (this.state.sortDatePostedVal === "Newest") {
+            posts = this.sortPosts("Newest")
+        }
+        if (this.state.sortViewsVal === "Smallest") {
+            posts = this.sortPosts("Smallest")
+        }
+        if (this.state.sortViewsVal === "Largest") {
+            posts = this.sortPosts("Largest")
+        }
 
         this.setState({
             post: posts
@@ -92,6 +128,20 @@ class SearchPage extends React.Component {
 
     componentDidMount() {
         this.fetchPosts();
+    }
+
+    sortPosts = (drpdwn) => {
+        var posts = database.posts
+        if (drpdwn === "Oldest") {
+            posts = posts.sort((a, b) => new Date(a.datePosted.split('/')) - new Date(b.datePosted.split('/')))
+        } else if (drpdwn === "Newest") {
+            posts = posts.sort((a, b) => new Date(a.datePosted.split('/')) - new Date(b.datePosted.split('/'))).reverse()
+        } else if (drpdwn === "Smallest") {
+            posts = posts.sort((a, b) => a.views > b.views ? 1 : -1)
+        } else if (drpdwn === "Largest") {
+            posts = posts.sort((a, b) => a.views < b.views ? 1 : -1)
+        }
+        return posts
     }
 
     handlePostOnClick = (value) => {
@@ -179,17 +229,15 @@ class SearchPage extends React.Component {
                             </div>
                         </div>
                         <div className="dropdown">
-                            <button className="button">Distance</button>
+                            <button className="button">{this.state.sortDatePostedBtnText}</button>
                             <div className="dropdown-content">
-                                <a href="#">5km</a>
-                                <a href="#">10km</a>
+                                {this.getDropdownContent("sort date posted")}
                             </div>
                         </div>
                         <div className="dropdown">
-                            <button className="button">Date Posted</button>
+                            <button className="button">{this.state.sortViewsBtnText}</button>
                             <div className="dropdown-content">
-                                <a href="#">February</a>
-                                <a href="#">March</a>
+                                {this.getDropdownContent("sort views")}
                             </div>
                         </div>
                     </div>

@@ -75,7 +75,7 @@ function PostHeaderHelper(props){
     }
     else{
 
-    
+
     if (props.transaction == null){//undefined
         return (
             <span>
@@ -98,7 +98,7 @@ function PostHeaderHelper(props){
                         {/* <Link to="/choosedonee">
                             <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
                         </Link> */}
-                        <ChooseDonee class="postButton" btnId="chooseDoneeButton" 
+                        <ChooseDonee class="postButton" btnId="chooseDoneeButton"
                                     userId={props.userId}  postId={props.postId}/>
                     </span>
                 )
@@ -107,11 +107,11 @@ function PostHeaderHelper(props){
                     <span>
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
                         <br></br>
-                        <Button className="postButton" id="failButton" 
-                                onClick={ () => handleStatusChange(props.transaction, "owner", "completed")} 
+                        <Button className="postButton" id="failButton"
+                                onClick={ () => handleStatusChange(props.transaction, "owner", "completed")}
                                 variant="outlined">Failed</Button>
                         <Button className="postButton" id="completeButton"
-                                onClick={ () => handleStatusChange(props.transaction, "owner", "failed")} 
+                                onClick={ () => handleStatusChange(props.transaction, "owner", "failed")}
                                 variant="outlined">Completed</Button>
                     </span>
                 )
@@ -121,18 +121,18 @@ function PostHeaderHelper(props){
                 </span>
             }
         }
-        
+
     }else{
         if (props.transaction.viewerStatus == "request accepted"){
             return (
                 <span>
                     <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
                     <br></br>
-                        <Button className="postButton" id="failButton" 
-                                onClick={ () => handleStatusChange(props.transaction, "viewer", "completed")} 
+                        <Button className="postButton" id="failButton"
+                                onClick={ () => handleStatusChange(props.transaction, "viewer", "completed")}
                                 variant="outlined">Failed</Button>
                         <Button className="postButton" id="completeButton"
-                                onClick={ () => handleStatusChange(props.transaction, "viewer", "failed")} 
+                                onClick={ () => handleStatusChange(props.transaction, "viewer", "failed")}
                                 variant="outlined">Completed</Button>
                 </span>
             )
@@ -152,20 +152,21 @@ function handleStatusChange (transaction, user, val) {
 }
 
 class PostPageHelp extends React.Component {
-    
+
     render() {
         return (
             <div>
                 <div className="postHeader">
-                    <text id="createPostText"> {this.props.post.header} </text> 
-                    <PostHeaderHelper transaction={this.props.transaction} 
+                    <text id="createPostText"> {this.props.post.header} </text>
+                    <PostHeaderHelper transaction={this.props.transaction}
                                       userId={this.props.userId}
                                       post={this.props.post}
+                                      post={this.props.wishlisted}
                     />
                 </div>
 
                 <div className="postBackground">
-                
+
                 <div className="postImageArea">
                     <div id="postpageImageDiv" >
                             <img src={this.props.post.imageSrc} id="postpageImage" alt="postImage"/>
@@ -185,7 +186,7 @@ class PostPageHelp extends React.Component {
                             <text className="textContentItem"> {this.props.post.location}</text>
                     </div>
                     <div className="postContentItems">
-                        
+
                         <div id="description">
                             <text className="textTitleItem">  <u>Description: </u></text>
                         </div>
@@ -200,10 +201,10 @@ class PostPageHelp extends React.Component {
                          >
                              <text className="descriptionContentItem">{this.props.post.description}</text>
                          </Box>
-                            
+
                     </div>
-                    
-                    
+
+
 
                     <div className="postContentItems">
                             <text className="textTitleItem">  <u>Views:</u></text>
@@ -225,7 +226,7 @@ class PostPageHelp extends React.Component {
                     </div>
             </div>
             </div>
-            
+
         );
     }
 
