@@ -16,7 +16,9 @@ class HistoryItem extends React.Component{
         let chooseDoneeButton
         if (status === "posted") {
             chooseDoneeButton = <div > 
-                                    <ChooseDonee/>
+                                    {/* <ChooseDonee /> */}
+                                    <ChooseDonee class="" btnId="" 
+                                    userId={this.props.userId}  postId={this.props.postId}/>
                                 </div>
         } else {
             chooseDoneeButton = <div></div>

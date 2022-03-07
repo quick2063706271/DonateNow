@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import './styles.css';
 import { Link } from "react-router-dom";
 import database from "../../database";
+import ChooseDonee from "../ChooseDonee";
 
 function DeliveryOptionGenerator(props){
     if (props.deliveryOption == "Pickup"){
@@ -93,9 +94,11 @@ function PostHeaderHelper(props){
                 return (
                     <span>
                         <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
-                        <Link to="/choosedonee">
+                        {/* <Link to="/choosedonee">
                             <Button className="postButton" id="saveButton" variant="outlined">Choose Donee</Button>
-                        </Link>
+                        </Link> */}
+                        <ChooseDonee class="postButton" btnId="chooseDoneeButton" 
+                                    userId={props.userId}  postId={props.postId}/>
                     </span>
                 )
             }else if (props.transaction.ownerStatus == "donation matched"){
