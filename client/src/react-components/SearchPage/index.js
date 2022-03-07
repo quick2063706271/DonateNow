@@ -76,28 +76,14 @@ class SearchPage extends React.Component {
                 deliveryOptionVal: event.target.name,
             }, () => this.fetchPosts())
         } else if (drpdwn === "sort date posted") {
-            var posts = database.posts
-            if (event.target.name === "Oldest") {
-                posts = this.sortPosts("Oldest")
-            } else {
-                posts = this.sortPosts("Newest")
-            }
             this.setState({
                 sortDatePostedBtnText: "Sort Date Posted: " + event.target.name,
                 sortDatePostedVal: event.target.name,
-                post: posts
             }, () => this.fetchPosts())
         } else if (drpdwn === "sort views") {
-            var posts = database.posts
-            if (this.state.sortViewsVal === "Smallest") {
-                posts = this.sortPosts("Smallest")
-            } else {
-                posts = this.sortPosts("Largest")
-            }
             this.setState({
                 sortViewsBtnText: "Sort Views: " + event.target.name,
                 sortViewsVal: event.target.name,
-                post: posts
             }, () => this.fetchPosts())
         }
     }
@@ -122,7 +108,7 @@ class SearchPage extends React.Component {
         if (this.state.deliveryOptionVal !== "All") {
             posts = posts.filter(post => post.deliveryOption === this.state.deliveryOptionVal)
         }
-        /*if (this.state.sortDatePostedVal === "Oldest") {
+        if (this.state.sortDatePostedVal === "Oldest") {
             posts = this.sortPosts("Oldest")
         }
         if (this.state.sortDatePostedVal === "Newest") {
@@ -133,7 +119,7 @@ class SearchPage extends React.Component {
         }
         if (this.state.sortViewsVal === "Largest") {
             posts = this.sortPosts("Largest")
-        }*/
+        }
 
         this.setState({
             post: posts
