@@ -104,15 +104,27 @@ class SideMenu extends React.Component{
                 <div className="side-menu-and-panel grid-item-1">
                     <div className="side-menu-one">
                         <div className="side-menu-container">
-                            <Button variant={this.state.selectedPanel === 0 ? "contained" : "text"} onClick={this.handleClick} size="large">USER INFORMATION</Button>
+                            <Button variant={this.state.selectedPanel === 0 ? "contained" : "text"} onClick={this.handleClick} size="large" style={{
+                                            backgroundColor: this.state.selectedPanel === 0 ? "#C65D7B" : "transparent",
+                                            color: this.state.selectedPanel === 0 ? "white" : "#C65D7B"
+                                        }}>USER INFORMATION</Button>
                             {isRead === false &&
-                                <Button variant={this.state.selectedPanel === 1 ? "contained" : "text"} onClick={this.handleClick} size="large">TRANSACTION HISTORY</Button>
+                                <Button variant={this.state.selectedPanel === 1 ? "contained" : "text"} onClick={this.handleClick} size="large" style={{
+                                    backgroundColor: this.state.selectedPanel === 1 ? "#C65D7B" : "transparent",
+                                    color: this.state.selectedPanel === 1 ? "white" : "#C65D7B"
+                                }}>TRANSACTION HISTORY</Button>
                             }
                             {isRead === false &&
-                                <Button variant={this.state.selectedPanel === 2 ? "contained" : "text"} onClick={this.handleClick} size="large">DONATED HISTORY</Button>
+                                <Button variant={this.state.selectedPanel === 2 ? "contained" : "text"} onClick={this.handleClick} size="large" style={{
+                                    backgroundColor: this.state.selectedPanel === 2 ? "#C65D7B" : "transparent",
+                                    color: this.state.selectedPanel === 2 ? "white" : "#C65D7B"
+                                }}>DONATED HISTORY</Button>
                             }
                             {isRead === false &&
-                                <Button variant={this.state.selectedPanel === 3 ? "contained" : "text"} onClick={this.handleClick} size="large">SUBMIT FEEDBACK</Button>
+                                <Button variant={this.state.selectedPanel === 3 ? "contained" : "text"} onClick={this.handleClick} size="large" style={{
+                                    backgroundColor: this.state.selectedPanel === 3 ? "#C65D7B" : "transparent",
+                                    color: this.state.selectedPanel === 3 ? "white" : "#C65D7B"
+                                }}>SUBMIT FEEDBACK</Button>
                             }
                         </div>
                     </div>

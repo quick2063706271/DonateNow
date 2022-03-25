@@ -235,7 +235,11 @@ class PersonalInformation extends React.Component {
                         {
                             isRead == false &&
                             <div className="edit-button" >
-                                <Button variant="contained" onClick={this.handleEdit}>
+                                <Button variant="contained" 
+                                        onClick={this.handleEdit} 
+                                        style={{
+                                            backgroundColor: "rgb(220, 70, 127)",
+                                        }}>
                                     {this.state.isEdit ? "edit" : "save"}
                                 </Button>
                             </div>
