@@ -57,11 +57,19 @@ class Feedback extends React.Component {
                         onChange = {event => this.handleContentChange(event)}
                     />
                     <div>
-                        <Button variant="contained">UPLOAD PHOTO</Button>
+                        <Button variant="contained"
+                                style={{
+                                    backgroundColor: "#FFD365",
+                                }}
+                        >UPLOAD PHOTO</Button>
                         <Button 
                             id="submit-button" 
                             variant="outlined" 
-                            onClick={this.handleSubmit}
+                            onClick={this.handleSubmit
+                            }
+                            style={{
+                                backgroundColor: "#FFD365",
+                            }}
                             >SUBMIT</Button>
                         {this.state.isEmpty ? 
                             <h4 id="errorMsg"><u>You must fill in all entries to submit!</u></h4>  : null

@@ -65,7 +65,10 @@ class ChooseDonee extends React.Component {
         return (
             <div>
                 <Button id={this.props.btnId} className={this.props.class} variant="outlined" 
-                        color="primary" onClick={this.handleClickOpen}>
+                        color="primary" onClick={this.handleClickOpen}
+                        style={{
+                            backgroundColor: "#FDF6EC",
+                        }}>
                 Choose Your Donee
                 </Button>
                 <Dialog
