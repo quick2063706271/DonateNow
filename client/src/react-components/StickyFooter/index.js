@@ -5,6 +5,7 @@ import FAQpage from '../FAQpage';
 import TermsConditions from '../TermsConditions';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { borderBottom, borderLeft, borderRight } from "@mui/system";
 
 
 
@@ -28,18 +29,18 @@ class StickyFooter extends React.Component {
             backgroundColor: "#F8F8F8",
             borderTop: "1px solid #E7E7E7",
             textAlign: "center",
-            padding: "20px",
+            //padding: "20px",
             position: "fixed",
             left: "0",
             bottom: "0",
-            height: "40px",
+            height: "65px",
             width: "100%",
         }
 
         var phantom = {
           display: 'block',
-          padding: '20px',
-          height: '10px',
+          //height: '10px',
+          //margin-bottom: '10px', 
           width: '100%',
         }
 
