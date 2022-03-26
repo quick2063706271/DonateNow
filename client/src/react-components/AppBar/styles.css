@@ -16,8 +16,8 @@
     color: #555;
     display: flex;
     padding: 2px;
-    border: 1px solid currentColor;
-    border-radius: 5px;
+    border: 1px solid transparent;
+    border-radius: 10px;
     margin-top: 3%;
     margin-left: 2%;
 }
@@ -41,6 +41,10 @@
   float: left;
   height: 100%;
   font-size: 16px;
+  background-color: #FBC9BE;
+  border-radius: 5px;
+  border: transparent;
+  color: white;
 }
 
 .navigationMenu {
@@ -58,3 +62,4 @@
 .searchBoxLink {
     text-decoration: none;
 };
+

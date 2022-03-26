@@ -45,7 +45,10 @@ class RequestNowDialogue extends React.Component {
         console.log(post)
         return (
             <div>
-                <Button id={this.props.btnId} variant="outlined" color="primary" onClick={this.handleClickOpen}>
+                <Button id={this.props.btnId} color="primary" onClick={this.handleClickOpen} style = {{
+                            backgroundColor: "#C65D7B",
+                            color: "white"
+                        }}>
                     Request Now
                 </Button>
                 <Dialog

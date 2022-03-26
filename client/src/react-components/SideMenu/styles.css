@@ -1,9 +1,9 @@
 .side-menu-one {
   width: 80%; 
   height: 800px;
-  border-radius: 7.5px;
+  border-radius: 5px;
   /* background-color: #F7E2E2;  */
-  background-color: #F7E2E2; 
+  background-color: #FDF6EC; 
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
   float:left;

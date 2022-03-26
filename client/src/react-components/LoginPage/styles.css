@@ -30,6 +30,7 @@
     border-color: black;
     border-width: 2px;*/
     position: absolute;
+    border-radius: 10px;
   }
 
   .login-form-header {

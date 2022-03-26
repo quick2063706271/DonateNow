@@ -1,3 +1,7 @@
 .grid-container {
     display: grid;
 }
+
+grid-item-1 {
+    background-color: red;
+}

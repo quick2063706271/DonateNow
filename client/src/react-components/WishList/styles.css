@@ -14,7 +14,7 @@
 
 .block {  
     box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.15);
-    border-radius: 5px; 
+    border-radius: 25px; 
     border: 1px solid transparent;
     left: 40px;
     margin-top: 10px;

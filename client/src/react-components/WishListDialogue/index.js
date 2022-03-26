@@ -46,7 +46,10 @@ class WishListDialogue extends React.Component {
         console.log(post)
         return (
             <div>
-                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+                <Button color="primary" onClick={this.handleClickOpen} style = {{
+                            backgroundColor: "#C65D7B",
+                            color: "white"
+                        }}>
                 Add to WishList
                 </Button>
                 <Dialog

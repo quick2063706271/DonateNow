@@ -59,16 +59,18 @@ class Feedback extends React.Component {
                     <div>
                         <Button variant="contained"
                                 style={{
-                                    backgroundColor: "#FFD365",
+                                    backgroundColor: "blanchedalmond",
+                                    color: "black"
                                 }}
                         >UPLOAD PHOTO</Button>
                         <Button 
                             id="submit-button" 
-                            variant="outlined" 
+                            variant="contained" 
                             onClick={this.handleSubmit
                             }
                             style={{
-                                backgroundColor: "#FFD365",
+                                backgroundColor: "blanchedalmond",
+                                color: "black"
                             }}
                             >SUBMIT</Button>
                         {this.state.isEmpty ? 

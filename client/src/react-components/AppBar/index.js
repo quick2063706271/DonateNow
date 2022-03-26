@@ -10,10 +10,13 @@ class AppBar extends React.Component {
     render() {
         return (
             <div>
-                <Logo/>
-                <SearchBox handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
-                <NavigationMenu/>
+                <div id="app-bar">
+                    <Logo/>
+                    <SearchBox handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
+                    <NavigationMenu/>
+                </div>
             </div>
+            
         );
     }
 
