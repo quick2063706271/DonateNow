@@ -26,14 +26,15 @@
 }
 
 .button {
-    background-color: goldenrod;
+    background-color: #FFC98B;
     color: white;
-    padding: 15px;
+    padding: 10px;
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
     border: none;
     position: relative;
+    border-radius: 5px;
 }
 
 .dropdown:hover .button {
@@ -72,8 +73,10 @@
     position: relative;
 }
 
-.block {  
-    border: 1px solid black;
+.block {
+    box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.15);
+    border-radius: 5px;  
+    border: 1px solid transparent;
     left: 40px;
     margin-top: 10px;
     max-width: 90%;  
@@ -95,6 +98,7 @@
 }
 
 .image {  
+    border-radius: 5px;
     height: 160px;
     max-width: 30%;
     margin-right: 50px;

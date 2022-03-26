@@ -1,5 +1,5 @@
 .side-menu-one {
-  width: 250px; 
+  width: 80%; 
   height: 800px;
   border-radius: 7.5px;
   /* background-color: #F7E2E2;  */
@@ -22,4 +22,6 @@ Button {
   display: grid;
   justify-content: center;
   grid-template-columns: 300px 650px;
+  margin-left: 50%;
+  margin-right: 50%;
 }

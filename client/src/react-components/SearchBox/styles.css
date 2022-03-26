@@ -1,3 +1,7 @@
 .searchBox {
     text-decoration: none;
 };
+
+#searchButton {
+    background-color: #ffbeba;
+}
