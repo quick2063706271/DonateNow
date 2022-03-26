@@ -134,6 +134,7 @@
 
 #app-bar {
     width: auto;
-    height: 130px;
-
+    height: 120px;
+    background-color: #ffbeba;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }

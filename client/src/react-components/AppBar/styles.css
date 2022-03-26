@@ -3,7 +3,7 @@
     height: 100%;
     float:left;
     margin-left: 2%;
-    margin-top: 1%;
+    /* margin-top: 0.5%; */
 }
 
 #logo{
@@ -41,7 +41,7 @@
   float: left;
   height: 100%;
   font-size: 16px;
-  background-color: #FBC9BE;
+  background-color: #C65D7B;
   border-radius: 5px;
   border: transparent;
   color: white;

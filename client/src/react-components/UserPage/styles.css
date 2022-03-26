@@ -2,6 +2,8 @@
     display: grid;
 }
 
-grid-item-1 {
-    background-color: red;
+
+#side-menu-container {
+    margin-top: 2.5%;
 }
+

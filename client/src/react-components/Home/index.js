@@ -14,7 +14,7 @@ class Home extends React.Component {
                 <Logo/>
                 <SearchBox/>
                 <Link Link to={'/login'}>
-                    <Button id="loginButton"  style={{backgroundColor: "#ffbeba", color: "white"}}>Log In/Sign up</Button>
+                    <Button id="loginButton"  style={{backgroundColor: "#C65D7B", color: "white"}}>Log In/Sign up</Button>
                 </Link>
                 <div id="home" ><img src={home_pic} id='home_pic' alt="home_pic"/></div>
                 <StickyFooter/>

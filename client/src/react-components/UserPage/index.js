@@ -34,7 +34,7 @@ class UserPage extends React.Component {
                         <AppBar handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
                     </div>
                     
-                    <div className="grid-item grid-item-2">
+                    <div className="grid-item grid-item-2" id="side-menu-container">
                         <SideMenu className="grid-item grid-item-2" 
                                    userId={this.getUserId()} 
                                    readibility={this.props.params.userId !== undefined}/>
