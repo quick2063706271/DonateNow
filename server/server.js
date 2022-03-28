@@ -50,6 +50,21 @@ function isMongoError(error) { // checks for first error returned by promise rej
   return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
 }
 
+app.use(
+    function(req, res, next) {
+        var allowedOrigins = ['http://localhost:3000'];
+        var origin = req.headers.origin;
+        if(allowedOrigins.indexOf(origin) > -1){
+            res.setHeader('Access-Control-Allow-Origin', origin);
+        }
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS, PATCH');
+        res.header("Access-Control-Allow-Credentials", true);
+        res.header("Access-Control-Expose-Headers", "*");
+        next();
+    }
+);
+
 // middleware for mongo connection error for routes that need it
 const mongoChecker = (req, res, next) => {
   // check mongoose connection established.
