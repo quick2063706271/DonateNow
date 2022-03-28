@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles.css";
+// import './styles.css'
 import database from '../../database'
 import AppBar from "../AppBar";
 import { uid } from "react-uid";

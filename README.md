@@ -27,27 +27,34 @@ docker run -d --rm -p 5000:5000 donate-now
 ### Userflow for regular users 
 1. Log in to the webpage using the following configuration: 
     ```
-    Username: andyy2000
-    Password: andy
+    Username: user@user.com
+    Password: user
     ```
 
 2. Click on MY PROFILE on the top right corner to review user profile 
+    <br/> - If not logged in, message will prompt user to log in before proceed.
     <br/> - By clicking on different tabs in the left panel, the user can edit personal information, review history, or to submit feedback for review. 
 
 3. Click on WISH LIST on the top right corner to review all items the user have wishlisted 
+    <br/> - If not logged in, message will prompt user to log in before proceed.
     <br/> - User can click on each post in WISH LIST to review the post in detail. 
 
 4. Click on DONATE NOW on the top right corner to post a new donation 
-    <br/> - A partial-completed post creation will not be published successfully. 
+    <br/> - User must fill in all required areas to publish posts.
+    <br/> - Click on PUBLISH to submit post form, error message will prompt if not all areas are filled.
+    <br/> - If successfully published, users will be automatically directed to post page.
 
-5. Click on the SEARCH button on the top center to obtain a list of all posts 
+5. Click on the SEARCH button on the top center to obtain a list of all posts chronologically
     <br/> - User can enter keywords in the search bar to search for results that contain the input. 
     <br/> - User can filter the search results by selecting from the list of dropdowns. 
 
-6. Click on a post in the search result to review the post in detail.
-    <br/> - Status will be shown on the top right corner if the item is already wishlisted or transaction has been done. 
+6. Click on a post in the search/wishlist result to review the post in detail.
+    <br/> - Click on LOGIN TO SEE MORE if the user not logged in.
+    <br/> - Status will be shown on the top right corner depends on owner/viewer, besides some buttons they can click to change status.
     <br/> - Click on ADD TO WISHLIST to add this item to the user's wishlist. 
-    <br/> - Click on REQUEST NOW to be directed to a page for requesting the item. 
+    <br/> - Click on REQUEST NOW to be directed to a dialogue for requesting the item. 
+    <br/> - Click on CHOOSE DONEE to be directed to a dialogue for donor to choose donee >
+    <br/> - Click on COMPLETED or FAILED to a page for indicate transaction result>
 
 7. Click on FAQ in the bottom footbar to find a list of all frequently asked questions.
  
@@ -63,14 +70,18 @@ docker run -d --rm -p 5000:5000 donate-now
     Password: admin
     ```
     - An ADMIN MODE sign appears on the top right corner to remind the admin of its current mode. 
+    - Admin navigation menu contains buttons direct them to view blocklists and feedback.
+    - After login, admin is directed to search page by default, they can search like regular users.
     
 2. Click on VIEW FEEDBACK to find a list of all feedbacks that users have submitted 
-    <br/> - Users can submit feedback for review under the SUBMIT FEEDBACK panel in their user profile. 
+    <br/> - Admin can review the feedbacks reular users submit under the SUBMIT FEEDBACK panel in their user profile. 
     <br/> - Click on the User ID in each feedback to have a brief view of basic user information. 
+    <br/> - 
 
 3. Click on BLOCK LIST to find a list of all users 
     <br/> -  Click on each User ID under the Username column to have a brief view of basic user information. 
     <br/> -  Click on the BLOCK/UNBLOCK button under the Action column to block or unblock certain users. 
+
     
 
 
