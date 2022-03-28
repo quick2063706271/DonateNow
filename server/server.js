@@ -21,7 +21,7 @@ const cors = require('cors')
 if (env !== 'production') { app.use(cors()) }
 
 // mongoose and mongo connection
-const { mongoose } = require("./db/mongoose");
+const { mongoose } = require("../db/mongoose");
 mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose model
