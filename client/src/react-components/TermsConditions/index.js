@@ -40,9 +40,22 @@ class TermsConditions extends React.Component {
                                 <ul>
                                     <li><h3>{terms.map((term) => <Term key={term.id} content={term.content} />)  }  </h3></li>
                                 </ul>
+
+                                <br></br>
+                                <br></br>
                             </div>
                         </div>
                     </div>
+
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
 
                 </div>
 
