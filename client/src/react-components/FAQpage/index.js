@@ -41,9 +41,23 @@ class FAQpage extends React.Component {
                                 <ul>
                                     <li><h3>{faqs.map((faq) => <Faq key={faq.id} content={faq.content} />)}</h3></li>
                                 </ul>
+
+                                <br></br>
+                                <br></br>
                             </div>
+
+                            <br></br>
+                            <br></br>
                         </div>
                     </div>
+
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
 
                 </div>
 
