@@ -26,6 +26,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose model
 // to-do
+const { User } = require("./models/user")
 
 
 // to validate object IDs
@@ -124,7 +125,19 @@ app.get('/home', function (req, res) {
   res.send('Hello World')
 })
 
-
+app.get("/userpage", mongoChecker, authenticate, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id)
+    if (!user) {
+      res.status(404).send("Resource not found")
+    } else {
+      res.send(user)
+    }
+  } catch(error) {
+    log(error)
+    res.status(500).send("Internal Server Error")
+  }
+})
 
 
 
