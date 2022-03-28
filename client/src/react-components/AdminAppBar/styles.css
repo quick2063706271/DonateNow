@@ -16,7 +16,7 @@
     color: #555;
     display: flex;
     padding: 2px;
-    border: 1px solid currentColor;
+    border: 1px solid transparent;
     border-radius: 5px;
     margin-top: 3%;
     margin-left: 2%;

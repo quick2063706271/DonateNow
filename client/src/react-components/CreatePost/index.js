@@ -102,7 +102,7 @@ class CreatePost extends React.Component {
                         <Button type="submit"
                                 id="publishButton" 
                                 onClick={(event) => this.handlePublish(event)}
-                                variant="outlined">Publsih
+                                >Publsih
                         </Button>
                 </div>
                 
@@ -110,7 +110,7 @@ class CreatePost extends React.Component {
                     <div className="postImageArea">
                         <div id="postImageDiv" >
                             <img src={"./upload.png"} id="postImage" alt="postImage"/>
-                            <Button id="uploadButton" variant="outlined">Upload</Button>
+                            <Button id="uploadButton">Upload</Button>
                         </div>
 
                     </div>

@@ -1,3 +1,9 @@
 .grid-container {
     display: grid;
 }
+
+
+#side-menu-container {
+    margin-top: 2.5%;
+}
+

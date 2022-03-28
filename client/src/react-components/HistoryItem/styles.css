@@ -3,8 +3,8 @@
     box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.31);
     height: 200px;
     min-width: 600px;
-    background: rgba(255, 255, 255, 0.90);
-    /* border-radius: 7.5px; */
+    background: blanchedalmond;
+    border-radius: 25px;
     display: block;
     margin: 5px;
 }
@@ -12,6 +12,7 @@
     float: left;
 }
 #item-information-container {
+    padding: 10px;
     float: left;
 }
 
@@ -30,5 +31,7 @@
 
 .item-img{
     height: 200px;
-    width: 200px
+    width: 200px;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
 }

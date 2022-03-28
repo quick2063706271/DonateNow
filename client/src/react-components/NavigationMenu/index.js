@@ -12,17 +12,17 @@ class NavigationMenu extends React.Component {
                     <ul>
                         <li>
                             <Link Link to={'/createpost'}>
-                            <Button variant="outlined">Donate Now</Button>
+                            <Button style = {{backgroundColor: "#C65D7B", color: "white"}}>Donate Now</Button>
                             </Link>
                         </li>
                         <li>
                             <Link Link to={'/wishlist'}>
-                            <Button variant="outlined">Wish List</Button>
+                            <Button style = {{backgroundColor: "#C65D7B", color: "white"}}>Wish List</Button>
                             </Link>
                         </li>
                         <li>
                             <Link Link to={'/userpage'}>
-                            <Button variant="outlined">My Profile</Button>
+                            <Button style = {{backgroundColor: "#C65D7B", color: "white"}}>My Profile</Button>
                             </Link>
                         </li>
                     </ul>

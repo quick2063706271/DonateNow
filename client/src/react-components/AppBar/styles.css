@@ -3,7 +3,7 @@
     height: 100%;
     float:left;
     margin-left: 2%;
-    margin-top: 1%;
+    /* margin-top: 0.5%; */
 }
 
 #logo{
@@ -16,8 +16,8 @@
     color: #555;
     display: flex;
     padding: 2px;
-    border: 1px solid currentColor;
-    border-radius: 5px;
+    border: 1px solid transparent;
+    border-radius: 10px;
     margin-top: 3%;
     margin-left: 2%;
 }
@@ -41,6 +41,10 @@
   float: left;
   height: 100%;
   font-size: 16px;
+  background-color: #C65D7B;
+  border-radius: 5px;
+  border: transparent;
+  color: white;
 }
 
 .navigationMenu {
@@ -58,3 +62,4 @@
 .searchBoxLink {
     text-decoration: none;
 };
+

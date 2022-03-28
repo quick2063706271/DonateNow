@@ -50,7 +50,6 @@ class PersonalInformation extends React.Component {
     //         buttonElement.innerText = "EDIT";
     //     }
     // }
-
     render() {
         const {username,
                password,
@@ -115,7 +114,7 @@ class PersonalInformation extends React.Component {
                             label="Password"
                             defaultValue={password}
                             InputProps={{
-                                readOnly: this.state.isEdit,
+                                readOnly: this.state.isEdit
                             }}
                             sx={{width: '20ch' }}
                             />
@@ -235,7 +234,11 @@ class PersonalInformation extends React.Component {
                         {
                             isRead == false &&
                             <div className="edit-button" >
-                                <Button variant="contained" onClick={this.handleEdit}>
+                                <Button variant="contained" 
+                                        onClick={this.handleEdit} 
+                                        style={{
+                                            backgroundColor: "transparent",
+                                        }}>
                                     {this.state.isEdit ? "edit" : "save"}
                                 </Button>
                             </div>

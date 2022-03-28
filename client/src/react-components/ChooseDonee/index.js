@@ -64,8 +64,12 @@ class ChooseDonee extends React.Component {
     render() {
         return (
             <div>
-                <Button id={this.props.btnId} className={this.props.class} variant="outlined" 
-                        color="primary" onClick={this.handleClickOpen}>
+                <Button id="ChooseDonee" className={this.props.class} variant="outlined" 
+                        color="primary" onClick={this.handleClickOpen}
+                        style={{
+                            backgroundColor: "#C65D7B",
+                            color: "white"
+                        }}>
                 Choose Your Donee
                 </Button>
                 <Dialog

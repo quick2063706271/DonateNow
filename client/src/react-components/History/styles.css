@@ -1,5 +1,5 @@
 #history-container {
-    background-color: #DCDBDA;
+    background-color: #FDF6EC;
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 20px;
@@ -8,6 +8,6 @@
     /* left: 560px; */
     /* top: 185px;  */
     min-height: 740px;
-    min-width: 620px;
+    min-width: 100%;
     border-radius: 7.5px;
 }
