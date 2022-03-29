@@ -33,6 +33,7 @@ class LoginPage extends React.Component {
 
     handleClick (event) {
         const userData = database.users.filter((user) => user.username === this.state.username)[0];
+        
         if (userData) {
             if (userData.password !== this.state.password) {
                 console.log("invalid password")
@@ -57,7 +58,20 @@ class LoginPage extends React.Component {
 
     }
 
+    onKeyDown(event){
+
+        if(event.key === 'Enter'){
+            event.preventDefault();
+            document.getElementById("submit").click();
+
+        }
+     }
+
+
     render() {
+
+    
+        
       return (
         <div className="loginPage">
             <div><img src={logo} className="logo" alt="logo"/></div>
@@ -65,15 +79,17 @@ class LoginPage extends React.Component {
             <main id="main-holder">
                 <h1 className="login-form-header">Sign-In</h1>
                     <div>
-                        <label className="login-form-text"><b>Username</b></label>
-                        <input type="text" name="username" className="login-form-field" value={this.state.username} onChange = {event => this.handleInputChange(event)} required/>
+                        <label id="username" className="login-form-text"><b>Username</b></label>
+                        <input type="text" name="username" onKeyDown={this.onKeyDown.bind(this)} className="login-form-field" value={this.state.username} onChange = {event => this.handleInputChange(event)} required/>
                     </div>
+
                     <div>
-                        <label className="login-form-text"><b>Password</b></label>
-                        <input type="password" name="password" className="login-form-field" value={this.state.password} onChange = {event => this.handleInputChange(event)} required/>
+                        <label id="password" className="login-form-text"><b>Password</b></label>
+                        <input type="password" name="password" onKeyDown={this.onKeyDown.bind(this)} className="login-form-field" value={this.state.password} onChange = {event => this.handleInputChange(event)} required/>
                     </div>
+                    
                     <div>
-                        <input type="submit" name="submit" className="login-form-submit" onClick={(event) => this.handleClick(event)}/>
+                        <input id="submit" type="submit" name="submit" className="login-form-submit" onClick={(event) => this.handleClick(event)}/>
                         {(!this.state.valid) ? null : this.state.user.admin ? <Navigate to='/search'/> : <Navigate to='/search'/>}
                     </div>
                     {this.state.errormsg ? <div className="login-form-error">Incorrect username or password!</div> : null}

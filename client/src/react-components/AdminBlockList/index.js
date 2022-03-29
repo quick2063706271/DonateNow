@@ -80,6 +80,22 @@ class AdminBlockList extends React.Component {
               </table>
             </div>
           </div>
+
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+
           <div>
               <StickyFooter/>
           </div>
