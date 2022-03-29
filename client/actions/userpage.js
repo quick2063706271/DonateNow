@@ -4,7 +4,7 @@ const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
 
 
-export const getStudent = (app) => {
+export const getUser = (app) => {
     const url = "${APP_HOST}/userpage"
 
     fetch(url)

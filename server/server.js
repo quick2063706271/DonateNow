@@ -192,13 +192,7 @@ app.get('BlockList', (req, res) => {
     })
 }) 
 
-
-
-/** Item resource routes **/
-
-app.get('/home', function (req, res) {
-  res.send('Hello World')
-})
+/* User Page */
 
 app.get("/userpage", mongoChecker, authenticate, async (req, res) => {
   try {
@@ -214,9 +208,34 @@ app.get("/userpage", mongoChecker, authenticate, async (req, res) => {
   }
 })
 
+app.patch("/userpage", mongoChecker, authenticate, async (req, res) => {
+  const fieldsToUpdate = {}
+  req.body.map((change) => {
+    const propertyToChange = change.path.substr(1)
+    fieldsToUpdate[propertyToChange] = change.value
+  })
+  try {
+    const user = await User.findOneAndUpdate({_id: req.user._id}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
+    if (!user) {
+      res.status(404).send("Resource not found")
+    } else {
+      res.send(user)
+    }
+  } catch(error) {
+    log(error)
+		if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request') // bad request for changing the student.
+		}
+  }
+})
 
 
 
+app.get('/home', function (req, res) {
+  res.send('Hello World')
+})
 
 
 /*** Webpage routes below **********************************/
