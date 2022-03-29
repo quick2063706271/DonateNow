@@ -27,6 +27,8 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 // import the mongoose model
 // to-do
 const { User } = require("./models/user")
+const { FAQ } = require('./models/faq')
+const { TermsConditions } = require('./models/termsconditions') 
 
 
 // to validate object IDs
@@ -136,7 +138,61 @@ app.use(
 /*Create Donation Post Page*/
 app.post('/createpost', mongoChecker, authenticate, function (req, res) {
     res.send('Hello World')
-  })
+})
+
+/*FAQ Page*/
+app.get('FAQpage', (req, res) => {
+    FAQ.find().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        res.status(500).send(error)
+	  }) 
+}) 
+
+/*Terms and Conditions Page*/
+app.get('TermsConditions', (req, res) => {
+    TermsConditions.find().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
+}) 
+
+/*Feedback Page*/
+app.get('Feedback', (req, res) => {
+    Feedback.find().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
+}) 
+
+app.post('Feedback', (req, res) => {
+    //res.send('Post to feedback') 
+
+    const Feedback = new Feedback ({
+        userId: req.body.userId,
+        title: req.body.title,
+        description: req.body.description, 
+        isResolved: req.body.isResolved 
+    })
+    Feedback.save().then((rest) => {
+        res.send(rest)
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
+}) 
+
+/*Block List Page*/
+app.get('BlockList', (req, res) => {
+    User.find().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
+}) 
+
+
 
 /** Item resource routes **/
 

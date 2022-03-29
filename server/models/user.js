@@ -64,7 +64,6 @@ const UserSchema = new mongoose.Schema({
 	complaintNum: [{type: mongoose.Schema.Types.ObjectId,
 				    ref: "complaintNum"
 	  }],
-
 	accountBlocked: {
 		type: Boolean,
 		default: false
