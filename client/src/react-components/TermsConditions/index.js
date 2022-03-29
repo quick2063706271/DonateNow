@@ -15,19 +15,12 @@ class TermsConditions extends React.Component {
             return <li> { props.content } <br/></li>;
         }
 
-        // const  = [
-        //     {id: 1, content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit.'},
-        //     {id: 2, content: 'Fusce elementum lectus et magna vestibulum, at blandit nibh pellentesque.'},
-        //     {id: 3, content: 'Phasellus rhoncus laoreet dictum. Nullam consectetur justo ut lectus sodales, a lacinia magna aliquet. '}
-        // ];
 
         const terms = database.allterms;
 
         return (
-
             <div>
                 <AppBar/>
-
 
                 <div className="termsconditions">
                     <div className="header">
@@ -59,12 +52,8 @@ class TermsConditions extends React.Component {
 
                 </div>
 
-
                 <StickyFooter/>
             </div>
-
-
-
         );
     }
 

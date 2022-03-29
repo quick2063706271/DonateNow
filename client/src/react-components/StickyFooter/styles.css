@@ -2,21 +2,15 @@
     margin-right: 10px;
 }
 
-/* .style {
-    backgroundColor: "#F8F8F8";
-    borderTop: "1px solid #E7E7E7";
-    textAlign: "center";
-    padding: "20px";
-    position: "fixed";
-    left: "0";
-    bottom: "0";
-    height: "40px";
-    width: "100%";
-};
+.style {
+  background-color: #E8E8E8;
+  text-align: center;
+  padding: 7px;
+  height: 65px;
+  width: 100%;
+}
 
 .phantom {
-  display: 'block';
-  padding: '20px';
-  height: '10px';
-  width: '100%';
-}; */
+display: flex;
+width: 100%;
+}

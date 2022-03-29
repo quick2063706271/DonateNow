@@ -24,11 +24,8 @@ class FAQpage extends React.Component {
         const faqs = database.allfaqs;
 
         return (
-
-
             <div>
                 <AppBar/>
-
 
                 <div className="faqpage">
                     <div className="header">
@@ -61,10 +58,8 @@ class FAQpage extends React.Component {
 
                 </div>
 
-
                 <StickyFooter/>
             </div>
-
         );
     }
 

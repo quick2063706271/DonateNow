@@ -17,34 +17,15 @@ class StickyFooter extends React.Component {
         function Footer({ children }) {
             return (
                 <div>
-                    <div style={phantom} />
-                    <div style={style}>
+                    <div className = "phantom" />
+                    <div className = "style">
                         { children }
                     </div>
                 </div>
             )
         }
 
-        var style = {
-            backgroundColor: "#E8E8E8",
-            // borderTop: "1px solid #E7E7E7",
-            textAlign: "center",
-            padding: "7px",
-            //position: "relative",
-            left: "0",
-            bottom: "0",
-            height: "65px",
-            width: "100%",
-        }
-
-        var phantom = {
-          display: 'flex',
-          //height: '10px',
-          //margin-bottom: '10px',  
-          width: '100%',
-        }
-
-        let footerChildren, stickyfooter;
+        let footerChildren;
         footerChildren = <div className="footerMenu">
                 <div>
                     <ul>
@@ -62,9 +43,6 @@ class StickyFooter extends React.Component {
                 </div>
         </div>
 
-        //stickyfooter = Footer({ footerChildren })
-        //
-        // //stickyfooter = "123";
 
         return (
 
