@@ -133,6 +133,10 @@ app.use(
 // User API route
 // to-do
 
+/*Create Donation Post Page*/
+app.post('/createpost', mongoChecker, authenticate, function (req, res) {
+    res.send('Hello World')
+  })
 
 /** Item resource routes **/
 
