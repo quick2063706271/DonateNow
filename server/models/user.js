@@ -23,6 +23,55 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		minlength: 6
+	},
+	username: {
+		type: String,
+		minlength: 1,
+		trim: true
+	},
+	gender: {
+		type: String,
+		minlength: 1,
+		trim: true
+	},
+    address1: {
+		type: String,
+		trim: true
+	},
+	address2: {
+		type: String,
+		trim: true
+	},
+	phone: {
+		type: Number
+	},
+	preference: {
+		type: String,
+		trim: true
+	},
+	bio: {
+		type: String
+	},
+	wishlisted: [{type: mongoose.Schema.Types.ObjectId,
+				  ref: "wishlisted"
+				}],
+	donated: [{type: mongoose.Schema.Types.ObjectId,
+				  ref: "donated"
+				}],
+	transaction: [{type: mongoose.Schema.Types.ObjectId,
+			       ref: "transaction"
+				}],
+	complaintNum: [{type: mongoose.Schema.Types.ObjectId,
+				    ref: "complaintNum"
+	  }],
+
+	accountBlocked: {
+		type: Boolean,
+		default: false
+	},
+	admin: {
+		type: Boolean,
+		default: false
 	}
 })
 
