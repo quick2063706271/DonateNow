@@ -171,10 +171,10 @@ app.post('/admin/feedback', (req, res) => {
     //res.send('Post to feedback') 
 
     const Feedback = new Feedback ({
-        fId: req.body.fId, 
+        feedbackId: req.body.feedbackId, 
         userId: req.body.userId,
         title: req.body.title,
-        description: req.body.description, 
+        content: req.body.content, 
         isResolved: req.body.isResolved 
     })
     Feedback.save().then((rest) => {

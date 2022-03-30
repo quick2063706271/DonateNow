@@ -3,10 +3,9 @@
 
 const mongoose = require('mongoose');
 
-
 // Feedback schema 
 const FeedbackSchema = new mongoose.Schema({
-    fId: Number, 
+    feedbackId: Number, 
     userId: Number, 
     title: { 
 		type: String,
@@ -15,7 +14,7 @@ const FeedbackSchema = new mongoose.Schema({
         maxlength: 100 
 	}, 
 
-    description: { 
+    content: { 
 		type: String,
         required: true,
 		minlength: 30, 

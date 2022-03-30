@@ -3,12 +3,16 @@
 
 const mongoose = require('mongoose');
 
-
 // FAQ schema 
 const FAQSchema = new mongoose.Schema({
-    description: { 
+    id: Number, 
+    question: { 
 		type: String,
-        required: true,
+		minlength: 30, 
+        maxlength: 1000 
+	}, 
+    answer: { 
+		type: String,
 		minlength: 30, 
         maxlength: 1000 
 	}
