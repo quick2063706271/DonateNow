@@ -1,5 +1,5 @@
 "use strict";
-
+const log = console.log;
 /* Server environment setup */
 // To run in development mode, run normally: node server.js
 // To run in development with the test user logged in the backend, run: TEST_USER_ON=true node server.js
@@ -21,8 +21,8 @@ const cors = require('cors')
 if (env !== 'production') { app.use(cors()) }
 
 // mongoose and mongo connection
-const { mongoose } = require("../db/mongoose");
-mongoose.set('useFindAndModify', false); // for some deprecation issues
+const { mongoose } = require("./db/mongoose");
+// mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose model
 // to-do
@@ -136,7 +136,7 @@ app.use(
 // to-do
 
 /*Create Donation Post Page*/
-app.post('/createpost', mongoChecker, authenticate, function (req, res) {
+app.post('/createpost', function (req, res) {
     res.send('Hello World')
 })
 
@@ -257,7 +257,7 @@ app.get("*", (req, res) => {
 
 /*************************************************/
 // Express server listening...
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 6001;
 app.listen(port, () => {
     log(`Listening on port ${port}...`);
 });
