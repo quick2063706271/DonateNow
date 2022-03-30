@@ -54,7 +54,7 @@ const PostSchema = new mongoose.Schema({
     views: { 
         type: Number
     },
-    saved: { // What is saved?
+    saved: { // What is saved? Wishlisted??
         type: Number
     },
     datePosted: {
