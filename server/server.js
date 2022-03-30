@@ -209,7 +209,7 @@ app.get('/admin/blocklist', (req, res) => {
 }) 
 
 app.patch('/admin/blocklist/:id', (req, res) => {
-  Feedback.findOne({_id:req.params.id}).then((result) => {
+  BlockList.findOne({_id:req.params.id}).then((result) => {
       let blocked = req.body.accountBlocked 
       let userId = req.body.userId 
       //find and update user in the blocklist 

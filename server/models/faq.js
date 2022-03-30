@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 
 // FAQ schema 
 const FAQSchema = new mongoose.Schema({
-    //id: Number,
     description: { 
 		type: String,
         required: true,

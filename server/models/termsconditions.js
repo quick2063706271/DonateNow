@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 
 // Terms and Conditions schema 
 const TermsConditionsSchema = new mongoose.Schema({
-    //id: Number,
     description: { 
 		type: String,
 		required: true,
