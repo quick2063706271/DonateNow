@@ -171,10 +171,10 @@ app.post('/admin/feedback', (req, res) => {
     //res.send('Post to feedback') 
 
     const Feedback = new Feedback ({
-        fId: req.body.fId, 
+        feedbackId: req.body.feedbackId, 
         userId: req.body.userId,
         title: req.body.title,
-        description: req.body.description, 
+        content: req.body.content, 
         isResolved: req.body.isResolved 
     })
     Feedback.save().then((rest) => {
@@ -209,7 +209,7 @@ app.get('/admin/blocklist', (req, res) => {
 }) 
 
 app.patch('/admin/blocklist/:id', (req, res) => {
-  Feedback.findOne({_id:req.params.id}).then((result) => {
+  BlockList.findOne({_id:req.params.id}).then((result) => {
       let blocked = req.body.accountBlocked 
       let userId = req.body.userId 
       //find and update user in the blocklist 
