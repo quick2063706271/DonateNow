@@ -60,7 +60,6 @@ export const login = (loginComp, app) => {
             if (json.userId !== undefined) {
                 //app.setUserId({ userId: json.userId });
                 app.setUserId(json.userId)
-                console.log(loginComp)
                 loginComp.setLoginState(json.userId, false, true)
             }
         })

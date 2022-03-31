@@ -11,12 +11,12 @@ class LoginPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            userId: this.props.userId,
+            userId: -1,
             email: "",
             password: "",
             errormsg: false,
             valid: false,
-            user: null
+            //user: null
         };
     }
 
