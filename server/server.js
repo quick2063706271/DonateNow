@@ -310,7 +310,7 @@ app.patch('/admin/blocklist/:userId', (req, res) => {
 /* User Page */
 app.get("/userpage", mongoChecker, authenticate, async (req, res) => {
   try {
-    const user = await User.findById(req.user._id)
+    const user = await User.findById(req.session.user)
     if (!user) {
       res.status(404).send("Resource not found")
     } else {
