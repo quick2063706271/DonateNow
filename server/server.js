@@ -154,13 +154,47 @@ app.get("/logout", (req, res) => {
 });
 
 // A route to check if a user is logged in on the session
-// to-do
+app.get("/check-session", (req, res) => {
+    if (env !== 'production' && USE_TEST_USER) { // test user on development environment.
+        req.session.user = TEST_USER_ID;
+        req.session.email = TEST_USER_EMAIL;
+        res.send({ currentUser: TEST_USER_EMAIL })
+        return;
+    }
+
+    if (req.session.user) {
+        res.send({ currentUser: req.session.email });
+    } else {
+        res.status(401).send();
+    }
+});
 
 /*********************************************************/
 
 /*** API Routes below ************************************/
-// User API route
-// to-do
+/* Create Account */
+app.post('/createanaccount', mongoChecker, async (req, res) => {
+    log(req.body)
+
+    // Create a new user
+    const user = new User({
+        email: req.body.email,
+        password: req.body.password
+    })
+
+    try {
+        // Save the user
+        const newUser = await user.save()
+        res.send(newUser)
+    } catch (error) {
+        if (isMongoError(error)) { // check for if mongo server suddenly disconnected before this request.
+            res.status(500).send('Internal server error')
+        } else {
+            log(error)
+            res.status(400).send('Bad Request') // bad request for changing the student.
+        }
+    }
+})
 
 /*Create Donation Post Page*/
 app.post('/createpost', function (req, res) {
