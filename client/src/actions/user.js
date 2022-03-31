@@ -11,6 +11,7 @@ export const userSignUp = (app, email, password) => {
         headers: {
           'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify(data)
     })
         .then(res => {
@@ -40,7 +41,9 @@ export const checkSession = (app) => {
     const url = `${API_HOST}/check-session`;
 
     if (!ENV.use_frontend_test_user) {
-        fetch(url)
+        fetch(url, {
+            credentials: 'include'
+        })
         .then(res => {
             if (res.status === 200) {
                 return res.json();
@@ -85,19 +88,19 @@ export const login = (loginComp, app) => {
     fetch(request)
         .then(res => {
             if (res.status === 200) {
-                return res.json();
+                window.location.href = "/search";
             }
+            return res.json();
         })
         .then(json => {
-            if (json.userId !== undefined) {
-                //app.setUserId({ userId: json.userId });
-                app.setUserId(json.userId, json.admin)
-                loginComp.setLoginState(json.userId, false, true, json.admin)
+            if (json && json.userId) {
+                app.setState({
+                    userId: json.userId
+                })
             }
         })
         .catch(error => {
             console.log(error);
-            loginComp.setLoginState(-1, true, false, false)
         });
 };
 

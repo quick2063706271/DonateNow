@@ -3,95 +3,41 @@ import "./styles.css";
 import { Link, Navigate } from 'react-router-dom';
 import logo from './logo.png';
 import loginImage from './LoginPageImage.jpeg';
-import database from '../../database'
-import { updateLoginForm, login } from "../../actions/user";
+import { updateLoginForm, login, checkSession } from "../../actions/user";
 
 class LoginPage extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            userId: -1,
+            userId: "",
             email: "",
             password: "",
             errormsg: false,
             valid: false,
-            admin: false
         };
     }
 
     componentDidMount() {
-
+        checkSession(this);
     }
 
-    setLoginState = (id, errormsg, valid, admin) => {
-		this.setState({
-			userId: id,
-            errormsg: errormsg,
-            valid: valid,
-            admin: admin
-		}, () => console.log(this.state))
-	} 
-
-    // handleInputChange(event) {
-    //     const target = event.target
-    //     const value = target.value
-    //     const name = target.name
-    //     this.setState({
-    //         [name]: value
-    //     })
-    // }
-
-    // handleClick (event) {
-    //     console.log(this.state.userId)
-    //     const userData = database.users.filter((user) => user.username === this.state.username)[0];
-        
-    //     if (userData) {
-    //         if (userData.password !== this.state.password) {
-    //             console.log("invalid password")
-    //             this.setState({
-    //                 errormsg: true
-    //             })
-    //         } else {
-    //             console.log("valid")
-    //             this.setState({
-    //                 valid: true,
-    //                 user: userData
-    //             })
-    //             // console.log("login success", userData.userId)
-    //             this.props.setUserId(userData.userId);
-    //         }
-    //     } else {
-    //         console.log("username not found")
-    //         this.setState({
-    //             errormsg: true
-    //         })
-    //     }
-
-    // }
-
     onKeyDown(event){
-
         if(event.key === 'Enter'){
             event.preventDefault();
             document.getElementById("submit").click();
-
         }
-     }
-
+    }
 
     render() {
-
-    
-        
-      return (
+      return this.state.userId ? null : (
         <div className="loginPage">
             <div><img src={logo} className="logo" alt="logo"/></div>
             <div><img src={loginImage} className="loginImage" alt="loginImage"/></div>
             <main id="main-holder">
                 <h1 className="login-form-header">Sign-In</h1>
                     <div>
-                        <label id="username" className="login-form-text"><b>Username</b></label>
+                        <label id="username" className="login-form-text"><b>Email</b></label>
                         <input type="text" name="email" onKeyDown={this.onKeyDown.bind(this)} className="login-form-field" value={this.state.email} onChange = {e => updateLoginForm(this, e.target)} required/>
                     </div>
 
@@ -104,14 +50,12 @@ class LoginPage extends React.Component {
                         <input id="submit" type="submit" name="submit" className="login-form-submit" onClick={() => login(this, this.props)}/>
                         {(!this.state.valid) ? null : this.state.admin ? <Navigate to='/search'/> : <Navigate to='/search'/>}
                     </div>
-                    {this.state.errormsg ? <div className="login-form-error">Incorrect username or password!</div> : null}
+                    {this.state.errormsg ? <div className="login-form-error">Incorrect email or password!</div> : null}
 
                     <Link to={'/createanaccount'}>
                         <div className="login-form-create"><u>Create an Account</u></div>
                     </Link>
-
             </main>
-
         </div>
       );
     }

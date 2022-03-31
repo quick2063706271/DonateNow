@@ -10,55 +10,30 @@ import AdminBlockList from './react-components/AdminBlockList';
 import AdminFeedback from './react-components/AdminFeedback';
 import AdminPostPage from './react-components/AdminPostPage';
 import AdminUserPage from './react-components/AdminUserPage';
-import ChooseDonee from './react-components/ChooseDonee';
 import TermsConditions from './react-components/TermsConditions';
 import ErrorPage from './react-components/ErrorPage';
 import FAQpage from './react-components/FAQpage';
 import SearchPage from './react-components/SearchPage';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
-import database from './database';
-import { checkSession } from "./actions/user";
 
 class App extends React.Component {
-
-	// User Id in top level will be deleted once the front end is served with server
-	// This mimics using session in server.
-
-	componentDidMount() {
-        checkSession(this); // sees if a user is logged in
-    }
-
-
-	state = {
-		userId: -1,
-		admin: false
-	};
-
-	setUserId = (id, admin) => {
-		this.setState({
-			userId: id,
-			admin: admin
-		}, () => console.log(this.state))
-	} 
-  
   	render() {
    		return (
       		<BrowserRouter>
         		<Routes>
 					<Route path='/' element={<Home/>} />
 					<Route exact path='/userpage/:userId' element={<UserPage/>}/>
-          <Route exact path='/admin/userpage/:userId' element={<AdminUserPage/>} />
-					<Route path='/login' element={<LoginPage userId={this.state.userId} 
-															 setUserId={this.setUserId}/>} />
+          			<Route exact path='/admin/userpage/:userId' element={<AdminUserPage/>} />
+					<Route path='/login' element={<LoginPage/>} />
 					<Route path='/createanaccount' element={<CreateAnAccountPage/>} />
-					<Route path='/search' element={<SearchPage userId={this.state.userId}/>} />
-					<Route path='/userpage' element={<UserPage userId={this.state.userId}/>} />
-					<Route path='/createpost' element={<CreatePost userId={this.state.userId}/>} />
-					<Route path='/postpage/:id' element={<PostPage  userId={this.state.userId}/>} />
-					<Route path='/wishlist' element={<WishList userId={this.state.userId}/>} />
+					<Route path='/search' element={<SearchPage/>} />
+					<Route path='/userpage' element={<UserPage/>} />
+					<Route path='/createpost' element={<CreatePost/>} />
+					<Route path='/postpage/:id' element={<PostPage/>} />
+					<Route path='/wishlist' element={<WishList/>} />
 					<Route path='/admin/blocklist' element={<AdminBlockList/>} />
-					<Route path='/admin/userpage' element={<AdminUserPage userId={this.state.userId}/>} />
+					<Route path='/admin/userpage' element={<AdminUserPage/>} />
 					<Route path='/admin/postpage' element={<AdminPostPage/>} />
 					<Route path='/admin/feedback' element={<AdminFeedback/>} />
 					<Route path='/termsconditions' element={<TermsConditions/>} />
@@ -69,6 +44,5 @@ class App extends React.Component {
     	);
   	}
 }
-
 
 export default App;

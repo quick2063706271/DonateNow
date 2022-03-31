@@ -6,12 +6,6 @@ const log = console.log;
 // To run in production mode, run in terminal: NODE_ENV=production node server.js
 const env = process.env.NODE_ENV // read the environment variable (will be 'production' in production mode)
 
-const USE_TEST_USER = env !== 'production' && process.env.TEST_USER_ON // option to turn on the test user.
-const TEST_USER_ID = '6244d2adf0cb3b2fb62e6f41' // the id of our test user (you will have to replace it with a test user that you made). can also put this into a separate configutation file
-const TEST_USER_EMAIL = 'user@user.com'
-
-
-
 const express = require('express')
 const path = require('path')
 const app = express()
@@ -42,11 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // parsing URL-encoded form 
 const session = require("express-session");
 const MongoStore = require('connect-mongo') // to store session information on the database in production
 
-
 const CLIENT_DIR = "../client/build";
-
-app.use(express.static(path.join(__dirname, CLIENT_DIR)));
-
 
 function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
   return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
@@ -81,9 +71,6 @@ const mongoChecker = (req, res, next) => {
 
 // Middleware for authentication of resources
 const authenticate = (req, res, next) => {
-  if (env !== 'production' && USE_TEST_USER)
-      req.session.user = TEST_USER_ID // test user on development. (remember to run `TEST_USER_ON=true node server.js` if you want to use this user.)
-
   if (req.session.user) {
       User.findById(req.session.user).then((user) => {
           if (!user) {
@@ -110,7 +97,7 @@ app.use(
       saveUninitialized: false,
       cookie: {
           expires: 60000,
-          httpOnly: true
+          secure: false
       },
       // store the sessions on the database in production
       store: env === 'production' ? MongoStore.create({
@@ -131,13 +118,19 @@ app.post("/login", (req, res) => {
         .then(user => {
             // Add the user's id to the session.
             // We can check later if this exists to ensure we are logged in.
-            req.session.user = user._id;
+            req.session.user = user._id.toString();
             req.session.email = user.email; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
             req.session.admin = user.admin;
-            res.send({
-                userId: user._id,
-                admin: user.admin
+            log(req.session)
+            req.session.save((err) => {
+                if (!err) {
+                    console.log('token is saved!')
+                    log(req.session)
+                } else {
+                    throw err;
+                }
             });
+            res.send({userId: user._id.toString()});
         })
         .catch(error => {
             res.status(400).send()
@@ -158,16 +151,8 @@ app.get("/logout", (req, res) => {
 
 // A route to check if a user is logged in on the session
 app.get("/check-session", (req, res) => {
-    if (env !== 'production' && USE_TEST_USER) { // test user on development environment.
-        req.session.user = TEST_USER_ID;
-        req.session.email = TEST_USER_EMAIL;
-        // res.send({ currentUser: TEST_USER_EMAIL })
-        res.send({ userId: TEST_USER_ID })
-        return;
-    }
-
+    console.log(req.session)
     if (req.session.user) {
-        // res.send({ currentUser: req.session.email });
         res.send({
             userId: req.session.user,
             admin: req.session.admin
@@ -359,29 +344,31 @@ app.post('/userpage', (req, res) => {
   })
 }) 
 
-
-
 app.get('/home', function (req, res) {
   res.send('Hello World')
 })
 
+app.use(express.static(path.join(__dirname, CLIENT_DIR)));
 
-/*** Webpage routes below **********************************/
-// Serve the build
-app.use(express.static(path.join(__dirname, "/client/build")));
+const routes = ["/login", "/createanaccount"]
+for (let i = 0; i < routes.length; i++) {
+    let route = routes[i];
+    app.get(route, (req, res) => {
+        if (req.session.user) {
+            res.redirect("/");
+        } else {
+            res.sendFile(path.resolve(__dirname, CLIENT_DIR, 'index.html'))
+        }
+    });
+}
 
-// All routes other than above will go to index.html
-app.get("*", (req, res) => {
-    // check for page routes that we expect in the frontend to provide correct status code.
-    const goodPageRoutes = ["user"];  // to-do: add the good page
-    if (!goodPageRoutes.includes(req.url)) {
-        // if url not in expected page routes, set status to 404.
-        res.status(404);
-    }
-
-    // send index.html
-    res.sendFile(path.join(__dirname, "/client/build/index.html"));
-});
+const public_routes = ["/", "/search"]
+for (let i = 0; i < routes.length; i++) {
+    let route = public_routes[i];
+    app.get(route, (req, res) => {
+        res.sendFile(path.resolve(__dirname, CLIENT_DIR, 'index.html'))
+    });
+}
 
 /*************************************************/
 // Express server listening...
