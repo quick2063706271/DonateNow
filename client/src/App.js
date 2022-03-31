@@ -18,14 +18,20 @@ import SearchPage from './react-components/SearchPage';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import database from './database';
+import { checkSession } from "./actions/user";
 
 class App extends React.Component {
 
 	// User Id in top level will be deleted once the front end is served with server
 	// This mimics using session in server.
+
+	componentDidMount() {
+        checkSession(this); // sees if a user is logged in
+    }
+
+
 	state = {
 		userId: -1,
-		admin: false,
 	};
 
 	setUserId = (id) => {

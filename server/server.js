@@ -7,8 +7,8 @@ const log = console.log;
 const env = process.env.NODE_ENV // read the environment variable (will be 'production' in production mode)
 
 const USE_TEST_USER = env !== 'production' && process.env.TEST_USER_ON // option to turn on the test user.
-const TEST_USER_ID = '' // the id of our test user (you will have to replace it with a test user that you made). can also put this into a separate configutation file
-const TEST_USER_EMAIL = ''
+const TEST_USER_ID = '6244d2adf0cb3b2fb62e6f41' // the id of our test user (you will have to replace it with a test user that you made). can also put this into a separate configutation file
+const TEST_USER_EMAIL = 'user@user.com'
 
 
 
@@ -25,11 +25,9 @@ const { mongoose } = require("./db/mongoose");
 // mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose model
-// to-do
-const { User } = require("./actions/login")
+const { User } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
-
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -158,12 +156,14 @@ app.get("/check-session", (req, res) => {
     if (env !== 'production' && USE_TEST_USER) { // test user on development environment.
         req.session.user = TEST_USER_ID;
         req.session.email = TEST_USER_EMAIL;
-        res.send({ currentUser: TEST_USER_EMAIL })
+        // res.send({ currentUser: TEST_USER_EMAIL })
+        res.send({ userId: TEST_USER_ID })
         return;
     }
 
     if (req.session.user) {
-        res.send({ currentUser: req.session.email });
+        // res.send({ currentUser: req.session.email });
+        res.send({ userId: req.session.user })
     } else {
         res.status(401).send();
     }
