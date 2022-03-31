@@ -236,22 +236,6 @@ app.get('/admin/feedback', (req, res) => {
     })
 }) 
 
-// app.post('/admin/feedback', (req, res) => {
-//     //res.send('Post to feedback') 
-
-//     const Feedback = new Feedbacks ({
-//         feedbackId: req.body.feedbackId, 
-//         userId: req.body.userId,
-//         title: req.body.title,
-//         content: req.body.content, 
-//         isResolved: req.body.isResolved 
-//     })
-//     Feedback.save().then((result) => {
-//         res.send(result)
-//     }).catch((error) => {
-//         res.status(500).send(error)
-//     })
-// }) 
 
 app.patch('/admin/feedback/:id', (req, res) => {
     Feedback.findOne({_id:req.params.id}).then((result) => {
@@ -351,6 +335,19 @@ app.patch("/userpage", mongoChecker, authenticate, async (req, res) => {
 		}
   }
 })
+
+app.post('userpage/feedback', (req, res) => {
+  const Feedback = new Feedbacks ({
+      userId: req.session.user,
+      title: req.body.title,
+      content: req.body.content
+  })
+  Feedback.save().then((result) => {
+      res.send(result)
+  }).catch((error) => {
+      res.status(500).send(error)
+  })
+}) 
 
 
 
