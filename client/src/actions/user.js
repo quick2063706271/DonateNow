@@ -152,8 +152,73 @@ export const getUser = (app) => {
         })
 };
 
-export const updateUser = (app) => {
+// A functon to update the User form state
+export const updateUserForm = (PersonalInformation, field) => {
+    const value = field.value;
+    const name = field.name;
+
+    PersonalInformation.setState({
+        [name]: value
+    });
+};
+// [
+    // 	{"op": "replace", "path": "/username", "value": "test1"}, 
+    // 	{"op": "replace", "path": "/phone", "value": 12341234}
+    // ]
+export const updateUser = (PersonalInformation) => {
+    PersonalInformation.setState({
+        isEdit: false
+    });
+
     const url = "${APP_HOST}/userpage"
+
+    const patchData = [
+        {"op": "replace", "path": "/username", "value": PersonalInformation.state.username},
+        {"op": "replace", "path": "/password", "value": PersonalInformation.state.password},
+        {"op": "replace", "path": "/dateOfBirth", "value": PersonalInformation.state.dateOfBirth},
+        {"op": "replace", "path": "/gender", "value": PersonalInformation.state.gender},
+        {"op": "replace", "path": "/address", "value": [PersonalInformation.state.address1, PersonalInformation.state.address2]},
+        {"op": "replace", "path": "/phone", "value": PersonalInformation.state.phone},
+        {"op": "replace", "path": "/preference", "value": PersonalInformation.state.preference},
+        {"op": "replace", "path": "/bio", "value": PersonalInformation.state.bio}
+    ]
+
+    const request = new Request(url, {
+        method: "patch",
+        body: JSON.stringify(patchData),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+    // Send the request with fetch()
+    fetch(request)
+        .then(function (res) {
+            // Handle response we get from the API.
+            // Usually check the error codes to see what happened.
+            if (res.status === 200) {
+                // If student was added successfully, tell the user.
+                PersonalInformation.setState({
+                    message: {
+                        body: "Success: Updated a user.",
+                        type: "success"
+                    }
+                });
+            } else {
+                // If server couldn't add the student, tell the user.
+                // Here we are adding a generic message, but you could be more specific in your app.
+                PersonalInformation.setState({
+                    message: {
+                        body: "Error: Could not update a user.",
+                        type: "error"
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
 }
 
 // A function to send a POST request for feedbackl
