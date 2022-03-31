@@ -120,6 +120,10 @@ export const getUser = (app) => {
         })
 };
 
+export const updateUser = (app) => {
+    const url = "${APP_HOST}/userpage"
+}
+
 // A function to send a POST request for feedbackl
 export const addFeedback = (Feedback) => {
     // the URL for the request
