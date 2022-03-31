@@ -13,7 +13,8 @@ const PostSchema = new mongoose.Schema({
         type: String,
         minlength: 1,
         required: true,
-        trim: true
+        trim: true,
+        enum: ["posted", "donation matched", "completed", "failed"]
     },
     viewers: [ViewerStatusSchema],
     imageSrc: {
@@ -74,6 +75,7 @@ const ViewerStatusSchema = new mongoose.Schema({
         type: String,
         minlength: 1,
         required: true,
-        trim: true
+        trim: true,
+        enum: ["requested", "requst accepted", "completed", "failed"]
     }
 })
