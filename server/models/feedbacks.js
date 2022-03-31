@@ -6,7 +6,10 @@ const mongoose = require('mongoose');
 // Feedback schema 
 const FeedbackSchema = new mongoose.Schema({
     //feedbackId: Number, 
-    userId: Number, 
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "userId"
+    }, 
     title: { 
 		type: String,
         //required: true,

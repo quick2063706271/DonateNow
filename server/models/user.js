@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		minlength: 4
 	},
+	dateOfBirth: {
+		type: String,
+		default: "00/00/0000"
+	},
 	username: {
 		type: String,
 		minlength: 1,

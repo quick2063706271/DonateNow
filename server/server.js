@@ -133,7 +133,11 @@ app.post("/login", (req, res) => {
             // We can check later if this exists to ensure we are logged in.
             req.session.user = user._id;
             req.session.email = user.email; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
-            res.send({ currentUser: user.email });
+            req.session.admin = user.admin;
+            res.send({
+                userId: user._id,
+                admin: user.admin
+            });
         })
         .catch(error => {
             res.status(400).send()
@@ -164,7 +168,10 @@ app.get("/check-session", (req, res) => {
 
     if (req.session.user) {
         // res.send({ currentUser: req.session.email });
-        res.send({ userId: req.session.user })
+        res.send({
+            userId: req.session.user,
+            admin: req.session.admin
+        })
     } else {
         res.status(401).send();
     }
@@ -230,22 +237,6 @@ app.get('/admin/feedback', (req, res) => {
     })
 }) 
 
-// app.post('/admin/feedback', (req, res) => {
-//     //res.send('Post to feedback') 
-
-//     const Feedback = new Feedbacks ({
-//         feedbackId: req.body.feedbackId, 
-//         userId: req.body.userId,
-//         title: req.body.title,
-//         content: req.body.content, 
-//         isResolved: req.body.isResolved 
-//     })
-//     Feedback.save().then((result) => {
-//         res.send(result)
-//     }).catch((error) => {
-//         res.status(500).send(error)
-//     })
-// }) 
 
 app.patch('/admin/feedback/:id', (req, res) => {
     Feedback.findOne({_id:req.params.id}).then((result) => {
@@ -304,7 +295,7 @@ app.patch('/admin/blocklist/:userId', (req, res) => {
 /* User Page */
 app.get("/userpage", mongoChecker, authenticate, async (req, res) => {
   try {
-    const user = await User.findById(req.user._id)
+    const user = await User.findById(req.session.user)
     if (!user) {
       res.status(404).send("Resource not found")
     } else {
@@ -316,6 +307,13 @@ app.get("/userpage", mongoChecker, authenticate, async (req, res) => {
   }
 })
 
+/* User Page Patch*/
+// sennd at this format
+//  [
+// 	{"op": "replace", "path": "/username", "value": "test1"}, 
+// 	{"op": "replace", "path": "/phone", "value": 12341234}
+// ]
+
 app.patch("/userpage", mongoChecker, authenticate, async (req, res) => {
   const fieldsToUpdate = {}
   req.body.map((change) => {
@@ -323,7 +321,7 @@ app.patch("/userpage", mongoChecker, authenticate, async (req, res) => {
     fieldsToUpdate[propertyToChange] = change.value
   })
   try {
-    const user = await User.findOneAndUpdate({_id: req.user._id}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
+    const user = await User.findOneAndUpdate({_id: req.session.user}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
     if (!user) {
       res.status(404).send("Resource not found")
     } else {
@@ -338,6 +336,19 @@ app.patch("/userpage", mongoChecker, authenticate, async (req, res) => {
 		}
   }
 })
+
+app.post('/userpage', (req, res) => {
+  const Feedback = new Feedbacks ({
+      userId: req.session.user,
+      title: req.body.title,
+      content: req.body.content
+  })
+  Feedback.save().then((result) => {
+      res.send(result)
+  }).catch((error) => {
+      res.status(500).send(error)
+  })
+}) 
 
 
 
