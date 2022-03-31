@@ -50,3 +50,19 @@
     float: left;
     margin-right: 20px;
 }
+
+.question {
+    font-weight: 640;
+    font-size: 115%;
+    padding-bottom: 10px; 
+}
+
+.answer {
+    font-weight: normal;
+    font-size: 105%;
+    float: left; 
+    display: block;
+    padding-bottom: 15px; 
+}
+
+

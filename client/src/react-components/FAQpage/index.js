@@ -12,7 +12,7 @@ class FAQpage extends React.Component {
     render() {
 
         function Faq(props) {
-            return <li> { props.content }</li>;
+            return <ul className="faq"><li className="question"> { props.question }</li> <br></br> <li className="answer"> { props.answer }</li> </ul>;
         }
 
         // const faqs = [
@@ -36,7 +36,7 @@ class FAQpage extends React.Component {
                         <div className="post">
                             <div className="summary">
                                 <ul>
-                                    <li><h3>{faqs.map((faq) => <Faq key={faq.id} content={faq.content} />)}</h3></li>
+                                    <li><h3>{faqs.map((faq) => <Faq key={faq.id} question={faq.question} answer={faq.answer} />)}</h3></li>
                                 </ul>
 
                                 <br></br>
@@ -48,9 +48,6 @@ class FAQpage extends React.Component {
                         </div>
                     </div>
 
-                    <br></br>
-                    <br></br>
-                    <br></br>
                     <br></br>
                     <br></br>
                     <br></br>

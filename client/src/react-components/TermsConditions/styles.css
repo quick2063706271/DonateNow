@@ -50,3 +50,11 @@
     float: left;
     margin-right: 20px;
 }
+
+.term {
+    font-weight: normal;
+    font-size: 110%;
+    float: left; 
+    display: block;
+    padding-bottom: 20px; 
+}

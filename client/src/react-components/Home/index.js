@@ -13,8 +13,8 @@ class Home extends React.Component {
             <div>
                 <Logo/>
                 <SearchBox/>
-                <Link Link to={'/login'}>
-                    <Button id="loginButton"  style={{backgroundColor: "#C65D7B", color: "white"}}>Log In/Sign up</Button>
+                <Link Link to={'/login'} >
+                    <Button id="loginButton" style={{backgroundColor: "#C65D7B", color: "white", fontSize: "17px"}}>Log In/Sign up</Button>
                 </Link>
                 <div id="home" ><img src={home_pic} id='home_pic' alt="home_pic"/></div>
                 {/* <br></br> */}

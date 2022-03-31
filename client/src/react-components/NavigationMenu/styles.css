@@ -1,3 +1,7 @@
 a:-webkit-any-link {
     text-decoration: none;
 }
+
+.buttons {
+    font-size: 110%;
+}
