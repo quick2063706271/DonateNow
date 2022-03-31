@@ -221,6 +221,7 @@ app.get('/termsconditions', (req, res) => {
 }) 
 
 /*Feedback Page*/
+/* Should authenticate user and verify user is admin */
 app.get('/admin/feedback', (req, res) => {
     Feedbacks.find().then((result) => {
         res.send(result)

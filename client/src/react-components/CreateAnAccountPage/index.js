@@ -100,10 +100,6 @@ class CreateAnAccountPage extends React.Component {
 
             </main>
 
-            <div>
-                <StickyFooter/>
-            </div>
-
         </div>
       );
     }
