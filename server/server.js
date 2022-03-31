@@ -28,6 +28,7 @@ const { mongoose } = require("./db/mongoose");
 const { User } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
+const { Feedbacks } = require('./models/feedbacks') 
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -203,7 +204,7 @@ app.post('/createpost', function (req, res) {
 
 /*FAQ Page*/
 app.get('/faqpage', (req, res) => {
-    FAQ.find().then((result) => {
+    Faq.find().then((result) => {
         res.send(result)
     }).catch((error) => {
         res.status(500).send(error)
@@ -221,7 +222,7 @@ app.get('/termsconditions', (req, res) => {
 
 /*Feedback Page*/
 app.get('/admin/feedback', (req, res) => {
-    Feedback.find().then((result) => {
+    Feedbacks.find().then((result) => {
         res.send(result)
     }).catch((error) => {
         res.status(500).send(error)
@@ -231,15 +232,15 @@ app.get('/admin/feedback', (req, res) => {
 app.post('/admin/feedback', (req, res) => {
     //res.send('Post to feedback') 
 
-    const Feedback = new Feedback ({
+    const Feedback = new Feedbacks ({
         feedbackId: req.body.feedbackId, 
         userId: req.body.userId,
         title: req.body.title,
         content: req.body.content, 
         isResolved: req.body.isResolved 
     })
-    Feedback.save().then((rest) => {
-        res.send(rest)
+    Feedback.save().then((result) => {
+        res.send(result)
     }).catch((error) => {
         res.status(500).send(error)
     })
@@ -269,22 +270,33 @@ app.get('/admin/blocklist', (req, res) => {
     })
 }) 
 
-app.patch('/admin/blocklist/:id', (req, res) => {
-  BlockList.findOne({_id:req.params.id}).then((result) => {
-      let blocked = req.body.accountBlocked 
-      let userId = req.body.userId 
-      //find and update user in the blocklist 
-      const user = User.findById(userId)
-      user.accountBlocked = blocked  
-      result.isResolved = resolved 
-      result.save().then((patchedRest) => {
-          res.send({uId: userId, BlockList: patchedRest})
-      }).catch((error) => {
-          res.status(500).send(error)
-      })
-  }).catch((error) => {
-      res.status(500).send(error)
-  })
+app.patch('/admin/blocklist/:userId', (req, res) => {
+    // BlockList.findOne({_id:req.params.id}).then((result) => {
+    //     let blocked = req.body.accountBlocked 
+    //     let userId = req.body.userId 
+    //     //find and update user in the blocklist 
+    //     const user = User.findById(userId)
+    //     user.accountBlocked = blocked  
+    //     result.save().then((patchedRest) => {
+    //         res.send({uId: userId, BlockList: patchedRest})
+    //     }).catch((error) => {
+    //         res.status(500).send(error)
+    //     })
+    // }).catch((error) => {
+    //     res.status(500).send(error)
+    // })
+    const user_id = req.params.userId
+
+    User.findOne({userId: user_id}).then((result) => {
+        result.accountBlocked = req.body.blocked 
+        result.save().then((patchedRest) => {
+            res.send({accountBlcked: patchedRest})
+        }).catch((error) => {
+            res.status(500).send(error)
+        })
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
 })
 
 

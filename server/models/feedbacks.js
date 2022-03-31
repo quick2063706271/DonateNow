@@ -9,18 +9,16 @@ const FeedbackSchema = new mongoose.Schema({
     userId: Number, 
     title: { 
 		type: String,
-        required: true,
+        //required: true,
 		minlength: 10, 
         maxlength: 100 
 	}, 
-
     content: { 
 		type: String,
-        required: true,
+        //required: true,
 		minlength: 30, 
         maxlength: 1000 
 	}, 
-
     isResolved: {
 		type: Boolean,
 		default: false 
@@ -29,6 +27,6 @@ const FeedbackSchema = new mongoose.Schema({
 
 
 
-const Feedback = mongoose.model('Feedback', FeedbackSchema);
+const Feedbacks = mongoose.model('Feedbacks', FeedbackSchema);
 
-module.exports = { Feedback };
+module.exports = { Feedbacks };
