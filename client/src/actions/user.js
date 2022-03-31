@@ -133,18 +133,22 @@ export const updateUserForm = (PersonalInformation, field) => {
     // 	{"op": "replace", "path": "/username", "value": "test1"}, 
     // 	{"op": "replace", "path": "/phone", "value": 12341234}
     // ]
-export const updateUser = (SideMenu) => {
+export const updateUser = (PersonalInformation) => {
+    PersonalInformation.setState({
+        isEdit: false
+    });
+
     const url = "${APP_HOST}/userpage"
 
     const patchData = [
-        {"op": "replace", "path": "/username", "value": SideMenu.state.username},
-        {"op": "replace", "path": "/password", "value": SideMenu.state.password},
-        {"op": "replace", "path": "/dateOfBirth", "value": SideMenu.state.dateOfBirth},
-        {"op": "replace", "path": "/gender", "value": SideMenu.state.gender},
-        {"op": "replace", "path": "/address", "value": [SideMenu.state.address1, SideMenu.state.address2]},
-        {"op": "replace", "path": "/phone", "value": SideMenu.state.phone},
-        {"op": "replace", "path": "/preference", "value": SideMenu.state.preference},
-        {"op": "replace", "path": "/bio", "value": SideMenu.state.bio}
+        {"op": "replace", "path": "/username", "value": PersonalInformation.state.username},
+        {"op": "replace", "path": "/password", "value": PersonalInformation.state.password},
+        {"op": "replace", "path": "/dateOfBirth", "value": PersonalInformation.state.dateOfBirth},
+        {"op": "replace", "path": "/gender", "value": PersonalInformation.state.gender},
+        {"op": "replace", "path": "/address", "value": [PersonalInformation.state.address1, PersonalInformation.state.address2]},
+        {"op": "replace", "path": "/phone", "value": PersonalInformation.state.phone},
+        {"op": "replace", "path": "/preference", "value": PersonalInformation.state.preference},
+        {"op": "replace", "path": "/bio", "value": PersonalInformation.state.bio}
     ]
 
     const request = new Request(url, {
@@ -162,7 +166,7 @@ export const updateUser = (SideMenu) => {
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
                 // If student was added successfully, tell the user.
-                SideMenu.setState({
+                PersonalInformation.setState({
                     message: {
                         body: "Success: Updated a user.",
                         type: "success"
@@ -171,7 +175,7 @@ export const updateUser = (SideMenu) => {
             } else {
                 // If server couldn't add the student, tell the user.
                 // Here we are adding a generic message, but you could be more specific in your app.
-                SideMenu.setState({
+                PersonalInformation.setState({
                     message: {
                         body: "Error: Could not update a user.",
                         type: "error"
