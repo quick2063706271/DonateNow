@@ -59,13 +59,13 @@ export const login = (loginComp, app) => {
         .then(json => {
             if (json.userId !== undefined) {
                 //app.setUserId({ userId: json.userId });
-                app.setUserId(json.userId)
-                loginComp.setLoginState(json.userId, false, true)
+                app.setUserId(json.userId, json.admin)
+                loginComp.setLoginState(json.userId, false, true, json.admin)
             }
         })
         .catch(error => {
             console.log(error);
-            loginComp.setLoginState(-1, true, false)
+            loginComp.setLoginState(-1, true, false, false)
         });
 };
 

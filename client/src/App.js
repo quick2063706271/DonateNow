@@ -32,12 +32,14 @@ class App extends React.Component {
 
 	state = {
 		userId: -1,
+		admin: false
 	};
 
-	setUserId = (id) => {
+	setUserId = (id, admin) => {
 		this.setState({
-			userId: id
-		}, () => console.log(this.state.userId))
+			userId: id,
+			admin: admin
+		}, () => console.log(this.state))
 	} 
   
   	render() {

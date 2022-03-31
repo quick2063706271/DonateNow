@@ -16,7 +16,7 @@ class LoginPage extends React.Component {
             password: "",
             errormsg: false,
             valid: false,
-            //user: null
+            admin: false
         };
     }
 
@@ -24,11 +24,12 @@ class LoginPage extends React.Component {
 
     }
 
-    setLoginState = (id, errormsg, valid) => {
+    setLoginState = (id, errormsg, valid, admin) => {
 		this.setState({
 			userId: id,
             errormsg: errormsg,
-            valid: valid
+            valid: valid,
+            admin: admin
 		}, () => console.log(this.state))
 	} 
 
@@ -101,8 +102,7 @@ class LoginPage extends React.Component {
                     
                     <div>
                         <input id="submit" type="submit" name="submit" className="login-form-submit" onClick={() => login(this, this.props)}/>
-                        {(!this.state.valid) ? null : <Navigate to='/search'/>}
-                        {/*{(!this.state.valid) ? null : this.state.user.admin ? <Navigate to='/search'/> : <Navigate to='/search'/>}*/}
+                        {(!this.state.valid) ? null : this.state.admin ? <Navigate to='/search'/> : <Navigate to='/search'/>}
                     </div>
                     {this.state.errormsg ? <div className="login-form-error">Incorrect username or password!</div> : null}
 
