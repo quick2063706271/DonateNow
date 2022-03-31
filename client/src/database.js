@@ -153,7 +153,6 @@ let posts = [
         saved: 32,
         datePosted: "3/4/2022"
     }
-
 ]
 
   let users = [
@@ -170,8 +169,8 @@ let posts = [
         preference: "Books & Stationary, Travel",
         bio: "I enjoy reading Books & Stationary and gaming and travelling and travelling and travelling.",
         wishlisted: [2,4],
-        donated: [1],
-        transaction: [2, 3, 4],
+        // donated: [1],
+        // transaction: [2, 3, 4],
         complaintNum: [2],
         accountBlocked: false,
         admin: false
