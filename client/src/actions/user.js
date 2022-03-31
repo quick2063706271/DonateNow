@@ -121,11 +121,21 @@ export const getUser = (app) => {
 };
 
 // A function to send a POST request for feedbackl
-export const addStudent = (Feedback) => {
+export const addFeedback = (Feedback) => {
     // the URL for the request
     const url = `${API_HOST}/userpage`;
 
     // The data we are going to send in our request
+    if (this.state.title === "" || this.state.content === "") {
+        console.log("error: empty feedback")
+        Feedback.setState({
+            message: {
+                body: "Error: You must fill in all entries to submit!",
+                type: "Error"
+            }
+        });
+        return
+    }
     const feedback = {
         title: Feedback.state.title,
         content: Feedback.state.content

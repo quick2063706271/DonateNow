@@ -3,6 +3,7 @@ import "./styles.css";
 import { TextField } from "@material-ui/core";
 import Stack from '@mui/material/Stack';
 import { Button } from "@mui/material";
+import { addFeedback } from "../../actions/user";
 
 class Feedback extends React.Component {
     constructor() {
@@ -65,19 +66,14 @@ class Feedback extends React.Component {
                         <Button 
                             id="submit-button" 
                             variant="contained" 
-                            onClick={this.handleSubmit
-                            }
+                            onClick={() => addFeedback(this)}
                             style={{
                                 backgroundColor: "blanchedalmond",
                                 color: "black"
                             }}
                             >SUBMIT</Button>
-                        {this.state.title === "" || this.state.content === "" ? 
-                            <h4 id="errorMsg"><u>You must fill in all entries to submit!</u></h4>  : null
-                        }
                         {this.state.message !== null ?
-                            <h4 id="errorMsg"><u> {this.state.message.body}</u></h4>  : null
-                            
+                            <h4 id="errorMsg"><u> {this.state.message.body}</u></h4>  : null        
                         }
                     </div>
                 </Stack>
