@@ -74,28 +74,45 @@ export const updateLoginForm = (loginComp, field) => {
 };
 
 // A function to send a POST request with the user to be logged in
-export const login = (loginComp, app) => {
+export const login = (app) => {
     // Create our request constructor with all the parameters we need
+    console.log(app.state)
     const request = new Request(`${API_HOST}/login`, {
         method: "post",
-        body: JSON.stringify(loginComp.state),
+        body: JSON.stringify({
+            email: app.state.email,
+            password: app.state.password
+        }),
         headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
+            'Content-Type': 'application/json'
+        },
     });
     // Send the request with fetch()
     fetch(request)
-        .then(res => {
-            if (res.status === 200) {
-                window.location.href = "/search";
-            }
-            return res.json();
-        })
+        .then(res => res.json())
         .then(json => {
-            if (json && json.userId) {
+            console.log(json)
+            if (json && json.success) {
                 app.setState({
-                    userId: json.userId
+                    countdown: 5,
+                    error: true,
+                    errorMsg: ""
+                }, () => {
+                    const countdown = setInterval(() => {
+                        app.setState({
+                            countdown: app.state.countdown - 1,
+                            errorMsg: `Successfully signed in. Redirecting in ${app.state.countdown - 1} seconds`
+                        });
+                        if (app.state.countdown <= 0) {
+                            window.location.href = "/search";
+                            clearInterval(countdown);
+                        }
+                    }, 1000)}
+                )
+            } else {
+                app.setState({
+                    error: true,
+                    errorMsg: json.message
                 })
             }
         })

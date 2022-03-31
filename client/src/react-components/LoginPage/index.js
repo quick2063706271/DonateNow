@@ -10,11 +10,11 @@ class LoginPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            userId: "",
             email: "",
             password: "",
-            errormsg: false,
-            valid: false,
+            error: false,
+            errorMsg: "",
+            countdown: -1
         };
     }
 
@@ -30,7 +30,7 @@ class LoginPage extends React.Component {
     }
 
     render() {
-      return this.state.userId ? null : (
+      return (
         <div className="loginPage">
             <div><img src={logo} className="logo" alt="logo"/></div>
             <div><img src={loginImage} className="loginImage" alt="loginImage"/></div>
@@ -47,10 +47,9 @@ class LoginPage extends React.Component {
                     </div>
                     
                     <div>
-                        <input id="submit" type="submit" name="submit" className="login-form-submit" onClick={() => login(this, this.props)}/>
-                        {(!this.state.valid) ? null : this.state.admin ? <Navigate to='/search'/> : <Navigate to='/search'/>}
+                        <input id="submit" type="submit" name="submit" className="login-form-submit" onClick={() => login(this)}/>
                     </div>
-                    {this.state.errormsg ? <div className="login-form-error">Incorrect email or password!</div> : null}
+                    {this.state.error ? <div className="login-form-error">{this.state.errorMsg}</div> : null}
 
                     <Link to={'/createanaccount'}>
                         <div className="login-form-create"><u>Create an Account</u></div>

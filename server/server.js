@@ -121,19 +121,18 @@ app.post("/login", (req, res) => {
             req.session.user = user._id.toString();
             req.session.email = user.email; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
             req.session.admin = user.admin;
-            log(req.session)
             req.session.save((err) => {
                 if (!err) {
-                    console.log('token is saved!')
                     log(req.session)
+                    console.log('token is saved!')
                 } else {
                     throw err;
                 }
             });
-            res.send({userId: user._id.toString()});
+            res.status(200).send({ success: true, message: "Successfully Logged in" });
         })
         .catch(error => {
-            res.status(400).send()
+            res.status(400).send({ success: false, message: "Fail to log in."})
         });
 });
 
