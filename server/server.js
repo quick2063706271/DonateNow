@@ -315,6 +315,13 @@ app.get("/userpage", mongoChecker, authenticate, async (req, res) => {
   }
 })
 
+/* User Page Patch*/
+// sennd at this format
+//  [
+// 	{"op": "replace", "path": "/username", "value": "test1"}, 
+// 	{"op": "replace", "path": "/phone", "value": 12341234}
+// ]
+
 app.patch("/userpage", mongoChecker, authenticate, async (req, res) => {
   const fieldsToUpdate = {}
   req.body.map((change) => {
@@ -322,7 +329,7 @@ app.patch("/userpage", mongoChecker, authenticate, async (req, res) => {
     fieldsToUpdate[propertyToChange] = change.value
   })
   try {
-    const user = await User.findOneAndUpdate({_id: req.user._id}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
+    const user = await User.findOneAndUpdate({_id: req.session.user}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
     if (!user) {
       res.status(404).send("Resource not found")
     } else {

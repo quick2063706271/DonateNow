@@ -85,21 +85,37 @@ export const logout = (app) => {
         });
 };
 
-// export const getUser = (app) => {
-//     const url = "${APP_HOST}/userpage"
 
-//     fetch(url)
-//         .then(res => {
-//             if (res.status === 200) {
-//                 return res.json;
-//             } else {
-//                 alert("Could not get user")
-//             }
-//         })
-//         .then(json => {
-//             SideMenu.setState({}) // to-do
-//         })
-//         .catch(error => {
-//             console.log(error)
-//         })
-// };
+// A function to find user profile of a user
+export const getUser = (app) => {
+    const url = "${APP_HOST}/userpage"
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json;
+            } else {
+                alert("Could not get user")
+            }
+        })
+        .then(json => {
+            app.setState({
+                username: json.username,
+                password: json.password,
+                dateOfBirth: json.dateOfBirth,
+                gender: json.gender,
+                address1: json.address[0],
+                address2: json.address[1],
+                phone: json.phone,
+                email: json.email,
+                preference: json.preference,
+                bio: json.bio,
+                complaintNum: json.complaintNum,
+                accountBlocked: json.accountBlocked,
+                admin: json.admin,
+            }) 
+        })
+        .catch(error => {
+            console.log(error)
+        })
+};

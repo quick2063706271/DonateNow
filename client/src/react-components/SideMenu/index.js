@@ -10,13 +10,29 @@ import History from '../History';
 // import marker from "./marker.png"
 import bottle from "../../bottle.png"
 import database from "../../database"
+import { getUser } from '../../actions/user';
 
 class SideMenu extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             selectedPanel: 0,
+            username: "{user.username}",
+            password: "{user.password}",
+            dateOfBirth: "{user.dateOfBirth}",
+            gender: "{user.gender}",
+            address1: "{user.address1}",
+            address2: "user.address2}",
+            phone: "{user.phone}",
+            email: "{user.email}",
+            preference: "{user.preference}",
+            bio: "{user.bio}",
+            complaintNum: "{user.complaintNum}",
+            accountBlocked: "{user.accountBlocked}",
+            admin: "{false}",
+            isRead: "{isRead}"
         }
+        getUser(this)
 
     }
 
@@ -94,6 +110,22 @@ class SideMenu extends React.Component{
                         bio={user.bio}
                         complaintNum={user.complaintNum}
                         accountBlocked={user.accountBlocked}
+                        admin = {false}
+                        isRead = {isRead}
+                    />
+            panel = <PersonalInformation
+                        username={this.state.username}
+                        password={this.state.password}
+                        dateOfBirth={this.state.dateOfBirth}
+                        gender={this.state.gender}
+                        address1={this.state.address1}
+                        address2={this.state.address2}
+                        phone={this.state.phone}
+                        email={this.state.email}
+                        preference={this.state.preference}
+                        bio={this.state.bio}
+                        complaintNum={this.state.complaintNum}
+                        accountBlocked={this.state.accountBlocked}
                         admin = {false}
                         isRead = {isRead}
                     />
