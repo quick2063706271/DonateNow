@@ -101,7 +101,8 @@ class LoginPage extends React.Component {
                     
                     <div>
                         <input id="submit" type="submit" name="submit" className="login-form-submit" onClick={() => login(this, this.props)}/>
-                        {/*need to fix{(!this.state.valid) ? null : this.state.user.admin ? <Navigate to='/search'/> : <Navigate to='/search'/>}*/}
+                        {(!this.state.valid) ? null : <Navigate to='/search'/>}
+                        {/*{(!this.state.valid) ? null : this.state.user.admin ? <Navigate to='/search'/> : <Navigate to='/search'/>}*/}
                     </div>
                     {this.state.errormsg ? <div className="login-form-error">Incorrect username or password!</div> : null}
 
