@@ -190,18 +190,27 @@ app.post('/createanaccount', mongoChecker, async (req, res) => {
         password: req.body.password
     })
 
-    try {
-        // Save the user
-        const newUser = await user.save()
-        res.send(newUser)
-    } catch (error) {
-        if (isMongoError(error)) { // check for if mongo server suddenly disconnected before this request.
-            res.status(500).send('Internal server error')
-        } else {
-            log(error)
-            res.status(400).send('Bad Request') // bad request for changing the student.
-        }
-    }
+    user.save()
+        .then((newUser) => {
+            res.status(200).send({
+                userId: newUser._id
+            })
+        })
+        .catch(error => {
+            if (isMongoError(error)) {
+                res.status(500).send("Internal server error")
+            }
+            else if (error.name === "ValidationError") {
+                let errors = {};
+          
+                Object.keys(error.errors).forEach((key) => {
+                    errors[key] = error.errors[key].message;
+                });
+
+                return res.status(400).send(errors);
+            }
+            res.status(500).send("Internal server error")
+        })
 })
 
 /*Create Donation Post Page*/
