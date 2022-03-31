@@ -10,14 +10,13 @@ class Feedback extends React.Component {
         this.state = {
             title: "",
             content: "",
-            isEmpty: false
+            message: null
         }
     }
 
     handleSubmit = (event) => {
-        if (this.state.title.length === 0 || this.state.content.length === 0) {
+        if (this.state.title === "" || this.state.content === "") {
             console.log("error: empty feedback")
-            this.setState({isEmpty: true})
         }
     }
 
@@ -73,8 +72,12 @@ class Feedback extends React.Component {
                                 color: "black"
                             }}
                             >SUBMIT</Button>
-                        {this.state.isEmpty ? 
+                        {this.state.title === "" || this.state.content === "" ? 
                             <h4 id="errorMsg"><u>You must fill in all entries to submit!</u></h4>  : null
+                        }
+                        {this.state.message !== null ?
+                            <h4 id="errorMsg"><u> {this.state.message.body}</u></h4>  : null
+                            
                         }
                     </div>
                 </Stack>
