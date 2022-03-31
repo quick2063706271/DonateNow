@@ -8,9 +8,9 @@ const bcrypt = require('bcryptjs')
 // Making a Mongoose model a little differently: a Mongoose Schema
 // Allows us to add additional functionality.
 const UserSchema = new mongoose.Schema({
-	userId: {
-		type: number
-	},
+	// userId: {
+	// 	type: Number
+	// },
 	email: {
 		type: String,
 		required: true,
@@ -25,18 +25,20 @@ const UserSchema = new mongoose.Schema({
 	password: {
 		type: String,
 		required: true,
-		minlength: 6
+		minlength: 4
 	},
 	username: {
 		type: String,
 		minlength: 1,
-		trim: true
+		trim: true,
+		default: null
 	},
 	gender: {
 		type: String,
 		minlength: 1,
 		enum: ['male', 'female', 'unspecified'],
-		trim: true
+		trim: true,
+		default: 'unspecified'
 	},
     addresses: [{
 		type: String,
@@ -44,21 +46,25 @@ const UserSchema = new mongoose.Schema({
 	}],
 
 	phone: {
-		type: Number
+		type: Number,
+		default: null
 	},
 	preference: {
 		type: String,
-		trim: true
+		trim: true,
+		default: null
 	},
 	bio: {
-		type: String
+		type: String,
+		default: null
 	},
 	wishlisted: [
 		{type: mongoose.Schema.Types.ObjectId,
 		 ref: "wishlisted"
 		}],
 	complaintNum: {
-		type: number,
+		type: Number,
+		default: 0
 	  },
 	accountBlocked: {
 		type: Boolean,
@@ -95,7 +101,6 @@ UserSchema.pre('save', function(next) {
 //  to a given one, for example when logging in.
 UserSchema.statics.findByEmailPassword = function(email, password) {
 	const User = this // binds this to the User model
-
 	// First find the user by their email
 	return User.findOne({ email: email }).then((user) => {
 		if (!user) {
