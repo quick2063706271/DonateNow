@@ -14,55 +14,65 @@ const PostSchema = new mongoose.Schema({
         minlength: 1,
         required: true,
         trim: true,
-        enum: ["posted", "donation matched", "completed", "failed"]
+        enum: ["posted", "donation matched", "completed", "failed"],
+        default: "posted"
     },
     viewers: [ViewerStatusSchema],
     imageSrc: {
-        type: String // change later
+        type: String, // change later
+        default: "default image src"
     },
     deliveryOption: {
         type: String,
         minlength: 1,
         required: true,
-        trim: true
+        trim: true,
+        default: null
     },
     header: {
         type: String,
         minlength: 1,
         required: true,
-        trim: true
+        trim: true,
+        default: null
     },
     location: {
         type: String,
         minlength: 1,
         required: true,
-        trim: true
+        trim: true,
+        default: null
     },
     description: {
         type: String,
         minlength: 1,
         required: true,
-        trim: true
+        trim: true,
+        default: null
     },
-    categories: [{
-        type: String,
-        minlength: 1,
-        trim: true
-    }],
+    categories: {
+        type:[{
+            type: String,
+            minlength: 1,
+            trim: true,
+            enum: ["Toys", "Kids", "Parents", "Interests", "Electronics", "Clothing", "Books & Stationary", "All"]
+        }],
+        default: []
+    },
     blocked: {
-        type: Number
+        type: Number,
+        default: 0
     },
     views: { 
-        type: Number
-    },
-    saved: { // What is saved? Wishlisted??
-        type: Number
+        type: Number,
+        default: 0
     },
     datePosted: {
         type: String,
         minlength: 1,
         required: true,
-        trim: true
+        trim: true,
+        default: "00/00/0000"
     },
 })
 
