@@ -7,8 +7,8 @@ const log = console.log;
 const env = process.env.NODE_ENV // read the environment variable (will be 'production' in production mode)
 
 const USE_TEST_USER = env !== 'production' && process.env.TEST_USER_ON // option to turn on the test user.
-const TEST_USER_ID = '' // the id of our test user (you will have to replace it with a test user that you made). can also put this into a separate configutation file
-const TEST_USER_EMAIL = ''
+const TEST_USER_ID = '6244d2adf0cb3b2fb62e6f41' // the id of our test user (you will have to replace it with a test user that you made). can also put this into a separate configutation file
+const TEST_USER_EMAIL = 'user@user.com'
 
 
 
@@ -25,11 +25,10 @@ const { mongoose } = require("./db/mongoose");
 // mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose model
-// to-do
-const { User } = require("./actions/login")
+const { User } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
-
+const { Feedbacks } = require('./models/feedbacks') 
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -154,13 +153,49 @@ app.get("/logout", (req, res) => {
 });
 
 // A route to check if a user is logged in on the session
-// to-do
+app.get("/check-session", (req, res) => {
+    if (env !== 'production' && USE_TEST_USER) { // test user on development environment.
+        req.session.user = TEST_USER_ID;
+        req.session.email = TEST_USER_EMAIL;
+        // res.send({ currentUser: TEST_USER_EMAIL })
+        res.send({ userId: TEST_USER_ID })
+        return;
+    }
+
+    if (req.session.user) {
+        // res.send({ currentUser: req.session.email });
+        res.send({ userId: req.session.user })
+    } else {
+        res.status(401).send();
+    }
+});
 
 /*********************************************************/
 
 /*** API Routes below ************************************/
-// User API route
-// to-do
+/* Create Account */
+app.post('/createanaccount', mongoChecker, async (req, res) => {
+    log(req.body)
+
+    // Create a new user
+    const user = new User({
+        email: req.body.email,
+        password: req.body.password
+    })
+
+    try {
+        // Save the user
+        const newUser = await user.save()
+        res.send(newUser)
+    } catch (error) {
+        if (isMongoError(error)) { // check for if mongo server suddenly disconnected before this request.
+            res.status(500).send('Internal server error')
+        } else {
+            log(error)
+            res.status(400).send('Bad Request') // bad request for changing the student.
+        }
+    }
+})
 
 /*Create Donation Post Page*/
 app.post('/createpost', function (req, res) {
@@ -169,7 +204,7 @@ app.post('/createpost', function (req, res) {
 
 /*FAQ Page*/
 app.get('/faqpage', (req, res) => {
-    FAQ.find().then((result) => {
+    Faq.find().then((result) => {
         res.send(result)
     }).catch((error) => {
         res.status(500).send(error)
@@ -187,7 +222,7 @@ app.get('/termsconditions', (req, res) => {
 
 /*Feedback Page*/
 app.get('/admin/feedback', (req, res) => {
-    Feedback.find().then((result) => {
+    Feedbacks.find().then((result) => {
         res.send(result)
     }).catch((error) => {
         res.status(500).send(error)
@@ -197,15 +232,15 @@ app.get('/admin/feedback', (req, res) => {
 app.post('/admin/feedback', (req, res) => {
     //res.send('Post to feedback') 
 
-    const Feedback = new Feedback ({
+    const Feedback = new Feedbacks ({
         feedbackId: req.body.feedbackId, 
         userId: req.body.userId,
         title: req.body.title,
         content: req.body.content, 
         isResolved: req.body.isResolved 
     })
-    Feedback.save().then((rest) => {
-        res.send(rest)
+    Feedback.save().then((result) => {
+        res.send(result)
     }).catch((error) => {
         res.status(500).send(error)
     })
@@ -235,22 +270,33 @@ app.get('/admin/blocklist', (req, res) => {
     })
 }) 
 
-app.patch('/admin/blocklist/:id', (req, res) => {
-  BlockList.findOne({_id:req.params.id}).then((result) => {
-      let blocked = req.body.accountBlocked 
-      let userId = req.body.userId 
-      //find and update user in the blocklist 
-      const user = User.findById(userId)
-      user.accountBlocked = blocked  
-      result.isResolved = resolved 
-      result.save().then((patchedRest) => {
-          res.send({uId: userId, BlockList: patchedRest})
-      }).catch((error) => {
-          res.status(500).send(error)
-      })
-  }).catch((error) => {
-      res.status(500).send(error)
-  })
+app.patch('/admin/blocklist/:userId', (req, res) => {
+    // BlockList.findOne({_id:req.params.id}).then((result) => {
+    //     let blocked = req.body.accountBlocked 
+    //     let userId = req.body.userId 
+    //     //find and update user in the blocklist 
+    //     const user = User.findById(userId)
+    //     user.accountBlocked = blocked  
+    //     result.save().then((patchedRest) => {
+    //         res.send({uId: userId, BlockList: patchedRest})
+    //     }).catch((error) => {
+    //         res.status(500).send(error)
+    //     })
+    // }).catch((error) => {
+    //     res.status(500).send(error)
+    // })
+    const user_id = req.params.userId
+
+    User.findOne({userId: user_id}).then((result) => {
+        result.accountBlocked = req.body.blocked 
+        result.save().then((patchedRest) => {
+            res.send({accountBlcked: patchedRest})
+        }).catch((error) => {
+            res.status(500).send(error)
+        })
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
 })
 
 

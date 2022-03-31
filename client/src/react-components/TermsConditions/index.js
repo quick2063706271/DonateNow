@@ -12,7 +12,7 @@ class TermsConditions extends React.Component {
     render() {
 
         function Term(props) {
-            return <li> { props.content } <br/></li>;
+            return <li className="term"> { props.content } <br/></li>;
         }
 
 
@@ -31,7 +31,7 @@ class TermsConditions extends React.Component {
                         <div className="post">
                             <div className="summary">
                                 <ul>
-                                    <li><h3>{terms.map((term) => <Term key={term.id} content={term.content} />)  }  </h3></li>
+                                    <li><h3>{terms.map((term) => <Term key={term.id} content={term.item} />)  }  </h3></li>
                                 </ul>
 
                                 <br></br>
@@ -44,11 +44,8 @@ class TermsConditions extends React.Component {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
+
+
 
                 </div>
 

@@ -260,64 +260,71 @@ let posts = [
 let allfaqs = [
     {
         id: 1,
-        content: "Q: Lorem ipsum dolor sit amet, consectetur adipiscing elit? A: Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit."
+        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        answer: " Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit."
+
     },
 
     {
         id: 2,
-        content: "Q: Fusce elementum lectus et magna vestibulum, at blandit nibh pellentesque? A: In sapien massa, auctor auctor ultricies at, ultricies sed sem. Suspendisse a ex nulla. Fusce nec sagittis leo."
+        question: "Fusce elementum lectus et magna vestibulum, at blandit nibh pellentesque? ", 
+        answer: "In sapien massa, auctor auctor ultricies at, ultricies sed sem. Suspendisse a ex nulla. Fusce nec sagittis leo."
     },
 
     {
         id: 3,
-        content: "Q: Phasellus rhoncus laoreet dictum. Nullam consectetur justo ut lectus sodales? A: a lacinia magna aliquet. "
+        question: "Phasellus rhoncus laoreet dictum. Nullam consectetur justo ut lectus sodales? ", 
+        answer: "A lacinia magna aliquet. Curabitur vel arcu eu sapien. "
     },
 
     {
         id: 4,
-        content: "Q: Sed eget condimentum ligula, sit amet accumsan purus? A: Morbi egestas arcu rutrum arcu mattis, nec iaculis sapien sodales."
+        question: "Sed eget condimentum ligula, sit amet accumsan purus?", 
+        answer: "Morbi egestas arcu rutrum arcu mattis, nec iaculis sapien sodales."
     },
 
     {
         id: 5,
-        content: "Q: Vestibulum vehicula porta massa. Fusce vitae nibh a nunc tincidunt ullamcorper? \nA: Sed nec magna placerat tortor pharetra gravida eu et ex."
+        question: "Vestibulum vehicula porta massa. Fusce vitae nibh a nunc tincidunt ullamcorper? ", 
+        answer: "Sed nec magna placerat tortor pharetra gravida eu et ex."
     },
 
     {
         id: 6,
-        content: "Q: Vivamus et justo pellentesque, luctus mauris vel, venenatis felis? \nA: In elit erat, auctor in fermentum sed, blandit eget nibh. Curabitur vel arcu eu sapien tempus pellentesque. "
+        question: "Vivamus et justo pellentesque, luctus mauris vel, venenatis felis? ", 
+        answer: "In elit erat, auctor in fermentum sed, blandit eget nibh. Curabitur vel arcu eu sapien tempus pellentesque."
     }
 ]
 
 let allterms = [
     {
         id: 1,
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit."
+        item: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit."
     },
 
     {
         id: 2,
-        content: "Fusce elementum lectus et magna vestibulum, at blandit nibh pellentesque.  In sapien massa, auctor auctor ultricies at, ultricies sed sem. Suspendisse a ex nulla. Fusce nec sagittis leo."
+        item: "Fusce elementum lectus et magna vestibulum, at blandit nibh pellentesque.  In sapien massa, auctor auctor ultricies at, ultricies sed sem. Suspendisse a ex nulla. Fusce nec sagittis leo."
     },
 
     {
         id: 3,
-        content: "Phasellus rhoncus laoreet dictum. Nullam consectetur justo ut lectus sodales, a lacinia magna aliquet. "
+        item: "Phasellus rhoncus laoreet dictum. Nullam consectetur justo ut lectus sodales, a lacinia magna aliquet. "
     },
 
     {
         id: 4,
-        content: "Sed eget condimentum ligula, sit amet accumsan purus. Morbi egestas arcu rutrum arcu mattis, nec iaculis sapien sodales."
+        item: "Sed eget condimentum ligula, sit amet accumsan purus. Morbi egestas arcu rutrum arcu mattis, nec iaculis sapien sodales."
     },
 
     {
         id: 5,
-        content: "Vestibulum vehicula porta massa. Fusce vitae nibh a nunc tincidunt ullamcorper. Sed nec magna placerat tortor pharetra gravida eu et ex."
+        item: "Vestibulum vehicula porta massa. Fusce vitae nibh a nunc tincidunt ullamcorper. Sed nec magna placerat tortor pharetra gravida eu et ex."
     },
 
     {
         id: 6,
-        content: "Vivamus et justo pellentesque, luctus mauris vel, venenatis felis. In elit erat, auctor in fermentum sed, blandit eget nibh. Curabitur vel arcu eu sapien tempus pellentesque. "
+        item: "Vivamus et justo pellentesque, luctus mauris vel, venenatis felis. In elit erat, auctor in fermentum sed, blandit eget nibh. Curabitur vel arcu eu sapien tempus pellentesque. "
     }
 ]
 
