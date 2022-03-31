@@ -336,7 +336,7 @@ app.patch("/userpage", mongoChecker, authenticate, async (req, res) => {
   }
 })
 
-app.post('userpage/feedback', (req, res) => {
+app.post('/userpage', (req, res) => {
   const Feedback = new Feedbacks ({
       userId: req.session.user,
       title: req.body.title,
