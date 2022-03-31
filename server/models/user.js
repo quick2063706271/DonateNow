@@ -8,6 +8,9 @@ const bcrypt = require('bcryptjs')
 // Making a Mongoose model a little differently: a Mongoose Schema
 // Allows us to add additional functionality.
 const UserSchema = new mongoose.Schema({
+	userId: {
+		type: number
+	},
 	email: {
 		type: String,
 		required: true,
@@ -32,16 +35,14 @@ const UserSchema = new mongoose.Schema({
 	gender: {
 		type: String,
 		minlength: 1,
+		enum: ['male', 'female', 'unspecified'],
 		trim: true
 	},
-    address1: {
+    addresses: [{
 		type: String,
 		trim: true
-	},
-	address2: {
-		type: String,
-		trim: true
-	},
+	}],
+
 	phone: {
 		type: Number
 	},
@@ -52,18 +53,13 @@ const UserSchema = new mongoose.Schema({
 	bio: {
 		type: String
 	},
-	wishlisted: [{type: mongoose.Schema.Types.ObjectId,
-				  ref: "wishlisted"
-				}],
-	donated: [{type: mongoose.Schema.Types.ObjectId,
-				  ref: "donated"
-				}],
-	transaction: [{type: mongoose.Schema.Types.ObjectId,
-			       ref: "transaction"
-				}],
-	complaintNum: [{type: mongoose.Schema.Types.ObjectId,
-				    ref: "complaintNum"
-	  }],
+	wishlisted: [
+		{type: mongoose.Schema.Types.ObjectId,
+		 ref: "wishlisted"
+		}],
+	complaintNum: {
+		type: number,
+	  },
 	accountBlocked: {
 		type: Boolean,
 		default: false

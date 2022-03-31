@@ -27,7 +27,7 @@ const { mongoose } = require("./db/mongoose");
 // import the mongoose model
 // to-do
 const { User } = require("./models/user")
-const { FAQ } = require('./models/faq')
+const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 
 
