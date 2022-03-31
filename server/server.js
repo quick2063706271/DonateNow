@@ -26,7 +26,7 @@ const { mongoose } = require("./db/mongoose");
 
 // import the mongoose model
 // to-do
-const { User } = require("./models/user")
+const { User } = require("./actions/login")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 
@@ -142,7 +142,16 @@ app.post("/login", (req, res) => {
 });
 
 // A route to logout a user
-// to-do
+app.get("/logout", (req, res) => {
+    // Remove the session
+    req.session.destroy(error => {
+        if (error) {
+            res.status(500).send(error);
+        } else {
+            res.send()
+        }
+    });
+});
 
 // A route to check if a user is logged in on the session
 // to-do
