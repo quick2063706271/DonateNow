@@ -3,6 +3,38 @@ import ENV from './../config.js'
 const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
 
+export const userSignUp = (app, email, password) => {
+    const url = `${API_HOST}/createanaccount`;
+    const data = { email, password };
+    fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(res => {
+            if (res.status === 200) {
+                app.setState({
+                    error: false,
+                    valid: true
+                });
+            }
+            return res.json();
+        })
+        .then(json => {
+            if (json && !json.userId) {
+                app.setState({
+                    error: true,
+                    errormsg: JSON.stringify(json)
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
 // Send a request to check if a user is logged in through the session cookie
 export const checkSession = (app) => {
     const url = `${API_HOST}/check-session`;
@@ -100,7 +132,7 @@ export const getUser = (app) => {
         })
         .then(json => {
             app.setState({
-                username: json.username,
+                email: json.email,
                 password: json.password,
                 dateOfBirth: json.dateOfBirth,
                 gender: json.gender,
