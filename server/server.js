@@ -88,6 +88,23 @@ const authenticate = (req, res, next) => {
   }
 }
 
+const checkAdmin = (req, res, next) => {
+    if (req.session.user) {
+        User.findById(req.session.user).then((user) => {
+            if (user.admin == false) {
+                return Promise.reject()
+            } else {
+                req.user = user
+                next()
+            }
+        }).catch((error) => {
+            res.status(401).send("Unauthorized")
+        })
+    } else {
+        res.status(401).send("Unauthorized")
+    }
+  }
+
 
 /*** Session handling **************************************/
 // Create a session and session cookie
@@ -102,8 +119,8 @@ app.use(
       },
       // store the sessions on the database in production
       store: env === 'production' ? MongoStore.create({
-                                              mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost:27017/' // to-do: Add correct api 
-                               }) : null
+            mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost:27017/' // to-do: Add correct api 
+        }) : null
   })
 );
 
@@ -270,7 +287,7 @@ app.get('/api/termsconditions', mongoChecker, (req, res) => {
 
 /*Feedback Page*/
 /* Should authenticate user and verify user is admin */
-app.get('/api/admin/feedback', mongoChecker, authenticate, (req, res) => {
+app.get('/api/admin/feedback', mongoChecker, authenticate, checkAdmin, (req, res) => {
     Feedbacks.find().then((result) => {
         res.send(result)
     }).catch((error) => {
@@ -279,7 +296,7 @@ app.get('/api/admin/feedback', mongoChecker, authenticate, (req, res) => {
 }) 
 
 
-app.patch('/api/admin/feedback/:id', (req, res) => {
+app.patch('/api/admin/feedback/:id', mongoChecker, authenticate, checkAdmin, (req, res) => {
     Feedbacks.findOne({_id:req.params.id}).then((result) => {
         let resolved = req.body.isResolved 
         result.isResolved = resolved 
@@ -295,7 +312,7 @@ app.patch('/api/admin/feedback/:id', (req, res) => {
 
 
 /*Block List Page*/
-app.get('/api/admin/blocklist', (req, res) => {
+app.get('/api/admin/blocklist', mongoChecker, authenticate, checkAdmin, (req, res) => {
     User.find().then((result) => {
         res.send(result)
     }).catch((error) => {
@@ -303,7 +320,7 @@ app.get('/api/admin/blocklist', (req, res) => {
     })
 }) 
 
-app.patch('/api/admin/blocklist/:userId', (req, res) => {
+app.patch('/api/admin/blocklist/:userId', mongoChecker, authenticate, checkAdmin, (req, res) => {
     // BlockList.findOne({_id:req.params.id}).then((result) => {
     //     let blocked = req.body.accountBlocked 
     //     let userId = req.body.userId 
@@ -331,6 +348,9 @@ app.patch('/api/admin/blocklist/:userId', (req, res) => {
         res.status(500).send(error)
     })
 })
+
+
+
 
 
 /* User Page */
@@ -418,9 +438,12 @@ for (let i = 0; i < routes.length; i++) {
     });
 }
 
+
 /*************************************************/
 // Express server listening...
 const port = process.env.PORT || 6001;
 app.listen(port, () => {
     log(`Listening on port ${port}...`);
 });
+
+
