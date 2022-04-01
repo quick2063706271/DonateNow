@@ -7,7 +7,7 @@ const validator = require('validator')
 const ViewerStatusSchema = new mongoose.Schema({
     viewerId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "ownerId"
+        ref: "viewerId"
     },
     viewStatus: {
         type: String,
@@ -153,6 +153,20 @@ function filterPostsById(posts, wishlisted) {
     return posts.filter(post => wishlisted.includes(post._id))
 }
 
+function filterPostsByOwnerId(posts, ownerId) {
+    return posts.filter(post => post.ownerId.equals(ownerId))
+}
+
+function mapAllViewerIds(viewers) {
+    return viewers.map((viewer) => viewer.viewerId)
+}
+
+function filterPostsByViewerId(posts, viewerId) {
+    return posts.filter(post => mapAllViewerIds(post.viewers).includes(viewerId))
+}
+
+
+
 // make a model using the User schema
 const Post = mongoose.model('Post', PostSchema)
-module.exports = { Post, filterPostsByParams, filterPostsById }
+module.exports = { Post, filterPostsByParams, filterPostsById, filterPostsByOwnerId, filterPostsByViewerId }

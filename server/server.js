@@ -23,7 +23,7 @@ const { User } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 const { Feedbacks } = require('./models/feedbacks') 
-const { Post, filterPostsByParams, filterPostsById } = require('./models/post') 
+const { Post, filterPostsByParams, filterPostsById, filterPostsByOwnerId, filterPostsByViewerId } = require('./models/post') 
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -445,6 +445,7 @@ app.patch("/api/userpage", mongoChecker, authenticate, async (req, res) => {
   }
 })
 
+// Post Feedback
 app.post('/api/userpage', (req, res) => {
   const Feedback = new Feedbacks ({
       userId: req.session.user,
@@ -457,6 +458,44 @@ app.post('/api/userpage', (req, res) => {
       res.status(500).send(error)
   })
 }) 
+
+// Get donated History Posts
+app.get("/api/userpage/donatedHistory", async (req, res) => {
+  try {
+    const posts = await Post.findAllPosts()
+    if (!posts) {
+      res.status(404).send("Posts not found")
+    }
+    const filtered = await filterPostsByOwnerId(posts, req.session.user)
+    if (!filtered) {
+      res.status(404).send("Filtered not found")
+    } else {
+      res.send(filtered)
+    }
+  } catch(error) {
+    log(error)
+    res.status(500).send("Internal Server Error")
+  }
+})
+
+// Get donated History Posts
+app.get("/api/userpage/transactedHistory", async (req, res) => {
+  try {
+    const posts = await Post.findAllPosts()
+    if (!posts) {
+      res.status(404).send("Posts not found")
+    }
+    const filtered = await filterPostsByViewerId(posts, req.session.user)
+    if (!filtered) {
+      res.status(404).send("Filtered not found")
+    } else {
+      res.send(filtered)
+    }
+  } catch(error) {
+    log(error)
+    res.status(500).send("Internal Server Error")
+  }
+})
 
 // app.get('/home', function (req, res) {
 //   res.send('Hello World')
