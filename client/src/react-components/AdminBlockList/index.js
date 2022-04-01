@@ -5,15 +5,15 @@ import AdminAppBar from "../AdminAppBar";
 import { Link, Navigate } from 'react-router-dom';
 import { uid } from "react-uid";
 import StickyFooter from "../StickyFooter";
+import { checkSession } from "../../actions/user";
 
 class AdminBlockList extends React.Component {
   
-  constructor() {
-      super();
-      this.state = {
-        users: database.users,
-      }
-  }
+    state = {
+      userId: "",
+      admin: false
+    }
+
 
   /*initStateInfo = () =>{
     this.setState({
@@ -24,6 +24,11 @@ class AdminBlockList extends React.Component {
   componentDidMount() {
     this.initStateInfo();
   }*/
+
+  componentDidMount() {
+    checkSession(this)
+  }
+
 
   handleBlock = (event, value) => {
     event.preventDefault();

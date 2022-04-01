@@ -97,7 +97,7 @@ app.use(
       resave: false,
       saveUninitialized: false,
       cookie: {
-          expires: 60000,
+          expires: 6000000,
           secure: false
       },
       // store the sessions on the database in production
@@ -166,7 +166,7 @@ app.get("/check-session", (req, res) => {
 
 /*** API Routes below ************************************/
 /* Create Account */
-app.post('/createanaccount', mongoChecker, async (req, res) => {
+app.post('/api/createanaccount', mongoChecker, async (req, res) => {
     log(req.body)
 
     // Create a new user
@@ -199,12 +199,12 @@ app.post('/createanaccount', mongoChecker, async (req, res) => {
 })
 
 /* Create Donation Post Page */
-app.post('/createpost', function (req, res) {
+app.post('/api/createpost', function (req, res) {
     res.send('Hello World')
 })
 
 /* Search Page  */
-app.get('/filterposts', function(req, res) {
+app.get('/api/filterposts', function(req, res) {
     Post.findPostByKeyword(req.body.keyword, req.body.categoryVal, req.body.locationVal, 
                             req.body.deliveryOptionVal, req.body.sortDatePostedVal, req.body.sortViewsVal)
         .then((result) => {
@@ -216,7 +216,7 @@ app.get('/filterposts', function(req, res) {
 
 
 /*FAQ Page*/
-app.get('/faqpage', (req, res) => {
+app.get('/api/faqpage', mongoChecker,(req, res) => {
     Faq.find().then((result) => {
         res.send(result)
     }).catch((error) => {
@@ -225,7 +225,7 @@ app.get('/faqpage', (req, res) => {
 }) 
 
 /*Terms and Conditions Page*/
-app.get('/termsconditions', (req, res) => {
+app.get('/api/termsconditions', mongoChecker, (req, res) => {
     TermsConditions.find().then((result) => {
         res.send(result)
     }).catch((error) => {
@@ -235,7 +235,7 @@ app.get('/termsconditions', (req, res) => {
 
 /*Feedback Page*/
 /* Should authenticate user and verify user is admin */
-app.get('/admin/feedback', (req, res) => {
+app.get('/admin/feedback', mongoChecker, authenticate, (req, res) => {
     Feedbacks.find().then((result) => {
         res.send(result)
     }).catch((error) => {
@@ -374,7 +374,7 @@ for (let i = 0; i < routes.length; i++) {
     });
 }
 
-const public_routes = ["/", "/search"]
+const public_routes = ["/", "/search", "/termsconditions", "/admin/feedback"]
 for (let i = 0; i < routes.length; i++) {
     let route = public_routes[i];
     app.get(route, (req, res) => {

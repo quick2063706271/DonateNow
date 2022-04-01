@@ -4,7 +4,7 @@
   // console.log('Current environment:', ENV.env)
   
   export const findPostByKeyword = (app, keyword) => {
-    const url = `${API_HOST}/filterposts`;
+    const url = `${API_HOST}/api/filterposts`;
     const {categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal} = app.state
     const data = {keyword, categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal}
     fetch(url, {
@@ -21,7 +21,7 @@
             }
         })
         .then(json => {
-            if (json && !json.userId) {
+            if (json) {
                 app.setState({
                     posts: JSON.stringify(json)
                 });

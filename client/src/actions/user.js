@@ -4,7 +4,7 @@ const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
 
 export const userSignUp = (app, email, password) => {
-    const url = `${API_HOST}/createanaccount`;
+    const url = `${API_HOST}/api/createanaccount`;
     const data = { email, password };
     fetch(url, {
         method: 'POST',

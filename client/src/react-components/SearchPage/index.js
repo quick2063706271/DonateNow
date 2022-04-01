@@ -101,63 +101,10 @@ class SearchPage extends React.Component {
         const keyword = this.props.query.get("keyword") || "";
         findPostByKeyword(this, keyword)
     }
-    // not used
-    // appliedFilter = () => {
-    //     return (this.state.categoryVal !== "All") || (this.state.locationVal !== "All") || (this.state.deliveryOptionVal !== "All")
-    // }    
-
-    // fetchPosts = () => {
-    //     const keyword = this.props.query.get("keyword") || "";
-
-    //     var posts = database.posts;
-
-    //     if (keyword.trim() !== "") {
-    //         posts = posts.filter(post => post.header.toLowerCase().includes(keyword.trim().toLowerCase()))
-    //     }
-    //     if (this.state.categoryVal !== "All") {
-    //         posts = posts.filter(post => post.categories.some(item => this.state.categoryVal === item))
-    //     }
-    //     if (this.state.locationVal !== "All") {
-    //         posts = posts.filter(post => post.location === this.state.locationVal)
-    //     }
-    //     if (this.state.deliveryOptionVal !== "All") {
-    //         posts = posts.filter(post => post.deliveryOption === this.state.deliveryOptionVal)
-    //     }
-    //     if (this.state.sortDatePostedVal === "Oldest") {
-    //         posts = this.sortPosts("Oldest")
-    //     }
-    //     if (this.state.sortDatePostedVal === "Newest") {
-    //         posts = this.sortPosts("Newest")
-    //     }
-    //     if (this.state.sortViewsVal === "Smallest") {
-    //         posts = this.sortPosts("Smallest")
-    //     }
-    //     if (this.state.sortViewsVal === "Largest") {
-    //         posts = this.sortPosts("Largest")
-    //     }
-
-    //     this.setState({
-    //         post: posts
-    //     })
-    // }
 
     componentDidMount() {
         checkSession(this, this.fetchPosts());
     }
-
-    // sortPosts = (drpdwn) => {
-    //     var posts = database.posts
-    //     if (drpdwn === "Oldest") {
-    //         posts = posts.sort((a, b) => new Date(a.datePosted.split('/')) - new Date(b.datePosted.split('/')))
-    //     } else if (drpdwn === "Newest") {
-    //         posts = posts.sort((a, b) => new Date(a.datePosted.split('/')) - new Date(b.datePosted.split('/'))).reverse()
-    //     } else if (drpdwn === "Smallest") {
-    //         posts = posts.sort((a, b) => a.views > b.views ? 1 : -1)
-    //     } else if (drpdwn === "Largest") {
-    //         posts = posts.sort((a, b) => a.views < b.views ? 1 : -1)
-    //     }
-    //     return posts
-    // }
 
     handlePostOnClick = (value) => {
         this.setState({
