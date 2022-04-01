@@ -37,7 +37,7 @@ const PostSchema = new mongoose.Schema({
     },
     imageSrc: {
         type: String, // change later
-        default: "./upload.png"
+        default: "/upload.png"
     },
     deliveryOption: {
         type: String,
@@ -73,7 +73,7 @@ const PostSchema = new mongoose.Schema({
             type: String,
             minlength: 1,
             trim: true,
-            enum: ["Toys, Kids, Parents", "Clothing", "Books & Stationary", "Art", "Furniture", "Shoes, Bags, Backpacks", "Music", 
+            enum: ["Toys, Kids, Parents", "Clothing", "Books, Stationary", "Art", "Furniture", "Shoes, Bags, Backpacks", "Music", 
                     "Sports","Electronics",  "All"]
 
         }],
