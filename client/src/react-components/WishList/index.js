@@ -11,25 +11,27 @@ import { findPostByWishlisted } from "../../actions/post";
 
 class WishList extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            userId: "",
+            userId: -1,
             admin: false,
-            //posts: [],
-            users: {},
-            posts: {},
+            posts: [],
+            //users: {},
+            //posts: {},
             redirect: false,
             redirectPostId: -1
         }
     }
 
     fetchPosts = () => {
+        console.log("hi")
         findPostByWishlisted(this)
     }
 
     componentDidMount() {
-        checkSession(this, this.fetchPosts());
+        checkSession(this)
+        //checkSession(this, this.fetchPosts());
 
         /*if (this.props.userId > -1) {
             this.initStateInfo();
@@ -38,7 +40,7 @@ class WishList extends React.Component {
 
     handlePostOnClick = (value) => {
         this.setState({
-            redirectPostId: value.postId
+            redirectPostId: value._id
         }, () => {
             this.setState({
                 redirect: true
@@ -116,7 +118,7 @@ class WishList extends React.Component {
     }
 
     render() {
-        if (this.props.userId > -1) {
+        if (this.state.userId != -1) {
             return (
                 <div>
                     {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}
@@ -137,7 +139,7 @@ class WishList extends React.Component {
                 </div>
             );
         } else {
-            return (<h1>Please log in to view this page.</h1>);
+            return (<h1>Please log in to view this page. :(</h1>);
         }
     }
 
