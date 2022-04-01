@@ -298,33 +298,33 @@ let allfaqs = [
 
 let allterms = [
     {
-        id: 1,
-        item: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit."
+        header: "User Accounts",
+        description: "When You create an account with Us, You must provide Us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of Your account on Our Service."
     },
 
     {
-        id: 2,
-        item: "Fusce elementum lectus et magna vestibulum, at blandit nibh pellentesque.  In sapien massa, auctor auctor ultricies at, ultricies sed sem. Suspendisse a ex nulla. Fusce nec sagittis leo."
+        header: "Content",
+        description: "Our Service allows You to post Content. You are responsible for the Content that You post to the Service, including its legality, reliability, and appropriateness."
     },
 
     {
-        id: 3,
-        item: "Phasellus rhoncus laoreet dictum. Nullam consectetur justo ut lectus sodales, a lacinia magna aliquet. "
+        header: "Content Restrictions",
+        description: "The Company is not responsible for the content of the Service's users. You expressly understand and agree that You are solely responsible for the Content and for all activity that occurs under your account, whether done so by You or any third person using Your account."
     },
 
     {
-        id: 4,
-        item: "Sed eget condimentum ligula, sit amet accumsan purus. Morbi egestas arcu rutrum arcu mattis, nec iaculis sapien sodales."
+        header: "Content Backups",
+        description: "Although regular backups of Content are performed, the Company does not guarantee there will be no loss or corruption of data."
     },
 
     {
-        id: 5,
-        item: "Vestibulum vehicula porta massa. Fusce vitae nibh a nunc tincidunt ullamcorper. Sed nec magna placerat tortor pharetra gravida eu et ex."
+        header: "Copyright Policy",
+        description: "We respect the intellectual property rights of others. It is Our policy to respond to any claim that Content posted on the Service infringes a copyright or other intellectual property infringement of any person."
     },
 
     {
-        id: 6,
-        item: "Vivamus et justo pellentesque, luctus mauris vel, venenatis felis. In elit erat, auctor in fermentum sed, blandit eget nibh. Curabitur vel arcu eu sapien tempus pellentesque. "
+        header: "Termination",
+        description: "We may terminate or suspend Your Account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions."
     }
 ]
 

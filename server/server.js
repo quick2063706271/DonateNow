@@ -302,13 +302,14 @@ app.post('/api/termsconditions', mongoChecker, async (req, res) => {
 
     // Create a new post
     const termsConditions = new TermsConditions({
-        terms: req.body.terms
+        header: req.body.header,
+        description: req.body.description
     })
 
     termsConditions.save()
         .then((newTermsConditions) => {
             res.status(200).send({
-                terms: newTermsConditions
+                termsconditions: newTermsConditions
             })
         })
         .catch(error => {
