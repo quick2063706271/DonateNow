@@ -221,6 +221,9 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
 
     // Create a new post
     const post = new Post({
+        ownerId:  req.body.ownerId,
+        ownerStatus: req.body.ownerStatus,
+        viewers: [],
         imageSrc: req.body.imageSrc,
         deliveryOption: req.body.deliveryOption,
         header: req.body.header,
@@ -270,13 +273,8 @@ app.get('/api/posts/:id', mongoChecker, /*authenticate,*/ function(req, res) {
         }) 
 })
 
-/* Create Donation Post Page */
-app.post('/api/createpost', function (req, res) {
-    res.send('Hello World')
-})
-
 /* Search Page  */
-app.get('/api/filterposts', function(req, res) {
+app.get('/api/filterposts', mongoChecker, function(req, res) {
     console.log(req.query)
     Post.findAllPosts()
         .then((result) => {
