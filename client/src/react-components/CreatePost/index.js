@@ -15,8 +15,6 @@ import { checkSession } from "../../actions/user";
 import { createPost } from "../../actions/post";
 
 class CreatePost extends React.Component {
-
-
     constructor(props){
         super(props);
         this.state = {
@@ -31,14 +29,13 @@ class CreatePost extends React.Component {
             newPostId: "",
             redirect: false
         };
-        this.handlePublish = this.handlePublish.bind(this);
     }
 
     componentDidMount() {
         checkSession(this)
     }
 
-    handleInputChange(event) {
+    handleInputChange = (event) => {
         const target = event.target
         const value = target.value
         const name = target.name
@@ -48,14 +45,14 @@ class CreatePost extends React.Component {
         })
     }
 
-    handleDeliveryInputChange(checkedItem) {
+    handleDeliveryInputChange = (checkedItem) => {
         // console.log(checkedItem)
         this.setState({
             deliveryOption: checkedItem
         })
     }
 
-    handleCategoryChange(event) {
+    handleCategoryChange = (event) => {
         const isChecked = event.target.checked
         const value = event.target.value
         if (isChecked){
@@ -73,20 +70,18 @@ class CreatePost extends React.Component {
         }
     }
 
-    handlePublish (event) {
+    handlePublish = (event) => {
         if (this.state.categories.length === 0 || this.state.header === "" 
            && this.state.description === "" || this.state.deliveryOption == "" || this.state.location == "")
         {
             this.setState({
-                errormsg: true})
-        }else{
+                errormsg: true
+            })
+        } else{
             this.setState({
                 errormsg: false
             })
-            (createPost(this), ()=>
-            this.setState({
-                    redirect: true
-                }))
+            createPost(this)
         }
     }
 
@@ -103,7 +98,7 @@ class CreatePost extends React.Component {
                         }
                         <Button type="submit"
                                 id="publishButton" 
-                                onClick={(event) => this.handlePublish(event)}
+                                onClick={this.handlePublish}
                                 >Publsih
                         </Button>
                 </div>
@@ -127,7 +122,7 @@ class CreatePost extends React.Component {
                                     maxWidth: '78%',
                                 }}
                                 >
-                                <TextField name="header" value={this.state.header} onChange = {event => this.handleInputChange(event)}
+                                <TextField name="header" value={this.state.header} onChange = {this.handleInputChange}
                                            fullWidth label="Enter Your Header Here..." id="header" />
                             </Box>
                         </div>
@@ -140,7 +135,7 @@ class CreatePost extends React.Component {
                                     maxWidth: '74.5%',
                                 }}
                                 >
-                                <TextField name="location" value={this.state.location} onChange = {event => this.handleInputChange(event)}
+                                <TextField name="location" value={this.state.location} onChange = {this.handleInputChange}
                                     fullWidth label="Enter Your Location Here..." id="location" />
                             </Box>
                         </div>
@@ -153,7 +148,7 @@ class CreatePost extends React.Component {
                                     height: 400,
                                 }}
                                 >
-                                <TextField name="description" value={this.state.description} onChange = {event => this.handleInputChange(event)}
+                                <TextField name="description" value={this.state.description} onChange = {this.handleInputChange}
                                            fullWidth label="Enter Your Description Here..." id="location" />
                             </Box>
                         </div>
@@ -171,54 +166,54 @@ class CreatePost extends React.Component {
                                     control={<Checkbox name="Toys, Kids, Parents" />}
                                     label="Toys, Kids, Parents" 
                                     value="Toys, Kids, Parents"
-                                    onChange = {(event) => this.handleCategoryChange(event)}
+                                    onChange = {this.handleCategoryChange}
                                 />
                                 <FormControlLabel
                                     control={<Checkbox name="Clothing" />}
                                     label="Clothing"
                                     value="Clothing"
-                                    onChange = {(event) => this.handleCategoryChange(event)}
+                                    onChange = {this.handleCategoryChange}
                                 />
                                 <FormControlLabel
                                     control={<Checkbox name="Books, Stationary" />}
                                     label="Books, Stationary"
                                     value="Books, Stationary"
-                                    onChange = {(event) => this.handleCategoryChange(event)}
+                                    onChange = {this.handleCategoryChange}
                                 />
                                 <FormControlLabel
                                     control={<Checkbox name="Art" />}
                                     label="Art"
                                     value="Art"
-                                    onChange = {(event) => this.handleCategoryChange(event)}
+                                    onChange = {this.handleCategoryChange}
                                 />
                                 <FormControlLabel
                                     control={<Checkbox name="Furniture" />}
                                     label="Furniture"
                                     value="Furniture"
-                                    onChange = {(event) => this.handleCategoryChange(event)}
+                                    onChange = {this.handleCategoryChange}
                                 />
                                 <FormControlLabel
                                     control={<Checkbox name="Shoes, Bags, Backpacks" />}
                                     label="Shoes, Bags, Backpacks"
                                     value="Shoes, Bags, Backpacks"
-                                    onChange = {(event) => this.handleCategoryChange(event)}
+                                    onChange = {this.handleCategoryChange}
                                 />
                                 <FormControlLabel
                                     control={<Checkbox name="Music" />}
                                     label="Music" value="Music"
-                                    onChange = {(event) => this.handleCategoryChange(event)}
+                                    onChange = {this.handleCategoryChange}
                                     
                                 />
                                 <FormControlLabel
                                     control={<Checkbox name="Sports" />}
                                     label="Sports" value="Sports"
-                                    onChange = {(event) => this.handleCategoryChange(event)}
+                                    onChange = {this.handleCategoryChange}
                                 />
                                 <FormControlLabel
                                     control={<Checkbox name="Electronics" />}
                                     label="Electronics"
                                     value="Electronics"
-                                    onChange = {(event) => this.handleCategoryChange(event)}
+                                    onChange = {this.handleCategoryChange}
                                 />
                                 <FormHelperText>Check all that applies</FormHelperText>
                             </FormGroup>

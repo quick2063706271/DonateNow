@@ -92,6 +92,10 @@ export const createPost = (app) => {
                 console.log(json._id)
                 app.setState({
                     newPostId: json._id.toString()
+                }, () => {
+                    app.setState({
+                        redirect: true
+                    })
                 });
             }
         })
