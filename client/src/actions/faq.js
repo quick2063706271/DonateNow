@@ -11,6 +11,7 @@ export const getFaqs = (app) => {
             'Content-Type': 'application/json'
         },
     });
+    
     // Send the request with fetch()
     fetch(request)
         .then(res => {
@@ -22,7 +23,7 @@ export const getFaqs = (app) => {
             if (json) {
                 console.log(json)
                 app.setState({
-                    terms: json
+                    faqs: json
                 }, () => { console.log(app.state) });
             }
         })
