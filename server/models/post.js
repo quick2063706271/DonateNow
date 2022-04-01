@@ -18,7 +18,6 @@ const ViewerStatusSchema = new mongoose.Schema({
     }
 })
 
-
 const PostSchema = new mongoose.Schema({
     ownerId: {
         type: mongoose.Schema.Types.ObjectId,
