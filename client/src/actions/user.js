@@ -256,10 +256,10 @@ export const updateUser = (PersonalInformation) => {
 // A function to send a POST request for feedbackl
 export const addFeedback = (Feedback) => {
     // the URL for the request
-    const url = `${API_HOST}/userpage`;
+    const url = `${API_HOST}/api/userpage`;
 
     // The data we are going to send in our request
-    if (this.state.title === "" || this.state.content === "") {
+    if (Feedback.state.title === "" || Feedback.state.content === "") {
         console.log("error: empty feedback")
         Feedback.setState({
             message: {
@@ -280,8 +280,7 @@ export const addFeedback = (Feedback) => {
         method: "post",
         body: JSON.stringify(feedback),
         headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         }
     });
 
