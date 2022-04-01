@@ -3,12 +3,47 @@ import ENV from './../config.js'
 const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
 
+export const userSignUp = (app, email, password) => {
+    const url = `${API_HOST}/createanaccount`;
+    const data = { email, password };
+    fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(data)
+    })
+        .then(res => {
+            if (res.status === 200) {
+                app.setState({
+                    error: false,
+                    valid: true
+                });
+            }
+            return res.json();
+        })
+        .then(json => {
+            if (json && !json.userId) {
+                app.setState({
+                    error: true,
+                    errormsg: JSON.stringify(json)
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
 // Send a request to check if a user is logged in through the session cookie
 export const checkSession = (app) => {
     const url = `${API_HOST}/check-session`;
 
     if (!ENV.use_frontend_test_user) {
-        fetch(url)
+        fetch(url, {
+            credentials: 'include'
+        })
         .then(res => {
             if (res.status === 200) {
                 return res.json();
@@ -39,33 +74,50 @@ export const updateLoginForm = (loginComp, field) => {
 };
 
 // A function to send a POST request with the user to be logged in
-export const login = (loginComp, app) => {
+export const login = (app) => {
     // Create our request constructor with all the parameters we need
+    console.log(app.state)
     const request = new Request(`${API_HOST}/login`, {
         method: "post",
-        body: JSON.stringify(loginComp.state),
+        body: JSON.stringify({
+            email: app.state.email,
+            password: app.state.password
+        }),
         headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
+            'Content-Type': 'application/json'
+        },
     });
     // Send the request with fetch()
     fetch(request)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            }
-        })
+        .then(res => res.json())
         .then(json => {
-            if (json.userId !== undefined) {
-                //app.setUserId({ userId: json.userId });
-                app.setUserId(json.userId, json.admin)
-                loginComp.setLoginState(json.userId, false, true, json.admin)
+            console.log(json)
+            if (json && json.success) {
+                app.setState({
+                    countdown: 5,
+                    error: true,
+                    errorMsg: ""
+                }, () => {
+                    const countdown = setInterval(() => {
+                        app.setState({
+                            countdown: app.state.countdown - 1,
+                            errorMsg: `Successfully signed in. Redirecting in ${app.state.countdown - 1} seconds`
+                        });
+                        if (app.state.countdown <= 0) {
+                            window.location.href = "/search";
+                            clearInterval(countdown);
+                        }
+                    }, 1000)}
+                )
+            } else {
+                app.setState({
+                    error: true,
+                    errorMsg: json.message
+                })
             }
         })
         .catch(error => {
             console.log(error);
-            loginComp.setLoginState(-1, true, false, false)
         });
 };
 
@@ -100,7 +152,7 @@ export const getUser = (app) => {
         })
         .then(json => {
             app.setState({
-                username: json.username,
+                email: json.email,
                 password: json.password,
                 dateOfBirth: json.dateOfBirth,
                 gender: json.gender,

@@ -4,34 +4,23 @@ import { Link, Navigate } from 'react-router-dom';
 import logo from './logo.png';
 import loginImage from './LoginPageImage.jpeg';
 import StickyFooter from "../StickyFooter";
-import database from '../../database'
+import { userSignUp } from "../../actions/user"
 
 class CreateAnAccountPage extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            username: "",
+            email: "",
             password: "",
             retypePassword: "",
             error: false,
             errormsg: "",
-            valid: false,
-            users: {}
+            valid: false
         }
     }
 
-    // Get usernames and passwords from server
-    // Code below requires server call
-    initStateInfo = () =>{
-        this.setState({
-            users: database.users,
-          }, () => console.log(this.state))
-    }
-
-    componentDidMount() {
-        this.initStateInfo();
-    }
+    componentDidMount() {}
 
     handleInputChange(event) {
         const target = event.target
@@ -43,30 +32,13 @@ class CreateAnAccountPage extends React.Component {
     }
 
     handleClick (event) {
-        const userData = this.state.users.find((user) => user.username === this.state.username);
-
-        if (userData) {
+        if (this.state.password !== this.state.retypePassword) {
             this.setState({
                 error: true,
-                errormsg: "Duplicate username!"
+                errormsg: "Passwords do not match"
             })
-        } else {
-            if (this.state.password !== this.state.retypePassword) {
-                this.setState({
-                    error: true,
-                    errormsg: "Passwords do not match!"
-                })
-            } else {
-                this.setState({
-                    valid: true,
-                    error: false
-                })
-                // Add a new pair of username and password to server
-                // Code below requires server call
-                const maxUserId = this.state.users.reduce((prev, curr) => (prev.userId > curr.userId) ? prev : curr, 0)
-                database.users.push({userId: maxUserId.userId+1, username: this.state.username, password: this.state.password, admin: false})
-            }
         }
+        userSignUp(this, this.state.email, this.state.password)
     }
 
     render() {
@@ -77,8 +49,8 @@ class CreateAnAccountPage extends React.Component {
             <main id="main-holder">
                 <h1 className="login-form-header">Create an Account</h1>
                     <div>
-                        <label className="login-form-text"><b>Username</b></label>
-                        <input type="text" name="username" className="login-form-field" value={this.state.username} onChange = {event => this.handleInputChange(event)} required/>
+                        <label className="login-form-text"><b>Email</b></label>
+                        <input type="text" name="email" className="login-form-field" value={this.state.email} onChange = {event => this.handleInputChange(event)} required/>
                     </div>
                     <div>
                         <label className="login-form-text"><b>Password</b></label>
