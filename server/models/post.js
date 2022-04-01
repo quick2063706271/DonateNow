@@ -76,11 +76,15 @@ const PostSchema = new mongoose.Schema({
         }],
         default: []
     },
-    blocked: {
+    views: { 
         type: Number,
         default: 0
     },
-    views: { 
+    requests: { 
+        type: Number,
+        default: 0
+    },
+    saved: { 
         type: Number,
         default: 0
     },
