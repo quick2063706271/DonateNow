@@ -48,7 +48,7 @@ class Feedback extends React.Component {
                 >
                     <TextField 
                         className="input"
-                        placeholder="Enter your header here …"
+                        placeholder="Enter your header here … (at least 10 characters)"
                         variant="outlined"
                         value={this.state.title}
                         onChange = {event => this.handleTitleChange(event)}
@@ -56,7 +56,7 @@ class Feedback extends React.Component {
                     {/* <br/> */}
                     <TextField
                         className="input"
-                        placeholder="Enter your feedback/dispute/complaint here …"
+                        placeholder="Enter your feedback/dispute/complaint here … (at least 30 characters)"
                         multiline
                         rows={10}
                         variant="outlined"
