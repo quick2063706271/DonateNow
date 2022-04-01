@@ -312,3 +312,27 @@ export const addFeedback = (Feedback) => {
             console.log(error);
         });
 };
+
+// A function to find user profile of a user
+export const getDonationHistory = (app) => {
+    const url = `${API_HOST}/api/userpage/donatedHistory`
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get donationHistory")
+            }
+        })
+        .then(json => {
+            console.log(json)
+            app.setState({
+                donationPosts: json
+            }) 
+        })
+        .catch(error => {
+            console.log(error)
+            alert("Could not set State")
+        })
+};
