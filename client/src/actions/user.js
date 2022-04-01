@@ -184,10 +184,13 @@ export const getUser = (app) => {
 export const updateUserForm = (PersonalInformation, field) => {
     const value = field.value;
     const name = field.name;
-
+    console.log(value)
+    console.log(name)
     PersonalInformation.setState({
         [name]: value
     });
+    console.log(PersonalInformation[name])
+    console.log(PersonalInformation)
 };
 // [
     // 	{"op": "replace", "path": "/username", "value": "test1"}, 
@@ -198,11 +201,11 @@ export const updateUser = (PersonalInformation) => {
         isEdit: false
     });
 
-    const url = "${APP_HOST}/api/userpage"
-
+    const url = `${API_HOST}/api/userpage`
+    console.log(PersonalInformation.state)
     const patchData = [
         {"op": "replace", "path": "/username", "value": PersonalInformation.state.username},
-        {"op": "replace", "path": "/password", "value": PersonalInformation.state.password},
+        // {"op": "replace", "path": "/password", "value": PersonalInformation.state.password},
         {"op": "replace", "path": "/dateOfBirth", "value": PersonalInformation.state.dateOfBirth},
         {"op": "replace", "path": "/gender", "value": PersonalInformation.state.gender},
         {"op": "replace", "path": "/address", "value": [PersonalInformation.state.address1, PersonalInformation.state.address2]},
@@ -210,18 +213,18 @@ export const updateUser = (PersonalInformation) => {
         {"op": "replace", "path": "/preference", "value": PersonalInformation.state.preference},
         {"op": "replace", "path": "/bio", "value": PersonalInformation.state.bio}
     ]
-
+    console.log(patchData)
     const request = new Request(url, {
-        method: "patch",
-        body: JSON.stringify(patchData),
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
+        method: "PATCH",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(patchData)
     })
+    console.log(JSON.stringify(patchData))
+    console.log(request)
     // Send the request with fetch()
     fetch(request)
         .then(function (res) {
+            console.log(1)
             // Handle response we get from the API.
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
@@ -242,6 +245,7 @@ export const updateUser = (PersonalInformation) => {
                     }
                 });
             }
+            return(res.json())
         })
         .catch(error => {
             console.log(error);

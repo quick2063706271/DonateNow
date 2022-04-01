@@ -10,19 +10,21 @@ import { getUser } from "../../actions/user";
 import { checkSession } from "../../actions/user";
 
 class PersonalInformation extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        console.log(props)
+        console.log(this.props)
         this.state = {
-            username: "",
-            password: "",
-            dateOfBirth: "",
-            gender: "",
-            address1: "",
-            address2: "",
-            phone: "",
-            email: "",
-            preference: "", 
-            bio: "",
+            username: this.props.username,
+            password: this.props.password,
+            dateOfBirth: this.props.dateOfBirth,
+            gender: this.props.gender,
+            address1: this.props.address1,
+            address2: this.props.address2,
+            phone: this.props.phone,
+            email: this.props.email,
+            preference: this.props.preference, 
+            bio: this.props.bio,
             isRead: false,
             isEdit: false,
             isComplained: false,
@@ -65,8 +67,19 @@ class PersonalInformation extends React.Component {
     }
 
     componentDidMount() {
-        checkSession(this); // sees if a user is logged in
+        checkSession(this, this.fetchPersonalInformation); // sees if a user is logged in
     }
+    updateUserInfo = (e) => {
+        const field = e.target
+        const value = field.value;
+        const name = field.name;
+        console.log(value)
+        console.log(name)
+        this.setState({
+            [name]: value
+        });
+        console.log(this.state)
+    };
 
     // changeButtonText = () => {
     //     const buttonElement = document.querySelector(".edit-button").children[0];
@@ -91,16 +104,16 @@ class PersonalInformation extends React.Component {
                } = this.props;
         //const isAdmin = this.state.admin;
         const isAdmin = this.props.admin;
-        this.state.username = username
-        this.state.password = password
-        this.state.dateOfBirth = dateOfBirth
-        this.state.gender = gender
-        this.state.address1 = address1
-        this.state.address2 = address2
-        this.state.phone = phone
-        this.state.email = email
-        this.state.preference = preference
-        this.state.bio = bio
+        // this.state.username = username
+        // this.state.password = password
+        // this.state.dateOfBirth = dateOfBirth
+        // this.state.gender = gender
+        // this.state.address1 = address1
+        // this.state.address2 = address2
+        // this.state.phone = phone
+        // this.state.email = email
+        // this.state.preference = preference
+        // this.state.bio = bio
         let complaint, block;
         if (isAdmin) {
             complaint = <Button variant="contained" display="inline-block" onClick={this.handleComplaint}>
@@ -132,28 +145,27 @@ class PersonalInformation extends React.Component {
                         </div>
                         <TextField
                         className="inputFieldId"
-                        disabled // Username cannot be changed
                         label="Username"
-                        name="username"
+                        name={"username"}
                         value={this.state.username}
                         InputProps={{
-                            readOnly: this.state.isEdit,
+                            readOnly: !this.state.isEdit,
                         }}
                         sx={{width: '20ch' }}
-                        onChange = {e => updateUserForm(this, e.target)}
+                        onChange = {this.updateUserInfo}
                         />
                         {
                             isRead === false &&
                             <TextField
                             className="inputField"
-                            name="password"
+                            name={"password"}
                             label="Password"
                             value={this.state.password}
                             InputProps={{
                                 readOnly: !this.state.isEdit
                             }}
                             sx={{width: '20ch' }}
-                            onChange = {e => updateUserForm(this, e.target)}
+                            onChange = {this.updateUserInfo}
                             />
                         }
                         {
@@ -165,13 +177,13 @@ class PersonalInformation extends React.Component {
                             <TextField
                             className="inputField"
                             label="Date Of Birth"
-                            name="dateOfBirth"
+                            name={"dateOfBirth"}
                             value={this.state.dateOfBirth}
                             InputProps={{
                                 readOnly: !this.state.isEdit,
                             }}
                             sx={{width: '20ch' }}
-                            onChange = {e => updateUserForm(this, e.target)}
+                            onChange = {this.updateUserInfo}
                         />
                         }
                         {
@@ -179,13 +191,13 @@ class PersonalInformation extends React.Component {
                             <TextField
                             className="inputField"
                             label="Gender"
-                            name="gender"
+                            name={"gender"}
                             value={this.state.gender}
                             InputProps={{
                                 readOnly: !this.state.isEdit,
                             }}
                             sx={{width: '20ch' }}
-                            onChange = {e => updateUserForm(this, e.target)}
+                            onChange = {this.updateUserInfo}
                             />
                         }
                         {
@@ -196,7 +208,7 @@ class PersonalInformation extends React.Component {
                             isRead == false &&
                             <TextField
                             className="inputField"
-                            name="address1"
+                            name={"address1"}
                             label="Address 1"
                             value={this.state.address1}
                             InputProps={{
@@ -204,7 +216,7 @@ class PersonalInformation extends React.Component {
                             }}
                             multiline
                             sx={{width: '42.5ch' }}
-                            onChange = {e => updateUserForm(this, e.target)}
+                            onChange = {this.updateUserInfo}
                             />
                         }
                         {
@@ -215,7 +227,7 @@ class PersonalInformation extends React.Component {
                             isRead == false &&
                             <TextField
                             className="inputField"
-                            name="address2"
+                            name={"address2"}
                             label="Address 2"
                             value={this.state.address2}
                             InputProps={{
@@ -223,7 +235,7 @@ class PersonalInformation extends React.Component {
                             }}
                             multiline
                             sx={{width: '42.5ch' }}
-                            onChange = {e => updateUserForm(this, e.target)}
+                            onChange = {this.updateUserInfo}
                             />
                         }
                         {
@@ -235,13 +247,13 @@ class PersonalInformation extends React.Component {
                             <TextField
                             className="inputField"
                             label="Phone number"
-                            name="phone"
+                            name={"phone"}
                             value={this.state.phone}
                             InputProps={{
                                 readOnly: !this.state.isEdit,
                             }}
                             sx={{width: '20ch' }}
-                            onChange = {e => updateUserForm(this, e.target)}
+                            onChange = {this.updateUserInfo}
                             />
                         }
                         {
@@ -252,16 +264,17 @@ class PersonalInformation extends React.Component {
                             name="email"
                             value={this.state.email}
                             InputProps={{
-                                readOnly: !this.state.isEdit,
+                                readOnly: true,
                             }}
+                            disabled // Email cannot be changed
                             sx={{width: '20ch' }}
-                            onChange = {e => updateUserForm(this, e.target)}
+                            onChange = {this.updateUserInfo}
                             />
                         }
                         <br />
                         <TextField
                         className="inputField"
-                        name="preference"
+                        name={"preference"}
                         label="Preference"
                         value={this.state.preference}
                         InputProps={{
@@ -269,38 +282,38 @@ class PersonalInformation extends React.Component {
                         }}
                         multiline
                         sx={{width: '42.5ch' }}
-                        onChange = {e => updateUserForm(this, e.target)}
+                        onChange = {this.updateUserInfo}
                         />
                         <br />
                         <TextField
                         id="outlined-read-only-input"
-                        name="bio"
+                        name={"bio"}
                         label="Biography"
                         value={this.state.bio}
                         InputProps={{
-                            readOnly: this.state.isEdit,
+                            readOnly: !this.state.isEdit,
                         }}
                         multiline
                         sx={{width: '42.5ch' }}
-                        onChange = {e => updateUserForm(this, e.target)}
+                        onChange = {this.updateUserInfo}
                         />
                         {
                             isRead == false &&
                             <div className="edit-button" >
                                 {this.state.isEdit ? 
                                     <Button variant="contained" 
-                                            onClick={this.handleEdit} 
-                                            style={{
-                                                backgroundColor: "transparent",
-                                            }}> 
-                                        edit
-                                    </Button>
-                                : <Button variant="contained" 
                                             onClick={() => updateUser(this)} 
                                             style={{
                                                 backgroundColor: "transparent",
                                             }}> 
                                         save
+                                    </Button>
+                                : <Button variant="contained" 
+                                            onClick={this.handleEdit} 
+                                            style={{
+                                                backgroundColor: "transparent",
+                                            }}> 
+                                        edit
                                 </Button>}
                             </div>
                         }

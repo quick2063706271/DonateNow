@@ -326,6 +326,7 @@ app.get("/api/userpage", mongoChecker, authenticate, async (req, res) => {
 
 app.patch("/api/userpage", mongoChecker, authenticate, async (req, res) => {
   const fieldsToUpdate = {}
+  console.log(req.body)
   req.body.map((change) => {
     const propertyToChange = change.path.substr(1)
     fieldsToUpdate[propertyToChange] = change.value
