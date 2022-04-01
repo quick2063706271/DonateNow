@@ -6,8 +6,14 @@ import StickyFooter from '../StickyFooter';
 import { getTermsConditions } from "../../actions/termsconditions";
 
 class TermsConditions extends React.Component {
-    state = {
-        termsconditions: [] 
+
+
+    constructor() {
+        super()
+        this.state = {
+            id: -1,
+            terms: ""
+        }
     }
 
     componentDidMount (){
@@ -35,7 +41,7 @@ class TermsConditions extends React.Component {
                         <div className="post">
                             <div className="summary">
                                 <ul>
-                                    <li><h3>{this.state.termsconditions.map((term) => <Term key={term.id} content={term.item} />)  }  </h3></li>
+                                    <li><h3>{this.state.map((term) => <Term key={term.id} content={term.item} />)  }  </h3></li>
                                 </ul>
 
                                 <br></br>
