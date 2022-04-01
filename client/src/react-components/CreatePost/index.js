@@ -2,8 +2,6 @@ import AppBar from "../AppBar";
 import React from "react";
 import Button from '@mui/material/Button';
 import "./styles.css";
-// import upload from "./upload.png"
-import PostImage from "../PostImage";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -12,8 +10,9 @@ import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import StickyFooter from "../StickyFooter";
-import database from "../../database";
 import { Navigate } from "react-router-dom";
+import { checkSession } from "../../actions/user";
+import { createPost } from "../../actions/post";
 
 class CreatePost extends React.Component {
 
@@ -21,17 +20,22 @@ class CreatePost extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            userId: "",
+            admin: "",
             header: "",
             location:"",
             description:"",
             categories: [],
             deliveryOption: "",
             errormsg: false,
-            newPostId: -1,
+            newPostId: "",
             redirect: false
         };
     }
 
+    componentDidMount() {
+        checkSession(this)
+    }
 
     handleInputChange(event) {
         const target = event.target
@@ -76,16 +80,12 @@ class CreatePost extends React.Component {
                 errormsg: true})
         }else{
             this.setState({
-                errormsg: false})
-            let postId = database.createPost(this.props.userId, 
-                this.state.header, this.state.location, this.state.description, 
-                this.state.deliveryOption, this.state.categories)
+                errormsg: false
+            })
+            (createPost(this), ()=>
             this.setState({
-                newPostId: postId
-            }, () => this.setState({
                     redirect: true
-                }
-            ))
+                }))
         }
     }
 
@@ -179,9 +179,9 @@ class CreatePost extends React.Component {
                                     onChange = {(event) => this.handleCategoryChange(event)}
                                 />
                                 <FormControlLabel
-                                    control={<Checkbox name="Books" />}
-                                    label="Books"
-                                    value="Books"
+                                    control={<Checkbox name="Books, Stationary" />}
+                                    label="Books, Stationary"
+                                    value="Books, Stationary"
                                     onChange = {(event) => this.handleCategoryChange(event)}
                                 />
                                 <FormControlLabel

@@ -3,7 +3,7 @@
 
 // let viewerStatuses = ["requested", "requst accepted", "completed", "failed"]
 
-let categories = ["Toys", "Kids", "Parents", "Interests", "Electronics", "Clothing", "Books & Stationary", "All"]
+let categories = ["Toys, Kids, Parents", "Clothing", "Books & Stationary", "Art", "Furniture", "Shoes, Bags, Backpacks", "Music", "Sports","Electronics",  "All"]
 
 let locations = ["Toronto, ON", "Montreal, QC", "All"]
 
