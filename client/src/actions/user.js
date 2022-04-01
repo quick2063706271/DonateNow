@@ -111,7 +111,7 @@ export const login = (app) => {
                             errorMsg: `Successfully signed in. Redirecting in ${app.state.countdown - 1} seconds`
                         });
                         if (app.state.countdown <= 0) {
-                            window.location.href = "/search";
+                            window.location.href = "/search?keyword=";
                             clearInterval(countdown);
                         }
                     }, 1000)}
