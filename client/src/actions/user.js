@@ -336,3 +336,26 @@ export const getDonationHistory = (app) => {
             alert("Could not set State")
         })
 };
+
+export const getTransactionHistory = (app) => {
+    const url = `${API_HOST}/api/userpage/donatedHistory`
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get donationHistory")
+            }
+        })
+        .then(json => {
+            console.log(json)
+            app.setState({
+                transactionPosts: json
+            }) 
+        })
+        .catch(error => {
+            console.log(error)
+            alert("Could not set State")
+        })
+};

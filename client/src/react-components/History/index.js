@@ -3,19 +3,22 @@ import React from "react";
 import { uid } from "react-uid";
 import HistoryItem from "../HistoryItem";
 import { getDonationHistory } from "../../actions/user";
+import { getTransactionHistory } from "../../actions/user";
 import { checkSession } from "../../actions/user";
+import { internal_resolveProps } from "@mui/utils";
 
 class History extends React.Component {
     constructor() {
         super()
         this.state = {
             donationPosts: [],
-            transactedPosts: []
+            transactionPosts: []
         }
     }
 
     fetchHistoryInformation = () => {
         getDonationHistory(this)
+        getTransactionHistory(this)
         // findPostByKeyword(this, keyword)
     }
     componentDidMount() {
@@ -36,26 +39,31 @@ class History extends React.Component {
                             {this.state.donationPosts.map((item) => (<HistoryItem 
                                                     key={uid(item)} 
                                                     header={item.header} 
-                                                    status={item.ownerStatus} 
+                                                    ownerStatus={item.ownerStatus} 
                                                     date={item.datePosted}
                                                     img={item.imageSrc}
                                                     postId={item.postId}
+                                                    viewers={item.viewers}
+                                                    category={"donation"}
                                                 />)
                             )}
                         </div>
         }
         
         
-        else {
+        if (category === "transaction") {
+            console.log("goes to condition 3")
+            console.log(this.state.transactionPosts)
             histories = <div id="history-container">
-                            {items.map((item) => (<HistoryItem 
+                            {this.state.transactionPosts.map((item) => (<HistoryItem 
                                                     key={uid(item)} 
                                                     header={item.header} 
-                                                    status={category === "transaction" ? item.viewerStatus: item.ownerStatus} 
-                                                    date={item.requestDate}
+                                                    status={item.ownerStatus} 
+                                                    date={item.datePosted}
                                                     img={item.imageSrc}
                                                     postId={item.postId}
-                                                    userId={this.props.userId}
+                                                    viewers={item.viewers}
+                                                    category={"transaction"}
                                                 />)
                             )}
                         </div>
