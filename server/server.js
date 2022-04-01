@@ -223,7 +223,7 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
     const post = new Post({
         ownerId:  req.body.ownerId,
         ownerStatus: req.body.ownerStatus,
-        imageSrc: req.body.imageSrc,
+        // imageSrc: req.body.imageSrc,
         deliveryOption: req.body.deliveryOption,
         header: req.body.header,
         location: req.body.location,
@@ -333,7 +333,7 @@ app.get('/api/termsconditions', mongoChecker, (req, res) => {
 
 /*Feedback Page*/
 /* Should authenticate user and verify user is admin */
-app.get('/api/admin/feedback', mongoChecker, authenticate, checkAdmin, (req, res) => {
+app.get('/api/admin/feedback', mongoChecker, /*authenticate, checkAdmin,*/ (req, res) => {
     Feedbacks.find().then((result) => {
         res.send(result)
     }).catch((error) => {
