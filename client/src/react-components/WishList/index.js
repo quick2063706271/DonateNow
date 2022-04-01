@@ -25,13 +25,11 @@ class WishList extends React.Component {
     }
 
     fetchPosts = () => {
-        console.log("hi")
         findPostByWishlisted(this)
     }
 
     componentDidMount() {
-        checkSession(this)
-        //checkSession(this, this.fetchPosts());
+        checkSession(this, this.fetchPosts());
 
         /*if (this.props.userId > -1) {
             this.initStateInfo();

@@ -58,9 +58,6 @@ export const checkSession = (app, callback = () => {}) => {
                     if (callback instanceof Function) {
                         callback();
                     }
-                    else {
-                        return app.state
-                    }
                 });
             }
         })

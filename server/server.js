@@ -247,9 +247,10 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
 })
 
 /* Wishlist */
-app.get('/api/posts', mongoChecker, /*authenticate,*/ function(req, res) {
+app.get('/api/posts/:id', mongoChecker, /*authenticate,*/ function(req, res) {
     console.log(req.body)
-    User.findWishlistedByUser(req.body.userId)
+    console.log(req.params.id)
+    User.findWishlistedByUser(req.params.id)
         .then((user) => {
             if (!user) {
                 res.status(404).send("Resource not found")

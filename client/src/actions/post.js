@@ -42,11 +42,8 @@ export const findPostByKeyword = (app, keyword) => {
 
   export const findPostByWishlisted = (app) => {
     console.log(app.state)
-    const request = new Request(`${API_HOST}/api/posts`, {
+    const request = new Request(`${API_HOST}/api/posts/${app.state.userId}`, {
         method: "GET",
-        body: JSON.stringify({
-            userId: app.state.userId
-        }),
         headers: {
             'Content-Type': 'application/json'
         },
