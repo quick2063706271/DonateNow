@@ -32,6 +32,7 @@ class CreatePost extends React.Component {
         };
     }
 
+
     handleInputChange(event) {
         const target = event.target
         const value = target.value

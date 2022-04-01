@@ -14,26 +14,18 @@ class WishList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            userId: -1,
+            userId: "",
             admin: false,
             posts: [],
-            //users: {},
-            //posts: {},
             redirect: false,
             redirectPostId: -1
         }
     }
 
-    fetchPosts = () => {
-        findPostByWishlisted(this)
-    }
-
     componentDidMount() {
-        checkSession(this, this.fetchPosts());
-
-        /*if (this.props.userId > -1) {
-            this.initStateInfo();
-        }*/
+        checkSession(this, () => {
+            findPostByWishlisted(this)
+        });
     }
 
     handlePostOnClick = (value) => {
@@ -45,34 +37,6 @@ class WishList extends React.Component {
             })
         })
     }
-
-    /*getPost = (post) => {
-        const wishlisted = database.users.filter(this.getUser)[0].wishlisted;
-        return wishlisted.includes(post.postId);
-    }
-
-    getUser = (user) => {
-        return user.userId === this.props.userId;
-    }
-
-    initStateInfo = () =>{
-        this.setState({
-            user: database.users.filter(this.getUser)[0],
-            posts: database.posts.filter(this.getPost),
-          }, () => console.log(this.state))
-    }*/
-
-    /*loopThroughPosts = () => {
-
-        for (const [key, value] of Object.entries(this.state.posts)) {
-            console.log(`${key}: ${value}`);
-            for (const [k, v] of Object.entries(value)) {
-                console.log(`${k}: ${v}`);
-                console.log(value.imageSrc);
-                return (<div>{value.categories}</div>);
-            }
-        }
-    }*/
 
     loopThroughPosts = () => {
         const components = []

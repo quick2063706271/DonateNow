@@ -223,7 +223,6 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
     const post = new Post({
         ownerId:  req.body.ownerId,
         ownerStatus: req.body.ownerStatus,
-        viewers: [],
         imageSrc: req.body.imageSrc,
         deliveryOption: req.body.deliveryOption,
         header: req.body.header,
@@ -245,7 +244,6 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
             else {
                 return res.status(400).send(error);
             }
-            res.status(500).send("Internal server error")
         })
 })
 
