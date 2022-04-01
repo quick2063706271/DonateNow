@@ -80,7 +80,7 @@ class WishList extends React.Component {
     }
 
     render() {
-        if (this.state.userId != -1) {
+        if (this.state.userId != "") {
             return (
                 <div>
                     {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}

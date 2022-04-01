@@ -48,11 +48,9 @@ export const findPostByKeyword = (app, keyword) => {
             'Content-Type': 'application/json'
         },
     });
-    console.log(request)
     // Send the request with fetch()
     fetch(request)
         .then(res => {
-            console.log(res)
             if (res.status === 200) {
                 return res.json();
             }
