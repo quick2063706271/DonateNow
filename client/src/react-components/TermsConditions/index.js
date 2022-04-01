@@ -7,7 +7,6 @@ import { getTermsConditions } from "../../actions/termsconditions";
 
 class TermsConditions extends React.Component {
 
-
     constructor() {
         super()
         this.state = {
@@ -19,9 +18,9 @@ class TermsConditions extends React.Component {
         getTermsConditions(this)
     }
 
-    renderTermsConditions(header, description) {
-        const content = []
-    }
+    // renderTermsConditions(header, description) {
+    //     const content = []
+    // }
 
     render() {
 

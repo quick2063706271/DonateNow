@@ -6,22 +6,33 @@ import { uid } from "react-uid";
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import StickyFooter from '../StickyFooter';
+import { getFaqs } from "../../actions/faq";
 
 
 class FAQpage extends React.Component {
+
+    constructor() {
+        super()
+        this.state = {
+            faqs: []
+        }
+    }
+
+    componentDidMount() {
+        getFaqs(this)
+    }
+
+    // renderFaqs(header, description) {
+    //     const content = []
+    // }
+
     render() {
 
         function Faq(props) {
             return <ul className="faq"><li className="question"> { props.question }</li> <br></br> <li className="answer"> { props.answer }</li> </ul>;
         }
 
-        // const faqs = [
-        //     {id: 1, content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis condimentum consectetur. Etiam et interdum urna. Suspendisse maximus egestas hendrerit.'},
-        //     {id: 2, content: 'Fusce elementum lectus et magna vestibulum, at blandit nibh pellentesque.'},
-        //     {id: 3, content: 'Phasellus rhoncus laoreet dictum. Nullam consectetur justo ut lectus sodales, a lacinia magna aliquet. '}
-        // ];
-
-        const faqs = database.allfaqs;
+        //const faqs = database.allfaqs;
 
         return (
             <div>
@@ -36,7 +47,7 @@ class FAQpage extends React.Component {
                         <div className="post">
                             <div className="summary">
                                 <ul>
-                                    <li><h3>{faqs.map((faq) => <Faq key={faq.id} question={faq.question} answer={faq.answer} />)}</h3></li>
+                                    <li><h3>{this.state.faqs.map((faq) => <Faq key={faq._id} question={faq.question} answer={faq.answer} />)}</h3></li>
                                 </ul>
 
                                 <br></br>
