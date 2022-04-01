@@ -92,10 +92,16 @@ const PostSchema = new mongoose.Schema({
 
 
 
-PostSchema.statics.findPostByKeyword = function(keyword, categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal,sortViewsVal) {
+PostSchema.statics.findPostByKeyword = function() {
     
     var posts = Post.find();
 
+    return new Promise((resolve, reject) => {
+        resolve(posts)
+    })
+}
+
+function filterPostsByParams(posts, keyword, categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal,sortViewsVal) {
     if (keyword.trim() !== "") {
         posts = posts.filter(post => post.header.toLowerCase().includes(keyword.trim().toLowerCase()))
     }
@@ -109,25 +115,22 @@ PostSchema.statics.findPostByKeyword = function(keyword, categoryVal, locationVa
         posts = posts.filter(post => post.deliveryOption === deliveryOptionVal)
     }
     if (sortDatePostedVal === "Oldest") {
-        posts = sortPosts("Oldest")
+        posts = sortPosts(posts, "Oldest")
     }
     if (sortDatePostedVal === "Newest") {
-        posts = sortPosts("Newest")
+        posts = sortPosts(posts, "Newest")
     }
     if (sortViewsVal === "Smallest") {
-        posts = sortPosts("Smallest")
+        posts = sortPosts(posts, "Smallest")
     }
     if (sortViewsVal === "Largest") {
-        posts = sortPosts("Largest")
+        posts = sortPosts(posts, "Largest")
     }
-    return new Promise((resolve, reject) => {
-        resolve(posts)
-    })
+    return posts;
 }
 
-function sortPosts (drpdwn) {
 
-    var posts = Post.find();
+function sortPosts (posts, drpdwn) {
 
     if (drpdwn === "Oldest") {
         posts = posts.sort((a, b) => new Date(a.datePosted.split('/')) - new Date(b.datePosted.split('/')))
@@ -143,4 +146,4 @@ function sortPosts (drpdwn) {
 
 // make a model using the User schema
 const Post = mongoose.model('Post', PostSchema)
-module.exports = { Post }
+module.exports = { Post, filterPostsByParams }
