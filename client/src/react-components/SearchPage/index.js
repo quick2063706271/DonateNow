@@ -6,10 +6,14 @@ import StickyFooter from "../StickyFooter";
 import database from '../../database'
 import ComponentParamsWrapper from "../ParamsWrapper";
 import AdminAppBar from "../AdminAppBar";
+import {checkSession} from "../../actions/user";
+import {findPostByKeyword} from "../../actions/post"
 
 class SearchPage extends React.Component {
     state = {
-        post: [],
+        userId: "",
+        admin: false,
+        posts: [],
         categoryBtnText: "Category: All",
         categoryVal: "All",
         locationBtnText: "Location: All",
@@ -93,61 +97,67 @@ class SearchPage extends React.Component {
         }
     }
 
-    // not used
-    appliedFilter = () => {
-        return (this.state.categoryVal !== "All") || (this.state.locationVal !== "All") || (this.state.deliveryOptionVal !== "All")
-    }
-
     fetchPosts = () => {
         const keyword = this.props.query.get("keyword") || "";
-        var posts = database.posts;
-        if (keyword.trim() !== "") {
-            posts = posts.filter(post => post.header.toLowerCase().includes(keyword.trim().toLowerCase()))
-        }
-        if (this.state.categoryVal !== "All") {
-            posts = posts.filter(post => post.categories.some(item => this.state.categoryVal === item))
-        }
-        if (this.state.locationVal !== "All") {
-            posts = posts.filter(post => post.location === this.state.locationVal)
-        }
-        if (this.state.deliveryOptionVal !== "All") {
-            posts = posts.filter(post => post.deliveryOption === this.state.deliveryOptionVal)
-        }
-        if (this.state.sortDatePostedVal === "Oldest") {
-            posts = this.sortPosts("Oldest")
-        }
-        if (this.state.sortDatePostedVal === "Newest") {
-            posts = this.sortPosts("Newest")
-        }
-        if (this.state.sortViewsVal === "Smallest") {
-            posts = this.sortPosts("Smallest")
-        }
-        if (this.state.sortViewsVal === "Largest") {
-            posts = this.sortPosts("Largest")
-        }
-
-        this.setState({
-            post: posts
-        })
+        findPostByKeyword(this, keyword)
     }
+    // not used
+    // appliedFilter = () => {
+    //     return (this.state.categoryVal !== "All") || (this.state.locationVal !== "All") || (this.state.deliveryOptionVal !== "All")
+    // }    
+
+    // fetchPosts = () => {
+    //     const keyword = this.props.query.get("keyword") || "";
+
+    //     var posts = database.posts;
+
+    //     if (keyword.trim() !== "") {
+    //         posts = posts.filter(post => post.header.toLowerCase().includes(keyword.trim().toLowerCase()))
+    //     }
+    //     if (this.state.categoryVal !== "All") {
+    //         posts = posts.filter(post => post.categories.some(item => this.state.categoryVal === item))
+    //     }
+    //     if (this.state.locationVal !== "All") {
+    //         posts = posts.filter(post => post.location === this.state.locationVal)
+    //     }
+    //     if (this.state.deliveryOptionVal !== "All") {
+    //         posts = posts.filter(post => post.deliveryOption === this.state.deliveryOptionVal)
+    //     }
+    //     if (this.state.sortDatePostedVal === "Oldest") {
+    //         posts = this.sortPosts("Oldest")
+    //     }
+    //     if (this.state.sortDatePostedVal === "Newest") {
+    //         posts = this.sortPosts("Newest")
+    //     }
+    //     if (this.state.sortViewsVal === "Smallest") {
+    //         posts = this.sortPosts("Smallest")
+    //     }
+    //     if (this.state.sortViewsVal === "Largest") {
+    //         posts = this.sortPosts("Largest")
+    //     }
+
+    //     this.setState({
+    //         post: posts
+    //     })
+    // }
 
     componentDidMount() {
-        this.fetchPosts();
+        checkSession(this, this.fetchPosts());
     }
 
-    sortPosts = (drpdwn) => {
-        var posts = database.posts
-        if (drpdwn === "Oldest") {
-            posts = posts.sort((a, b) => new Date(a.datePosted.split('/')) - new Date(b.datePosted.split('/')))
-        } else if (drpdwn === "Newest") {
-            posts = posts.sort((a, b) => new Date(a.datePosted.split('/')) - new Date(b.datePosted.split('/'))).reverse()
-        } else if (drpdwn === "Smallest") {
-            posts = posts.sort((a, b) => a.views > b.views ? 1 : -1)
-        } else if (drpdwn === "Largest") {
-            posts = posts.sort((a, b) => a.views < b.views ? 1 : -1)
-        }
-        return posts
-    }
+    // sortPosts = (drpdwn) => {
+    //     var posts = database.posts
+    //     if (drpdwn === "Oldest") {
+    //         posts = posts.sort((a, b) => new Date(a.datePosted.split('/')) - new Date(b.datePosted.split('/')))
+    //     } else if (drpdwn === "Newest") {
+    //         posts = posts.sort((a, b) => new Date(a.datePosted.split('/')) - new Date(b.datePosted.split('/'))).reverse()
+    //     } else if (drpdwn === "Smallest") {
+    //         posts = posts.sort((a, b) => a.views > b.views ? 1 : -1)
+    //     } else if (drpdwn === "Largest") {
+    //         posts = posts.sort((a, b) => a.views < b.views ? 1 : -1)
+    //     }
+    //     return posts
+    // }
 
     handlePostOnClick = (value) => {
         this.setState({
@@ -198,15 +208,15 @@ class SearchPage extends React.Component {
             <div>
                 {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}
 
-                {this.props.userId === -1 ? 
+                {this.state.userId === "" ? 
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :null
                     }
-                {this.props.userId != -1 && database.getUserData(this.props.userId).admin ? 
+                {this.state.userId != "" && this.state.admin ? 
                     <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :
                     null}
-                {this.props.userId != -1 && !database.getUserData(this.props.userId).admin ?
+                {this.state.userId != "" && !this.state.admin ?
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :null
                     }
@@ -249,7 +259,8 @@ class SearchPage extends React.Component {
                     <div className="header">
                         <h1><b>Search Results: </b></h1>
                     </div>
-                    {this.state.post.map((post) => {
+                    {console.log(this.state.posts)}
+                    {this.state.posts.map((post) => {
                         return this.renderPost(post)
                     })}
                 </div>

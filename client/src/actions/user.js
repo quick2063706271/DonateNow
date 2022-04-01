@@ -37,7 +37,7 @@ export const userSignUp = (app, email, password) => {
 }
 
 // Send a request to check if a user is logged in through the session cookie
-export const checkSession = (app) => {
+export const checkSession = (app, callback = () => {}) => {
     const url = `${API_HOST}/check-session`;
 
     if (!ENV.use_frontend_test_user) {
@@ -51,7 +51,14 @@ export const checkSession = (app) => {
         })
         .then(json => {
             if (json && json.userId) {
-                app.setState({ userId: json.userId });
+                app.setState({
+                    userId: json.userId,
+                    admin: json.admin
+                }, () => {
+                    if (callback instanceof Function) {
+                        callback();
+                    }
+                });
             }
         })
         .catch(error => {

@@ -23,6 +23,7 @@ const { User } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 const { Feedbacks } = require('./models/feedbacks') 
+const { Post } = require('./models/post') 
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -197,10 +198,22 @@ app.post('/createanaccount', mongoChecker, async (req, res) => {
         })
 })
 
-/*Create Donation Post Page*/
+/* Create Donation Post Page */
 app.post('/createpost', function (req, res) {
     res.send('Hello World')
 })
+
+/* Search Page  */
+app.get('/filterposts', function(req, res) {
+    Post.findPostByKeyword(req.body.keyword, req.body.categoryVal, req.body.locationVal, 
+                            req.body.deliveryOptionVal, req.body.sortDatePostedVal, req.body.sortViewsVal)
+        .then((result) => {
+            res.send(result)
+        }).catch((err) => {
+            res.status(500).send("Internal server error")
+        }) 
+})
+
 
 /*FAQ Page*/
 app.get('/faqpage', (req, res) => {
@@ -343,9 +356,9 @@ app.post('/userpage', (req, res) => {
   })
 }) 
 
-app.get('/home', function (req, res) {
-  res.send('Hello World')
-})
+// app.get('/home', function (req, res) {
+//   res.send('Hello World')
+// })
 
 app.use(express.static(path.join(__dirname, CLIENT_DIR)));
 
