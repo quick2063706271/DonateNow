@@ -23,7 +23,7 @@ const { User } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 const { Feedbacks } = require('./models/feedbacks') 
-const { Post } = require('./models/post') 
+const { Post, filterPostsByParams } = require('./models/post') 
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -205,12 +205,16 @@ app.post('/api/createpost', function (req, res) {
 
 /* Search Page  */
 app.get('/api/filterposts', function(req, res) {
-    Post.findPostByKeyword(req.body.keyword, req.body.categoryVal, req.body.locationVal, 
-                            req.body.deliveryOptionVal, req.body.sortDatePostedVal, req.body.sortViewsVal)
+    console.log(req.query)
+    Post.findPostByKeyword()
         .then((result) => {
-            res.send(result)
+            const filtered = filterPostsByParams(
+                result, req.query.keyword, req.query.categoryVal, req.query.locationVal,
+                req.query.deliveryOptionVal, req.query.sortDatePostedVal, req.query.sortViewsVal
+            )
+            res.send(filtered)
         }).catch((err) => {
-            res.status(500).send("Internal server error")
+            res.status(500).send(err)
         }) 
 })
 

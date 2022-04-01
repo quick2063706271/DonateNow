@@ -1,19 +1,25 @@
-  // environment configutations
-  import ENV from './../config.js'
-  const API_HOST = ENV.api_host
-  // console.log('Current environment:', ENV.env)
+// environment configutations
+import ENV from './../config.js'
+
+const API_HOST = ENV.api_host
+// console.log('Current environment:', ENV.env)
   
-  export const findPostByKeyword = (app, keyword) => {
-    const url = `${API_HOST}/api/filterposts`;
-    const {categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal} = app.state
-    const data = {keyword, categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal}
+export const findPostByKeyword = (app, keyword) => {
+    console.log(ENV.api_host)
+    let url = `${API_HOST}/api/filterposts?`;
+    const {categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal, sortViewsVal} = app.state
+    const params = {keyword, categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal, sortViewsVal}
+    Object.keys(params).forEach(key => {
+        url = url + key + "=" + params[key] + "&&"
+    })
+
+    console.log(url)
+
     fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify(data)
+        }
     })
         .then(res => {
             if (res.status === 200) {
@@ -22,8 +28,9 @@
         })
         .then(json => {
             if (json) {
+                console.log(json)
                 app.setState({
-                    posts: JSON.stringify(json)
+                    posts: json
                 });
             }
         })
