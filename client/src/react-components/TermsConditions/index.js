@@ -2,15 +2,12 @@ import React from "react";
 import "./styles.css";
 // import database from '../../database';
 import AppBar from "../AppBar";
-import { uid } from "react-uid";
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 import StickyFooter from '../StickyFooter';
 import { getTermsConditions } from "../../actions/termsconditions";
 
 class TermsConditions extends React.Component {
     state = {
-        terms: []
+        termsconditions: [] 
     }
 
     componentDidMount (){
@@ -38,7 +35,7 @@ class TermsConditions extends React.Component {
                         <div className="post">
                             <div className="summary">
                                 <ul>
-                                    <li><h3>{this.state.terms.map((term) => <Term key={term.id} content={term.item} />)  }  </h3></li>
+                                    <li><h3>{this.state.termsconditions.map((term) => <Term key={term.id} content={term.item} />)  }  </h3></li>
                                 </ul>
 
                                 <br></br>

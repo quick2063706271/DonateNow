@@ -3,8 +3,8 @@
   const API_HOST = ENV.api_host
   // console.log('Current environment:', ENV.env)
   
-  export const getTermsConditions = (app) => {
-    const url = `${API_HOST}/api/termsconditions`;
+  export const getFeedbacks = (app) => {
+    const url = `${API_HOST}/api/admin/feedback`;
    
     fetch(url)
         .then(res => {
@@ -15,7 +15,7 @@
         .then(json => {
             if (json) {
                 app.setState({
-                    termsconditions: JSON.stringify(json)
+                    feedbacks: JSON.stringify(json) 
                 });
             }
         })

@@ -235,7 +235,7 @@ app.get('/api/termsconditions', mongoChecker, (req, res) => {
 
 /*Feedback Page*/
 /* Should authenticate user and verify user is admin */
-app.get('/admin/feedback', mongoChecker, authenticate, (req, res) => {
+app.get('/api/admin/feedback', mongoChecker, authenticate, (req, res) => {
     Feedbacks.find().then((result) => {
         res.send(result)
     }).catch((error) => {
@@ -244,8 +244,8 @@ app.get('/admin/feedback', mongoChecker, authenticate, (req, res) => {
 }) 
 
 
-app.patch('/admin/feedback/:id', (req, res) => {
-    Feedback.findOne({_id:req.params.id}).then((result) => {
+app.patch('/api/admin/feedback/:id', (req, res) => {
+    Feedbacks.findOne({_id:req.params.id}).then((result) => {
         let resolved = req.body.isResolved 
         result.isResolved = resolved 
         result.save().then((patchedRest) => {
@@ -260,7 +260,7 @@ app.patch('/admin/feedback/:id', (req, res) => {
 
 
 /*Block List Page*/
-app.get('/admin/blocklist', (req, res) => {
+app.get('/api/admin/blocklist', (req, res) => {
     User.find().then((result) => {
         res.send(result)
     }).catch((error) => {
@@ -268,7 +268,7 @@ app.get('/admin/blocklist', (req, res) => {
     })
 }) 
 
-app.patch('/admin/blocklist/:userId', (req, res) => {
+app.patch('/api/admin/blocklist/:userId', (req, res) => {
     // BlockList.findOne({_id:req.params.id}).then((result) => {
     //     let blocked = req.body.accountBlocked 
     //     let userId = req.body.userId 
@@ -299,7 +299,7 @@ app.patch('/admin/blocklist/:userId', (req, res) => {
 
 
 /* User Page */
-app.get("/userpage", mongoChecker, authenticate, async (req, res) => {
+app.get("/api/userpage", mongoChecker, authenticate, async (req, res) => {
   try {
     const user = await User.findById(req.session.user)
     if (!user) {
@@ -320,7 +320,7 @@ app.get("/userpage", mongoChecker, authenticate, async (req, res) => {
 // 	{"op": "replace", "path": "/phone", "value": 12341234}
 // ]
 
-app.patch("/userpage", mongoChecker, authenticate, async (req, res) => {
+app.patch("/api/userpage", mongoChecker, authenticate, async (req, res) => {
   const fieldsToUpdate = {}
   req.body.map((change) => {
     const propertyToChange = change.path.substr(1)
@@ -343,7 +343,7 @@ app.patch("/userpage", mongoChecker, authenticate, async (req, res) => {
   }
 })
 
-app.post('/userpage', (req, res) => {
+app.post('/api/userpage', (req, res) => {
   const Feedback = new Feedbacks ({
       userId: req.session.user,
       title: req.body.title,

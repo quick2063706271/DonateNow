@@ -4,15 +4,22 @@ import { TextField } from "@material-ui/core";
 import Stack from '@mui/material/Stack';
 import { Button } from "@mui/material";
 import { addFeedback } from "../../actions/user";
+import { getFeedbacks } from "../../actions/feedback";
 
 class Feedback extends React.Component {
     constructor() {
         super()
         this.state = {
+            userId: -1, 
             title: "",
             content: "",
-            message: null
+            message: null, 
+            isResolved: false 
         }
+    }
+
+    componentDidMount (){
+        getFeedbacks(this)
     }
 
     handleSubmit = (event) => {
