@@ -1,26 +1,32 @@
-  // environment configutations
-  import ENV from './../config.js'
-  const API_HOST = ENV.api_host
-  // console.log('Current environment:', ENV.env)
-  
-  export const getFeedbacks = (app) => {
-    const url = `${API_HOST}/api/admin/feedback`;
-   
-    fetch(url)
+// environment configutations
+import ENV from './../config.js'
+const API_HOST = ENV.api_host
+// console.log('Current environment:', ENV.env)
+
+export const getFeedbacks = (app) => {
+    console.log(app.state)
+    const request = new Request(`${API_HOST}/api/admin/feedback`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+    // Send the request with fetch()
+    fetch(request)
         .then(res => {
             if (res.status === 200) {
-                return res.json;
-            } 
+                return res.json();
+            }
         })
         .then(json => {
             if (json) {
+                console.log(json)
                 app.setState({
-                    feedbacks: JSON.stringify(json) 
-                });
+                    feedbacks: json
+                }, () => { console.log(app.state) });
             }
         })
         .catch(error => {
             console.log(error);
         });
-    
-  }
+}

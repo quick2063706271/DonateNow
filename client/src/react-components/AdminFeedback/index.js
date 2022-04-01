@@ -6,26 +6,24 @@ import { uid } from "react-uid";
 import Button from '@mui/material/Button';
 import { Link, Navigate } from 'react-router-dom';
 import StickyFooter from "../StickyFooter";
+import { checkSession } from "../../actions/user";
+import { getFeedbacks } from "../../actions/feedback";
 
 class AdminFeedback extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            feedbacks: {},
+            userId: "",
+            admin: false,
+            feedbacks: [],
             redirect: false,
             redirectUserId: -1
         }
     }
 
-    initStateInfo = () =>{
-        this.setState({
-            feedbacks: database.feedbacks,
-          }, () => console.log(this.state))
-    }
-
     componentDidMount() {
-        this.initStateInfo();
+        checkSession(this, getFeedbacks(this))
     }
 
     handleUserIdOnClick = (value) => {
@@ -49,7 +47,7 @@ class AdminFeedback extends React.Component {
                             <div className="post">
                                 <div className="summary">
                                     <ul>
-                                        <li><b>Feedback ID: </b>{value.feedbackId}</li>
+                                        <li><b>Feedback ID: </b>{value._id}</li>
                                         <li onClick={this.handleUserIdOnClick.bind(this, value)}><b>User ID: </b><u>{value.userId}</u></li>
                                     </ul>
                                     <ul>
