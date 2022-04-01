@@ -7,6 +7,7 @@ import Feedback from "../Feedback";
 import SideMenu from "../SideMenu";
 import AppBar from "../AppBar";
 import StickyFooter from "../StickyFooter";
+import { checkSession } from "../../actions/user";
 
 import ComponentParamsWrapper from "../ParamsWrapper";
 
@@ -14,20 +15,23 @@ class UserPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedPanel: 0
+            userId: -1,
+            admin: false
         }
+    }
+    componentDidMount() {
+        checkSession(this); // sees if a user is logged in
     }
 
     getUserId = () => {
         console.log("this.props.params.userId")
-        console.log(this.props)
-        console.log(this.props.userId)
+        console.log(this.state)
         console.log(this.props.params.userId !== undefined)
-        return this.props.params.userId || this.props.userId;
+        return this.props.params.userId || this.state.userId;
     }
 
     render() {
-        if (this.getUserId() > -1) {
+        if (this.getUserId() !== -1) {
             return (
                 <div className="grid-container">
                     <div className="grid-item grid-item-1">
@@ -37,7 +41,8 @@ class UserPage extends React.Component {
                     <div className="grid-item grid-item-2" id="side-menu-container">
                         <SideMenu className="grid-item grid-item-2" 
                                    userId={this.getUserId()} 
-                                   readibility={this.props.params.userId !== undefined}/>
+                                //    readibility={this.props.params.userId !== undefined}
+                                   />
                     </div>
 
                     <StickyFooter/>

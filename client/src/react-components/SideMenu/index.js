@@ -11,29 +11,40 @@ import History from '../History';
 import bottle from "../../bottle.png"
 import database from "../../database"
 import { getUser } from '../../actions/user';
+import { checkSession } from '../../actions/user';
 
 class SideMenu extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             selectedPanel: 0,
-            username: "{user.username}",
-            password: "{user.password}",
-            dateOfBirth: "{user.dateOfBirth}",
-            gender: "{user.gender}",
-            address1: "{user.address1}",
-            address2: "user.address2}",
-            phone: "{user.phone}",
-            email: "{user.email}",
-            preference: "{user.preference}",
-            bio: "{user.bio}",
-            complaintNum: "{user.complaintNum}",
-            accountBlocked: "{user.accountBlocked}",
+            username: "",
+            password: "",
+            dateOfBirth: "",
+            gender: "",
+            address1: "",
+            address2: "",
+            phone: "",
+            email: "",
+            preference: "",
+            bio: "",
+            complaintNum: "",
+            accountBlocked: "",
             admin: "{false}",
-            isRead: "{isRead}"
+            isRead: "{isRead}",
+            userId: -1,
+            admin: false,
+            personalInfo: null
         }
-        getUser(this)
+        console.log(this.state)
 
+    }
+    fetchPersonalInformation = () => {
+        getUser(this)
+        // findPostByKeyword(this, keyword)
+    }
+    componentDidMount() {
+        checkSession(this, this.fetchPersonalInformation()); // sees if a user is logged in
     }
 
     handleClick = (event) => {
@@ -43,7 +54,7 @@ class SideMenu extends React.Component{
             panel = 0
         } else if (event.target.innerText === 'TRANSACTION HISTORY') {
             panel = 1
-        } else if (event.target.innerText == "DONATED HISTORY") {
+        } else if (event.target.innerText === "DONATED HISTORY") {
             panel = 2
         } else {
             panel = 3
@@ -55,67 +66,53 @@ class SideMenu extends React.Component{
 
     render () {
         // check if it is reading other users
+        console.log(this.state)
         let isRead = false;
-        const {readibility, userId} = this.props;
+        const {readibility } = this.props;
+        const userId = this.state.userId
         if (readibility === true) {
             isRead = true;
         }
-        
+        let uniqueTransactionPosts = []
         // select user to display
-        let user = database.users[userId-1]
+        // let user = database.users[userId-1]
         // find transaction history
-        let transactionHistories = database.transactions.filter((transaction) => transaction.viewerId === user.userId)
+        // let transactionHistories = database.transactions.filter((transaction) => transaction.viewerId === user.userId)
 
-        const mergeById = (a1, a2) =>
-         a1.map(itm => ({
-            ...a2.find((item) => (item.postId === itm.postId) && item),
-            ...itm
-        }));
+        // const mergeById = (a1, a2) =>
+        //  a1.map(itm => ({
+        //     ...a2.find((item) => (item.postId === itm.postId) && item),
+        //     ...itm
+        // }));
 
-        let transactionPosts = mergeById(transactionHistories, database.posts);
-        const uniqueTransactionPosts = [...new Map(transactionPosts.map((item, postId) => [item[postId], item])).values()]
+        // let transactionPosts = mergeById(transactionHistories, database.posts);
+        // const uniqueTransactionPosts = [...new Map(transactionPosts.map((item, postId) => [item[postId], item])).values()]
 
-        console.log(transactionHistories)
-        console.log(transactionPosts)
-        // find donation history
-        let donationHistories = database.transactions.filter((transaction) => transaction.ownerId === user.userId)
+        // console.log(transactionHistories)
+        // console.log(transactionPosts)
+        // // find donation history
+        // let donationHistories = database.transactions.filter((transaction) => transaction.ownerId === user.userId)
 
-        let donationPosts = mergeById(donationHistories, database.posts);
+        // let donationPosts = mergeById(donationHistories, database.posts);
 
-        const uniqueDonationPosts = [...new Map(donationPosts.map((item, postId) => [item[postId], item])).values()]
-        // console.log(unique)
-        console.log(donationPosts)
-
+        // const uniqueDonationPosts = [...new Map(donationPosts.map((item, postId) => [item[postId], item])).values()]
+        // // console.log(unique)
+        // console.log(donationPosts)
+        const uniqueDonationPosts = []
         // select panel to display
         let panel
-        if (this.state.selectedPanel == 1) {
+        if (this.state.selectedPanel === 1) {
             panel = <History userId={this.props.userId} 
                             items={uniqueTransactionPosts} category="transaction"/>
-        } else if (this.state.selectedPanel == 2) {
+        } else if (this.state.selectedPanel === 2) {
             panel = <History userId={this.props.userId}
                             items={uniqueDonationPosts} category="donation"/>
-        } else if (this.state.selectedPanel == 3) {
+        } else if (this.state.selectedPanel === 3) {
             panel = <Feedback/>
         } else {
             panel = <PersonalInformation
-                        username={user.username}
-                        password={user.password}
-                        dateOfBirth={user.dateOfBirth}
-                        gender={user.gender}
-                        address1={user.address1}
-                        address2={user.address2}
-                        phone={user.phone}
-                        email={user.email}
-                        preference={user.preference}
-                        bio={user.bio}
-                        complaintNum={user.complaintNum}
-                        accountBlocked={user.accountBlocked}
-                        admin = {false}
-                        isRead = {isRead}
-                    />
-            panel = <PersonalInformation
                         username={this.state.username}
-                        password={this.state.password}
+                        password=""
                         dateOfBirth={this.state.dateOfBirth}
                         gender={this.state.gender}
                         address1={this.state.address1}
@@ -125,10 +122,25 @@ class SideMenu extends React.Component{
                         preference={this.state.preference}
                         bio={this.state.bio}
                         complaintNum={this.state.complaintNum}
-                        accountBlocked={this.state.accountBlocked}
                         admin = {false}
                         isRead = {isRead}
                     />
+            // panel.setState({
+            //     username: user.username,
+            //     password: "",
+            //     dateOfBirth: user.dateOfBirth,
+            //     gender: user.gender,
+            //     address1: user.address1,
+            //     address2:user.address2,
+            //     phone: user.phone,
+            //     email: user.email,
+            //     preference: user.preference,
+            //     bio: user.bio,
+            //     complaintNum: user.complaintNum,
+            //     accountBlocked: user.accountBlocked,
+            //     admin: false,
+            //     isRead: isRead
+            // })
         }
 
         return (

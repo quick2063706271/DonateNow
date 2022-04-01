@@ -147,20 +147,20 @@ export const logout = (app) => {
 
 // A function to find user profile of a user
 export const getUser = (app) => {
-    const url = "${APP_HOST}/userpage"
+    const url = `${API_HOST}/api/userpage`
 
     fetch(url)
         .then(res => {
             if (res.status === 200) {
-                return res.json;
+                return res.json();
             } else {
                 alert("Could not get user")
             }
         })
         .then(json => {
             app.setState({
+                username: json.username,
                 email: json.email,
-                password: json.password,
                 dateOfBirth: json.dateOfBirth,
                 gender: json.gender,
                 address: json.address,
@@ -172,9 +172,11 @@ export const getUser = (app) => {
                 accountBlocked: json.accountBlocked,
                 admin: json.admin,
             }) 
+            console.log(json.phone)
         })
         .catch(error => {
             console.log(error)
+            alert("Could not set State")
         })
 };
 
@@ -196,7 +198,7 @@ export const updateUser = (PersonalInformation) => {
         isEdit: false
     });
 
-    const url = "${APP_HOST}/userpage"
+    const url = "${APP_HOST}/api/userpage"
 
     const patchData = [
         {"op": "replace", "path": "/username", "value": PersonalInformation.state.username},
