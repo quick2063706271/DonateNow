@@ -37,14 +37,15 @@ const PostSchema = new mongoose.Schema({
     },
     imageSrc: {
         type: String, // change later
-        default: "default image src"
+        default: "./upload.png"
     },
     deliveryOption: {
         type: String,
         minlength: 1,
         required: true,
         trim: true,
-        default: null
+        enum: ["Pickup", "By Courier", "All"],
+        default: "All"
     },
     header: {
         type: String,
@@ -72,19 +73,17 @@ const PostSchema = new mongoose.Schema({
             type: String,
             minlength: 1,
             trim: true,
-            enum: ["Toys", "Kids", "Parents", "Interests", "Electronics", "Clothing", "Books & Stationary", "All"]
+            enum: ["Toys, Kids, Parents", "Clothing", "Books & Stationary", "Art", "Furniture", "Shoes, Bags, Backpacks", "Music", 
+                    "Sports","Electronics",  "All"]
+
         }],
         default: []
     },
+    blocked: {
+        type: Number,
+        default: false
+    },
     views: { 
-        type: Number,
-        default: 0
-    },
-    requests: { 
-        type: Number,
-        default: 0
-    },
-    saved: { 
         type: Number,
         default: 0
     },
@@ -93,7 +92,8 @@ const PostSchema = new mongoose.Schema({
         minlength: 1,
         required: true,
         trim: true,
-        default: "00/00/0000"
+        default: new Date().toLocaleDateString() + " " +
+                 new Date().toLocaleTimeString('en-GB', { hour: "numeric", minute: "numeric"})
     },
 })
 

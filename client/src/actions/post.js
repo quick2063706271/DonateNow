@@ -13,8 +13,6 @@ export const findPostByKeyword = (app, keyword) => {
         url = url + key + "=" + params[key] + "&&"
     })
 
-    console.log(url)
-
     fetch(url, {
         method: 'GET',
         headers: {
@@ -28,7 +26,6 @@ export const findPostByKeyword = (app, keyword) => {
         })
         .then(json => {
             if (json) {
-                console.log(json)
                 app.setState({
                     posts: json
                 });
@@ -69,7 +66,34 @@ export const findPostByKeyword = (app, keyword) => {
     
   }
 
-  export const createAPost = (app) => {
-
+export const createPost = (app) => {
+    const url = `${API_HOST}/api/createanaccount`;
+    
+    const{userId, deliveryOption, hearder, location, description, categories} = app.state
+    // imageSrc: req.body.imageSrc
+    const data = { ownerId: userId, ownerStatus: "posted",  deliveryOption, hearder, location, description, categories};
+    fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(data)
+    })
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            };   
+        })
+        .then(json => {
+            if (json) {
+                app.setState({
+                    newPostId: json._id.toString()
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
 
   }
