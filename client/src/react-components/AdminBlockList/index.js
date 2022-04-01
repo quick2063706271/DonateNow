@@ -6,38 +6,35 @@ import { Link, Navigate } from 'react-router-dom';
 import { uid } from "react-uid";
 import StickyFooter from "../StickyFooter";
 import { checkSession } from "../../actions/user";
+import { getUser } from "../../actions/user";
 
 class AdminBlockList extends React.Component {
   
-    state = {
-      userId: "",
-      admin: false
-    }
+  constructor() {
+      this.state = {
+        userId: "",
+        admin: false
+      }
+}
 
 
-  /*initStateInfo = () =>{
-    this.setState({
-        users: database.users,
-      }, () => console.log(this.state))
-  }
+getUsers = () => {
+  getUser(this) 
+}
 
-  componentDidMount() {
-    this.initStateInfo();
-  }*/
+componentDidMount() {
+    checkSession(this, this.getUsers());
 
-  componentDidMount() {
-    checkSession(this)
-  }
-
+}
 
   handleBlock = (event, value) => {
     event.preventDefault();
     for (const [k, v] of Object.entries(this.state.users)) {
       if (v.userId === value.userId) {
-        const blocked = database.users[k].accountBlocked
-        database.users[k].accountBlocked = !blocked
+        const blocked = this.users[k].accountBlocked
+        this.users[k].accountBlocked = !blocked
         this.setState({
-          users: database.users,
+          users: this.users,
         }, () => console.log(this.state))
       }
     }
@@ -71,7 +68,7 @@ class AdminBlockList extends React.Component {
                     <th>Account Blocked</th>
                     <th>Action</th>
                   </tr>
-                  {this.state.users.map((value, key) => {
+                  {this.users.map((value, key) => {
                     return (
                       <tr key={key} className="rt-tr-group">
                         <td>{value.userId}</td>
