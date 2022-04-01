@@ -198,6 +198,37 @@ app.post('/api/createanaccount', mongoChecker, async (req, res) => {
         })
 })
 
+/* Create Post */
+app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
+    log(req.body)
+
+    // Create a new post
+    const post = new Post({
+        imageSrc: req.body.imageSrc,
+        deliveryOption: req.body.deliveryOption,
+        header: req.body.header,
+        location: req.body.location,
+        description: req.body.description,
+        categories: req.body.categories
+    })
+
+    post.save()
+        .then((newPost) => {
+            res.status(200).send({
+                post: newPost
+            })
+        })
+        .catch(error => {
+            if (isMongoError(error)) {
+                res.status(500).send("Internal server error")
+            }
+            else {
+                return res.status(400).send(error);
+            }
+            res.status(500).send("Internal server error")
+        })
+})
+
 /* Create Donation Post Page */
 app.post('/api/createpost', function (req, res) {
     res.send('Hello World')
@@ -379,7 +410,7 @@ for (let i = 0; i < routes.length; i++) {
     });
 }
 
-const public_routes = ["/", "/search", "/termsconditions", "/admin/feedback", "/userpage"]
+const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", "/userpage"]
 for (let i = 0; i < routes.length; i++) {
     let route = public_routes[i];
     app.get(route, (req, res) => {
