@@ -231,17 +231,19 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
         categories: req.body.categories
     })
 
+    log("hey")
+
     post.save()
         .then((newPost) => {
-            res.status(200).send({
-                post: newPost
-            })
+            log(newPost)
+            res.status(200).send(newPost)
         })
         .catch(error => {
             if (isMongoError(error)) {
                 res.status(500).send("Internal server error")
             }
             else {
+                log(error)
                 return res.status(400).send(error);
             }
         })
