@@ -3,14 +3,15 @@ import ENV from './../config.js'
 const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
 
-export const getFeedbacks = (app) => {
+export const getFaqs = (app) => {
     console.log(app.state)
-    const request = new Request(`${API_HOST}/api/admin/feedback`, {
+    const request = new Request(`${API_HOST}/api/faqpage`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json'
         },
     });
+    
     // Send the request with fetch()
     fetch(request)
         .then(res => {
@@ -22,7 +23,7 @@ export const getFeedbacks = (app) => {
             if (json) {
                 console.log(json)
                 app.setState({
-                    feedbacks: json
+                    faqs: json
                 }, () => { console.log(app.state) });
             }
         })

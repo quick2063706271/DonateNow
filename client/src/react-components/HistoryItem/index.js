@@ -12,6 +12,7 @@ class HistoryItem extends React.Component{
 
     render() {
         // status: {Received, Requested, Accepted, Pending, Failed, Posted, Order Placed, Completed}
+        console.log("in history item")
         const { header, status, date, img, postId } = this.props;
         let chooseDoneeButton
         if (status === "posted") {
