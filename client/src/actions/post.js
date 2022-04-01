@@ -71,7 +71,7 @@ export const findPostByKeyword = (app, keyword) => {
     
   }
 
-  export const findPostByWishlisted = (app) => {
+  export const createAPost = (app) => {
 
-    
+
   }
