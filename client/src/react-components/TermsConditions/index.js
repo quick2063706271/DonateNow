@@ -11,12 +11,11 @@ class TermsConditions extends React.Component {
     constructor() {
         super()
         this.state = {
-            id: -1,
-            terms: ""
+            terms: []
         }
     }
 
-    componentDidMount (){
+    componentDidMount() {
         getTermsConditions(this)
     }
 
@@ -41,7 +40,11 @@ class TermsConditions extends React.Component {
                         <div className="post">
                             <div className="summary">
                                 <ul>
-                                    <li><h3>{this.termsconditions.map((term) => <Term key={term.id} content={term.item} />)  }  </h3></li>
+                                    <li>
+                                        <h3>
+                                            {this.state.terms.map((term) => <Term key={term._id} content={term.terms} />)}
+                                        </h3>
+                                    </li>
                                 </ul>
 
                                 <br></br>

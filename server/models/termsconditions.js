@@ -6,12 +6,12 @@ const mongoose = require('mongoose');
 
 // Terms and Conditions schema 
 const TermsConditionsSchema = new mongoose.Schema({
-    id: Number,
+    //id: Number,
     terms: { 
 		type: String,
 		required: true,
 		minlength: 10, 
-        maxlength: 1000 
+        //maxlength: 1000 
 	}
 });
 
