@@ -29,7 +29,7 @@ class FAQpage extends React.Component {
     render() {
 
         function Faq(props) {
-            return <ul className="faq"><li className="question"> { props.question }</li> <br></br> <li className="answer"> { props.answer }</li> </ul>;
+            return <ul className="faq"><li className="question"> { props.question }</li> <br/> <li className="answer"> { props.answer }</li> </ul>;
         }
 
         //const faqs = database.allfaqs;

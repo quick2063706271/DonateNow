@@ -10,16 +10,18 @@ import { getUser } from "../../actions/user";
 
 class AdminBlockList extends React.Component {
   
-  constructor() {
-      this.state = {
-        userId: "",
-        admin: false
-      }
+  constructor(props) {
+    super(props)
+    this.state = {
+        // userId: "", 
+        // admin: false 
+        users: []
+    }
 }
 
 
 getUsers = () => {
-  getUser(this) 
+    getUser(this) 
 }
 
 componentDidMount() {
@@ -32,9 +34,9 @@ componentDidMount() {
     for (const [k, v] of Object.entries(this.state.users)) {
       if (v.userId === value.userId) {
         const blocked = this.users[k].accountBlocked
-        this.users[k].accountBlocked = !blocked
+        this.state.users[k].accountBlocked = !blocked
         this.setState({
-          users: this.users,
+          users: this.state.users,
         }, () => console.log(this.state))
       }
     }

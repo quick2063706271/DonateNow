@@ -101,7 +101,7 @@ export const login = (app) => {
             console.log(json)
             if (json && json.success) {
                 app.setState({
-                    countdown: 5,
+                    countdown: 2,
                     error: true,
                     errorMsg: ""
                 }, () => {
