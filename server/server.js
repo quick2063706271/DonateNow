@@ -248,7 +248,7 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
 })
 
 /* Wishlist */
-app.get('/api/posts/:id', mongoChecker, /*authenticate,*/ function(req, res) {
+app.get('/api/posts/:id', mongoChecker, authenticate, function(req, res) {
     console.log(req.body)
     console.log(req.params.id)
     User.findWishlistedByUser(req.params.id)
@@ -294,7 +294,33 @@ app.get('/api/faqpage', mongoChecker,(req, res) => {
     }).catch((error) => {
         res.status(500).send(error)
 	  }) 
-}) 
+})
+
+/* Create Terms and Conditions */
+app.post('/api/termsconditions', mongoChecker, async (req, res) => {
+    log(req.body)
+
+    // Create a new post
+    const termsConditions = new TermsConditions({
+        header: req.body.header,
+        description: req.body.description
+    })
+
+    termsConditions.save()
+        .then((newTermsConditions) => {
+            res.status(200).send({
+                termsconditions: newTermsConditions
+            })
+        })
+        .catch(error => {
+            if (isMongoError(error)) {
+                res.status(500).send("Internal server error")
+            }
+            else {
+                return res.status(400).send(error);
+            }
+        })
+})
 
 /*Terms and Conditions Page*/
 app.get('/api/termsconditions', mongoChecker, (req, res) => {
@@ -489,7 +515,7 @@ for (let i = 0; i < routes.length; i++) {
     });
 }
 
-const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", "/userpage"]
+const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", "/admin/blocklist", "/userpage"]
 for (let i = 0; i < routes.length; i++) {
     let route = public_routes[i];
     app.get(route, (req, res) => {

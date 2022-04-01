@@ -206,7 +206,6 @@ class SearchPage extends React.Component {
                     <div className="header">
                         <h1><b>Search Results: </b></h1>
                     </div>
-                    {console.log(this.state.posts)}
                     {this.state.posts.map((post) => {
                         return this.renderPost(post)
                     })}
