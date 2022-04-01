@@ -288,7 +288,25 @@ app.get('/api/filterposts', mongoChecker, function(req, res) {
         }) 
 })
 
-
+/* Post Page*/
+app.get('/api/post/:id', mongoChecker, function(req, res) {
+    const id = req.params.id
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found') // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+    Post.findById(id).then((post) => {
+		if (!post) {
+			res.status(404).send('Resource not found')  // could not find this restaurant
+		} else {  
+			res.status(200).send(post)
+		}
+	})
+    .catch((error) => {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	})
+})
 /*FAQ Page*/
 app.get('/api/faqpage', mongoChecker,(req, res) => {
     Faq.find().then((result) => {
@@ -517,14 +535,13 @@ for (let i = 0; i < routes.length; i++) {
     });
 }
 
-const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", "/admin/blocklist", "/userpage"]
+const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", "/admin/blocklist", "/userpage", "/postpage/:id"]
 for (let i = 0; i < routes.length; i++) {
     let route = public_routes[i];
     app.get(route, (req, res) => {
         res.sendFile(path.resolve(__dirname, CLIENT_DIR, 'index.html'))
     });
 }
-
 
 /*************************************************/
 // Express server listening...
