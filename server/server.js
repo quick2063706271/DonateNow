@@ -223,7 +223,7 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
     const post = new Post({
         ownerId:  req.body.ownerId,
         ownerStatus: req.body.ownerStatus,
-        imageSrc: req.body.imageSrc,
+        // imageSrc: req.body.imageSrc,
         deliveryOption: req.body.deliveryOption,
         header: req.body.header,
         location: req.body.location,

@@ -67,11 +67,11 @@ export const findPostByKeyword = (app, keyword) => {
   }
 
 export const createPost = (app) => {
-    const url = `${API_HOST}/api/createanaccount`;
+    const url = `${API_HOST}/api/posts`;
     
-    const{userId, deliveryOption, hearder, location, description, categories} = app.state
+    const{userId, deliveryOption, header, location, description, categories} = app.state
     // imageSrc: req.body.imageSrc
-    const data = { ownerId: userId, ownerStatus: "posted",  deliveryOption, hearder, location, description, categories};
+    const data = { ownerId: userId, ownerStatus: "posted",  deliveryOption, header, location, description, categories};
     fetch(url, {
         method: 'POST',
         headers: {
@@ -87,6 +87,9 @@ export const createPost = (app) => {
         })
         .then(json => {
             if (json) {
+                console.log(json)
+                console.log(json.header)
+                console.log(json._id)
                 app.setState({
                     newPostId: json._id.toString()
                 });

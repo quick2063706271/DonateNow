@@ -31,6 +31,7 @@ class CreatePost extends React.Component {
             newPostId: "",
             redirect: false
         };
+        this.handlePublish = this.handlePublish.bind(this);
     }
 
     componentDidMount() {
