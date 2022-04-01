@@ -4,6 +4,20 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 
+const ViewerStatusSchema = new mongoose.Schema({
+    viewerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ownerId"
+    },
+    viewStatus: {
+        type: String,
+        minlength: 1,
+        required: true,
+        trim: true,
+        enum: ["requested", "requst accepted", "completed", "failed"]
+    }
+})
+
 const PostSchema = new mongoose.Schema({
     ownerId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -76,16 +90,6 @@ const PostSchema = new mongoose.Schema({
     },
 })
 
-const ViewerStatusSchema = new mongoose.Schema({
-    viewerId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "ownerId"
-    },
-    viewStatus: {
-        type: String,
-        minlength: 1,
-        required: true,
-        trim: true,
-        enum: ["requested", "requst accepted", "completed", "failed"]
-    }
-})
+const Post = mongoose.model('Post', PostSchema);
+
+module.exports = { Post };

@@ -23,6 +23,7 @@ const { User } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 const { Feedbacks } = require('./models/feedbacks') 
+const { Post } = require("./models/post")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
