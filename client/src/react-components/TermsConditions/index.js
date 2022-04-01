@@ -19,13 +19,15 @@ class TermsConditions extends React.Component {
         getTermsConditions(this)
     }
 
+    renderTermsConditions(header, description) {
+        const content = []
+    }
+
     render() {
 
         function Term(props) {
-            return <li className="term"> { props.content } <br/></li>;
+            return <li className="term"> <b>{ props.header }</b> <br/> { props.description } <br/> </li>;
         }
-
-        // const terms = database.allterms;
 
         return (
             <div>
@@ -42,23 +44,17 @@ class TermsConditions extends React.Component {
                                 <ul>
                                     <li>
                                         <h3>
-                                            {this.state.terms.map((term) => <Term key={term._id} content={term.terms} />)}
+                                            {this.state.terms.map((term) => <Term key={term._id} header={term.header} description={term.description} />)}
                                         </h3>
                                     </li>
                                 </ul>
-
-                                <br></br>
-                                <br></br>
+                                
                             </div>
                         </div>
                     </div>
 
                     <br></br>
                     <br></br>
-                    <br></br>
-                    <br></br>
-
-
 
                 </div>
 
