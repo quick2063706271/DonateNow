@@ -6,27 +6,47 @@ import { uid } from "react-uid";
 import Button from '@mui/material/Button';
 import { Navigate } from 'react-router-dom';
 import StickyFooter from "../StickyFooter";
-
+import { checkSession } from "../../actions/user";
+import { findPostByWishlisted } from "../../actions/post";
 
 class WishList extends React.Component {
 
     constructor() {
         super()
         this.state = {
-            user: {},
+            userId: "",
+            admin: false,
+            //posts: [],
+            users: {},
             posts: {},
             redirect: false,
             redirectPostId: -1
         }
     }
 
-    /*getPost = (post) => {
-        //return post.postId === this.state.postId;
-        //return this.state.postId.some(item => post.postId === item.postId);
-        return this.state.postId.includes(post.postId);
-    }*/
+    fetchPosts = () => {
+        findPostByWishlisted(this)
+    }
 
-    getPost = (post) => {
+    componentDidMount() {
+        checkSession(this, this.fetchPosts());
+
+        /*if (this.props.userId > -1) {
+            this.initStateInfo();
+        }*/
+    }
+
+    handlePostOnClick = (value) => {
+        this.setState({
+            redirectPostId: value.postId
+        }, () => {
+            this.setState({
+                redirect: true
+            })
+        })
+    }
+
+    /*getPost = (post) => {
         const wishlisted = database.users.filter(this.getUser)[0].wishlisted;
         return wishlisted.includes(post.postId);
     }
@@ -40,23 +60,7 @@ class WishList extends React.Component {
             user: database.users.filter(this.getUser)[0],
             posts: database.posts.filter(this.getPost),
           }, () => console.log(this.state))
-    }
-
-    componentDidMount() {
-        if (this.props.userId > -1) {
-            this.initStateInfo();
-        }
-    }
-
-    handlePostOnClick = (value) => {
-        this.setState({
-            redirectPostId: value.postId
-        }, () => {
-            this.setState({
-                redirect: true
-            })
-        })
-    }
+    }*/
 
     /*loopThroughPosts = () => {
 

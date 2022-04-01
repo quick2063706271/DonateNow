@@ -4,6 +4,7 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
+const ObjectId = require('mongoose').Types.ObjectId
 
 // Making a Mongoose model a little differently: a Mongoose Schema
 // Allows us to add additional functionality.
@@ -121,6 +122,16 @@ UserSchema.statics.findByEmailPassword = function(email, password) {
 			})
 		})
 	})
+}
+
+UserSchema.statics.findWishlistedByUser = async function(userId) {
+	const user = await User.findOne({ "_id": ObjectId(userId) });
+	if (!user) {
+		return Promise.reject(); // a rejected promise
+	}
+	return await new Promise((resolve, reject) => {
+		resolve(user);
+	});
 }
 
 // make a model using the User schema

@@ -23,7 +23,7 @@ const { User } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 const { Feedbacks } = require('./models/feedbacks') 
-const { Post, filterPostsByParams } = require('./models/post') 
+const { Post, filterPostsByParams, filterPostsById } = require('./models/post') 
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -246,6 +246,29 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
         })
 })
 
+/* Wishlist */
+app.get('/api/posts', mongoChecker, /*authenticate,*/ function(req, res) {
+    console.log(req.body)
+    User.findWishlistedByUser(req.body.userId)
+        .then((user) => {
+            if (!user) {
+                res.status(404).send("Resource not found")
+            }
+            else {
+                const wishlisted = user.wishlisted
+                Post.findAllPosts()
+                    .then((result) => {
+                        const filtered = filterPostsById(result, wishlisted)
+                        res.send(filtered)
+                    }).catch((err) => {
+                        res.status(500).send(err)
+                    })
+            }
+        }).catch((err) => {
+            res.status(500).send(err)
+        }) 
+})
+
 /* Create Donation Post Page */
 app.post('/api/createpost', function (req, res) {
     res.send('Hello World')
@@ -254,7 +277,7 @@ app.post('/api/createpost', function (req, res) {
 /* Search Page  */
 app.get('/api/filterposts', function(req, res) {
     console.log(req.query)
-    Post.findPostByKeyword()
+    Post.findAllPosts()
         .then((result) => {
             const filtered = filterPostsByParams(
                 result, req.query.keyword, req.query.categoryVal, req.query.locationVal,

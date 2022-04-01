@@ -39,3 +39,37 @@ export const findPostByKeyword = (app, keyword) => {
         });
     
   }
+
+  export const findPostByWishlisted = (app) => {
+    console.log(app.state)
+    const request = new Request(`${API_HOST}/api/posts`, {
+        method: "GET",
+        body: JSON.stringify({
+            userId: app.state.userId
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+    console.log(request)
+    // Send the request with fetch()
+    fetch(request)
+        .then(res => {
+            console.log(res)
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+            if (json) {
+                console.log(json)
+                app.setState({
+                    posts: json
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    
+  }

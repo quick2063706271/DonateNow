@@ -90,9 +90,7 @@ const PostSchema = new mongoose.Schema({
     },
 })
 
-
-
-PostSchema.statics.findPostByKeyword = function() {
+PostSchema.statics.findAllPosts = function() {
     
     var posts = Post.find();
 
@@ -144,6 +142,10 @@ function sortPosts (posts, drpdwn) {
     return posts
 }
 
+function filterPostsById(posts, wishlisted) {
+    return posts.filter(post => wishlisted.includes(post._id))
+}
+
 // make a model using the User schema
 const Post = mongoose.model('Post', PostSchema)
-module.exports = { Post, filterPostsByParams }
+module.exports = { Post, filterPostsByParams, filterPostsById }
