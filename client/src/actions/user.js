@@ -338,7 +338,7 @@ export const getDonationHistory = (app) => {
 };
 
 export const getTransactionHistory = (app) => {
-    const url = `${API_HOST}/api/userpage/donatedHistory`
+    const url = `${API_HOST}/api/userpage/transactedHistory`
 
     fetch(url)
         .then(res => {
