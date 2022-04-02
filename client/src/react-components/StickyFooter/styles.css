@@ -14,3 +14,7 @@
 display: flex;
 width: 100%;
 }
+
+ul {
+  text-decoration: none;
+}
