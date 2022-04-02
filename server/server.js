@@ -23,7 +23,7 @@ const { User } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 const { Feedbacks } = require('./models/feedbacks') 
-const { Post, filterPostsByParams, filterPostsById, filterPostsByOwnerId, filterPostsByViewerId } = require('./models/post') 
+const { Post, filterPostsByParams, filterPostsById, filterPostsByOwnerId, filterPostsByViewerId} = require('./models/post') 
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -251,9 +251,7 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
 
 /* Wishlist */
 app.get('/api/posts/:id', mongoChecker, authenticate, function(req, res) {
-    console.log(req.body)
-    console.log(req.params.id)
-    User.findWishlistedByUser(req.params.id)
+    User.findById(req.params.id)
         .then((user) => {
             if (!user) {
                 res.status(404).send("Resource not found")
@@ -264,8 +262,6 @@ app.get('/api/posts/:id', mongoChecker, authenticate, function(req, res) {
                     .then((result) => {
                         const filtered = filterPostsById(result, wishlisted)
                         res.send(filtered)
-                    }).catch((err) => {
-                        res.status(500).send(err)
                     })
             }
         }).catch((err) => {
@@ -536,9 +532,10 @@ for (let i = 0; i < routes.length; i++) {
 }
 
 const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", "/admin/blocklist", "/userpage", "/postpage/:id"]
-for (let i = 0; i < routes.length; i++) {
+for (let i = 0; i < public_routes.length; i++) {
     let route = public_routes[i];
     app.get(route, (req, res) => {
+        log("hello")
         res.sendFile(path.resolve(__dirname, CLIENT_DIR, 'index.html'))
     });
 }

@@ -6,52 +6,33 @@ import AppBar from "../AppBar";
 import StickyFooter from "../StickyFooter";
 import ComponentParamsWrapper from "../ParamsWrapper";
 import AdminAppBar from "../AdminAppBar";
+import { checkSession } from "../../actions/user";
+import { getPost } from "../../actions/post"
 
 class PostPage extends React.Component {
     state = {
-        postId: -1,
-        transaction: null,
+        postId: "",
         post: null,
-        user: null,
-        // postPath: "/postpage/" + this.state.PostId.toString(),
+        userId: null,
+        admin: false
     };
 
-    getPost = (post) => {
-        return post.postId === this.state.postId;
-    }
-
-    getUser = (user) => {
-        return user.userId === this.props.userId;
-    }
-
-    getTransaction = (transaction) => {
-        return (
-            (transaction.postId === this.state.postId && transaction.ownerId === this.props.userId)
-            ||
-            (transaction.postId === this.state.postId && transaction.viewerId === this.props.userId)
-            );
-    }
-
-    initStateInfo = () => {
-        this.setState({
-            postId: parseInt(this.props.params.id)
-        }, () => {
-            this.setState({
-                post: database.posts.filter(this.getPost)[0],
-                user: database.users.filter(this.getUser)[0],
-                transaction: database.transactions.filter(this.getTransaction)[0],
-            }, () => console.log(this.state))
-        })
-    }
-
     componentDidMount() {
-        this.initStateInfo()
+        console.log(this.props.params.id)
+        checkSession(this)
+        this.setState({
+            postId: this.props.params.id
+        }, this.fetchPost)
+    }
+
+    fetchPost = () => {
+        getPost(this)
     }
 
     render() {
-        return (
+        return this.state.post ? (
             <div>
-                {this.props.userId === -1 ? 
+                {/* {this.props.userId === -1 ? 
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :null
                     }
@@ -71,14 +52,14 @@ class PostPage extends React.Component {
                     user = {this.state.user}
 
                     // ownerId = {this.state.transaction.ownerId}
-                    /> : null}
+                    /> : null} */}
 
                 <div>
                     <StickyFooter/>
                 </div>
 
             </div>
-        );
+        ) : <p>Post does not exist</p>;
     }
 }
 

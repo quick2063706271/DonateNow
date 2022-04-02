@@ -169,4 +169,4 @@ function filterPostsByViewerId(posts, viewerId) {
 
 // make a model using the User schema
 const Post = mongoose.model('Post', PostSchema)
-module.exports = { Post, filterPostsByParams, filterPostsById, filterPostsByOwnerId, filterPostsByViewerId }
+module.exports = { Post, filterPostsByParams, filterPostsById, filterPostsByOwnerId, filterPostsByViewerId}

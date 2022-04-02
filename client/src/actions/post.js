@@ -102,5 +102,32 @@ export const createPost = (app) => {
         .catch(error => {
             console.log(error);
         });
-
   }
+
+
+export const getPost = function (app) {
+    const url = `${API_HOST}/api/post/${app.state.postId}`;
+    
+    fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    })
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            };   
+        })
+        .then(json => {
+            if (json) {
+                console.log(json)
+                app.setState({
+                    post: json
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
