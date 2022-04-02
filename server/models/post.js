@@ -31,10 +31,9 @@ const PostSchema = new mongoose.Schema({
         enum: ["Posted", "Donation Matched", "Completed", "Failed"],
         default: "Posted"
     },
-    viewers:{
-        type: [ViewerStatusSchema],
-        default: []
-    },
+    viewers:
+        [ViewerStatusSchema]
+    ,
     imageSrc: {
         type: String, // change later
         default: "/upload.png"

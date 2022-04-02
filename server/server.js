@@ -223,6 +223,7 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
     const post = new Post({
         ownerId:  req.body.ownerId,
         ownerStatus: req.body.ownerStatus,
+        viewers: [],
         // imageSrc: req.body.imageSrc,
         deliveryOption: req.body.deliveryOption,
         header: req.body.header,
@@ -230,8 +231,6 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
         description: req.body.description,
         categories: req.body.categories
     })
-
-    log("hey")
 
     post.save()
         .then((newPost) => {
