@@ -360,3 +360,31 @@ export const getTransactionHistory = (app) => {
             alert("Could not set State")
         })
 };
+
+
+export const getDoneeInformation = (app) => {
+    const url = `${API_HOST}/api/userpage/donatedHistory/${app.state.postId}`
+    
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get DoneeInformation")
+            }
+        })
+        .then(json => {
+            console.log("All donees")
+            console.log(app.state.postId)
+            console.log(json)
+            app.setState({
+                donees: json
+            }) 
+        })
+        .catch(error => {
+            console.log(error)
+            alert("Could not set State")
+        })
+
+}

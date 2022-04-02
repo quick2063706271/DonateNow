@@ -21,6 +21,7 @@ class HistoryItem extends React.Component{
         // status: {Received, Requested, Accepted, Pending, Failed, Posted, Order Placed, Completed}
         console.log("in history item")
         const { header, ownerStatus, date, img, postId, category, viewers } = this.props;
+        console.log(this.props)
         let chooseDoneeButton
         if (ownerStatus === "posted" && category === "donation") {
             chooseDoneeButton = <div > 
@@ -36,11 +37,11 @@ class HistoryItem extends React.Component{
         console.log(viewers.filter(viewer => {return viewer.viewerId===this.state.userId  }))
 
         let viewer = viewers.filter(viewer => {return viewer.viewerId===this.state.userId  })
-        let viewStatusHere = ""
+        let viewerStatusHere = ""
         if (viewer.length > 0) {
-            viewStatusHere = viewer[0].viewStatus
+            viewerStatusHere = viewer[0].viewerStatus
         }
-        console.log(viewStatusHere)
+        console.log(viewerStatusHere)
         return (
             <div id="item-card">
                 <div id="img-container">
@@ -51,7 +52,7 @@ class HistoryItem extends React.Component{
                     <h4>
                         Status: { 
                             category === "donation" ? ownerStatus :
-                            viewStatusHere
+                            viewerStatusHere
                         }
                     </h4>
                     {/* <h3>{date}</h3> */}
