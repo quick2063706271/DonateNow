@@ -157,7 +157,7 @@ let posts = [
 
   let users = [
     {
-        userId: 1,
+        userId: 1, //624732f033cf034ce21c1989
         username: "John2022",
         password: "12341234",
         dateOfBirth: "1990-01-01",
@@ -177,7 +177,7 @@ let posts = [
     },
 
     {
-        userId: 2,
+        userId: 2,  //6247346533cf034ce21c1999
         username: "user@user.com",
         password: "user",
         dateOfBirth: "1998-01-01",
@@ -197,8 +197,8 @@ let posts = [
     },
 
     {
-        userId: 3,
-        username: "amy2000",
+        userId: 3,//6247351a33cf034ce21c19a6
+        username: "amy2000", 
         password: "amy",
         dateOfBirth: "1998-01-01",
         gender: "female",
@@ -217,8 +217,8 @@ let posts = [
     },
 
     {
-        userId: 4,
-        username: "andy2000",
+        userId: 4, //6247359733cf034ce21c19b0
+        username: "andy2000@user.com",
         password: "andy",
         dateOfBirth: "1998-01-01",
         gender: "male",
@@ -237,7 +237,7 @@ let posts = [
     },
 
     {
-        userId: 5,
+        userId: 5, //624744f25249a1ec8979c716
         username: "admin@admin.com",
         password: "admin",
         dateOfBirth: "2000-02-20",

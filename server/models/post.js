@@ -9,12 +9,12 @@ const ViewerStatusSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "viewerId"
     },
-    viewStatus: {
+    viewerStatus: {
         type: String,
         minlength: 1,
         required: true,
         trim: true,
-        enum: ["requested", "requst accepted", "completed", "failed"]
+        enum: ["Requested", "Request Accepted", "Completed", "Failed"]
     }
 })
 
@@ -28,8 +28,8 @@ const PostSchema = new mongoose.Schema({
         minlength: 1,
         required: true,
         trim: true,
-        enum: ["posted", "donation matched", "completed", "failed"],
-        default: "posted"
+        enum: ["Posted", "Donation Matched", "Completed", "Failed"],
+        default: "Posted"
     },
     viewers:{
         type: [ViewerStatusSchema],

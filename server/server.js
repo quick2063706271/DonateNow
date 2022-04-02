@@ -269,6 +269,8 @@ app.get('/api/posts/:id', mongoChecker, authenticate, function(req, res) {
         }) 
 })
 
+
+
 /* Search Page  */
 app.get('/api/filterposts', mongoChecker, function(req, res) {
     console.log(req.query)
@@ -303,6 +305,61 @@ app.get('/api/post/:id', mongoChecker, function(req, res) {
 		res.status(500).send('Internal Server Error')  // server error
 	})
 })
+
+/* Change Owner Status */
+app.patch('/api/post/:id', mongoChecker, function(req, res) {
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found') // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+    Post.findOneAndUpdate({_id: id}, 
+                          { $set: {"ownerStatus": req.body.val}},{new: true})
+        .then((post) => {
+            if (!post) {
+                res.status(404).send('Resource not found')  // could not find this restaurant
+            } else {
+                res.status(200).send(post)
+            }
+	    })
+        .catch((error) => {
+            log(error)
+            res.status(500).send('Internal Server Error')  // server error
+        })
+})
+
+/* Change Viewer Status */
+app.patch('/api/post/:id/:viewer_id', mongoChecker, function(req, res) {
+    const id = req.params.id
+    const vid = req.params.viewer_id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found') // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+    Post.findOneAndUpdate({_id: id}, 
+							{   $set: {"viewers.$[el].viewerStatus": req.body.val}},
+							{
+								arrayFilters: [{ "el.viewerId": vid }],
+								new: true
+							}
+							)
+        .then((post) => {
+            if (!post) {
+                res.status(404).send('Resource not found')  // could not find this restaurant
+            } else {
+                res.status(200).send(post)
+            }
+	    })
+        .catch((error) => {
+            log(error)
+            res.status(500).send('Internal Server Error')  // server error
+        })
+})
+
 /*FAQ Page*/
 app.get('/api/faqpage', mongoChecker,(req, res) => {
     Faq.find().then((result) => {

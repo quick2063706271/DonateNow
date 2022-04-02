@@ -32,27 +32,25 @@ class PostPage extends React.Component {
     render() {
         return this.state.post ? (
             <div>
-                {/* {this.props.userId === -1 ? 
+                {this.state.userId === "" ? 
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :null
                     }
-                {this.props.userId != -1 && database.getUserData(this.props.userId).admin ? 
+                {this.state.userId != "" && this.state.admin ? 
                     <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :
                     null}
-                {this.props.userId != -1 && !database.getUserData(this.props.userId).admin ?
+                {this.state.userId != "" && !this.state.admin ?
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :null
                     }
-                {this.state.post ? <PostPageHelp
-                    userId = {this.props.userId}
-                    postId = {this.state.postId}
-                    transaction = {this.state.transaction}
-                    post = {this.state.post}
-                    user = {this.state.user}
 
-                    // ownerId = {this.state.transaction.ownerId}
-                    /> : null} */}
+                {this.state.post ? <PostPageHelp
+                    userId = {this.state.userId}
+                    postId = {this.state.postId}
+                    admin = {this.state.admin}
+                    post = {this.state.post}
+                    /> : null}
 
                 <div>
                     <StickyFooter/>
