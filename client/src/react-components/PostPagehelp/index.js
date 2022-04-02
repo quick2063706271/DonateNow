@@ -10,7 +10,8 @@ import { Link } from "react-router-dom";
 import database from "../../database";
 import ChooseDonee from "../ChooseDonee";
 import RequestNowDialogue from "../RequestNowDialogue";
-import WishListDialogue from "../WishListDialogue"
+import WishListDialogue from "../WishListDialogue";
+import PostPageHeader from "../PostPageHeader";
 
 function DeliveryOptionGenerator(props){
     if (props.deliveryOption == "Pickup"){
@@ -53,102 +54,6 @@ function CategoryGenerator(props){
     )
 }
 
-function PostHeaderHelper(props){
-    const {post} = props
-    if (props.userId === -1){
-        return (
-            <span>
-                <Link to={'/login'}>
-                    <Button className="postButton" id="requestNowButton" variant="outlined" >Login to see more</Button>
-                </Link>
-            </span>
-        )
-    }
-   else if (database.getUserData(props.userId).admin){
-        return (
-            <span>
-                <Link Link to={'/admin/userpage/' + post.ownerId}>
-                    <Button className="postButton" id="requestNowButton" variant="outlined" >User Profile</Button>
-                </Link>
-                <Button className="postButton" id="saveButton" variant="outlined">Delete Post</Button>
-            </span>
-        )
-    }
-    else{
-
-
-    if (props.transaction == null){//undefined
-        return (
-            <span>
-                {console.log(props.userId, props.post, props.postId)}
-                <RequestNowDialogue post={props.post} btnId="chooseDoneeButton"/>
-                <WishListDialogue post={props.post} btnId="chooseDoneeButton"/>
-            </span>
-        )
-    }else if (props.transaction.ownerId == props.userId){
-        if (props.transaction.viewerId === -1){
-            return (
-                <span>
-                    <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
-                </span>
-            )
-        }else{
-            if (props.transaction.ownerStatus == "posted"){
-                return (
-                    <span>
-                        <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
-                        <ChooseDonee class="postButton" btnId="chooseDoneeButton"
-                                    userId={props.userId}  postId={props.postId}/>
-                    </span>
-                )
-            }else if (props.transaction.ownerStatus == "donation matched"){
-                return (
-                    <span>
-                        <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
-                        <br></br>
-                        <Button className="postButton" id="failButton"
-                                onClick={ () => handleStatusChange(props.transaction, "owner", "completed")}
-                                variant="outlined">Failed</Button>
-                        <Button className="postButton" id="completeButton"
-                                onClick={ () => handleStatusChange(props.transaction, "owner", "failed")}
-                                variant="outlined">Completed</Button>
-                    </span>
-                )
-            }else{
-                <span>
-                        <text className="statusMsg">Owner Status: {props.transaction.ownerStatus}</text>
-                </span>
-            }
-        }
-
-    }else{
-        if (props.transaction.viewerStatus == "request accepted"){
-            return (
-                <span>
-                    <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
-                    <br></br>
-                        <Button className="postButton" id="failButton"
-                                onClick={ () => handleStatusChange(props.transaction, "viewer", "completed")}
-                                variant="outlined">Failed</Button>
-                        <Button className="postButton" id="completeButton"
-                                onClick={ () => handleStatusChange(props.transaction, "viewer", "failed")}
-                                variant="outlined">Completed</Button>
-                </span>
-            )
-        }else{
-            return(
-                <span>
-                    <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
-                </span>
-            )
-        }
-    }
-}
-}
-
-function handleStatusChange (transaction, user, val) {
-    database.changeStatus(transaction, user, val)
-}
 
 class PostPageHelp extends React.Component {
 
@@ -157,9 +62,9 @@ class PostPageHelp extends React.Component {
             <div>
                 <div className="postHeader">
                     <text id="createPostText"> {this.props.post.header} </text>
-                    <PostHeaderHelper transaction={this.props.transaction}
-                                      userId={this.props.userId}
+                    <PostHeaderHelper userId={this.props.userId}
                                       post={this.props.post}
+                                      admin={this.props.admin}
                                     
                     />
                 </div>

@@ -87,9 +87,6 @@ export const createPost = (app) => {
         })
         .then(json => {
             if (json) {
-                console.log(json)
-                console.log(json.header)
-                console.log(json._id)
                 app.setState({
                     newPostId: json._id.toString()
                 }, () => {
@@ -126,6 +123,50 @@ export const getPost = function (app) {
                     post: json
                 });
             }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export const changeOwnerStatus = (postId, val) => {
+    const url = `${API_HOST}/api/post/${postId}`;
+    const data = {val}
+
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(data)
+    })
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            };   
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export const changeViewerStatus = (postId, userId, val) => {
+    const url = `${API_HOST}/api/post/${postId}/${userId}`;
+    const data = {val}
+
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(data)
+    })
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            };   
         })
         .catch(error => {
             console.log(error);
