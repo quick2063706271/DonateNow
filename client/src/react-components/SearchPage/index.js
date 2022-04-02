@@ -106,9 +106,9 @@ class SearchPage extends React.Component {
         checkSession(this, this.fetchPosts());
     }
 
-    handlePostOnClick = (value) => {
+    handlePostOnClick = (post) => {
         this.setState({
-            redirectPostId: value.postId
+            redirectPostId: post._id.toString()
         }, () => {
             this.setState({
                 redirect: true
@@ -116,32 +116,34 @@ class SearchPage extends React.Component {
         })
     }
 
-    renderPost = (value) => {
+    renderPost = (post) => {
         return (
             <div>
                 <div className="block">
-                    <a className="title" onClick={this.handlePostOnClick.bind(this, value)}><b><u>{value.header}</u></b></a>
+                    <a className="title" onClick={this.handlePostOnClick.bind(this, post)}>
+                        <b><u>{post.header}</u></b>
+                    </a>
                     <div className="post">
                         <img 
-                            src={`..${value.imageSrc}`}
+                            src={`..${post.imageSrc}`}
                             className="image"
                             alt="image"
-                            onClick={this.handlePostOnClick.bind(this, value)}
+                            onClick={this.handlePostOnClick.bind(this, post)}
                         />
                         <div className="summary">
                             <ul>
-                                <li><b>Categories: </b>{value.categories.join(", ")}</li>
-                                <li><b>Date Posted: </b>{value.datePosted}</li>
+                                <li><b>Categories: </b>{post.categories.join(", ")}</li>
+                                <li><b>Date Posted: </b>{post.datePosted}</li>
                             </ul>
                             <ul>
-                                <li><b>Location: </b>{value.location}</li>
-                                <li><b>Delivery Option: </b>{value.deliveryOption}</li>
+                                <li><b>Location: </b>{post.location}</li>
+                                <li><b>Delivery Option: </b>{post.deliveryOption}</li>
                             </ul>
                             <br></br>
                             <ul>
-                                <li><b>Views: </b>{value.views}</li>
-                                <li><b>Requests: </b>{value.requests}</li>
-                                <li><b>Saved: </b>{value.saved}</li>
+                                <li><b>Views: </b>{post.views}</li>
+                                <li><b>Requests: </b>{post.requests}</li>
+                                <li><b>Saved: </b>{post.saved}</li>
                             </ul>
                         </div>
                     </div>

@@ -124,16 +124,6 @@ UserSchema.statics.findByEmailPassword = function(email, password) {
 	})
 }
 
-UserSchema.statics.findWishlistedByUser = async function(userId) {
-	const user = await User.findOne({ "_id": ObjectId(userId) });
-	if (!user) {
-		return Promise.reject(); // a rejected promise
-	}
-	return await new Promise((resolve, reject) => {
-		resolve(user);
-	});
-}
-
 // make a model using the User schema
 const User = mongoose.model('User', UserSchema)
 module.exports = { User }

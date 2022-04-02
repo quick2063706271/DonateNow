@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // parsing URL-encoded form 
 
 // express-session for managing user sessions
 const session = require("express-session");
-const MongoStore = require('connect-mongo') // to store session information on the database in production
+const MongoStore = require('connect-mongo'); // to store session information on the database in production
 
 const CLIENT_DIR = "../client/build";
 
@@ -304,6 +304,57 @@ app.get('/api/post/:id', mongoChecker, function(req, res) {
 		log(error)
 		res.status(500).send('Internal Server Error')  // server error
 	})
+})
+
+/* Get Post WishList Count */
+app.get('/api/post/wishlist/:id', mongoChecker, function(req, res) {
+    const pid = req.params.id
+    if (!ObjectID.isValid(pid)) {
+		res.status(404).send('Resource not found') // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+    User.find()
+        .then((users) => {
+            let count = 0
+            users.map(
+                (user) => {
+                    if (user.wishlisted.length > 0){
+                        user.wishlisted.filter((wishlist) => {
+                            if (wishlist.toString() == pid){
+                                count += 1
+                            }
+                        })
+                    }
+                })
+            res.status(200).send(count.toString())
+        }).catch((err) => {
+            res.status(500).send('Internal Server Error')
+        }) 
+})
+
+/* Increment Views*/
+app.patch('/api/post/views/:id', mongoChecker, function(req, res) {
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found') // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+    Post.findOneAndUpdate({_id: id}, 
+                          { $inc: {"views": 1}},{new: true})
+        .then((post) => {
+            if (!post) {
+                res.status(404).send('Resource not found')  // could not find this restaurant
+            } else {
+                res.status(200).send(post)
+            }
+	    })
+        .catch((error) => {
+            log(error)
+            res.status(500).send('Internal Server Error')  // server error
+        })
 })
 
 /* Change Owner Status */

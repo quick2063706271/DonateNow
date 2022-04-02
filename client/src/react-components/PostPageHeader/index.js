@@ -1,6 +1,5 @@
 import React from "react";
 import Button from '@mui/material/Button';
-import './styles.css';
 import { Link } from "react-router-dom";
 import ChooseDonee from "../ChooseDonee";
 import RequestNowDialogue from "../RequestNowDialogue";
@@ -39,7 +38,7 @@ function PostPageHeaderHelper(props){
                 </span>
             )
         }else if (userStatus === "owner"){  //as owner
-            if (post.viewer.length === 0){  ///owner has posted, but no one has requested => ownerStatus: "Posted"
+            if (post.viewers.length === 0){  ///owner has posted, but no one has requested => ownerStatus: "Posted"
                 return (
                     <span>
                         <text className="statusMsg">Owner Status: {post.ownerStatus}</text> 
@@ -51,7 +50,7 @@ function PostPageHeaderHelper(props){
                         <span>
                             <text className="statusMsg">Owner Status: {post.ownerStatus}</text>
                             <ChooseDonee class="postButton" btnId="chooseDoneeButton"
-                                        userId={userId}  postId={postId}/>
+                                        userId={userId}  postId={post.postId}/>
                         </span>
                     )
                 }else if (props.transaction.ownerStatus == "Donation Matched"){ //Owner has done choosing donee => ownerStatus: "Donation Matched"

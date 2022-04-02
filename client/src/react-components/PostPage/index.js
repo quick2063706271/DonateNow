@@ -1,20 +1,20 @@
 import React from "react";
 import "./styles.css";
-import database from '../../database'
 import PostPageHelp from "../PostPagehelp";
 import AppBar from "../AppBar";
 import StickyFooter from "../StickyFooter";
 import ComponentParamsWrapper from "../ParamsWrapper";
 import AdminAppBar from "../AdminAppBar";
 import { checkSession } from "../../actions/user";
-import { getPost } from "../../actions/post"
+import { getPost, getWishlistCount, incrementView } from "../../actions/post"
 
 class PostPage extends React.Component {
     state = {
         postId: "",
         post: null,
-        userId: null,
-        admin: false
+        userId: "",
+        admin: false,
+        wishlist: 0
     };
 
     componentDidMount() {
@@ -27,6 +27,8 @@ class PostPage extends React.Component {
 
     fetchPost = () => {
         getPost(this)
+        getWishlistCount(this)
+        incrementView(this.postId)
     }
 
     render() {
@@ -50,6 +52,7 @@ class PostPage extends React.Component {
                     postId = {this.state.postId}
                     admin = {this.state.admin}
                     post = {this.state.post}
+                    wishlist = {this.state.wishlist}
                     /> : null}
 
                 <div>

@@ -198,7 +198,7 @@ let posts = [
 
     {
         userId: 3,//6247351a33cf034ce21c19a6
-        username: "amy2000", 
+        username: "amy2000@user.com", 
         password: "amy",
         dateOfBirth: "1998-01-01",
         gender: "female",

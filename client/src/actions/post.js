@@ -71,7 +71,7 @@ export const createPost = (app) => {
     
     const{userId, deliveryOption, header, location, description, categories} = app.state
     // imageSrc: req.body.imageSrc
-    const data = { ownerId: userId, ownerStatus: "posted",  deliveryOption, header, location, description, categories};
+    const data = { ownerId: userId, ownerStatus: "Posted",  deliveryOption, header, location, description, categories};
     fetch(url, {
         method: 'POST',
         headers: {
@@ -167,6 +167,50 @@ export const changeViewerStatus = (postId, userId, val) => {
             if (res.status === 200) {
                 return res.json();
             };   
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export const incrementView = (postId) => {
+    const url = `${API_HOST}/api/views/${postId}`;
+
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+    })
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            };   
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+export const getWishlistCount = function (app) {
+    const url = `${API_HOST}/api/post/wishlist/${app.state.postId}`;
+    
+    fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    })
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            };   
+        })
+        .then(json => {
+            if (json) {
+                app.setState({
+                    wishlist: json
+                });
+            }
         })
         .catch(error => {
             console.log(error);
