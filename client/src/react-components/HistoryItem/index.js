@@ -10,7 +10,8 @@ class HistoryItem extends React.Component{
     constructor() {
         super()
         this.state = {
-            userId: -1
+            userId: -1,
+            admin: false
         }
     }
     componentDidMount() {
@@ -30,6 +31,16 @@ class HistoryItem extends React.Component{
         } else {
             chooseDoneeButton = <div></div>
         }
+        console.log(this.state)
+        console.log(viewers)
+        console.log(viewers.filter(viewer => {return viewer.viewerId===this.state.userId  }))
+
+        let viewer = viewers.filter(viewer => {return viewer.viewerId===this.state.userId  })
+        let viewStatusHere = ""
+        if (viewer.length > 0) {
+            viewStatusHere = viewer[0].viewStatus
+        }
+        console.log(viewStatusHere)
         return (
             <div id="item-card">
                 <div id="img-container">
@@ -40,7 +51,7 @@ class HistoryItem extends React.Component{
                     <h4>
                         Status: { 
                             category === "donation" ? ownerStatus :
-                            viewers.filter(viewer => viewer.viewerId === this.state.userId)[0].viewerStatus
+                            viewStatusHere
                         }
                     </h4>
                     {/* <h3>{date}</h3> */}

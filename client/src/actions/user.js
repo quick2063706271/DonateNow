@@ -349,6 +349,7 @@ export const getTransactionHistory = (app) => {
             }
         })
         .then(json => {
+            console.log("transaction history user.js")
             console.log(json)
             app.setState({
                 transactionPosts: json

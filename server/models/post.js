@@ -158,11 +158,21 @@ function filterPostsByOwnerId(posts, ownerId) {
 }
 
 function mapAllViewerIds(viewers) {
+    console.log(viewers.map((viewer) => viewer.viewerId))
     return viewers.map((viewer) => viewer.viewerId)
 }
 
-function filterPostsByViewerId(posts, viewerId) {
-    return posts.filter(post => mapAllViewerIds(post.viewers).includes(viewerId))
+function isObjectIdInArray(ids, objectId) {
+    return ids.some(function(id) {
+        return id.equals(objectId)
+    })
+}
+
+function filterPostsByViewerId(posts, viewId) {
+    const result = posts.filter(post => isObjectIdInArray(mapAllViewerIds(post.viewers), viewId))
+    console.log("here is the filtered result for viewer")
+    console.log(result)
+    return result
 }
 
 
