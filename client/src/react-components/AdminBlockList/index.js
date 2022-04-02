@@ -6,7 +6,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { uid } from "react-uid";
 import StickyFooter from "../StickyFooter";
 import { checkSession } from "../../actions/user";
-import { getUser } from "../../actions/user";
+import { getBlocklist } from "../../actions/blocklist";
 
 class AdminBlockList extends React.Component {
   
@@ -20,12 +20,12 @@ class AdminBlockList extends React.Component {
 }
 
 
-getUsers = () => {
-    getUser(this) 
+getBlocklists = () => {
+  getBlocklist(this) 
 }
 
 componentDidMount() {
-    checkSession(this, this.getUsers());
+    checkSession(this, this.getBlocklist());
 
 }
 
