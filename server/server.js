@@ -562,6 +562,7 @@ app.get("/api/userpage/transactedHistory", async (req, res) => {
     if (!filtered) {
       res.status(404).send("Filtered not found")
     } else {
+      console.log(filtered)
       res.send(filtered)
     }
   } catch(error) {

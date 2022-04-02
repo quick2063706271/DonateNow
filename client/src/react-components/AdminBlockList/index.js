@@ -33,7 +33,7 @@ componentDidMount() {
     event.preventDefault();
     for (const [k, v] of Object.entries(this.state.users)) {
       if (v.userId === value.userId) {
-        const blocked = this.users[k].accountBlocked
+        const blocked = this.state.users[k].accountBlocked
         this.state.users[k].accountBlocked = !blocked
         this.setState({
           users: this.state.users,
@@ -70,7 +70,7 @@ componentDidMount() {
                     <th>Account Blocked</th>
                     <th>Action</th>
                   </tr>
-                  {this.users.map((value, key) => {
+                  {this.state.users.map((value, key) => {
                     return (
                       <tr key={key} className="rt-tr-group">
                         <td>{value.userId}</td>
