@@ -19,11 +19,6 @@ class AdminBlockList extends React.Component {
     }
 }
 
-
-getBlocklists = () => {
-  getBlocklist(this) 
-}
-
 componentDidMount() {
     checkSession(this, this.getBlocklist());
 
