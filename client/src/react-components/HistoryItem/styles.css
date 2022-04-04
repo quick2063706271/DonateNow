@@ -39,3 +39,7 @@
 #item-header {
     cursor: pointer;
 }
+
+.button-group {
+    float: left;
+}

@@ -106,12 +106,16 @@ class HistoryItem extends React.Component{
                         }
                     </h4>
                     {/* <h3>{date}</h3> */}
+                    {chooseDoneeButton}
+                    <div className="button-group">
+                        {failButtonDonor}
+                        {successButtonDonor}
+                    </div>
+                    <div className="button-group">
+                        {failButtonDonee}
+                        {successButtonDonee}
+                    </div>
                 </div>
-                {chooseDoneeButton}
-                {failButtonDonor}
-                {successButtonDonor}
-                {failButtonDonee}
-                {successButtonDonee}
             </div>      
         )
     }
