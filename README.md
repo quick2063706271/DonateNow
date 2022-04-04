@@ -9,6 +9,12 @@ npm install
 npm run build
 ```
 
+Build Back End 
+```
+cd server 
+node server.js
+```
+
 Serve with express
 ```
 cd server
@@ -22,6 +28,8 @@ docker build -t donate-now .
 docker run -d --rm -p 5000:5000 donate-now
 ```
 
+
+
 ## Project Navigation Outline 
 
 ### Userflow for regular users 
@@ -30,15 +38,23 @@ docker run -d --rm -p 5000:5000 donate-now
     Username: user@user.com
     Password: user
     ```
+    <br/> - User will be directed automatically to the Search Result Page for browsing and requesting items. 
 
-2. Click on MY PROFILE on the top right corner to review user profile 
+2. Click on MY PROFILE on the top right corner to review the user profile 
+    <br/> - If not logged in, message will prompt user to log in before proceeding.
+    <br/> - User can access different functionalities by clicking on different tabs in the left panel. 
+    <br/> - In the User Information tab, the user can click on Edit button to edit his/her user profile and Save button to update any changes. 
+    <br/> - In the Transaction History tab, the user can view a list of completed donated that the user received from donnees. 
+    <br/> - In the Donated History tab, the user can view a list of his donated items. 
+    <br/> - In the Submit Feedback tab, the user can file a complaint or submit a response to be reviewed by the admin. 
+    
+
+3. Click on WISH LIST on the top right corner to review a list of all items the user have wishlisted 
     <br/> - If not logged in, message will prompt user to log in before proceed.
-    <br/> - By clicking on different tabs in the left panel, the user can edit personal information, review history, or to submit feedback for review. 
-
-3. Click on WISH LIST on the top right corner to review all items the user have wishlisted 
-    <br/> - If not logged in, message will prompt user to log in before proceed.
-    <br/> - User can click on each post in WISH LIST to review the post in detail. 
-
+    <br/> - User can click on the header of each post in WISH LIST to review the post in detail. 
+    <br/> <br/> - If the user has completed the transaction of the item, a status bar Viewer Status: Completed will appear at the top of the post. 
+    <br/> <br/> - If the transaction is yet to complete, a Request Now button will appear at the top of the post to remind the user. If clicked, a pop up window will appear, asking the user to confirm or cancel his request. 
+    
 4. Click on DONATE NOW on the top right corner to post a new donation 
     <br/> - User must fill in all required areas to publish posts.
     <br/> - Click on PUBLISH to submit post form, error message will prompt if not all areas are filled.
