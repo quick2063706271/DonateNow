@@ -173,8 +173,8 @@ export const changeViewerStatus = (postId, userId, val) => {
         });
 }
 
-export const incrementView = (postId) => {
-    const url = `${API_HOST}/api/views/${postId}`;
+export const incrementView = (app) => {
+    const url = `${API_HOST}/api/post/views/${app.state.postId}`;
 
     fetch(url, {
         method: 'PATCH',

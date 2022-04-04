@@ -16,7 +16,7 @@ class WishListDialogue extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props)
+        // console.log(props)
         this.state = {
             open: false
 
@@ -43,7 +43,7 @@ class WishListDialogue extends React.Component {
     
     render() {
         const {post} = this.props
-        console.log(post)
+        // console.log(post)
         return (
             <div>
                 <Button className="postButton" id="saveButton" color="primary" onClick={this.handleClickOpen} style = {{
