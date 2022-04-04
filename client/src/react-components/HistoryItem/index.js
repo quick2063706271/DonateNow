@@ -33,7 +33,7 @@ class HistoryItem extends React.Component{
         const { header, ownerStatus, date, img, postId, category, viewers } = this.props;
         console.log(this.props)
         let chooseDoneeButton
-        if (ownerStatus === "posted" && category === "donation") {
+        if (ownerStatus === "Posted" && category === "donation") {
             chooseDoneeButton = <div> 
                                     {/* <ChooseDonee /> */}
                                     <ChooseDonee class="" btnId="" 
@@ -53,7 +53,7 @@ class HistoryItem extends React.Component{
             successButtonDonor = <div>
                             <Button className="postButton" id="failButton"
                                     onClick={ () => changeOwnerStatus(this.props.postId, "Completed")}
-                                    >Success</Button>
+                                    >Completed</Button>
          </div>
         } else {
             failButtonDonor = null
@@ -106,12 +106,16 @@ class HistoryItem extends React.Component{
                         }
                     </h4>
                     {/* <h3>{date}</h3> */}
+                    {chooseDoneeButton}
+                    <div className="button-group">
+                        {failButtonDonor}
+                        {successButtonDonor}
+                    </div>
+                    <div className="button-group">
+                        {failButtonDonee}
+                        {successButtonDonee}
+                    </div>
                 </div>
-                {chooseDoneeButton}
-                {failButtonDonor}
-                {successButtonDonor}
-                {failButtonDonee}
-                {successButtonDonee}
             </div>      
         )
     }
