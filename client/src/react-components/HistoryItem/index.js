@@ -6,18 +6,26 @@ import ChooseDonee from "../ChooseDonee";
 import { checkSession } from "../../actions/user";
 import { changeOwnerStatus } from "../../actions/post";
 import { changeViewerStatus } from "../../actions/post";
-
+import { Navigate } from "react-router-dom";
 
 class HistoryItem extends React.Component{
     constructor() {
         super()
         this.state = {
             userId: -1,
-            admin: false
+            admin: false,
+            redirect: false
         }
     }
     componentDidMount() {
         checkSession(this); // sees if a user is logged in
+    }
+    handlePostOnClick = () => {
+
+        this.setState({
+            redirect: true
+        })
+
     }
     render() {
         // status: {Received, Requested, Accepted, Pending, Failed, Posted, Order Placed, Completed}
@@ -85,11 +93,12 @@ class HistoryItem extends React.Component{
         console.log(viewerStatusHere)
         return (
             <div id="item-card">
+                {this.state.redirect ? <Navigate to={`/postpage/${this.props.postId}`}/> : null}
                 <div id="img-container">
                     <img src={img} className="item-img" alt="img"/>
                 </div>
                 <div id="item-information-container">
-                    <h2>{header}</h2>
+                    <h2 id="item-header" onClick={this.handlePostOnClick}>{header}</h2>
                     <h4>
                         Status: { 
                             category === "donation" ? ownerStatus :
