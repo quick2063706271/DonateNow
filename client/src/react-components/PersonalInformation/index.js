@@ -19,8 +19,9 @@ class PersonalInformation extends React.Component {
             password: this.props.password,
             dateOfBirth: this.props.dateOfBirth,
             gender: this.props.gender,
-            address1: this.props.address1,
-            address2: this.props.address2,
+            // addresses: this.props.addresses,
+            address1: "",
+            address2: "",
             phone: this.props.phone,
             email: this.props.email,
             preference: this.props.preference, 
@@ -158,11 +159,12 @@ class PersonalInformation extends React.Component {
                             isRead === false &&
                             <TextField
                             className="inputField"
+                            disabled
                             name={"password"}
                             label="Password"
-                            value={this.state.password}
+                            value={"*********"}
                             InputProps={{
-                                readOnly: !this.state.isEdit
+                                readOnly: true
                             }}
                             sx={{width: '20ch' }}
                             onChange = {this.updateUserInfo}
