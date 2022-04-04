@@ -33,7 +33,7 @@ class HistoryItem extends React.Component{
         const { header, ownerStatus, date, img, postId, category, viewers } = this.props;
         console.log(this.props)
         let chooseDoneeButton
-        if (ownerStatus === "posted" && category === "donation") {
+        if (ownerStatus === "Posted" && category === "donation") {
             chooseDoneeButton = <div> 
                                     {/* <ChooseDonee /> */}
                                     <ChooseDonee class="" btnId="" 
