@@ -53,7 +53,7 @@ class HistoryItem extends React.Component{
             successButtonDonor = <div>
                             <Button className="postButton" id="failButton"
                                     onClick={ () => changeOwnerStatus(this.props.postId, "Completed")}
-                                    >Success</Button>
+                                    >Completed</Button>
          </div>
         } else {
             failButtonDonor = null
