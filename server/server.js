@@ -537,6 +537,21 @@ app.get("/api/userpage", mongoChecker, authenticate, async (req, res) => {
   }
 })
 
+/* User Page get other user */
+app.get("/api/userpage/:id", mongoChecker, authenticate, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+    if (!user) {
+      res.status(404).send("Resource not found")
+    } else {
+      res.send(user)
+    }
+  } catch(error) {
+    log(error)
+    res.status(500).send("Internal Server Error")
+  }
+})
+
 /* User Page Patch*/
 // sennd at this format
 //  [
