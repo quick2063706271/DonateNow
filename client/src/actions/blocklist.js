@@ -6,7 +6,6 @@ const API_HOST = ENV.api_host
 export const getBlocklist = (app) => {
     console.log(app.state)
     const request = new Request(`${API_HOST}/api/userpage`, {
-
         method: "GET",
         headers: {
             'Content-Type': 'application/json'
@@ -23,7 +22,8 @@ export const getBlocklist = (app) => {
             if (json) {
                 console.log(json)
                 app.setState({
-                    feedbacks: json
+                    users: json 
+
                 }, () => { console.log(app.state) });
             }
         })

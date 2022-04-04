@@ -42,7 +42,7 @@ class History extends React.Component {
                                                     ownerStatus={item.ownerStatus} 
                                                     date={item.datePosted}
                                                     img={item.imageSrc}
-                                                    postId={item.postId}
+                                                    postId={item._id}
                                                     viewers={item.viewers}
                                                     category={"donation"}
                                                 />)
@@ -61,7 +61,7 @@ class History extends React.Component {
                                                     status={item.ownerStatus} 
                                                     date={item.datePosted}
                                                     img={item.imageSrc}
-                                                    postId={item.postId}
+                                                    postId={item._id}
                                                     viewers={item.viewers}
                                                     category={"transaction"}
                                                 />)

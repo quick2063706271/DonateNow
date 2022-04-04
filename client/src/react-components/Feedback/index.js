@@ -64,12 +64,6 @@ class Feedback extends React.Component {
                         onChange = {event => this.handleContentChange(event)}
                     />
                     <div>
-                        <Button variant="contained"
-                                style={{
-                                    backgroundColor: "blanchedalmond",
-                                    color: "black"
-                                }}
-                        >UPLOAD PHOTO</Button>
                         <Button 
                             id="submit-button" 
                             variant="contained" 

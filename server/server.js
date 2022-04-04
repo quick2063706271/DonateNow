@@ -620,6 +620,31 @@ app.get("/api/userpage/transactedHistory", async (req, res) => {
     res.status(500).send("Internal Server Error")
   }
 })
+app.get("/api/userpage/donatedHistory/:postid", async (req, res) => {
+
+  const postId = req.params.postid
+  console.log("postid:")
+  console.log(postId)
+  try{
+    const post = await Post.findById(postId)
+    if(!post) {
+      res.status(404).send("Post not found")
+    }
+    const viewerIds = post.viewers.map((viewer) => viewer.viewerId)
+    const viewers = await User.find().where('_id').in(viewerIds)
+    if(!viewers) {
+      res.status(404).send("Viewers not found")
+    } else {
+      console.log(viewers)
+      res.send(viewers)
+    }
+  } catch(error) {
+    log(error)
+    res.status(500).send("Internal Server Error")
+  }
+})
+
+
 
 // app.get('/home', function (req, res) {
 //   res.send('Hello World')

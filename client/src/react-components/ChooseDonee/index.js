@@ -22,6 +22,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import { Link } from "react-router-dom";
 import database from "../../database";
+import { checkSession } from "../../actions/user";
+import { getDoneeInformation } from "../../actions/user";
+import { changeOwnerStatus } from '../../actions/post';
+import { changeViewerStatus } from '../../actions/post';
 
 
 class ChooseDonee extends React.Component {
@@ -31,7 +35,13 @@ class ChooseDonee extends React.Component {
             open: false,
             // choices: [{username: "John2022", viewId: 1},
             //           {username: "amy2000", viewId: 3},]
+            postId: props.postId,
+            donees: [],
             choices: [],
+            userId: -1,
+            admin: false,
+            selected: "",
+            isSelected: true
         }
     }
     handleClickOpen = () => {
@@ -45,7 +55,23 @@ class ChooseDonee extends React.Component {
     };
 
     handleSubmit = () => {
-        this.setState({ open: false });
+        if (this.state.selected === "") {
+            this.setState({isSelected: false})
+            return
+        }
+        this.setState({ open: false, isSelected: true});
+        changeOwnerStatus(this.state.postId, "Donation Matched")
+        changeViewerStatus(this.state.postId, this.state.selected, "Request Accepted")
+        for (let i = 0; i < this.state.donees.length; i++) {
+            if (this.state.donees[i]._id !== this.state.selected) {
+                changeViewerStatus(this.state.postId, this.state.donees[i]._id, "Failed")
+            }
+        }
+    }
+
+    handleChange = (e) => {
+        this.setState({selected: e.target.value})
+        console.log(this.state.selected)
     }
 
     updateStatus = () => {
@@ -57,8 +83,13 @@ class ChooseDonee extends React.Component {
         }, ()=>{console.log(this.state.choices)})
     }
 
-    componentDidMount(){
-        this.updateStatus();
+    fetchDoneeInformation = () => {
+        // getUser(this) // to-do
+        getDoneeInformation(this)
+    }
+    componentDidMount() {
+        checkSession(this); // sees if a user is logged in
+        this.setState({postId: this.props.postId}, this.fetchDoneeInformation)
     }
     
     render() {
@@ -86,21 +117,30 @@ class ChooseDonee extends React.Component {
                         <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"
                             name="radio-buttons-group"
+                            onChange={this.handleChange}
+                            value={this.state.selected}
                         >
-                            {this.state.choices.map((userData) => (
+                            {this.state.donees.length > 0 ? this.state.donees.map((userData) => (
                                 <FormControlLabel
-                                    value={userData.username}
+                                    value={userData._id}
                                     control={<Radio />}
                                     label={(
                                         <div>
-                                            <Link to={'../userpage/' + userData.userId.toString()} target="_blank" >{userData.username}  </Link>
+                                            <Link to={'../userpage/' + userData._id.toString()} target="_blank" >{userData.username}  </Link>
                                         </div>
                                     )}
                                 />
-                            ))}
+                            )) : null}
                         </RadioGroup>
                     </FormControl>
                 </DialogContent>
+                <div>
+                    {
+                        this.state.isSelected === false ? 
+                        <h3>You must select one donee to submit</h3>:
+                        null
+                    }
+                </div>
                 <DialogActions>
                     <Button onClick={this.handleClose} color="primary">
                     Cancel
