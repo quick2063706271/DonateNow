@@ -26,9 +26,10 @@ class PostPage extends React.Component {
     }
 
     fetchPost = () => {
+        console.log("this", this.state.postId)
         getPost(this)
         getWishlistCount(this)
-        incrementView(this.postId)
+        incrementView(this)
     }
 
     render() {
