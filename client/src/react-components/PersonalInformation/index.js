@@ -159,11 +159,12 @@ class PersonalInformation extends React.Component {
                             isRead === false &&
                             <TextField
                             className="inputField"
+                            disabled
                             name={"password"}
                             label="Password"
-                            value={this.state.password}
+                            value={"*********"}
                             InputProps={{
-                                readOnly: !this.state.isEdit
+                                readOnly: true
                             }}
                             sx={{width: '20ch' }}
                             onChange = {this.updateUserInfo}
