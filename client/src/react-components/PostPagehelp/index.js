@@ -1,16 +1,10 @@
 import React from "react";
-// import Button from '@mui/material/Button';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import './styles.css';
-// import { Link } from "react-router-dom";
-// import database from "../../database";
-// import ChooseDonee from "../ChooseDonee";
-// import RequestNowDialogue from "../RequestNowDialogue";
-// import WishListDialogue from "../WishListDialogue";
 import PostPageHeader from "../PostPageHeader";
 
 function DeliveryOptionGenerator(props){

@@ -41,6 +41,10 @@
     max-height: fit-content;
 }
 
+.postHeader{
+    height: 150px;
+}
+
 .postContentItems{
     overflow: auto;
     margin-bottom: 10px;

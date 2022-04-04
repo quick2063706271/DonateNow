@@ -8,7 +8,7 @@ import { changeOwnerStatus, changeViewerStatus } from "../../actions/post";
 
 function PostPageHeaderHelper(props){
     const {post, userId, admin} = props
-    if (userId === ""){ //if not signed in, direct to sign in page
+    if (userId === ""){ /*if not signed in, direct to sign in page*/
         return (
             <span>
                 <Link to={'/login'}>
@@ -17,7 +17,7 @@ function PostPageHeaderHelper(props){
             </span>
         )
     }
-   else if (admin){ //if viewing as admin, show **BLOCK POST** or **User Profile***
+   else if (admin){ /*if viewing as admin, show **BLOCK POST** or **User Profile*** */
         return (
             <span>
                 <Link Link to={'/admin/userpage/' + post.ownerId}>
@@ -27,25 +27,25 @@ function PostPageHeaderHelper(props){
             </span>
         )
     }
-    else{  // if viewing as regular user
+    else{  /*if viewing as regular user*/
         const userStatus = checkRegularUser(post, userId)
-        if (userStatus === "visitor" ){  // as visitor
+        if (userStatus === "visitor" ){  /* as visitor */
             return (
                 <span>
-                    {console.log(props.userId, props.post, props.postId)}
-                    <RequestNowDialogue post={props.post} btnId="chooseDoneeButton"/>
-                    <WishListDialogue post={props.post} btnId="chooseDoneeButton"/>
+                    {console.log(userId, post, post.postId)}
+                    <RequestNowDialogue post={post} btnId="chooseDoneeButton"/>
+                    <WishListDialogue post={post} btnId="chooseDoneeButton"/>
                 </span>
             )
-        }else if (userStatus === "owner"){  //as owner
-            if (post.viewers.length === 0){  ///owner has posted, but no one has requested => ownerStatus: "Posted"
+        }else if (userStatus === "owner"){  /* as owner */
+            if (post.viewers.length === 0){  /*owner has posted, but no one has requested => ownerStatus: "Posted"*/
                 return (
                     <span>
                         <text className="statusMsg">Owner Status: {post.ownerStatus}</text> 
                     </span>
                 )
             }else{
-                if (post.ownerStatus == "Posted"){ //some users have requested, owner needs to choose => ownerStatus: "Posted"
+                if (post.ownerStatus == "Posted"){ /* some users have requested, owner needs to choose => ownerStatus: "Posted" */
                     return (
                         <span>
                             <text className="statusMsg">Owner Status: {post.ownerStatus}</text>
@@ -53,7 +53,7 @@ function PostPageHeaderHelper(props){
                                         userId={userId}  postId={post.postId}/>
                         </span>
                     )
-                }else if (props.transaction.ownerStatus == "Donation Matched"){ //Owner has done choosing donee => ownerStatus: "Donation Matched"
+                }else if (post.ownerStatus == "Donation Matched"){ /* Owner has done choosing donee => ownerStatus: "Donation Matched" */
                     return (
                         <span>
                             <text className="statusMsg">Owner Status: {post.ownerStatus}</text>
@@ -66,18 +66,19 @@ function PostPageHeaderHelper(props){
                                     variant="outlined">Completed</Button>
                         </span>
                     )
-                }else{    //ownerStatus: "Completed" or "Failed"
+                }else{    /* ownerStatus: "Completed" or "Failed" */
                     <span>
                             <text className="statusMsg">Owner Status: {post.ownerStatus}</text>
                     </span>
                 }
             }
 
-        }else{  //as viewer
-            if (props.transaction.viewerStatus == "Request Accepted"){
+        }else{  /* as viewer */
+            const viewer = post.viewers.filter(viewer => viewer.viewerId === userId)[0]
+            if (viewer.viewerStatus == "Request Accepted"){
                 return (
                     <span>
-                        <text className="statusMsg">Viewer Status: {post.viewerStatus}</text>
+                        <text className="statusMsg">Viewer Status: {viewer.viewerStatus}</text>
                         <br></br>
                             <Button className="postButton" id="failButton"
                                     onClick={ () => changeViewerStatus(post.postId, userId, "Failed")}
@@ -90,7 +91,7 @@ function PostPageHeaderHelper(props){
             }else{
                 return(
                     <span>
-                        <text className="statusMsg">Viewer Status: {props.transaction.viewerStatus}</text>
+                        <text className="statusMsg">Viewer Status: {viewer.viewerStatus}</text>
                     </span>
                 )
             }
