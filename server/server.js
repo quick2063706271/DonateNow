@@ -410,6 +410,38 @@ app.patch('/api/post/:id/:viewer_id', mongoChecker, function(req, res) {
         })
 })
 
+/* Add Viewer Status */
+app.post('/api/post/:id/:viewer_id', mongoChecker, function(req, res) {
+    const id = req.params.id
+    const vid = req.params.viewer_id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found') // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+    const viewer = new Object({
+        viewerId: vid,
+        viewerStatus: req.body.val
+    })
+
+    Post.findOneAndUpdate({_id: id}, 
+							{   $push: {viewers: viewer}},
+							{
+								new: true
+							}
+							)
+        .then((post) => {
+            if (!post) {
+                res.status(404).send('Resource not found')  // could not find this restaurant
+            } else {
+                res.status(200).send(post)
+            }
+	    })
+        .catch((error) => {
+            log(error)
+            res.status(500).send('Internal Server Error')  // server error
+        })
+})
 /*FAQ Page*/
 app.get('/api/faqpage', mongoChecker,(req, res) => {
     Faq.find().then((result) => {

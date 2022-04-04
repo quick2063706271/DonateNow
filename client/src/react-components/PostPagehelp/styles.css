@@ -1,39 +1,63 @@
 
 #completeButton{
     float:right;
-    margin-right: 10px;
+    
+
 }
 
 #failButton{
     float:right;
-    margin-right: 8%;
+    margin-right: 10%;
+}
+
+#postLoginButton{
+    float:left;
+    background-color: #C65D7B;
+    font-size: 16px;
+    color:rgb(255, 255, 255);
+    margin-right: 2%;
 }
 #requestNowButton{
-    float:right;
-    background-color: rgb(220, 70, 127);
-    font-size: 18px;
+    float:left;
+    background-color: #C65D7B;
+    font-size: 16px;
+    color:rgb(255, 255, 255);
+    margin-right: 2%;
+}
+
+#wishListButton{
+    float: left;
+    background-color: #C65D7B;
+    font-size: 16px;
     color:cornsilk;
-    margin-right: 8%;
-    margin-left: 2%;
-    margin-top: 10px;
 }
 
 #saveButton{
-    float:right;
-    background-color: rgb(220, 70, 127);
+    float: right;
+    background-color: #C65D7B;
     font-size: 18px;
     color:cornsilk;
     margin-top: 10px;
 }
 
 #chooseDoneeButton{
-    float:right;
-    background-color: rgb(220, 70, 127);
-    font-size: 18px;
-    color:cornsilk;
-    margin-top: 10px;
+    float:left;
+    background-color: #C65D7B;
+    font-size: 16px;
+    color:rgb(255, 255, 255);
+    margin-left: 3%;
+}
+.postBackground{
+    border-radius: 15px;
+    float: left;
+    margin-top: 50px;
+    margin-left: 5%;
     margin-right: 8%;
-    margin-left: 2%;
+    width: 90%;
+    height: fit-content;
+    /* max-height: 1000px; */
+    background-color: #FDF6EC;
+    position: relative;
 }
 
 .postPageTextBox{
@@ -41,8 +65,26 @@
     max-height: fit-content;
 }
 
+#postHeader{
+    font-size: 32px;
+    font-weight: bold;
+}
+
 .postHeader{
     height: 150px;
+    top: 30px;
+    left: 5%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+#goBackDiv{
+    width: 100%;
+}
+
+#backButton{
+    float:left;
 }
 
 .postContentItems{
@@ -122,10 +164,7 @@
 }
 
 .statusMsg{
-    margin-left: 2%;
-    margin-top: 10px;
-    float: right;
-    font-size: 28px;
-    margin-right: 8%;
-    color:rgb(220, 70, 127)
+    float: left;
+    font-size: 24px;
+    color:#C65D7B
 }

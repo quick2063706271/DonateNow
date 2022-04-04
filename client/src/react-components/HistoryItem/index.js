@@ -46,12 +46,12 @@ class HistoryItem extends React.Component{
         let successButtonDonor
         if (ownerStatus === "Donation Matched" && category === "donation") {
             failButtonDonor = <div>
-                            <Button className="postButton" id="failButton"
+                            <Button id="failButton"
                                     onClick={ () => changeOwnerStatus(this.props.postId, "Failed")}
                                     >Failed</Button>
                          </div>
             successButtonDonor = <div>
-                            <Button className="postButton" id="failButton"
+                            <Button id="failButton"
                                     onClick={ () => changeOwnerStatus(this.props.postId, "Completed")}
                                     >Completed</Button>
          </div>
@@ -77,12 +77,12 @@ class HistoryItem extends React.Component{
 
         if (viewerStatusHere === "Request Accepted" && category === "transaction") {
             failButtonDonee = <div>
-                            <Button className="postButton" id="failButton"
+                            <Button id="failButton"
                                     onClick={ () => changeViewerStatus(this.props.postId, this.state.userId, "Failed")}
                                     >Failed</Button>
                          </div>
             successButtonDonee = <div>
-                            <Button className="postButton" id="failButton"
+                            <Button id="failButton"
                                     onClick={ () => changeViewerStatus(this.props.postId, this.state.userId, "Completed")}
                                     >Success</Button>
          </div>

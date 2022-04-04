@@ -1,13 +1,11 @@
 import React from "react";
-// import './styles.css'
-import database from '../../database'
 import AppBar from "../AppBar";
-import { uid } from "react-uid";
 import Button from '@mui/material/Button';
 import { Navigate } from 'react-router-dom';
 import StickyFooter from "../StickyFooter";
 import { checkSession } from "../../actions/user";
 import { findPostByWishlisted } from "../../actions/post";
+import { Link } from "react-router-dom";
 
 class WishList extends React.Component {
 
@@ -66,8 +64,8 @@ class WishList extends React.Component {
                                     <br></br>
                                     <ul>
                                         <li><b>Views: </b>{value.views}</li>
-                                        <li><b>Requests: </b>{value.requests}</li>
-                                        <li><b>Saved: </b>{value.saved}</li>
+                                        <li><b>Requests: </b>{value.viewers.length}</li>
+                                        {/* <li><b>Saved: </b>{value.saved}</li> */}
                                     </ul>
                                 </div>
                             </div>
@@ -101,7 +99,13 @@ class WishList extends React.Component {
                 </div>
             );
         } else {
-            return (<h1>Please log in to view this page. :(</h1>);
+            return (
+            <div>
+                <h1>Please log in to view this page :(</h1>
+                <Link to={'/login'}>
+                    <Button variant="outlined" >Log In Here</Button>
+                </Link>
+            </div>)
         }
     }
 

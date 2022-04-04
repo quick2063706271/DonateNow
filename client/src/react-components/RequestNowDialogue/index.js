@@ -10,7 +10,7 @@ import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import { Link } from "react-router-dom";
-
+import { addViewerStatus } from '../../actions/post';
 
 class RequestNowDialogue extends React.Component {
     constructor(props) {
@@ -32,7 +32,9 @@ class RequestNowDialogue extends React.Component {
     };
 
     handleSubmit = () => {
-        this.setState({ open: false });
+        this.setState({ 
+            open: false 
+        }, () => addViewerStatus(this.props.postId, this.props.userId, "Requested"));
     }
 
     updateStatus = () => {
@@ -42,7 +44,8 @@ class RequestNowDialogue extends React.Component {
     
     render() {
         const {post} = this.props
-        // console.log(post)
+        if (post.ownerStatus === "Posted"){
+        
         return (
             <div>
                 <Button id={this.props.btnId} color="primary" onClick={this.handleClickOpen} style = {{
@@ -73,9 +76,11 @@ class RequestNowDialogue extends React.Component {
                     </Button>
                 </DialogActions>
                 </Dialog>
-      </div>
+            </div>
         );
-    }
+        }
+        
+}
 
 }
 

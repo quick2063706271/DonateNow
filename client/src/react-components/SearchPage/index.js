@@ -142,8 +142,8 @@ class SearchPage extends React.Component {
                             <br></br>
                             <ul>
                                 <li><b>Views: </b>{post.views}</li>
-                                <li><b>Requests: </b>{post.requests}</li>
-                                <li><b>Saved: </b>{post.saved}</li>
+                                <li><b>Requests: </b>{post.viewers.length}</li>
+                                {/* <li><b>Saved: </b>{post.saved}</li> */}
                             </ul>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-.postBackground{
+.createPostBackground{
     border-radius: 15px;
     float: left;
     margin-top: 50px;
@@ -11,7 +11,7 @@
     position: relative;
 }
 
-.postHeader{
+.createPostHeader{
     top: 30px;
     left: 40px;
     width: 100%;
@@ -28,19 +28,18 @@
 
 #publishButton{
     float:right;
-    background-color: rgb(220, 70, 127);
+    background-color: #C65D7B;
     font-size: 18px;
-    color:cornsilk;
+    color:rgb(252, 251, 249);
     margin-right: 8%;
     margin-left: 2%;
-    margin-top: 10px;
 }
 
 #uploadButton{
     /* float: left; */
     margin-left: 30%;
     margin-top: 15%;
-    background-color: rgb(220, 70, 127);
+    background-color: #C65D7B;
     font-size: 18px;
     color:cornsilk;
 }
