@@ -153,7 +153,9 @@ function filterPostsById(posts, wishlisted) {
 }
 
 function filterPostsByOwnerId(posts, ownerId) {
-    return posts.filter(post => post.ownerId.equals(ownerId))
+    const result = posts.filter(post => post.ownerId.equals(ownerId))
+    console.log(result)
+    return result
 }
 
 function mapAllViewerIds(viewers) {

@@ -538,7 +538,7 @@ app.get("/api/userpage", mongoChecker, authenticate, async (req, res) => {
 })
 
 /* User Page get other user */
-app.get("/api/userpage/:id", mongoChecker, authenticate, async (req, res) => {
+app.get("/api/userpage/other/:id", mongoChecker, authenticate, async (req, res) => {
   try {
     const user = await User.findById(req.params.id)
     if (!user) {
