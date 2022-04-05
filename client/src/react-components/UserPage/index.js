@@ -6,6 +6,7 @@ import "./styles.css";
 // import Feedback from "../Feedback";
 import SideMenu from "../SideMenu";
 import AppBar from "../AppBar";
+import AdminAppBar from "../AdminAppBar";
 import StickyFooter from "../StickyFooter";
 import { checkSession } from "../../actions/user";
 import { Button } from "@mui/material";
@@ -38,7 +39,18 @@ class UserPage extends React.Component {
             return (
                 <div className="grid-container">
                     <div className="grid-item grid-item-1">
-                        <AppBar handleSearchButtonOnClick={this.props.handleSearchButtonOnClick}/>
+                        {this.state.userId === "" ? 
+                            <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                            :null
+                        }
+                        {this.state.userId !== "" && this.state.admin ? 
+                            <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                            :null
+                        }
+                        {this.state.userId !== "" && !this.state.admin ?
+                            <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
+                            :null
+                        }
                     </div>
                     
                     <div className="grid-item grid-item-2" id="side-menu-container">

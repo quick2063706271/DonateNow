@@ -21,7 +21,10 @@
     left: 160px;
 }
 
-.complaint-button {
+.admin-button-group {
+    display: flex;
+}
+/* .complaint-button {
     position: relative;
     top: 350px;
     left: 250px
@@ -31,4 +34,4 @@
     position: relative;
     top: 313.5px;
     left: 20px
-}
+} */

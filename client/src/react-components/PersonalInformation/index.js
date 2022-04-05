@@ -8,6 +8,8 @@ import { updateUserForm } from "../../actions/user";
 import { updateUser } from "../../actions/user";
 import { getUser } from "../../actions/user";
 import { checkSession } from "../../actions/user";
+import { getOtherUser } from "../../actions/user";
+import ComponentParamsWrapper from "../ParamsWrapper";
 
 class PersonalInformation extends React.Component {
     constructor(props) {
@@ -30,7 +32,7 @@ class PersonalInformation extends React.Component {
             isEdit: false,
             isComplained: false,
             message: null,
-            userId: -1,
+            userId: "",
             admin: false
         }
         this.handleEdit.bind(this);
@@ -66,9 +68,21 @@ class PersonalInformation extends React.Component {
         getUser(this)
         // findPostByKeyword(this, keyword)
     }
+    fetchOtherUserInformation = () => {
+
+        getOtherUser(this)
+    }
 
     componentDidMount() {
-        checkSession(this, this.fetchPersonalInformation); // sees if a user is logged in
+        if (this.props.isRead) {
+            this.setState({
+                userId: this.props.userId
+            }, this.fetchOtherUserInformation)
+            console.log(this.state)
+        } else {
+            this.setState(this.fetchPersonalInformation)
+        }
+        checkSession(this); // sees if a user is logged in
     }
     updateUserInfo = (e) => {
         const field = e.target
@@ -104,7 +118,7 @@ class PersonalInformation extends React.Component {
                isRead
                } = this.props;
         //const isAdmin = this.state.admin;
-        const isAdmin = this.props.admin;
+        const isAdmin = this.state.admin;
         // this.state.username = username
         // this.state.password = password
         // this.state.dateOfBirth = dateOfBirth
@@ -127,6 +141,7 @@ class PersonalInformation extends React.Component {
             complaint = null
             block = null
         }
+        console.log(isAdmin)
         return(
             <div>
                 <Box component="form"
@@ -138,12 +153,8 @@ class PersonalInformation extends React.Component {
                         <div>
                             <Avatar id="avatar" sx={{height: 80, width: 80}}>JO</Avatar>
                         </div>
-                        <div className="complaint-button" >
-                            {complaint}
-                        </div>
-                        <div className="block-button" >
-                            {block}
-                        </div>
+                        
+                        
                         <TextField
                         className="inputFieldId"
                         label="Username"
@@ -156,7 +167,7 @@ class PersonalInformation extends React.Component {
                         onChange = {this.updateUserInfo}
                         />
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <TextField
                             className="inputField"
                             disabled
@@ -171,11 +182,11 @@ class PersonalInformation extends React.Component {
                             />
                         }
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <br />
                         }
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <TextField
                             className="inputField"
                             label="Date Of Birth"
@@ -189,7 +200,7 @@ class PersonalInformation extends React.Component {
                         />
                         }
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <TextField
                             className="inputField"
                             label="Gender"
@@ -203,11 +214,11 @@ class PersonalInformation extends React.Component {
                             />
                         }
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <br />
                         }
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <TextField
                             className="inputField"
                             name={"address1"}
@@ -222,11 +233,11 @@ class PersonalInformation extends React.Component {
                             />
                         }
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <br />
                         }
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <TextField
                             className="inputField"
                             name={"address2"}
@@ -241,11 +252,11 @@ class PersonalInformation extends React.Component {
                             />
                         }
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <br />
                         }
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <TextField
                             className="inputField"
                             label="Phone number"
@@ -259,7 +270,7 @@ class PersonalInformation extends React.Component {
                             />
                         }
                         {
-                            isRead === false &&
+                            (isRead === false || isAdmin ) &&
                             <TextField
                             className="inputField"
                             label="E-mail"
@@ -319,6 +330,14 @@ class PersonalInformation extends React.Component {
                                 </Button>}
                             </div>
                         }
+                        <div className="admin-button-group">
+                            <div className="complaint-button" >
+                                {complaint}
+                            </div>
+                            <div className="block-button" >
+                                {block}
+                            </div>
+                        </div>
                     </div>
 
                 </Box>

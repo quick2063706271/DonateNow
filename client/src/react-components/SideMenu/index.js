@@ -8,6 +8,7 @@ import database from "../../database"
 import { getUser } from '../../actions/user';
 import { getOtherUser } from '../../actions/user';
 import { checkSession } from '../../actions/user';
+import ComponentParamsWrapper from "../ParamsWrapper";
 
 class SideMenu extends React.Component{
     constructor(props) {
@@ -27,7 +28,7 @@ class SideMenu extends React.Component{
             complaintNum: "",
             accountBlocked: "",
             isRead: "{isRead}",
-            userId: -1,
+            userId: this.props.userId,
             admin: false,
             personalInfo: null
         }
@@ -110,8 +111,9 @@ class SideMenu extends React.Component{
         const uniqueDonationPosts = []
         // select panel to display
         let panel
-        if (isRead) {
+        if (isRead && !this.state.admin) {
             panel = <PersonalInformation
+                        userId={this.state.userId}
                         username={this.state.username}
                         password=""
                         dateOfBirth={this.state.dateOfBirth}
@@ -123,7 +125,7 @@ class SideMenu extends React.Component{
                         preference={this.state.preference}
                         bio={this.state.bio}
                         complaintNum={this.state.complaintNum}
-                        admin = {false}
+                        admin = {this.state.admin}
                         isRead = {isRead}/>
         } else {
             if (this.state.selectedPanel === 1) {
@@ -136,6 +138,7 @@ class SideMenu extends React.Component{
                 panel = <Feedback/>
             } else {
                 panel = <PersonalInformation
+                            userId={this.state.userId}
                             username={this.state.username}
                             password=""
                             dateOfBirth={this.state.dateOfBirth}
@@ -147,7 +150,7 @@ class SideMenu extends React.Component{
                             preference={this.state.preference}
                             bio={this.state.bio}
                             complaintNum={this.state.complaintNum}
-                            admin = {false}
+                            admin = {this.state.admin}
                             isRead = {isRead}
                         />
         }   
@@ -210,4 +213,4 @@ class SideMenu extends React.Component{
 
 
 
-export default (SideMenu);
+export default ComponentParamsWrapper(SideMenu);

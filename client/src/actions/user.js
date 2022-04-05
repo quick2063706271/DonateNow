@@ -204,7 +204,6 @@ export const getOtherUser = (app) => {
                 bio: json.bio,
                 complaintNum: json.complaintNum,
                 accountBlocked: json.accountBlocked,
-                admin: json.admin,
                 address1: json.address1,
                 address2: json.address2
             }) 
