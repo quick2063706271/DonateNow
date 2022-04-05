@@ -130,7 +130,6 @@ class HistoryItem extends React.Component{
                             viewerStatusHere
                         }
                     </h4>
-                    {/* <h3>{date}</h3> */}
                     {chooseDoneeButton}
                     {viewDonorButton}
                     {viewDoneeButton}

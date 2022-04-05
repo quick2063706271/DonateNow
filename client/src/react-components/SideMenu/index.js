@@ -83,32 +83,6 @@ class SideMenu extends React.Component{
         if (readibility === true) {
             isRead = true;
         }
-        let uniqueTransactionPosts = []
-        // select user to display
-        // let user = database.users[userId-1]
-        // find transaction history
-        // let transactionHistories = database.transactions.filter((transaction) => transaction.viewerId === user.userId)
-
-        // const mergeById = (a1, a2) =>
-        //  a1.map(itm => ({
-        //     ...a2.find((item) => (item.postId === itm.postId) && item),
-        //     ...itm
-        // }));
-
-        // let transactionPosts = mergeById(transactionHistories, database.posts);
-        // const uniqueTransactionPosts = [...new Map(transactionPosts.map((item, postId) => [item[postId], item])).values()]
-
-        // console.log(transactionHistories)
-        // console.log(transactionPosts)
-        // // find donation history
-        // let donationHistories = database.transactions.filter((transaction) => transaction.ownerId === user.userId)
-
-        // let donationPosts = mergeById(donationHistories, database.posts);
-
-        // const uniqueDonationPosts = [...new Map(donationPosts.map((item, postId) => [item[postId], item])).values()]
-        // // console.log(unique)
-        // console.log(donationPosts)
-        const uniqueDonationPosts = []
         // select panel to display
         let panel
         if (isRead && !this.state.admin) {
@@ -130,10 +104,10 @@ class SideMenu extends React.Component{
         } else {
             if (this.state.selectedPanel === 1) {
                 panel = <History userId={this.props.userId} 
-                                items={uniqueTransactionPosts} category="transaction"/>
+                                 category="transaction"/>
             } else if (this.state.selectedPanel === 2) {
                 panel = <History userId={this.props.userId}
-                                items={uniqueDonationPosts} category="donation"/>
+                                 category="donation"/>
             } else if (this.state.selectedPanel === 3) {
                 panel = <Feedback/>
             } else {
@@ -153,23 +127,7 @@ class SideMenu extends React.Component{
                             admin = {this.state.admin}
                             isRead = {isRead}
                         />
-        }   
-            // panel.setState({
-            //     username: user.username,
-            //     password: "",
-            //     dateOfBirth: user.dateOfBirth,
-            //     gender: user.gender,
-            //     address1: user.address1,
-            //     address2:user.address2,
-            //     phone: user.phone,
-            //     email: user.email,
-            //     preference: user.preference,
-            //     bio: user.bio,
-            //     complaintNum: user.complaintNum,
-            //     accountBlocked: user.accountBlocked,
-            //     admin: false,
-            //     isRead: isRead
-            // })
+            }   
         }
 
         return (

@@ -238,7 +238,6 @@ export const updateUser = (PersonalInformation) => {
     console.log(PersonalInformation.state)
     const patchData = [
         {"op": "replace", "path": "/username", "value": PersonalInformation.state.username},
-        // {"op": "replace", "path": "/password", "value": PersonalInformation.state.password},
         {"op": "replace", "path": "/dateOfBirth", "value": PersonalInformation.state.dateOfBirth},
         {"op": "replace", "path": "/gender", "value": PersonalInformation.state.gender},
         {"op": "replace", "path": "/address1", "value": PersonalInformation.state.address1},

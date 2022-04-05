@@ -22,8 +22,6 @@ class ChooseDonee extends React.Component {
         super(props);
         this.state = {
             open: false,
-            // choices: [{username: "John2022", viewId: 1},
-            //           {username: "amy2000", viewId: 3},]
             postId: props.postId,
             donees: [],
             choices: [],

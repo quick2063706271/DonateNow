@@ -96,49 +96,17 @@ class PersonalInformation extends React.Component {
         console.log(this.state)
     };
 
-    // changeButtonText = () => {
-    //     const buttonElement = document.querySelector(".edit-button").children[0];
-    //     if (this.state.isEdit === true) {
-    //         buttonElement.innerText = "SAVE";
-    //     } else {
-    //         buttonElement.innerText = "EDIT";
-    //     }
-    // }
     render() {
-        const {username,
-               password,
-               dateOfBirth,
-               gender,
-               address1,
-               address2,
-               phone,
-               email,
-               preference,
-               bio,
+        const {
                isRead
                } = this.props;
-        //const isAdmin = this.state.admin;
         const isAdmin = this.state.admin;
-        // this.state.username = username
-        // this.state.password = password
-        // this.state.dateOfBirth = dateOfBirth
-        // this.state.gender = gender
-        // this.state.address1 = address1
-        // this.state.address2 = address2
-        // this.state.phone = phone
-        // this.state.email = email
-        // this.state.preference = preference
-        // this.state.bio = bio
-        let complaint, block;
+        let block;
         if (isAdmin) {
-            complaint = <Button variant="contained" display="inline-block" onClick={this.handleComplaint}>
-                {this.state.isComplained ? "Complaint logged!" : "Complain the User"}
-            </Button>
             block = <Button variant="contained" display="inline-block" onClick={this.handleBlock}>
                 {this.state.accountBlocked ? "⠀ ⠀ Blocked ⠀ ⠀ " : "Block the User"}
             </Button>
         } else {
-            complaint = null
             block = null
         }
         console.log(isAdmin)
@@ -331,9 +299,6 @@ class PersonalInformation extends React.Component {
                             </div>
                         }
                         <div className="admin-button-group">
-                            <div className="complaint-button" >
-                                {complaint}
-                            </div>
                             <div className="block-button" >
                                 {block}
                             </div>

@@ -18,14 +18,13 @@ class History extends React.Component {
     fetchHistoryInformation = () => {
         getDonationHistory(this)
         getTransactionHistory(this)
-        // findPostByKeyword(this, keyword)
     }
     componentDidMount() {
         checkSession(this, this.fetchHistoryInformation()); // sees if a user is logged in
     }
     render() {
         console.log(this.state)
-        const {items, category} = this.props;
+        const { category } = this.props;
         console.log(category)
         let histories
         if (this.state.donationPosts.length === 0) {
