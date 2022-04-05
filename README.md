@@ -36,7 +36,7 @@ docker run -d --rm -p 5000:5000 donate-now
 #### User Login and Create a Session (POST) 
 Request URL: http://localhost:6001/login
 <br/>This is used for verifying a user's credentials (emails and password) when logging into the website. This also add the user ID into the session for the user to remain logged in. 
-This route is expected to be sent a json file of email and password: 
+<br/>This route is expected to be sent a json file of email and password: 
 ```
 {
     "email": "user@user.com",
@@ -52,8 +52,8 @@ This route is expected to find the user and start the session if the user is val
 
 #### Create Account (POST) 
 Request URL: http://localhost:6001/api/createanaccount 
-This is used for creating a new user account from receiving a user's credentials. 
-This route is expected to be sent a json file of email and password: 
+<br/>This is used for creating a new user account from receiving a user's credentials. 
+<br/>This route is expected to be sent a json file of email and password: 
 ```
 {
     "email": "new-user@user.com",
@@ -62,12 +62,26 @@ This route is expected to be sent a json file of email and password:
 ```
 This route is expected to add the newly created user into the user database for future logins. 
 
+
+
+### 2. Routes for Users 
+#### Get Userpage 
+
+#### User Page get other user (not sure) 
+#### Update Userpage 
+#### Post Feedback 
+#### Get Donated History Posts 
+#### Get Donated History Posts from Post ID 
+#### Get Transaction History Posts
+
+### 3. Route for Posts 
 #### Create Post (POST) 
 Request URL: http://localhost:6001/api/posts 
-This route is for an user to create and publish a post after filling in all required fields of information. 
-This route is expected to be sent a json file of post information: 
+<br/>This route is for an user to create and publish a post after filling in all required fields of information on the DONATE NOW page. 
+<br/>This route is expected to be sent a json file containing the new post's information when the user publishes the post, and store it in the Posts database: 
 ```
-{  "ownerId":{"$oid":"624732f033cf034ce21c1989"},
+{  
+   "ownerId":{"$oid":"624732f033cf034ce21c1989"},
    "ownerStatus":"Posted",
    "viewers":[],
    "imageSrc":{"$oid":"624be253e3ad663b8dddbb6e"},
@@ -80,18 +94,6 @@ This route is expected to be sent a json file of post information:
 ```
 This route is expected to add the newly created post into the post database.
 
-
-### 2. Routes for Users 
-#### Get Userpage 
-#### User Page get other user (not sure) 
-#### Update Userpage 
-#### Post Feedback 
-#### Get Donated History Posts 
-#### Get Donated History Posts from Post ID 
-#### Get Transaction History Posts
-
-### 3. Route for Posts 
-#### Creating Posts 
 #### Incrementing Post Views 
 #### Change Owner Status 
 #### Change Viewer Status 
@@ -102,7 +104,7 @@ This route is expected to add the newly created post into the post database.
 #### Get a User's Wishlist from User ID (GET) 
 Request URL: http://localhost:6001/api/posts/:id 
 <br/>This route browses through all posts and extract all items/posts wishlisted by a certain user from his User ID. 
-<br/>This route is expected to return a json file of wishlist information. 
+<br/>This route is expected to authenticate user, then return a json file of wishlist information. 
 ```
 to be implemented 
 ``` 
@@ -116,21 +118,89 @@ to be implemented
 
 
 ### 6. Route for Post Page 
-#### Get Post from Post ID 
+#### Get Post from Post ID (GET) 
+Request URL: http://localhost:6001/api/post/:id
+<br/>This route gets a post's information from the Post ID in the Posts database. 
+<br/>This route is expected to  return a json file of post information to be processed and displayed on the View Post page: 
+```
+{
+    "ownerId": {
+        "$oid": "6247351a33cf034ce21c19a6"
+    },
+    "ownerStatus": "Posted",
+    "viewers": [{
+        "viewerId": {
+            "$oid": "624732f033cf034ce21c1989"
+        },
+        "viewerStatus": "Requested"
+        }, {
+        "viewerId": {
+            "$oid": "6247346533cf034ce21c1999"
+        },
+        "viewerStatus": "Requested"
+    }],
+    "imageSrc": {
+        "$oid": "624be231e3ad663b8dddbb68"
+    },
+    "deliveryOption": "By Courier",
+    "header": "Clothes for Kids 5-6 Year Olds",
+    "location": "Toronto, ON",
+    "description": "My son grows really fast, these clothes are almost new. We wish to give away to kids who may need it.",
+    "categories": ["Clothing", "Toys, Kids, Parents"],
+    "views": 34,
+    "datePosted": "4/1/2022 08:23",
+}
+``` 
+
 
 ### 7. Route for Admin Feedback Page 
-#### Get All Feedbacks 
+#### Get All Feedbacks (GET) 
+Request URL: http://localhost:6001/api/admin/feedback 
+<br/>This route extracts all the user feedbacks from the Feedback database. 
+<br/>This route is expected to authenticate user and verify the user is admin, then return a json file of feedback information to be displayed on the View Feedback page: 
+```
+{
+    "title": "HELP! My request was cancelled for no reason",
+    "content": "I noticed my request for a used computer was cancelled suddenly but I was having a successful transaction. I wonder how this occurred?",
+    "isResolved": false,
+}
+``` 
 
 ### 8. Route for Admin Blocklist Page 
-#### Get All Blocklist 
-#### Update Blocklist from User ID 
+#### Get All Blocklist (GET)
+Request URL: http://localhost:6001/api/admin/blocklist
+<br/>This route extracts all the user information from the User database. 
+<br/>This route is expected to authenticate user and verify the user is admin, then return a json file of user information. The accountBlocked attribute for each user is extracted from each user to be displayed on the Block List page. 
+
+#### Update Blocklist from User ID (PATCH) 
+Request URL: http://localhost:6001/api/admin/blocklist 
+<br/>This route identifies a user from the User ID, and block or unblock his account. 
+<br/>This route is expected to authenticate user and verify the current user is admin, then extracts a specific user's information from the input User ID and changes this user's accountBlocked status. 
+
 
 ### 9. Route for Terms and Conditions Page
-#### Get All Terms and Conditions 
+#### Get All Terms and Conditions (GET)
+Request URL: http://localhost:6001/api/termsconditions
+<br/>This route extracts all the terms and conditions from the database. 
+<br/>This route is expected to return a json file of terms and conditions information to be displayed on the Terms and Conditions page: 
+```
+{
+    "header": "Content",
+    "description": "Our Service allows You to post Content. You are responsible for the Content that You post to the Service, including its legality, reliability, and appropriateness."
+}
+``` 
 
 ### 10. Route for FAQ Page 
-#### Get All FAQs 
-
+#### Get All FAQs (GET) 
+Request URL: http://localhost:6001/api/faqpage
+<br/>This route extracts all the FAQs from the database. 
+<br/>This route is expected to return a json file of FAQ information to be displayed on the FAQ page: 
+```
+{
+    "question": "How can I update my personal information?",
+    "answer": "You can access your personal information through clicking into My Profile on the top right corner of the page. You can then update the information by clicking the Edit button at the bottom of the page. Please remember to click Save after you are done.  "
+}
+```
 
 
 
