@@ -26,7 +26,8 @@
 }
 
 .button {
-    background-color: #FFC98B;
+    /*background-color: #FFC98B;*/
+    background-color: #C65D7B;
     color: white;
     padding: 10px;
     font-size: 15px;
@@ -38,7 +39,8 @@
 }
 
 .dropdown:hover .button {
-    background-color: burlywood;
+    /*background-color: burlywood;*/
+    background-color: #F68989;
 }
   
 .dropdown-content {
@@ -81,7 +83,8 @@
     margin-top: 10px;
     max-width: 90%;  
     padding: 10px;
-    background-color: blanchedalmond;
+    /*background-color: blanchedalmond;*/
+    background-color: #ffbeba;
     overflow: hidden;
     position: relative;
 }

@@ -31,12 +31,14 @@ class StickyFooter extends React.Component {
                     <ul>
 
                             <Link Link to={'/FAQpage'}>
-                            <Button id="faqBtn" variant="outlined" style={{backgroundColor: "#ffbeba", color: "white"}}>FAQ Page</Button>
+                            {/*<Button id="faqBtn" variant="outlined" style={{backgroundColor: "#ffbeba", color: "white"}}>FAQ Page</Button>*/}
+                            <Button id="faqBtn" style = {{backgroundColor: "#C65D7B", color: "white", fontSize: "16px"}}>FAQ Page</Button>
                             </Link>
 
 
                             <Link Link to={'/TermsConditions'}>
-                            <Button id="termsBtn" variant="outlined" style={{backgroundColor: "#ffbeba", color: "white"}}>Terms and Conditions</Button>
+                            {/*<Button id="termsBtn" variant="outlined" style={{backgroundColor: "#ffbeba", color: "white"}}>Terms and Conditions</Button>*/}
+                            <Button id="termsBtn" style = {{backgroundColor: "#C65D7B", color: "white", fontSize: "16px"}}>Terms and Conditions</Button>
                             </Link>
 
                     </ul>

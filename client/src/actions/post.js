@@ -37,7 +37,7 @@ export const findPostByKeyword = (app, keyword) => {
     
   }
 
-  export const findPostByWishlisted = (app) => {
+  export const findPostByWishlisted = (app, callback = () => {}) => {
     // console.log(app.state)
     const request = new Request(`${API_HOST}/api/posts/${app.state.userId}`, {
         method: "GET",
@@ -57,6 +57,10 @@ export const findPostByKeyword = (app, keyword) => {
                 // console.log(json)
                 app.setState({
                     posts: json
+                }, () => {
+                    if (callback instanceof Function) {
+                        callback();
+                    }
                 });
             }
         })

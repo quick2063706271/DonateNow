@@ -402,7 +402,6 @@ export const getTransactionHistory = (app) => {
 export const getDoneeInformation = (app) => {
     const url = `${API_HOST}/api/userpage/donatedHistory/${app.state.postId}`
     
-
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -423,5 +422,45 @@ export const getDoneeInformation = (app) => {
             console.log(error)
             alert("Could not set State")
         })
+}
 
+export const addWishlist = (userId, postId) => {
+    const url = `${API_HOST}/api/post/wishlist/${userId}/${postId}`
+
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+    })
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            };   
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export const removeWishlist = (userId, postId, refresh) => {
+    const url = `${API_HOST}/api/post/unwishlist/${userId}/${postId}`
+
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+    })
+        .then(res => {
+            if (res.status === 200) {
+                if (refresh){
+                    window.location.reload(false)
+                }
+                return res.json();
+            };   
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }

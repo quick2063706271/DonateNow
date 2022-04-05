@@ -38,11 +38,11 @@ function PostPageHeaderHelper(props){
     }
     else{  /*if viewing as regular user*/
         const userStatus = checkRegularUser(post, userId)
-        console.log(userStatus)
+        // console.log(userStatus)
         if (userStatus === "visitor" ){  /* as visitor */
             return (
                 <span>
-                    {console.log(userId, post, postId)}
+                    {/* {console.log(userId, post, postId)} */}
                     <RequestNowDialogue post={post} postId={postId} userId={userId} btnId="requestNowButton"/>
                     <WishListDialogue post={post} postId={postId} userId={userId} btnId="wishListButton"/>
                 </span>
