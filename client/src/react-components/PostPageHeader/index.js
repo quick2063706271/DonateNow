@@ -6,7 +6,7 @@ import RequestNowDialogue from "../RequestNowDialogue";
 import WishListDialogue from "../WishListDialogue";
 import { changeOwnerStatus, changeViewerStatus } from "../../actions/post";
 import {useNavigate} from "react-router-dom";
-
+import ViewDonorAndDonee from "../ViewDonorAndDonee"
 
 function WithNavigate(props) {
     let navigate = useNavigate();
@@ -38,11 +38,10 @@ function PostPageHeaderHelper(props){
     }
     else{  /*if viewing as regular user*/
         const userStatus = checkRegularUser(post, userId)
-        // console.log(userStatus)
+        console.log(userStatus)
         if (userStatus === "visitor" ){  /* as visitor */
             return (
                 <span>
-                    {/* {console.log(userId, post, postId)} */}
                     <RequestNowDialogue post={post} postId={postId} userId={userId} btnId="requestNowButton"/>
                     <WishListDialogue post={post} postId={postId} userId={userId} btnId="wishListButton"/>
                 </span>
@@ -75,6 +74,7 @@ function PostPageHeaderHelper(props){
                             <Button id="completeButton"
                                     onClick={ () => changeOwnerStatus(postId, "Completed")}
                                     variant="outlined">Completed</Button>
+                            <ViewDonorAndDonee userId={userId} type="donor"/>
                         </span>
                     )
                 }else{    /* ownerStatus: "Completed" or "Failed" */
@@ -99,6 +99,7 @@ function PostPageHeaderHelper(props){
                             <Button id="completeButton"
                                     onClick={ () => changeViewerStatus(postId, userId, "Completed")}
                                     variant="outlined">Completed</Button>
+                            <ViewDonorAndDonee userId={viewer.viewerId} type="donee"/>
                     </span>
                 )
             }else{
