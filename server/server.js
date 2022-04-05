@@ -511,7 +511,6 @@ app.patch('/api/admin/feedback/:id', mongoChecker, authenticate, checkAdmin, (re
     })
 })
 
-
 /*Block List Page*/
 app.get('/api/admin/blocklist', mongoChecker, authenticate, checkAdmin, (req, res) => {
     User.find().then((result) => {
@@ -522,24 +521,10 @@ app.get('/api/admin/blocklist', mongoChecker, authenticate, checkAdmin, (req, re
 }) 
 
 app.patch('/api/admin/blocklist/:userId', mongoChecker, authenticate, checkAdmin, (req, res) => {
-    // BlockList.findOne({_id:req.params.id}).then((result) => {
-    //     let blocked = req.body.accountBlocked 
-    //     let userId = req.body.userId 
-    //     //find and update user in the blocklist 
-    //     const user = User.findById(userId)
-    //     user.accountBlocked = blocked  
-    //     result.save().then((patchedRest) => {
-    //         res.send({uId: userId, BlockList: patchedRest})
-    //     }).catch((error) => {
-    //         res.status(500).send(error)
-    //     })
-    // }).catch((error) => {
-    //     res.status(500).send(error)
-    // })
     const user_id = req.params.userId
 
-    User.findOne({userId: user_id}).then((result) => {
-        result.accountBlocked = req.body.blocked 
+    User.findById({_id: user_id}).then((result) => {
+        result.accountBlocked = req.body.accountBlocked 
         result.save().then((patchedRest) => {
             res.send({accountBlcked: patchedRest})
         }).catch((error) => {
@@ -549,10 +534,6 @@ app.patch('/api/admin/blocklist/:userId', mongoChecker, authenticate, checkAdmin
         res.status(500).send(error)
     })
 })
-
-
-
-
 
 /* User Page */
 app.get("/api/userpage", mongoChecker, authenticate, async (req, res) => {
