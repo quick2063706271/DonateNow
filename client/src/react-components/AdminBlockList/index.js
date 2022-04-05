@@ -26,15 +26,6 @@ class AdminBlockList extends React.Component {
   handleBlock = (event, value) => {
     event.preventDefault();
     updateBlocklist(this, value)
-    /*for (const [k, v] of Object.entries(this.state.users)) {
-      if (v._id === value._id) {
-        const blocked = this.state.users[k].accountBlocked
-        this.state.users[k].accountBlocked = !blocked
-        this.setState({
-          users: this.state.users,
-        }, () => console.log(this.state))
-      }
-    }*/
   }
 
   handleUserIdOnClick = (value) => {

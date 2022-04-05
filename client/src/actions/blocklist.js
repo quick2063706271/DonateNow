@@ -51,9 +51,6 @@ export const updateBlocklist = (app, value) => {
             if (json) {
                 console.log(json)
                 getBlocklist(app)
-                /*app.setState({
-                    users: json
-                }, () => { console.log(app.state) });*/
             }
         })
         .catch(error => {
