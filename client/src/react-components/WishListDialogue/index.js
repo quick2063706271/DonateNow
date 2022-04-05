@@ -97,7 +97,7 @@ class WishListDialogue extends React.Component {
                     <DialogContent>
                         <h2> {post.header} </h2>
                         <div>
-                        <img className="dialogue-image" src={post.imageSrc} />
+                        <img className="dialogue-image" src={this.props.imageSrc} />
                         </div>
                     </DialogContent>
                     <DialogActions>

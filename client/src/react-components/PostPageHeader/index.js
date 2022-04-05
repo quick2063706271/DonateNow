@@ -16,7 +16,7 @@ function WithNavigate(props) {
 }
 
 function PostPageHeaderHelper(props){
-    const {post, postId, userId, admin} = props
+    const {post, postId, userId, admin, imageSrc} = props
     if (userId === ""){ /*if not signed in, direct to sign in page*/
         return (
             <span>
@@ -41,8 +41,10 @@ function PostPageHeaderHelper(props){
         if (userStatus === "visitor" ){  /* as visitor */
             return (
                 <span>
-                    <RequestNowDialogue post={post} postId={postId} userId={userId} btnId="requestNowButton"/>
-                    <WishListDialogue post={post} postId={postId} userId={userId} btnId="wishListButton"/>
+                    <RequestNowDialogue post={post} postId={postId} imageSrc={imageSrc}
+                                        userId={userId} btnId="requestNowButton"/>
+                    <WishListDialogue post={post} postId={postId} imageSrc={imageSrc}
+                                      userId={userId} btnId="wishListButton"/>
                 </span>
             )
         }else if (userStatus === "owner"){  /* as owner */
@@ -67,13 +69,14 @@ function PostPageHeaderHelper(props){
                         <span>
                             <text className="statusMsg">Owner Status: {post.ownerStatus}</text>
                             <br></br>
-                            <Button id="failButton"
+                            <ViewDonorAndDonee btnId={"viewDonorDoneeButton"} userId={userId} type="donor"/>
+                            <Button id="failCompleteButton"
                                     onClick={ () => changeOwnerStatus(postId, "Failed")}
-                                    variant="outlined">Failed</Button>
-                            <Button id="completeButton"
+                                    >Failed</Button>
+                            <Button id="failCompleteButton"
                                     onClick={ () => changeOwnerStatus(postId, "Completed")}
-                                    variant="outlined">Completed</Button>
-                            <ViewDonorAndDonee userId={userId} type="donor"/>
+                                    >Completed</Button>
+                            
                         </span>
                     )
                 }else{    /* ownerStatus: "Completed" or "Failed" */
@@ -92,13 +95,14 @@ function PostPageHeaderHelper(props){
                     <span>
                         <text className="statusMsg">Viewer Status: {viewer.viewerStatus}</text>
                         <br></br>
-                            <Button id="failButton"
+                            <ViewDonorAndDonee btnId={"viewDonorDoneeButton"} userId={viewer.viewerId} type="donee"/>
+                            <Button id="failCompleteButton"
                                     onClick={ () => changeViewerStatus(postId, userId, "Failed")}
-                                    variant="outlined">Failed</Button>
-                            <Button id="completeButton"
+                                    >Failed</Button>
+                            <Button id="failCompleteButton"
                                     onClick={ () => changeViewerStatus(postId, userId, "Completed")}
-                                    variant="outlined">Completed</Button>
-                            <ViewDonorAndDonee userId={viewer.viewerId} type="donee"/>
+                                    >Completed</Button>
+                            
                     </span>
                 )
             }else{
@@ -139,6 +143,7 @@ class PostPageHeader extends React.Component {
                                           post={this.props.post}
                                           postId = {this.props.post._id.toString()}
                                           admin={this.props.admin}
+                                          imageSrc={this.props.imageSrc}
                     />
                 </div>
             

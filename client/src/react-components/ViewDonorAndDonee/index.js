@@ -42,15 +42,24 @@ class ViewDonorAndDonee extends React.Component{
         console.log(user)
         return(
             <div>
-                <Button onClick={this.handleClickOpen}
+                {this.props.btnId ?
+
+                    <Button onClick={this.handleClickOpen}
+                        id={this.props.btnId }>
+                        View {type} information
+                    </Button>
+                
+                :
+                    <Button onClick={this.handleClickOpen}
                         m={2}
                         style={{
                             backgroundColor: "#C65D7B",
                             color: "white"
                         }}>
                             View {type} information
-                    
-                </Button>
+                        
+                    </Button>
+                }
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}

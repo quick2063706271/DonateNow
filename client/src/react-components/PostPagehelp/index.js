@@ -64,10 +64,12 @@ class PostPageHelp extends React.Component {
     render() {
         return (
             <div>
+                {this.state.image ?
                 <PostPageHeader userId={this.props.userId}
                                     post={this.props.post}
                                     admin={this.props.admin}
-                                />
+                                    imageSrc={this.state.image.image_url}
+                                />:null}
                 <div className="postBackground">
 
                 <div className="postImageArea">
