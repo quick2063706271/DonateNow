@@ -1,8 +1,8 @@
 # DONATENOW.COM :heart:
 
 ## Website 
-Heroku URL: https://donate-now-team02.herokuapp.com/ 
-
+Heroku URL: https://donate-now-team02.herokuapp.com/   
+&nbsp;
 
 ## Run Our App Locally After Cloning Repo 
 ### Set Up 
@@ -34,8 +34,8 @@ node server.js
 ```
 
 ### View from Browser 
-Proceed to http://localhost:6001 in the browser and login with the user credentials.
-
+Proceed to http://localhost:6001 in the browser and login with the user credentials.   
+&nbsp; 
 
 ### Deploy with Docker
 ```
@@ -43,10 +43,23 @@ docker build -t donate-now .
 docker run -d --rm -p 5000:5000 donate-now
 ```
 
+### View Website Database  
+#### Connect using Compass 
+```
+mongodb+srv://donatenow:mydonatenow@cluster0.rdum2.mongodb.net/DonateNowAPI
+```
+
+#### Connect using Node.js 
+```
+"mongodb+srv://donatenow:mydonatenow@cluster0.rdum2.mongodb.net/DonateNowAPI?retryWrites=true&w=majority"
+```
+&nbsp; 
+
 
 ## Third Party Libraries Used 
 The only third party library our team used is the Material-UI. 
-<br/>Website URL: https://v4.mui.com/ 
+<br/>Website URL: https://v4.mui.com/     
+&nbsp;   
 
 
 ## Overview of Routes 
@@ -66,9 +79,23 @@ Request URL: http://localhost:6001/login
 This route is expected to find the user and start the session if the user is valid, and throw an error message if the user is invalid. 
 
 
-#### User Logout 
+#### User Logout (GET) 
+Request URL: http://localhost:6001/logout 
+<br/>This is used for user logging out from the website. 
+<br/>This route is expected to destroy and end the session that the user is currently in, thus log the user out from the website. 
 
-#### Check If User is Logged in during a Session 
+#### Check If User is Logged in during a Session (GET) 
+Request URL: http://localhost:6001/check-session
+<br/>This is used for checking if a user is logged in the session and what user type that the user belongs to. 
+<br/>This route is expteced to find the current session and return the information of the user, which includes the User ID and whether the user is admin: 
+```
+{
+    "_id": {
+        "$oid": "624514c210743452ec70abf2"
+    },
+    "admin": false 
+}
+```
 
 #### Create Account (POST) 
 Request URL: http://localhost:6001/api/createanaccount 
@@ -80,9 +107,9 @@ Request URL: http://localhost:6001/api/createanaccount
     "password": "user" 
 }
 ```
-This route is expected to add the newly created user into the user database for future logins. 
+This route is expected to add the newly created user into the user database for future logins.    
 
-
+&nbsp;
 
 ### 2. Routes for Users 
 #### Get Userpage (GET) 
@@ -120,9 +147,9 @@ Request URL: http://localhost:6001/api/userpage/transactedHistory
 <br/>This route is expected to return a json file containing the user/donee's past history of transaction, which will be displayed on the user's Transaction History panel under My Profile page. 
 
 #### Get Donated History Posts from Post ID (GET) (not sure) 
-Request URL: http://localhost:6001/api/userpage/donatedHistory/:postid
+Request URL: http://localhost:6001/api/userpage/donatedHistory/:postid  
 
-
+&nbsp;   
 ### 3. Route for Posts 
 #### Create Post (POST) 
 Request URL: http://localhost:6001/api/posts 
@@ -153,15 +180,17 @@ Request URL: http://localhost:6001/api/post/:id
 <br/>This route changes the owner status of a post. 
 <br/>This route is expected to find a post from its Post ID in the Post database, and to update the ownerStatus attribute of this post. This change is reflected on the Post Page of this post. 
 
+#### Add Viewer Status (POST) 
+Request URL: http://localhost:6001/api/post/:id/:viewer_id   
+<br/>This route adds the viewer status of a post. 
+<br/>This route is expected to find a post from its Post ID in the Post database, and to add the viewerStatus of the user as an attribute to be displayed on the Post Page of this post. 
+
 #### Change Viewer Status (PATCH) 
 Request URL: http://localhost:6001/api/post/:id/:viewer_id
 <br/>This route changes the viewer status of a post. 
-<br/>This route is expected to find a post from its Post ID in the Post database, and to update the viewerStatus attribute of this post. This change is reflected on the Post Page of this post. 
+<br/>This route is expected to find a post from its Post ID in the Post database, and to update the viewerStatus attribute of this post. This change is reflected on the Post Page of this post.    
 
-#### Add Viewer Status (POST) (not sure) 
-Request URL: http://localhost:6001/api/post/:id/:viewer_id 
-
-
+&nbsp;
 ### 4. Routes for Wishlist 
 
 #### Get a User's Wishlist from User ID (GET) 
@@ -182,13 +211,16 @@ Request URL: http://localhost:6001/api/post/wishlist/:uid/:pid
 #### Remove from Wishlist (PATCH) 
 Request URL: http://localhost:6001/api/post/unwishlist/:uid/:pid
 <br/>This route performs a user's action of removing a post from his Wishlist. 
-<br/>This route is expected to find the target post from the Post ID and the current user from the User ID. It then removes the post from the user's wishlisted items. This changed is reflected through the Wish List page of the user. 
-
+<br/>This route is expected to find the target post from the Post ID and the current user from the User ID. It then removes the post from the user's wishlisted items. This changed is reflected through the Wish List page of the user.    
+&nbsp;
 
 ### 5. Route for Search Page 
-#### Get and Filter Posts for Search Page 
+#### Get and Filter Posts for Search Page (GET) 
 Request URL: http://localhost:6001/api/filterposts
+<br/>This routes performs the function of the Search Bar. 
+<br/>This route is expected to get all posts from the Posts database. It displays the posts after filtering the posts with the input keyword and the selected filters from the drop down list on the Search Page.       
 
+&nbsp;
 
 ### 6. Route for Post Page 
 #### Get Post from Post ID (GET) 
@@ -223,22 +255,43 @@ Request URL: http://localhost:6001/api/post/:id
     "views": 34,
     "datePosted": "4/1/2022 08:23",
 }
-``` 
-
+```    
+&nbsp;
 
 ### 7. Route for Image Uploader 
 #### Create an Image onto Posts (POST) 
 Request URL: http://localhost:6001/images/post
+<br/>This route addes the new image into the database after it is uploaded by a user while creating a new post. 
+```
+{
+    "image_id": "p839abuv9636hhq3orpg",
+    "image_url": "http://res.cloudinary.com/dvskgtzrl/image/upload/v1649140226/p839abuv9636hhq3orpg.png",
+}
+```
 
 #### Create an Image by User ID (POST) 
 Request URL: http://localhost:6001/images/user/:uid
+<br/>This route addes the new image into the database after it is uploaded by a user while uploading his profile picture. 
+```
+{
+    "userId": {
+        "$oid": "6247346533cf034ce21c1999"
+    },
+    "image_id": "ajelgv54jl0nbhbqo0ey",
+    "image_url": "http://res.cloudinary.com/dvskgtzrl/image/upload/v1649193457/ajelgv54jl0nbhbqo0ey.jpg",
+}
+```
 
 #### Get an Image by Image ID (GET)
 Request URL: http://localhost:6001/images/post/:id
+<br/>This route finds and returns an image identified by its Image ID from the database. 
+
 
 #### Remove an Image by Image ID (DELETE)
 Request URL: http://localhost:6001/images/:imageId
+<br/>This route browses through all images and deletes an image identified by its Image ID from the database.   
 
+&nbsp;
 
 
 ### 8. Route for Admin Feedback Page 
@@ -254,6 +307,8 @@ Request URL: http://localhost:6001/api/admin/feedback
 }
 ``` 
 
+&nbsp;
+
 ### 9. Route for Admin Blocklist Page 
 #### Get All Blocklist (GET)
 Request URL: http://localhost:6001/api/admin/blocklist
@@ -263,8 +318,8 @@ Request URL: http://localhost:6001/api/admin/blocklist
 #### Update Blocklist from User ID (PATCH) 
 Request URL: http://localhost:6001/api/admin/blocklist 
 <br/>This route identifies a user from the User ID, and block or unblock his account. 
-<br/>This route is expected to authenticate user and verify the current user is admin, then extracts a specific user's information from the input User ID and changes this user's accountBlocked status. 
-
+<br/>This route is expected to authenticate user and verify the current user is admin, then extracts a specific user's information from the input User ID and changes this user's accountBlocked status.    
+&nbsp; 
 
 ### 10. Route for Terms and Conditions Page
 #### Get All Terms and Conditions (GET)
@@ -278,6 +333,8 @@ Request URL: http://localhost:6001/api/termsconditions
 }
 ``` 
 
+&nbsp;
+
 ### 11. Route for FAQ Page 
 #### Get All FAQs (GET) 
 Request URL: http://localhost:6001/api/faqpage
@@ -289,7 +346,7 @@ Request URL: http://localhost:6001/api/faqpage
     "answer": "You can access your personal information through clicking into My Profile on the top right corner of the page. You can then update the information by clicking the Edit button at the bottom of the page. Please remember to click Save after you are done.  "
 }
 ```
-
+&nbsp;
 
 
 ## Project Navigation Outline 
@@ -352,9 +409,9 @@ Request URL: http://localhost:6001/api/faqpage
 8. Click on the TERMS AND CONDITIONS to review the terms and conditions for this website. 
     <br/>
 
-9. Click on the DONATENOW.COM at the top left corner to be redirected back to the home page. 
+9. Click on the DONATENOW.COM at the top left corner to be redirected back to the home page.    
     <br/>
-
+&nbsp;  
 
 ### Userflow for admins 
 1. Log in to the webpage using the following configuration: 
