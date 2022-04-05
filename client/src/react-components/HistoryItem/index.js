@@ -7,6 +7,7 @@ import { checkSession } from "../../actions/user";
 import { changeOwnerStatus } from "../../actions/post";
 import { changeViewerStatus } from "../../actions/post";
 import { Navigate } from "react-router-dom";
+import ViewDonorAndDonee from "../ViewDonorAndDonee"
 
 class HistoryItem extends React.Component{
     constructor() {
@@ -14,11 +15,16 @@ class HistoryItem extends React.Component{
         this.state = {
             userId: -1,
             admin: false,
-            redirect: false
+            redirect: false,
+            open: false,
+            viewers: null
+            
         }
     }
     componentDidMount() {
         checkSession(this); // sees if a user is logged in
+        this.setState({viewers: this.props.viewers})
+        console.log(this.state)
     }
     handlePostOnClick = () => {
 
@@ -30,7 +36,7 @@ class HistoryItem extends React.Component{
     render() {
         // status: {Received, Requested, Accepted, Pending, Failed, Posted, Order Placed, Completed}
         console.log("in history item")
-        const { header, ownerStatus, img, category, viewers } = this.props;
+        const { header, ownerId, ownerStatus, date, img, postId, category, viewers } = this.props;
         console.log(this.props)
         let chooseDoneeButton
         if (ownerStatus === "Posted" && category === "donation") {
@@ -42,22 +48,38 @@ class HistoryItem extends React.Component{
         } else {
             chooseDoneeButton = null
         }
+        console.log(this.state)
+        let viewer = this.props.viewers.filter(viewer => {return viewer.viewerId===this.state.userId  })
+        let viewerStatusHere = ""
+        if (viewer.length > 0) {
+            viewerStatusHere = viewer[0].viewerStatus
+        }
+        console.log(viewer)
         let failButtonDonor
         let successButtonDonor
+        let viewDoneeButton = null
         if (ownerStatus === "Donation Matched" && category === "donation") {
             failButtonDonor = <div>
-                            <Button id="failButton"
+                            <Button id="failButton" size="small"
                                     onClick={ () => changeOwnerStatus(this.props.postId, "Failed")}
                                     >Failed</Button>
                          </div>
             successButtonDonor = <div>
-                            <Button id="failButton"
+                            <Button id="failButton" size="small"
                                     onClick={ () => changeOwnerStatus(this.props.postId, "Completed")}
                                     >Completed</Button>
-         </div>
+                        </div>
+            let donee = this.props.viewers.filter(viewer => {return viewer.viewerStatus==="Request Accepted"})
+            if (donee.length > 0) {
+                viewDoneeButton = <div>
+                <ViewDonorAndDonee userId={donee[0].viewerId} type="donee"/>
+                    </div>
+            }
+            
         } else {
             failButtonDonor = null
             successButtonDonor = null
+            viewDoneeButton = null
         }
 
         
@@ -68,28 +90,30 @@ class HistoryItem extends React.Component{
 
         let failButtonDonee
         let successButtonDonee
+        let viewDonorButton
 
-        let viewer = viewers.filter(viewer => {return viewer.viewerId===this.state.userId  })
-        let viewerStatusHere = ""
-        if (viewer.length > 0) {
-            viewerStatusHere = viewer[0].viewerStatus
-        }
 
+        console.log(viewer[0])
         if (viewerStatusHere === "Request Accepted" && category === "transaction") {
             failButtonDonee = <div>
-                            <Button id="failButton"
+                            <Button id="failButton" size="small"
                                     onClick={ () => changeViewerStatus(this.props.postId, this.state.userId, "Failed")}
                                     >Failed</Button>
                          </div>
             successButtonDonee = <div>
-                            <Button id="failButton"
+                            <Button id="failButton" size="small"
                                     onClick={ () => changeViewerStatus(this.props.postId, this.state.userId, "Completed")}
-                                    >Success</Button>
-         </div>
+                                    >Completed</Button>
+                                </div>
+            viewDonorButton = <div>
+                            <ViewDonorAndDonee userId={this.props.ownerId} type="donor"/>
+                            </div>
         } else {
             failButtonDonee = null
             successButtonDonee = null
+            viewDonorButton = null
         }
+
         console.log(viewerStatusHere)
         return (
             <div id="item-card">
@@ -107,6 +131,8 @@ class HistoryItem extends React.Component{
                     </h4>
                     {/* <h3>{date}</h3> */}
                     {chooseDoneeButton}
+                    {viewDonorButton}
+                    {viewDoneeButton}
                     <div className="button-group">
                         {failButtonDonor}
                         {successButtonDonor}
