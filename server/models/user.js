@@ -142,7 +142,13 @@ function filterByAccountBlocked(users) {
     return result
 }
 
+function filterByEmail(users, email) {
+	const result = users.filter(user => user.email === email)
+    console.log(result)
+    return result
+}
+
 // make a model using the User schema
 const User = mongoose.model('User', UserSchema)
-module.exports = { User, filterByAdmin, filterByAccountBlocked }
+module.exports = { User, filterByAdmin, filterByAccountBlocked, filterByEmail }
 

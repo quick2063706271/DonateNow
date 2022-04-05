@@ -8,11 +8,12 @@ import { updateUserForm } from "../../actions/user";
 import { updateUser } from "../../actions/user";
 import { getUser } from "../../actions/user";
 import { checkSession } from "../../actions/user";
-import { getOtherUser } from "../../actions/user";
+import { getOtherUser, getUserByEmail } from "../../actions/user";
 import ComponentParamsWrapper from "../ParamsWrapper";
 import { addUserImage } from "../../actions/image";
 import { Input } from "@material-ui/core";
-import { getUserImageById } from "../../actions/image"
+import { getUserImageById } from "../../actions/image";
+import { updateBlocklist } from "../../actions/blocklist";
 
 class PersonalInformation extends React.Component {
     constructor(props) {
@@ -39,6 +40,7 @@ class PersonalInformation extends React.Component {
             admin: false,
             image: null,
             message: { type: "", body: "" },
+            profileUser: []
         }
         this.handleEdit.bind(this);
         this.handleComplaint.bind(this);
@@ -62,12 +64,13 @@ class PersonalInformation extends React.Component {
         console.log(this.state.isComplained);
     }
     handleBlock = event => {
+        console.log("Before: ", this.state);
+        getUserByEmail(this, this.state.email, () => updateBlocklist(this, this.state.profileUser[0]))
         this.setState({
             accountBlocked: !this.state.accountBlocked
-        });
+        }, ()=> { console.log("After: ", this.state) });
         this.props.accountBlocked = true;
         // this.changeButtonText();
-        console.log(this.state.accountBlocked);
     }
     fetchPersonalInformation = () => {
         getUser(this)
@@ -119,7 +122,7 @@ class PersonalInformation extends React.Component {
         let block;
         if (isAdmin) {
             block = <Button variant="contained" display="inline-block" onClick={this.handleBlock}>
-                {this.state.accountBlocked ? "⠀ ⠀ Blocked ⠀ ⠀ " : "Block the User"}
+                {this.state.accountBlocked ? "Unblock" : "Block"}
             </Button>
         } else {
             block = null

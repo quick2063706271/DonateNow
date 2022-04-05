@@ -33,6 +33,7 @@ export const getBlocklist = (app) => {
 
 export const updateBlocklist = (app, value) => {
     console.log(app.state)
+    console.log(value)
     const request = new Request(`${API_HOST}/api/admin/blocklist/${value._id}`, {
         method: "PATCH",
         headers: {

@@ -19,7 +19,7 @@ const { mongoose } = require("./db/mongoose");
 // mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose model
-const { User, filterByAdmin, filterByAccountBlocked } = require("./models/user")
+const { User, filterByAdmin, filterByAccountBlocked, filterByEmail } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 const { Feedbacks } = require('./models/feedbacks') 
@@ -581,6 +581,16 @@ app.patch('/api/admin/feedback/:id', mongoChecker, authenticate, checkAdmin, (re
 app.get('/api/admin/blocklist', mongoChecker, authenticate, checkAdmin, (req, res) => {
     User.find().then((result) => {
         const filtered = filterByAdmin(result)
+        res.send(filtered)
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
+}) 
+
+/*Admin User Profile Page*/
+app.get('/api/admin/userprofile/:email', mongoChecker, authenticate, checkAdmin, (req, res) => {
+    User.find().then((result) => {
+        const filtered = filterByEmail(result, req.params.email.toString())
         res.send(filtered)
     }).catch((error) => {
         res.status(500).send(error)

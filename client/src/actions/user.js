@@ -460,3 +460,31 @@ export const removeWishlist = (userId, postId, refresh) => {
             console.log(error);
         });
 }
+
+// A function to find user profile of a user
+export const getUserByEmail = (app, email, callback = () => {}) => {
+    const url = `${API_HOST}/api/admin/userprofile/${email}`
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get user by email")
+            }
+        })
+        .then(json => {
+            console.log(json)
+            app.setState({
+                profileUser: json
+            }, () => {
+                if (callback instanceof Function) {
+                    callback();
+                }
+            })
+        })
+        .catch(error => {
+            console.log(error)
+            alert("Could not set State")
+        })
+};
