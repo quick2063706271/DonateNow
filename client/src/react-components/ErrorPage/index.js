@@ -2,7 +2,6 @@ import React from "react";
 import "./styles.css";
 import { Button } from "@material-ui/core";
 import AppBar from "../AppBar";
-import { uid } from "react-uid";
 import StickyFooter from "../StickyFooter";
 import { Link } from 'react-router-dom';
 

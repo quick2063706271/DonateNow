@@ -59,7 +59,7 @@ class RequestNowDialogue extends React.Component {
                 <DialogContent>
                     <h2> {post.header} </h2>
                     <div>
-                    <img className="dialogue-image" src={post.imageSrc} />
+                    <img className="dialogue-image" alt="dialogue" src={post.imageSrc} />
                     </div>
                     <text className="dialogue-text">By clicking on "confirm", I indicate I fully understand terms & conditions, and the consequences for not completing my pickup.</text>
                 </DialogContent>

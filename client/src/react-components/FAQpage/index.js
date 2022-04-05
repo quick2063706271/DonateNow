@@ -1,10 +1,7 @@
 import React from "react";
 import "./styles.css";
-import database from '../../database';
+//import database from '../../database';
 import AppBar from "../AppBar";
-import { uid } from "react-uid";
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 import StickyFooter from '../StickyFooter';
 import { getFaqs } from "../../actions/faq";
 

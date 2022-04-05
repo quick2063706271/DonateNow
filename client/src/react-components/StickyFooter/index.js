@@ -1,12 +1,8 @@
 import React from "react";
 import "./styles.css";
-import database from '../../database';
-import FAQpage from '../FAQpage';
-import TermsConditions from '../TermsConditions';
+//import database from '../../database';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { borderBottom, borderLeft, borderRight } from "@mui/system";
-
 
 
 class StickyFooter extends React.Component {

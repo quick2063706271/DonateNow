@@ -2,7 +2,6 @@ import React from "react";
 import "./styles.css";
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { fontSize } from "@mui/system";
 
 class NavigationMenu extends React.Component {
     render() {
