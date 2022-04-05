@@ -6,40 +6,31 @@ import { Link, Navigate } from 'react-router-dom';
 import { uid } from "react-uid";
 import StickyFooter from "../StickyFooter";
 import { checkSession } from "../../actions/user";
-import { getBlocklist } from "../../actions/blocklist";
+import { getBlocklist, updateBlocklist } from "../../actions/blocklist";
 
 class AdminBlockList extends React.Component {
   
   constructor(props) {
     super(props)
     this.state = {
-        // userId: "", 
-        // admin: false 
+        userId: "", 
+        admin: false,
         users: []
     }
-}
+  }
 
-componentDidMount() {
-    checkSession(this, this.getBlocklist());
-
-}
+  componentDidMount() {
+      checkSession(this, () => getBlocklist(this));
+  }
 
   handleBlock = (event, value) => {
     event.preventDefault();
-    for (const [k, v] of Object.entries(this.state.users)) {
-      if (v.userId === value.userId) {
-        const blocked = this.state.users[k].accountBlocked
-        this.state.users[k].accountBlocked = !blocked
-        this.setState({
-          users: this.state.users,
-        }, () => console.log(this.state))
-      }
-    }
+    updateBlocklist(this, value)
   }
 
   handleUserIdOnClick = (value) => {
     this.setState({
-        redirectUserId: value.userId
+        redirectUserId: value._id
     }, () => {
         this.setState({
             redirect: true
@@ -61,15 +52,15 @@ componentDidMount() {
                 <tbody>
                   <tr className="header-tr">
                     <th>UserId</th>
-                    <th>Username</th>
+                    <th>Email</th>
                     <th>Account Blocked</th>
                     <th>Action</th>
                   </tr>
                   {this.state.users.map((value, key) => {
                     return (
                       <tr key={key} className="rt-tr-group">
-                        <td>{value.userId}</td>
-                        <td onClick={this.handleUserIdOnClick.bind(this, value)}><u>{value.username}</u></td>
+                        <td>{value._id}</td>
+                        <td onClick={this.handleUserIdOnClick.bind(this, value)}><u>{value.email}</u></td>
                         <td>{value.accountBlocked.toString()}</td>
                         <td className="buttonRow"><button type="submit" className="blockButton" onClick={(event) => this.handleBlock(event, value)}> {value.accountBlocked ? "Unblock" : "Block" } </button></td>
                       </tr>
@@ -80,18 +71,6 @@ componentDidMount() {
             </div>
           </div>
 
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
           <br></br>
           <br></br>
 

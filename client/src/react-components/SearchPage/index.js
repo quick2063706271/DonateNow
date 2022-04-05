@@ -41,23 +41,23 @@ class SearchPage extends React.Component {
             }
         } else if (drpdwn === "locations") {
             const locs = database.locations
-            for (var i = 0; i < locs.length; i++) {
-                options.push(<a href="#" name={locs[i]} onClick={(event) => this.changeDrpdwnBtnValue(event, "location")}>{locs[i]}</a>)
+            for (var j = 0; j < locs.length; j++) {
+                options.push(<a href="#" name={locs[j]} onClick={(event) => this.changeDrpdwnBtnValue(event, "location")}>{locs[j]}</a>)
             }
         } else if (drpdwn === "delivery options") {
             const delivery = database.deliveryOptions
-            for (var i = 0; i < delivery.length; i++) {
-                options.push(<a href="#" name={delivery[i]} onClick={(event) => this.changeDrpdwnBtnValue(event, "delivery option")}>{delivery[i]}</a>)
+            for (var k = 0; k < delivery.length; k++) {
+                options.push(<a href="#" name={delivery[k]} onClick={(event) => this.changeDrpdwnBtnValue(event, "delivery option")}>{delivery[k]}</a>)
             }
         } else if (drpdwn === "sort date posted") {
             const sortDate = database.sortDatePosted
-            for (var i = 0; i < sortDate.length; i++) {
-                options.push(<a href="#" name={sortDate[i]} onClick={(event) => this.changeDrpdwnBtnValue(event, "sort date posted")}>{sortDate[i]}</a>)
+            for (var p = 0; p < sortDate.length; p++) {
+                options.push(<a href="#" name={sortDate[p]} onClick={(event) => this.changeDrpdwnBtnValue(event, "sort date posted")}>{sortDate[p]}</a>)
             }
         } else if (drpdwn === "sort views") {
             const sortViews = database.sortViews
-            for (var i = 0; i < sortViews.length; i++) {
-                options.push(<a href="#" name={sortViews[i]} onClick={(event) => this.changeDrpdwnBtnValue(event, "sort views")}>{sortViews[i]}</a>)
+            for (var m = 0; m < sortViews.length; m++) {
+                options.push(<a href="#" name={sortViews[m]} onClick={(event) => this.changeDrpdwnBtnValue(event, "sort views")}>{sortViews[m]}</a>)
             }
         }
         return options
@@ -161,11 +161,11 @@ class SearchPage extends React.Component {
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :null
                     }
-                {this.state.userId != "" && this.state.admin ? 
+                {this.state.userId !== "" && this.state.admin ? 
                     <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :
                     null}
-                {this.state.userId != "" && !this.state.admin ?
+                {this.state.userId !== "" && !this.state.admin ?
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :null
                     }

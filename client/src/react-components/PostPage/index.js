@@ -42,11 +42,11 @@ class PostPage extends React.Component {
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :null
                     }
-                {this.state.userId != "" && this.state.admin ? 
+                {this.state.userId !== "" && this.state.admin ? 
                     <AdminAppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :
                     null}
-                {this.state.userId != "" && !this.state.admin ?
+                {this.state.userId !== "" && !this.state.admin ?
                     <AppBar handleSearchButtonOnClick={this.handleSearchButtonOnClick}/>
                     :null
                     }
