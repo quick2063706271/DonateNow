@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import PersonalInformation from '../PersonalInformation';
 import Feedback from '../Feedback';
 import History from '../History';
-import database from "../../database"
+//import database from "../../database"
 import { getUser } from '../../actions/user';
 import { getOtherUser } from '../../actions/user';
 import { checkSession } from '../../actions/user';

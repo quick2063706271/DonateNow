@@ -42,38 +42,40 @@ class RequestNowDialogue extends React.Component {
         const {post} = this.props
         if (post.ownerStatus === "Posted"){
         
-        return (
-            <div>
-                <Button id={this.props.btnId} color="primary" onClick={this.handleClickOpen} style = {{
-                            backgroundColor: "#C65D7B",
-                            color: "white"
-                        }}>
-                    Request Now
-                </Button>
-                <Dialog
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                    aria-labelledby="form-dialog-title"
-                >
-                <DialogTitle id="form-dialog-title">You are currently requesting for:</DialogTitle>
-                <DialogContent>
-                    <h2> {post.header} </h2>
-                    <div>
-                    <img className="dialogue-image" src={post.imageSrc} />
-                    </div>
-                    <text className="dialogue-text">By clicking on "confirm", I indicate I fully understand terms & conditions, and the consequences for not completing my pickup.</text>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={this.handleClose} color="primary">
-                    Cancel
+            return (
+                <div>
+                    <Button id={this.props.btnId} color="primary" onClick={this.handleClickOpen} style = {{
+                                backgroundColor: "#C65D7B",
+                                color: "white"
+                            }}>
+                        Request Now
                     </Button>
-                    <Button onClick={this.handleSubmit} color="primary">
-                    Confirm
-                    </Button>
-                </DialogActions>
-                </Dialog>
-            </div>
-        );
+                    <Dialog
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="form-dialog-title"
+                    >
+                    <DialogTitle id="form-dialog-title">You are currently requesting for:</DialogTitle>
+                    <DialogContent>
+                        <h2> {post.header} </h2>
+                        <div>
+                        <img className="dialogue-image" src={post.imageSrc} />
+                        </div>
+                        <text className="dialogue-text">By clicking on "confirm", I indicate I fully understand terms & conditions, and the consequences for not completing my pickup.</text>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                        Cancel
+                        </Button>
+                        <Button onClick={this.handleSubmit} color="primary">
+                        Confirm
+                        </Button>
+                    </DialogActions>
+                    </Dialog>
+                </div>
+            );
+        } else {
+            return null;
         }
         
 }

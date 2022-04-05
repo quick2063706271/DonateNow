@@ -13,7 +13,6 @@ import StickyFooter from "../StickyFooter";
 import { Navigate } from "react-router-dom";
 import { checkSession } from "../../actions/user";
 import { createPost } from "../../actions/post";
-import { Link } from "react-router-dom";
 
 class CreatePost extends React.Component {
     constructor(props){
@@ -72,8 +71,8 @@ class CreatePost extends React.Component {
     }
 
     handlePublish = (event) => {
-        if (this.state.categories.length === 0 || this.state.header === "" 
-           && this.state.description === "" || this.state.deliveryOption == "" || this.state.location == "")
+        if ((this.state.categories.length === 0) || (this.state.header === "") 
+           && (this.state.description === "") || (this.state.deliveryOption === "") || (this.state.location === ""))
         {
             this.setState({
                 errormsg: true

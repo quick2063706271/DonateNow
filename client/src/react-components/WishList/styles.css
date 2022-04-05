@@ -32,6 +32,7 @@
 .title {  
     font-size: x-large;
     position: relative;
+    cursor: pointer;
 }
 
 .image {  

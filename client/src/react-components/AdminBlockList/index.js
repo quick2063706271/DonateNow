@@ -1,9 +1,8 @@
 import React from "react";
 import "./styles.css";
-import database from '../../database'
+//import database from '../../database'
 import AdminAppBar from "../AdminAppBar";
 import { Link, Navigate } from 'react-router-dom';
-import { uid } from "react-uid";
 import StickyFooter from "../StickyFooter";
 import { checkSession } from "../../actions/user";
 import { getBlocklist, updateBlocklist } from "../../actions/blocklist";
@@ -60,7 +59,7 @@ class AdminBlockList extends React.Component {
                     return (
                       <tr key={key} className="rt-tr-group">
                         <td>{value._id}</td>
-                        <td onClick={this.handleUserIdOnClick.bind(this, value)}><u>{value.email}</u></td>
+                        <td className="userEmail" onClick={this.handleUserIdOnClick.bind(this, value)}><u>{value.email}</u></td>
                         <td>{value.accountBlocked.toString()}</td>
                         <td className="buttonRow"><button type="submit" className="blockButton" onClick={(event) => this.handleBlock(event, value)}> {value.accountBlocked ? "Unblock" : "Block" } </button></td>
                       </tr>

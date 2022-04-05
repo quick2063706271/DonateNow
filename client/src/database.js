@@ -332,9 +332,9 @@ let allterms = [
 function changeStatus(transac, user, val){
     console.log(transac, user, val)
     for (let i = 0; i < transactions.length; i++) {
-        if (transac.postId == transactions[i].postId
-            && transac.ownerId == transactions[i].ownerId
-            && transac.viewerId == transactions[i].viewerId){
+        if (transac.postId === transactions[i].postId
+            && transac.ownerId === transactions[i].ownerId
+            && transac.viewerId === transactions[i].viewerId){
                 transactions[i][user+"Status"] = val
             }
       }
