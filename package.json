@@ -1,0 +1,15 @@
+{
+  "name": "donate-now-team02",
+  "version": "1.0.0",
+  "description": "Empty",
+  "dependencies": {},
+  "scripts": {
+    "build": "cd client && npm install && npm build && cd ../server && npm install",
+    "start": "node server/server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": "16.14.0"
+  }
+}
