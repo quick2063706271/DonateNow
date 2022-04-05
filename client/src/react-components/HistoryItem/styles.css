@@ -41,5 +41,5 @@
 }
 
 .button-group {
-    float: left;
+    display: flex;
 }

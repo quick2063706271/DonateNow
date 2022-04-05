@@ -181,6 +181,41 @@ export const getUser = (app) => {
         })
 };
 
+export const getOtherUser = (app) => {
+    const url = `${API_HOST}/api/userpage/other/${app.state.userId}`
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get user")
+            }
+        })
+        .then(json => {
+            app.setState({
+                username: json.username,
+                email: json.email,
+                dateOfBirth: json.dateOfBirth,
+                gender: json.gender,
+                phone: json.phone,
+                email: json.email,
+                preference: json.preference,
+                bio: json.bio,
+                complaintNum: json.complaintNum,
+                accountBlocked: json.accountBlocked,
+                admin: json.admin,
+                address1: json.address1,
+                address2: json.address2
+            }) 
+            console.log(json.phone)
+        })
+        .catch(error => {
+            console.log(error)
+            alert("Could not set State")
+        })
+};
+
 // A functon to update the User form state
 export const updateUserForm = (PersonalInformation, field) => {
     const value = field.value;
