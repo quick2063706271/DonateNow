@@ -173,7 +173,7 @@ class PersonalInformation extends React.Component {
                             <br />
                         }
                         {
-                            isRead == false &&
+                            isRead === false &&
                             <TextField
                             className="inputField"
                             label="Date Of Birth"
@@ -187,7 +187,7 @@ class PersonalInformation extends React.Component {
                         />
                         }
                         {
-                            isRead == false &&
+                            isRead === false &&
                             <TextField
                             className="inputField"
                             label="Gender"
@@ -205,7 +205,7 @@ class PersonalInformation extends React.Component {
                             <br />
                         }
                         {
-                            isRead == false &&
+                            isRead === false &&
                             <TextField
                             className="inputField"
                             name={"address1"}
@@ -224,7 +224,7 @@ class PersonalInformation extends React.Component {
                             <br />
                         }
                         {
-                            isRead == false &&
+                            isRead === false &&
                             <TextField
                             className="inputField"
                             name={"address2"}
@@ -243,7 +243,7 @@ class PersonalInformation extends React.Component {
                             <br />
                         }
                         {
-                            isRead == false &&
+                            isRead === false &&
                             <TextField
                             className="inputField"
                             label="Phone number"
@@ -257,7 +257,7 @@ class PersonalInformation extends React.Component {
                             />
                         }
                         {
-                            isRead == false &&
+                            isRead === false &&
                             <TextField
                             className="inputField"
                             label="E-mail"
@@ -298,7 +298,7 @@ class PersonalInformation extends React.Component {
                         onChange = {this.updateUserInfo}
                         />
                         {
-                            isRead == false &&
+                            isRead === false &&
                             <div className="edit-button" >
                                 {this.state.isEdit ? 
                                     <Button variant="contained" 

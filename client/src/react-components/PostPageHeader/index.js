@@ -47,7 +47,7 @@ function PostPageHeaderHelper(props){
                 )
             }
             else{
-                if (post.ownerStatus == "Posted"){ /* some users have requested, owner needs to choose => ownerStatus: "Posted" */
+                if (post.ownerStatus === "Posted"){ /* some users have requested, owner needs to choose => ownerStatus: "Posted" */
                     return (
                         <span>
                             <text className="statusMsg">Owner Status: {post.ownerStatus}</text>
@@ -55,7 +55,7 @@ function PostPageHeaderHelper(props){
                                         userId={userId}  postId={postId}/>
                         </span>
                     )
-                }else if (post.ownerStatus == "Donation Matched"){ /* Owner has done choosing donee => ownerStatus: "Donation Matched" */
+                }else if (post.ownerStatus === "Donation Matched"){ /* Owner has done choosing donee => ownerStatus: "Donation Matched" */
                     return (
                         <span>
                             <text className="statusMsg">Owner Status: {post.ownerStatus}</text>
@@ -79,7 +79,7 @@ function PostPageHeaderHelper(props){
 
         }else{  /* as viewer */
             const viewer = post.viewers.filter(viewer => viewer.viewerId === userId)[0]
-            if (viewer.viewerStatus == "Request Accepted"){
+            if (viewer.viewerStatus === "Request Accepted"){
                 return (
                     <span>
                         <text className="statusMsg">Viewer Status: {viewer.viewerStatus}</text>

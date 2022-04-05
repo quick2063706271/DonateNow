@@ -12,7 +12,7 @@ class Home extends React.Component {
         return (
             <div>
                 <Logo/>
-                <SearchBox/>
+                <SearchBox id="searchbox"/>
                 <Link Link to={'/login'} >
                     <Button id="loginButton" style={{backgroundColor: "#C65D7B", color: "white", fontSize: "17px"}}>Log In/Sign up</Button>
                 </Link>

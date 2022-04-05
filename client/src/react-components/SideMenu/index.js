@@ -4,11 +4,6 @@ import { Button } from '@mui/material';
 import PersonalInformation from '../PersonalInformation';
 import Feedback from '../Feedback';
 import History from '../History';
-// import monitor from '../../monitor.png'
-// import toys from "../../toys.png"
-// import toys from "/toys.png"
-// import marker from "./marker.png"
-import bottle from "../../bottle.png"
 import database from "../../database"
 import { getUser } from '../../actions/user';
 import { checkSession } from '../../actions/user';
@@ -30,7 +25,6 @@ class SideMenu extends React.Component{
             bio: "",
             complaintNum: "",
             accountBlocked: "",
-            admin: "{false}",
             isRead: "{isRead}",
             userId: -1,
             admin: false,
@@ -69,7 +63,6 @@ class SideMenu extends React.Component{
         console.log(this.state)
         let isRead = false;
         const {readibility } = this.props;
-        const userId = this.state.userId
         if (readibility === true) {
             isRead = true;
         }

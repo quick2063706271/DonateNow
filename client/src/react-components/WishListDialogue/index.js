@@ -1,15 +1,10 @@
 import React from "react";
 import "./styles.css";
-import database from '../../database'
-import AppBar from "../AppBar";
-import { uid } from "react-uid";
 import Button from '@mui/material/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Navigate } from 'react-router-dom';
-import StickyFooter from "../StickyFooter";
 
 
 class WishListDialogue extends React.Component {

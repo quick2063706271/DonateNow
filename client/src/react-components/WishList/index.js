@@ -1,9 +1,6 @@
 import React from "react";
-// import './styles.css'
-import database from '../../database'
+//import database from '../../database'
 import AppBar from "../AppBar";
-import { uid } from "react-uid";
-import Button from '@mui/material/Button';
 import { Navigate } from 'react-router-dom';
 import StickyFooter from "../StickyFooter";
 import { checkSession } from "../../actions/user";
@@ -40,7 +37,7 @@ class WishList extends React.Component {
 
     loopThroughPosts = () => {
         const components = []
-        for (const [key, value] of Object.entries(this.state.posts)) {
+        for (const [ , value] of Object.entries(this.state.posts)) {
             //for (const [k, v] of Object.entries(value)) {
                 components.push (
                     <div>
@@ -80,7 +77,7 @@ class WishList extends React.Component {
     }
 
     render() {
-        if (this.state.userId != "") {
+        if (this.state.userId !== "") {
             return (
                 <div>
                     {this.state.redirect ? <Navigate to={`/postpage/${this.state.redirectPostId}`}/> : null}

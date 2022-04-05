@@ -8,7 +8,7 @@ import './styles.css';
 import PostPageHeader from "../PostPageHeader";
 
 function DeliveryOptionGenerator(props){
-    if (props.deliveryOption == "Pickup"){
+    if (props.deliveryOption === "Pickup"){
         return(
             <FormGroup className="deliveryOptionForm">
                 <FormControlLabel  className="deliveryOption" control={<Checkbox size="large" disabled/>} label={<Typography variant="h5">By Courier</Typography>} />
