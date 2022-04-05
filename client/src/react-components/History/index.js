@@ -5,22 +5,39 @@ import HistoryItem from "../HistoryItem";
 import { getDonationHistory } from "../../actions/user";
 import { getTransactionHistory } from "../../actions/user";
 import { checkSession } from "../../actions/user";
+import { getPostsImages } from "../../actions/image";
+import { getHistoryPostsImages } from "../../actions/image";
 
 class History extends React.Component {
     constructor() {
         super()
         this.state = {
             donationPosts: [],
-            transactionPosts: []
+            transactionPosts: [],
+            images: {}
         }
     }
 
-    fetchHistoryInformation = () => {
-        getDonationHistory(this)
-        getTransactionHistory(this)
+    fetchHistoryInformation = (callback = () => {}) => {
+        getDonationHistory(this, callback)
+        getTransactionHistory(this, callback)
     }
+
+    fetchPostsImages = () => {
+        getHistoryPostsImages(this)
+    }
+
+    getImageSrc = (post) => {
+        if (this.state.images[post.imageSrc]) {
+            return this.state.images[post.imageSrc].image_url
+        }
+        return ""
+    }
+
     componentDidMount() {
-        checkSession(this, this.fetchHistoryInformation()); // sees if a user is logged in
+        checkSession(this, ()=> {
+            this.fetchHistoryInformation(this.fetchPostsImages)
+        }); // sees if a user is logged in
     }
     render() {
         console.log(this.state)
@@ -40,7 +57,7 @@ class History extends React.Component {
                                                     ownerId={item.ownerId}
                                                     ownerStatus={item.ownerStatus} 
                                                     date={item.datePosted}
-                                                    img={item.imageSrc}
+                                                    img={this.getImageSrc(item)}
                                                     postId={item._id}
                                                     viewers={item.viewers}
                                                     category={"donation"}
@@ -60,7 +77,7 @@ class History extends React.Component {
                                                     ownerId={item.ownerId} 
                                                     ownerStatus={item.ownerStatus} 
                                                     date={item.datePosted}
-                                                    img={item.imageSrc}
+                                                    img={this.getImageSrc(item)}
                                                     postId={item._id}
                                                     viewers={item.viewers}
                                                     category={"transaction"}

@@ -8,6 +8,8 @@ import { changeOwnerStatus } from "../../actions/post";
 import { changeViewerStatus } from "../../actions/post";
 import { Navigate } from "react-router-dom";
 import ViewDonorAndDonee from "../ViewDonorAndDonee"
+import { getPostsImages } from "../../actions/image";
+import { getHistoryPostsImages } from "../../actions/image";
 
 class HistoryItem extends React.Component{
     constructor() {

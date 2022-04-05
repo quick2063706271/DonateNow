@@ -141,6 +141,62 @@ export const getPostsImages = (app) => {
     })
 };
 
+export const getHistoryPostsImages = (app) => {
+
+    app.state.donationPosts.map((post) => {
+        // the URL for the request
+        const url = `${API_HOST}/images/post/${post.imageSrc}`;
+
+        // Since this is a GET request, simply call fetch on the URL
+        fetch(url)
+            .then(res => {
+                if (res.status === 200) {
+                    // return a promise that resolves with the JSON body
+                    return res.json();
+                } else {
+                    alert("Could not get images");
+                    return {}
+                }
+            })
+            .then(json => {
+                const images = app.state.images
+                images[json._id] = json
+                app.setState({
+                    images: images
+                }, () => {console.log(app.state)})
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    })
+    app.state.transactionPosts.map((post) => {
+        // the URL for the request
+        const url = `${API_HOST}/images/post/${post.imageSrc}`;
+
+        // Since this is a GET request, simply call fetch on the URL
+        fetch(url)
+            .then(res => {
+                if (res.status === 200) {
+                    // return a promise that resolves with the JSON body
+                    return res.json();
+                } else {
+                    alert("Could not get images");
+                    return {}
+                }
+            })
+            .then(json => {
+                const images = app.state.images
+                images[json._id] = json
+                app.setState({
+                    images: images
+                }, () => {console.log(app.state)})
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    })
+};
+
 // A function to send a GET request to the web server,
 // and then loop through them and add a list element for each image
 export const getImageById = (app, imageId) => {
