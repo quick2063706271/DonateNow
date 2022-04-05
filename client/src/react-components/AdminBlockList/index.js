@@ -59,7 +59,7 @@ class AdminBlockList extends React.Component {
                     return (
                       <tr key={key} className="rt-tr-group">
                         <td>{value._id}</td>
-                        <td onClick={this.handleUserIdOnClick.bind(this, value)}><u>{value.email}</u></td>
+                        <td className="userEmail" onClick={this.handleUserIdOnClick.bind(this, value)}><u>{value.email}</u></td>
                         <td>{value.accountBlocked.toString()}</td>
                         <td className="buttonRow"><button type="submit" className="blockButton" onClick={(event) => this.handleBlock(event, value)}> {value.accountBlocked ? "Unblock" : "Block" } </button></td>
                       </tr>
