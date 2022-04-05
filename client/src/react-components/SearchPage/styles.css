@@ -104,6 +104,7 @@
     font-size: x-large;
     left: 15px;
     position: relative;
+    cursor: pointer;
 }
 
 .image {  

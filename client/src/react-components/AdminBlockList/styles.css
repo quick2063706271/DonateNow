@@ -57,3 +57,7 @@ td {
 tr td u{
     color: mediumblue;
 }
+
+.userEmail {
+    cursor: pointer;
+}

@@ -46,7 +46,7 @@ class AdminFeedback extends React.Component {
                                 <div className="summary">
                                     <ul>
                                         <li><b>Feedback ID: </b>{value._id}</li>
-                                        <li onClick={this.handleUserIdOnClick.bind(this, value)}><b>User ID: </b><u>{value.userId}</u></li>
+                                        <li className="userId" onClick={this.handleUserIdOnClick.bind(this, value)}><b>User ID: </b><u>{value.userId}</u></li>
                                     </ul>
                                     <ul>
                                         <li><b>Content: </b>{value.content}</li>

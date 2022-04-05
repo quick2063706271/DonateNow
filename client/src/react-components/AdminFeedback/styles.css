@@ -71,3 +71,7 @@
     float: left;
     margin-right: 20px;
 }
+
+.userId {
+    cursor: pointer;
+}
