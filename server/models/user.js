@@ -130,9 +130,19 @@ UserSchema.statics.findByEmailPassword = function(email, password) {
 	})
 }
 
+function filterByAdmin(users) {
+    const result = users.filter(user => user.admin === false)
+    console.log(result)
+    return result
+}
 
+function filterByAccountBlocked(users) {
+    const result = users.filter(user => user.accountBlocked === false)
+    console.log(result)
+    return result
+}
 
 // make a model using the User schema
 const User = mongoose.model('User', UserSchema)
-module.exports = { User }
+module.exports = { User, filterByAdmin, filterByAccountBlocked }
 
