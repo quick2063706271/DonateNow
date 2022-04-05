@@ -54,14 +54,10 @@ class PostPageHelp extends React.Component {
     render() {
         return (
             <div>
-                <div className="postHeader">
-                    <PostPageHeader userId={this.props.userId}
-                                      post={this.props.post}
-                                      admin={this.props.admin}
-                                    
-                    />
-                </div>
-                <br></br>
+                <PostPageHeader userId={this.props.userId}
+                                    post={this.props.post}
+                                    admin={this.props.admin}
+                                />
                 <div className="postBackground">
 
                 <div className="postImageArea">

@@ -5,6 +5,15 @@ import ChooseDonee from "../ChooseDonee";
 import RequestNowDialogue from "../RequestNowDialogue";
 import WishListDialogue from "../WishListDialogue";
 import { changeOwnerStatus, changeViewerStatus } from "../../actions/post";
+import {useNavigate} from "react-router-dom";
+
+
+function WithNavigate(props) {
+    let navigate = useNavigate();
+    let txt = "< Go Back"
+    return <Button id="backButton" onClick={() => navigate(-1)}> {txt}
+    </Button>
+}
 
 function PostPageHeaderHelper(props){
     const {post, postId, userId, admin} = props
@@ -12,7 +21,7 @@ function PostPageHeaderHelper(props){
         return (
             <span>
                 <Link to={'/login'}>
-                    <Button className="postButton" id="requestNowButton" variant="outlined" >Login to see more</Button>
+                    <Button id="postLoginButton" variant="outlined" >Login to see more</Button>
                 </Link>
             </span>
         )
@@ -21,9 +30,9 @@ function PostPageHeaderHelper(props){
         return (
             <span>
                 <Link Link to={'/admin/userpage/' + post.ownerId}>
-                    <Button className="postButton" id="requestNowButton" variant="outlined" >User Profile</Button>
+                    <Button id="requestNowButton" variant="outlined" >User Profile</Button>
                 </Link>
-                <Button className="postButton" id="saveButton" variant="outlined">Block Post</Button>
+                <Button id="saveButton" variant="outlined">Block Post</Button>
             </span>
         )
     }
@@ -34,8 +43,8 @@ function PostPageHeaderHelper(props){
             return (
                 <span>
                     {console.log(userId, post, postId)}
-                    <RequestNowDialogue post={post} btnId="chooseDoneeButton"/>
-                    <WishListDialogue post={post} btnId="chooseDoneeButton"/>
+                    <RequestNowDialogue post={post} postId={postId} userId={userId} btnId="requestNowButton"/>
+                    <WishListDialogue post={post} postId={postId} userId={userId} btnId="wishListButton"/>
                 </span>
             )
         }else if (userStatus === "owner"){  /* as owner */
@@ -51,7 +60,7 @@ function PostPageHeaderHelper(props){
                     return (
                         <span>
                             <text className="statusMsg">Owner Status: {post.ownerStatus}</text>
-                            <ChooseDonee class="postButton" btnId="chooseDoneeButton"
+                            <ChooseDonee btnId="chooseDoneeButton"
                                         userId={userId}  postId={postId}/>
                         </span>
                     )
@@ -60,10 +69,10 @@ function PostPageHeaderHelper(props){
                         <span>
                             <text className="statusMsg">Owner Status: {post.ownerStatus}</text>
                             <br></br>
-                            <Button className="postButton" id="failButton"
+                            <Button id="failButton"
                                     onClick={ () => changeOwnerStatus(postId, "Failed")}
                                     variant="outlined">Failed</Button>
-                            <Button className="postButton" id="completeButton"
+                            <Button id="completeButton"
                                     onClick={ () => changeOwnerStatus(postId, "Completed")}
                                     variant="outlined">Completed</Button>
                         </span>
@@ -84,10 +93,10 @@ function PostPageHeaderHelper(props){
                     <span>
                         <text className="statusMsg">Viewer Status: {viewer.viewerStatus}</text>
                         <br></br>
-                            <Button className="postButton" id="failButton"
+                            <Button id="failButton"
                                     onClick={ () => changeViewerStatus(postId, userId, "Failed")}
                                     variant="outlined">Failed</Button>
-                            <Button className="postButton" id="completeButton"
+                            <Button id="completeButton"
                                     onClick={ () => changeViewerStatus(postId, userId, "Completed")}
                                     variant="outlined">Completed</Button>
                     </span>
@@ -119,7 +128,13 @@ class PostPageHeader extends React.Component {
     render() {
         return (
             <div className="postHeader">
-                    <text id="createPostText"> {this.props.post.header} </text>
+                    <WithNavigate/>
+                    <br></br>
+                    <br></br>
+                    {/* <h1 id="postHeader"> {this.props.post.header} </h1> */}
+                    <text id="postHeader">{this.props.post.header}</text>
+                    <br></br>
+                    <br></br>
                     <PostPageHeaderHelper userId={this.props.userId}
                                           post={this.props.post}
                                           postId = {this.props.post._id.toString()}

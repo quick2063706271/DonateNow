@@ -96,7 +96,7 @@ class ChooseDonee extends React.Component {
         return (
             <div>
                 <div id="choose-donee-container">
-                <Button id="ChooseDonee" className={this.props.class}
+                <Button id={this.props.btnId}
                         color="primary" onClick={this.handleClickOpen}
                         m={2}
                         style={{

@@ -38,7 +38,7 @@ export const findPostByKeyword = (app, keyword) => {
   }
 
   export const findPostByWishlisted = (app) => {
-    console.log(app.state)
+    // console.log(app.state)
     const request = new Request(`${API_HOST}/api/posts/${app.state.userId}`, {
         method: "GET",
         headers: {
@@ -54,7 +54,7 @@ export const findPostByKeyword = (app, keyword) => {
         })
         .then(json => {
             if (json) {
-                console.log(json)
+                // console.log(json)
                 app.setState({
                     posts: json
                 });
@@ -143,6 +143,7 @@ export const changeOwnerStatus = (postId, val) => {
     })
         .then(res => {
             if (res.status === 200) {
+                window.location.reload(false);
                 return res.json();
             };   
         })
@@ -165,6 +166,30 @@ export const changeViewerStatus = (postId, userId, val) => {
     })
         .then(res => {
             if (res.status === 200) {
+                window.location.reload(false)
+                return res.json();
+            };   
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export const addViewerStatus = (postId, userId, val) => {
+    const url = `${API_HOST}/api/post/${postId}/${userId}`;
+    const data = {val}
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(data)
+    })
+        .then(res => {
+            if (res.status === 200) {
+                window.location.reload(false)
                 return res.json();
             };   
         })
