@@ -1,7 +1,7 @@
 # DONATENOW.COM :heart:
 
 ## Website 
-Heroku URL: xxxxxxx 
+Heroku URL: https://donate-now-team02.herokuapp.com/ 
 
 
 ## Run Our App Locally After Cloning Repo 
@@ -143,16 +143,22 @@ Request URL: http://localhost:6001/api/posts
 ```
 This route is expected to add the newly created post into the post database.
 
-#### Incrementing Post Views 
+#### Incrementing Post Views (PATCH) 
 Request URL: http://localhost:6001/api/post/views/:id
+<br/>This route helps keep track of number of views of one post from the its Post ID. 
+<br/>This route is expected to find the post from its Post ID in the Post database, and increment the view count by 1. The view count is displayed as an attribute on the Serch Result page and the Post Page. 
 
-#### Change Owner Status 
+#### Change Owner Status (PATCH) 
 Request URL: http://localhost:6001/api/post/:id
+<br/>This route changes the owner status of a post. 
+<br/>This route is expected to find a post from its Post ID in the Post database, and to update the ownerStatus attribute of this post. This change is reflected on the Post Page of this post. 
 
-#### Change Viewer Status 
+#### Change Viewer Status (PATCH) 
 Request URL: http://localhost:6001/api/post/:id/:viewer_id
+<br/>This route changes the viewer status of a post. 
+<br/>This route is expected to find a post from its Post ID in the Post database, and to update the viewerStatus attribute of this post. This change is reflected on the Post Page of this post. 
 
-#### Add Viewer Status 
+#### Add Viewer Status (POST) (not sure) 
 Request URL: http://localhost:6001/api/post/:id/:viewer_id 
 
 
@@ -169,9 +175,14 @@ Request URL: http://localhost:6001/api/post/wishlist/:id
 
 #### Add to Wishlist (PATCH) 
 Request URL: http://localhost:6001/api/post/wishlist/:uid/:pid
+<br/>This route performs a user's action of adding a post into his Wishlist. 
+<br/>This route is expected to find the target post from the Post ID and the current user from the User ID. It then pushes the post into the user's wishlisted items. This changed is reflected through the Wish List page of the user. 
+
 
 #### Remove from Wishlist (PATCH) 
 Request URL: http://localhost:6001/api/post/unwishlist/:uid/:pid
+<br/>This route performs a user's action of removing a post from his Wishlist. 
+<br/>This route is expected to find the target post from the Post ID and the current user from the User ID. It then removes the post from the user's wishlisted items. This changed is reflected through the Wish List page of the user. 
 
 
 ### 5. Route for Search Page 
@@ -278,10 +289,6 @@ Request URL: http://localhost:6001/api/faqpage
     "answer": "You can access your personal information through clicking into My Profile on the top right corner of the page. You can then update the information by clicking the Edit button at the bottom of the page. Please remember to click Save after you are done.  "
 }
 ```
-
-
-
-
 
 
 
