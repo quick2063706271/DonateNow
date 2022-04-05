@@ -100,18 +100,21 @@ docker run -d --rm -p 5000:5000 donate-now
     Username: admin@admin.com
     Password: admin
     ```
-    - An ADMIN MODE sign appears on the top right corner to remind the admin of its current mode. 
-    - Admin navigation menu contains buttons direct them to view blocklists and feedback.
-    - After login, admin is directed to search page by default, they can search like regular users.
+    <br/> - An ADMIN MODE sign appears on the top right corner to remind the admin of its current mode. 
+    <br/> - Admin navigation menu contains buttons that can direct them to view BLOCK LIST and FEEDBACK.
+    <br/> - After login, admin is directed to search page by default, they can use the Search Bar just like the regular users.
+    <br/>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - When viewing a post, admin can access the donor/owner's the profile by clicking on the User Profile button at the top left of the post. 
+    <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Admin can then review the user's full profile information. 
+    
     
 2. Click on VIEW FEEDBACK to find a list of all feedbacks that users have submitted 
-    <br/> - Admin can review the feedbacks reular users submit under the SUBMIT FEEDBACK panel in their user profile. 
-    <br/> - Click on the User ID in each feedback to have a brief view of basic user information. 
-    <br/> - 
+    <br/> - Admin can review the feedbacks submitted by regular users. 
+    <br/> - Click on the User ID in each feedback to have a brief view of User Information. 
+    <br/> - Admin can block this user by clicking on the corresponding button at the bottom of User Information page.  
 
 3. Click on BLOCK LIST to find a list of all users 
     <br/> -  Click on each User ID under the Username column to have a brief view of basic user information. 
-    <br/> -  Click on the BLOCK/UNBLOCK button under the Action column to block or unblock certain users. 
+    <br/> -  Click on the BLOCK/UNBLOCK button under the Action column to block or unblock a specific user. 
 
     
 
