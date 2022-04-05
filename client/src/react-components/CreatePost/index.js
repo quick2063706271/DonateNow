@@ -111,7 +111,7 @@ class CreatePost extends React.Component {
                             <div id="postImageDiv" >
                             <form className="image-form" onSubmit={(e) => {
                                 e.preventDefault();
-                                addPostImage(e.target, this, "post");
+                                addPostImage(e.target, this);
                             }}>
                                 <img src={"./upload.png"} id="postImage" alt="postImage"/>
                                 <div class="image-form__field">

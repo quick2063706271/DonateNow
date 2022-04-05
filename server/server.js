@@ -755,7 +755,6 @@ app.post("/images/post", multipartMiddleware, (req, res) => {
             var img = new PostImage({
                 image_id: result.public_id, // image id on cloudinary server
                 image_url: result.url, // image url on cloudinary server
-                created_at: new Date(),
             });
             
             // Save image to the database
@@ -771,16 +770,21 @@ app.post("/images/post", multipartMiddleware, (req, res) => {
 });
 
 
-// a POST route to *create* an image
+// a POST route to *create* a user image
 app.post("/images/user/:uid", multipartMiddleware, (req, res) => {
 
     const uid = req.params.uid
+
+    UserImage.deleteMany({"userId": uid})
+        .then(
+        images => {
+            console.log("removed", images)// can wrap in object if want to add more properties
+        })
 
     // Use uploader.upload API to upload image to cloudinary server.
     cloudinary.uploader.upload(
         req.files.image.path, // req.files contains uploaded files
         function (result) {
-
             // Create a new image using the Image mongoose model
             
             var img = new UserImage({
@@ -789,7 +793,6 @@ app.post("/images/user/:uid", multipartMiddleware, (req, res) => {
                 image_url: result.url, // image url on cloudinary server
             });
             
-            
             // Save image to the database
             img.save().then(
                 saveRes => {
@@ -801,12 +804,27 @@ app.post("/images/user/:uid", multipartMiddleware, (req, res) => {
             );
         });
 });
-// a GET route to get image by id
+// a GET route to get post image by id
 app.get("/images/post/:id", (req, res) => {
     const imageId = req.params.id;
     console.log(imageId)
 
     PostImage.findById(imageId).then(
+        image => {
+            console.log(image)
+            res.send( image ); // can wrap in object if want to add more properties
+        },
+        error => {
+            res.status(500).send(error); // server error
+        }
+    );
+});
+
+// a GET route to get user image by id
+app.get("/images/user/:uid", (req, res) => {
+    const uid = req.params.uid;
+
+    UserImage.findOne({userId: uid}).then(
         image => {
             console.log(image)
             res.send( image ); // can wrap in object if want to add more properties
@@ -858,7 +876,7 @@ for (let i = 0; i < routes.length; i++) {
     });
 }
 
-const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", 
+const public_routes = ["/", "/search", "/wishlist", "/createpost","/termsconditions", "/admin/feedback", 
                        "/admin/blocklist", "/userpage", "/postpage/:id", "/userpage/:id"]
 for (let i = 0; i < public_routes.length; i++) {
     let route = public_routes[i];
