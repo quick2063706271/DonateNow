@@ -38,7 +38,7 @@ class PersonalInformation extends React.Component {
             userId: "",
             admin: false,
             image: null,
-            message: { type: "error", body: "11111" },
+            message: { type: "error", body: "" },
         }
         this.handleEdit.bind(this);
         this.handleComplaint.bind(this);
@@ -137,21 +137,25 @@ class PersonalInformation extends React.Component {
                                 <Avatar id="avatar" 
                                         sx={{height: 80, width: 80}}>U
                                 </Avatar>}
+                                <div id="user-upload-button-group">
+                                    <div class="image-form__field">
+                                        <label>Avatar:</label>
+                                        <input name="image" type="file" />
+                                    </div>
 
-                                <div class="image-form__field">
-                                    <label>Image:</label>
-                                    <input name="image" type="file" />
+                                    <Button size="small" type="submit" 
+                                        variant="contained" style={{
+                                            backgroundColor: "transparent",
+                                        }}>
+                                        Upload
+                                    </Button>
                                 </div>
-
-                                <Button size="small" type="submit" 
-                                    variant="contained">
-                                    Upload
-                                </Button>
+                                <p className={`image-form__message--${this.state.message.type}`}>
+                                    {this.state.message.body}
+                                </p>
                         </form>
                         :null}
-                    <p className={`image-form__message--${this.state.message.type}`}>
-                                {this.state.message.body}
-                            </p>
+                    
 
                 <Box component="form"
                 sx={{ display: 'flex', flexWrap: 'wrap', '& .MuiTextField-root': { m: 1.5 }}}
