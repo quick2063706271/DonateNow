@@ -26,8 +26,11 @@
 }
 
 .button {
+    /*background-color: burlywood;*/
     /*background-color: #FFC98B;*/
-    background-color: #C65D7B;
+    /*background-color: #C65D7B;*/
+    /*background-color: #f6e7d8;*/
+    background-color: #e7b8b9 /*#feb8b8 #fe9e9f #e7b8b9*/;
     color: white;
     padding: 10px;
     font-size: 15px;
@@ -40,7 +43,8 @@
 
 .dropdown:hover .button {
     /*background-color: burlywood;*/
-    background-color: #F68989;
+    /*background-color: #F68989;*/
+    background-color: #efb3bd;
 }
   
 .dropdown-content {
@@ -84,7 +88,9 @@
     max-width: 90%;  
     padding: 10px;
     /*background-color: blanchedalmond;*/
-    background-color: #ffbeba;
+    /*background-color: #ffbeba;*/
+    /*background-color: #f6e7d8;*/
+    background-color: #f5d7cd /*#f5d7cd #f3eae4*/;
     overflow: hidden;
     position: relative;
 }
