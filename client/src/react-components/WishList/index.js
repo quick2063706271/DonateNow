@@ -7,6 +7,7 @@ import StickyFooter from "../StickyFooter";
 import { checkSession, removeWishlist } from "../../actions/user";
 import { findPostByWishlisted } from "../../actions/post";
 import { Link } from "react-router-dom";
+import {getPostsImages} from "../../actions/image"
 
 class WishList extends React.Component {
 
@@ -17,13 +18,14 @@ class WishList extends React.Component {
             admin: false,
             posts: [],
             redirect: false,
-            redirectPostId: -1
+            redirectPostId: -1,
+            images: {},
         }
     }
 
     componentDidMount() {
         checkSession(this, () => {
-            findPostByWishlisted(this)
+            findPostByWishlisted(this, this.fetchPostsImages)
         });
     }
 
@@ -35,6 +37,17 @@ class WishList extends React.Component {
                 redirect: true
             })
         })
+    }
+
+    fetchPostsImages = () => {
+        getPostsImages(this)
+    }
+
+    getImageSrc = (post) => {
+        if (this.state.images[post.imageSrc]) {
+            return this.state.images[post.imageSrc].image_url
+        }
+        return ""
     }
 
     loopThroughPosts = () => {
@@ -52,7 +65,7 @@ class WishList extends React.Component {
                             </Button>
                             <div className="post">
                                 <img
-                                    src={`..${value.imageSrc}`} 
+                                    src={this.getImageSrc(value)}
                                     className="image" 
                                     alt="image"
                                     onClick={this.handlePostOnClick.bind(this, value)}
