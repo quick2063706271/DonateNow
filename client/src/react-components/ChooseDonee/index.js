@@ -1,23 +1,12 @@
 import React from "react";
 import "./styles.css";
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Checkbox from "@mui/material/Checkbox";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import { Link } from "react-router-dom";
@@ -96,7 +85,7 @@ class ChooseDonee extends React.Component {
         return (
             <div>
                 <div id="choose-donee-container">
-                <Button id={this.props.btnId}
+                <Button id="ChooseDonee" className={this.props.class}
                         color="primary" onClick={this.handleClickOpen}
                         m={2}
                         style={{

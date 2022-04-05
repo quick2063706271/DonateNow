@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import PersonalInformation from '../PersonalInformation';
 import Feedback from '../Feedback';
 import History from '../History';
-import database from "../../database"
+//import database from "../../database"
 import { getUser } from '../../actions/user';
 import { getOtherUser } from '../../actions/user';
 import { checkSession } from '../../actions/user';
@@ -110,15 +110,7 @@ class SideMenu extends React.Component{
         const uniqueDonationPosts = []
         // select panel to display
         let panel
-        if (this.state.selectedPanel === 1) {
-            panel = <History userId={this.props.userId} 
-                            items={uniqueTransactionPosts} category="transaction"/>
-        } else if (this.state.selectedPanel === 2) {
-            panel = <History userId={this.props.userId}
-                            items={uniqueDonationPosts} category="donation"/>
-        } else if (this.state.selectedPanel === 3) {
-            panel = <Feedback/>
-        } else {
+        if (isRead) {
             panel = <PersonalInformation
                         username={this.state.username}
                         password=""
@@ -132,8 +124,33 @@ class SideMenu extends React.Component{
                         bio={this.state.bio}
                         complaintNum={this.state.complaintNum}
                         admin = {false}
-                        isRead = {isRead}
-                    />
+                        isRead = {isRead}/>
+        } else {
+            if (this.state.selectedPanel === 1) {
+                panel = <History userId={this.props.userId} 
+                                items={uniqueTransactionPosts} category="transaction"/>
+            } else if (this.state.selectedPanel === 2) {
+                panel = <History userId={this.props.userId}
+                                items={uniqueDonationPosts} category="donation"/>
+            } else if (this.state.selectedPanel === 3) {
+                panel = <Feedback/>
+            } else {
+                panel = <PersonalInformation
+                            username={this.state.username}
+                            password=""
+                            dateOfBirth={this.state.dateOfBirth}
+                            gender={this.state.gender}
+                            address1={this.state.address1}
+                            address2={this.state.address2}
+                            phone={this.state.phone}
+                            email={this.state.email}
+                            preference={this.state.preference}
+                            bio={this.state.bio}
+                            complaintNum={this.state.complaintNum}
+                            admin = {false}
+                            isRead = {isRead}
+                        />
+        }   
             // panel.setState({
             //     username: user.username,
             //     password: "",

@@ -744,7 +744,7 @@ for (let i = 0; i < routes.length; i++) {
     });
 }
 
-const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", "/admin/blocklist", "/userpage", "/postpage/:id"]
+const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", "/admin/blocklist", "/userpage", "/postpage/:id", "/userpage/:id"]
 for (let i = 0; i < public_routes.length; i++) {
     let route = public_routes[i];
     app.get(route, (req, res) => {

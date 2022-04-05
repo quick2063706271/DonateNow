@@ -1,9 +1,8 @@
 import React from "react";
 import "./styles.css";
-import database from '../../database'
+//import database from '../../database'
 import AdminAppBar from "../AdminAppBar";
 import { Link, Navigate } from 'react-router-dom';
-import { uid } from "react-uid";
 import StickyFooter from "../StickyFooter";
 import { checkSession } from "../../actions/user";
 import { getBlocklist, updateBlocklist } from "../../actions/blocklist";

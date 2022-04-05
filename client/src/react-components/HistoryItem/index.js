@@ -36,7 +36,8 @@ class HistoryItem extends React.Component{
     render() {
         // status: {Received, Requested, Accepted, Pending, Failed, Posted, Order Placed, Completed}
         console.log("in history item")
-        const { header, ownerId, ownerStatus, date, img, postId, category, viewers } = this.props;
+
+        const { header, ownerStatus, img, category, viewers } = this.props;
         console.log(this.props)
         let chooseDoneeButton
         if (ownerStatus === "Posted" && category === "donation") {

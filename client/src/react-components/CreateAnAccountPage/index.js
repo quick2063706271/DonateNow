@@ -3,7 +3,6 @@ import "./styles.css";
 import { Link, Navigate } from 'react-router-dom';
 import logo from './logo.png';
 import loginImage from './LoginPageImage.jpeg';
-import StickyFooter from "../StickyFooter";
 import { userSignUp } from "../../actions/user"
 
 class CreateAnAccountPage extends React.Component {

@@ -1,5 +1,5 @@
 import AppBar from "../AppBar";
-import { Navigate, useSearchParams } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import React from 'react';
 import "./styles.css";
 import StickyFooter from "../StickyFooter";
@@ -37,27 +37,27 @@ class SearchPage extends React.Component {
         if (drpdwn === "categories") {
             const cats = database.categories
             for (var i = 0; i < cats.length; i++) {
-                options.push(<a href="#" name={cats[i]} onClick={(event) => this.changeDrpdwnBtnValue(event, "category")}>{cats[i]}</a>)
+                options.push(<a name={cats[i]} onClick={(event) => this.changeDrpdwnBtnValue(event, "category")}>{cats[i]}</a>)
             }
         } else if (drpdwn === "locations") {
             const locs = database.locations
             for (var j = 0; j < locs.length; j++) {
-                options.push(<a href="#" name={locs[j]} onClick={(event) => this.changeDrpdwnBtnValue(event, "location")}>{locs[j]}</a>)
+                options.push(<a name={locs[j]} onClick={(event) => this.changeDrpdwnBtnValue(event, "location")}>{locs[j]}</a>)
             }
         } else if (drpdwn === "delivery options") {
             const delivery = database.deliveryOptions
             for (var k = 0; k < delivery.length; k++) {
-                options.push(<a href="#" name={delivery[k]} onClick={(event) => this.changeDrpdwnBtnValue(event, "delivery option")}>{delivery[k]}</a>)
+                options.push(<a name={delivery[k]} onClick={(event) => this.changeDrpdwnBtnValue(event, "delivery option")}>{delivery[k]}</a>)
             }
         } else if (drpdwn === "sort date posted") {
             const sortDate = database.sortDatePosted
             for (var p = 0; p < sortDate.length; p++) {
-                options.push(<a href="#" name={sortDate[p]} onClick={(event) => this.changeDrpdwnBtnValue(event, "sort date posted")}>{sortDate[p]}</a>)
+                options.push(<a name={sortDate[p]} onClick={(event) => this.changeDrpdwnBtnValue(event, "sort date posted")}>{sortDate[p]}</a>)
             }
         } else if (drpdwn === "sort views") {
             const sortViews = database.sortViews
             for (var m = 0; m < sortViews.length; m++) {
-                options.push(<a href="#" name={sortViews[m]} onClick={(event) => this.changeDrpdwnBtnValue(event, "sort views")}>{sortViews[m]}</a>)
+                options.push(<a name={sortViews[m]} onClick={(event) => this.changeDrpdwnBtnValue(event, "sort views")}>{sortViews[m]}</a>)
             }
         }
         return options

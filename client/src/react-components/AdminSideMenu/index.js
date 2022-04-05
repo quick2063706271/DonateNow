@@ -27,7 +27,7 @@ class AdminSideMenu extends React.Component{
             panel = 0
         } else if (event.target.innerText === 'TRANSACTION HISTORY') {
             panel = 1
-        } else if (event.target.innerText == "DONATED HISTORY") {
+        } else if (event.target.innerText === "DONATED HISTORY") {
             panel = 2
         } else {
             panel = 3
@@ -73,9 +73,9 @@ class AdminSideMenu extends React.Component{
 
         // select panel to display
         let panel
-        if (this.state.selectedPanel == 1) {
+        if (this.state.selectedPanel === 1) {
             panel = <History items={uniqueTransactionPosts} category="transaction"/>
-        } else if (this.state.selectedPanel == 2) {
+        } else if (this.state.selectedPanel === 2) {
             panel = <History items={uniqueDonationPosts} category="donation"/>
         }
         /* else if (this.state.selectedPanel == 3) {
