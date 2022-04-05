@@ -1,12 +1,6 @@
 import React from "react";
 import "./styles.css";
-// import monitorImg from "./monitor.png"
 import { Button } from "@mui/material";
-//import ChooseDonee from "../ChooseDonee";
-//import { checkSession } from "../../actions/user";
-//import { changeOwnerStatus } from "../../actions/post";
-//import { changeViewerStatus } from "../../actions/post";
-//import { Navigate } from "react-router-dom";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
