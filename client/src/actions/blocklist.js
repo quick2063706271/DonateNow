@@ -5,7 +5,7 @@ const API_HOST = ENV.api_host
 
 export const getBlocklist = (app) => {
     console.log(app.state)
-    const request = new Request(`${API_HOST}/api/userpage`, {
+    const request = new Request(`${API_HOST}/api/admin/blocklist`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json'
@@ -22,9 +22,38 @@ export const getBlocklist = (app) => {
             if (json) {
                 console.log(json)
                 app.setState({
-                    users: json 
-
+                    users: json
                 }, () => { console.log(app.state) });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export const updateBlocklist = (app, value) => {
+    console.log(app.state)
+    const request = new Request(`${API_HOST}/api/admin/blocklist/${value._id}`, {
+        method: "PATCH",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ accountBlocked: !value.accountBlocked })
+    });
+    // Send the request with fetch()
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+            if (json) {
+                console.log(json)
+                getBlocklist(app)
+                /*app.setState({
+                    users: json
+                }, () => { console.log(app.state) });*/
             }
         })
         .catch(error => {
