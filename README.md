@@ -34,7 +34,7 @@ docker run -d --rm -p 5000:5000 donate-now
 ### 1. Routes for Account and Session Information 
 
 #### User Login and Create a Session (POST) 
-<br/>Request URL: http://localhost:6001/login
+Request URL: http://localhost:6001/login
 <br/>This is used for verifying a user's credentials (emails and password) when logging into the website. This also add the user ID into the session for the user to remain logged in. 
 This route is expected to be sent a json file of email and password: 
 ```
@@ -51,7 +51,7 @@ This route is expected to find the user and start the session if the user is val
 #### Check If User is Logged in during a Session 
 
 #### Create Account (POST) 
-<br/>Request URL: http://localhost:6001/api/createanaccount 
+Request URL: http://localhost:6001/api/createanaccount 
 This is used for creating a new user account from receiving a user's credentials. 
 This route is expected to be sent a json file of email and password: 
 ```
@@ -82,25 +82,25 @@ This route is expected to add the newly created post into the post database.
 
 
 ### 2. Routes for Users 
-<br/>Get Userpage 
-<br/>User Page get other user (not sure) 
-<br/>Update Userpage 
-<br/>Post Feedback 
-<br/>Get Donated History Posts 
-<br/>Get Donated History Posts from Post ID 
-<br/>Get Transaction History Posts
+#### Get Userpage 
+#### User Page get other user (not sure) 
+#### Update Userpage 
+#### Post Feedback 
+#### Get Donated History Posts 
+#### Get Donated History Posts from Post ID 
+#### Get Transaction History Posts
 
 ### 3. Route for Posts 
-<br/>Creating Posts 
-<br/>Incrementing Post Views 
-<br/>Change Owner Status 
-<br/>Change Viewer Status 
-<br/>Add Viewer Status 
+#### Creating Posts 
+#### Incrementing Post Views 
+#### Change Owner Status 
+#### Change Viewer Status 
+#### Add Viewer Status 
 
 ### 4. Routes for Wishlist 
 
 #### Get a User's Wishlist from User ID (GET) 
-<br/>Request URL: http://localhost:6001/api/posts/:id 
+Request URL: http://localhost:6001/api/posts/:id 
 <br/>This route browses through all posts and extract all items/posts wishlisted by a certain user from his User ID. 
 <br/>This route is expected to return a json file of wishlist information. 
 ```
@@ -108,28 +108,28 @@ to be implemented
 ``` 
 
 #### Get Post Wishlist Count (not sure) 
-<br/>Add to Wishlist 
-<br/>Remove from Wishlist 
+#### Add to Wishlist 
+#### Remove from Wishlist 
 
 ### 5. Route for Search Page 
-<br/>Get and Filter Posts 
+#### Get and Filter Posts 
 
 
 ### 6. Route for Post Page 
-<br/>Get Post from Post ID 
+#### Get Post from Post ID 
 
 ### 7. Route for Admin Feedback Page 
-<br/>Get All Feedbacks 
+#### Get All Feedbacks 
 
 ### 8. Route for Admin Blocklist Page 
-<br/>Get All Blocklist 
-<br/>Update Blocklist from User ID 
+#### Get All Blocklist 
+#### Update Blocklist from User ID 
 
 ### 9. Route for Terms and Conditions Page
-<br/>Get All Terms and Conditions 
+#### Get All Terms and Conditions 
 
 ### 10. Route for FAQ Page 
-<br/>Get All FAQs 
+#### Get All FAQs 
 
 
 
