@@ -36,7 +36,7 @@ docker run -d --rm -p 5000:5000 donate-now
 #### User Login and Create a Session (POST) 
 Request URL: http://localhost:6001/login
 <br/>This is used for verifying a user's credentials (emails and password) when logging into the website. This also add the user ID into the session for the user to remain logged in. 
-This route is expected to be sent a json file of email and password: 
+<br/>This route is expected to be sent a json file of email and password: 
 ```
 {
     "email": "user@user.com",
@@ -52,8 +52,8 @@ This route is expected to find the user and start the session if the user is val
 
 #### Create Account (POST) 
 Request URL: http://localhost:6001/api/createanaccount 
-This is used for creating a new user account from receiving a user's credentials. 
-This route is expected to be sent a json file of email and password: 
+<br/>This is used for creating a new user account from receiving a user's credentials. 
+<br/>This route is expected to be sent a json file of email and password: 
 ```
 {
     "email": "new-user@user.com",
@@ -66,6 +66,7 @@ This route is expected to add the newly created user into the user database for 
 
 ### 2. Routes for Users 
 #### Get Userpage 
+
 #### User Page get other user (not sure) 
 #### Update Userpage 
 #### Post Feedback 
@@ -76,7 +77,7 @@ This route is expected to add the newly created user into the user database for 
 ### 3. Route for Posts 
 #### Create Post (POST) 
 Request URL: http://localhost:6001/api/posts 
-This route is for an user to create and publish a post after filling in all required fields of information on the DONATE NOW page. 
+<br/>This route is for an user to create and publish a post after filling in all required fields of information on the DONATE NOW page. 
 <br/>This route is expected to be sent a json file containing the new post's information when the user publishes the post, and store it in the Posts database: 
 ```
 {  
@@ -171,8 +172,11 @@ Request URL: http://localhost:6001/api/admin/blocklist
 <br/>This route extracts all the user information from the User database. 
 <br/>This route is expected to authenticate user and verify the user is admin, then return a json file of user information. The accountBlocked attribute for each user is extracted from each user to be displayed on the Block List page. 
 
+#### Update Blocklist from User ID (PATCH) 
+Request URL: http://localhost:6001/api/admin/blocklist 
+<br/>This route identifies a user from the User ID, and block or unblock his account. 
+<br/>This route is expected to authenticate user and verify the current user is admin, then extracts a specific user's information from the input User ID and changes this user's accountBlocked status. 
 
-#### Update Blocklist from User ID 
 
 ### 9. Route for Terms and Conditions Page
 #### Get All Terms and Conditions (GET)
