@@ -48,7 +48,7 @@ class WishListDialogue extends React.Component {
 
     updateStatus = () => {
         if (this.state.wishlist){
-            removeWishlist(this.state.userId, this.props.postId)
+            removeWishlist(this.state.userId, this.props.postId, false)
         }else{
             addWishlist(this.state.userId, this.props.postId)
         }

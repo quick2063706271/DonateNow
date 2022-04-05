@@ -24,6 +24,8 @@ const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 const { Feedbacks } = require('./models/feedbacks') 
 const { Post, filterPostsByParams, filterPostsById, filterPostsByOwnerId, filterPostsByViewerId} = require('./models/post') 
+const { PostImage} = require("./models/postImage")
+const { UserImage} = require("./models/userImage")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");

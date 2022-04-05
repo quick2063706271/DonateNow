@@ -443,7 +443,7 @@ export const addWishlist = (userId, postId) => {
         });
 }
 
-export const removeWishlist = (userId, postId) => {
+export const removeWishlist = (userId, postId, refresh) => {
     const url = `${API_HOST}/api/post/unwishlist/${userId}/${postId}`
 
     fetch(url, {
@@ -454,6 +454,9 @@ export const removeWishlist = (userId, postId) => {
     })
         .then(res => {
             if (res.status === 200) {
+                if (refresh){
+                    window.location.reload(false)
+                }
                 return res.json();
             };   
         })

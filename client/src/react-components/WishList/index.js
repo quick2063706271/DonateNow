@@ -4,7 +4,7 @@ import "./styles.css";
 import Button from '@mui/material/Button';
 import { Navigate } from 'react-router-dom';
 import StickyFooter from "../StickyFooter";
-import { checkSession } from "../../actions/user";
+import { checkSession, removeWishlist } from "../../actions/user";
 import { findPostByWishlisted } from "../../actions/post";
 import { Link } from "react-router-dom";
 
@@ -46,7 +46,10 @@ class WishList extends React.Component {
                         <div className="block">
                             {/*<a className="title" href={`postpage/${value.postId}`}><b><u>{value.header}</u></b></a>*/}
                             <a className="title" onClick={this.handlePostOnClick.bind(this, value)}><b><u>{value.header}</u></b></a>
-                            <Button style = {{backgroundColor: "#C65D7B", color: "white", fontSize: "16px", right: "5%", position: "absolute"}}>Remove</Button>
+                            <Button onClick={() => removeWishlist(this.state.userId, value._id.toString(), true)} 
+                                    style = {{backgroundColor: "#C65D7B", color: "white", fontSize: "16px", right: "5%", position: "absolute"}}>
+                                    Remove
+                            </Button>
                             <div className="post">
                                 <img
                                     src={`..${value.imageSrc}`} 
