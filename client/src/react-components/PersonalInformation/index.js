@@ -10,6 +10,7 @@ import { getUser } from "../../actions/user";
 import { checkSession } from "../../actions/user";
 import { getOtherUser } from "../../actions/user";
 import ComponentParamsWrapper from "../ParamsWrapper";
+import { addUserImage } from "../../actions/image";
 
 class PersonalInformation extends React.Component {
     constructor(props) {
@@ -33,7 +34,8 @@ class PersonalInformation extends React.Component {
             isComplained: false,
             message: null,
             userId: "",
-            admin: false
+            admin: false,
+            message: { type: "", body: "" },
         }
         this.handleEdit.bind(this);
         this.handleComplaint.bind(this);
@@ -118,9 +120,7 @@ class PersonalInformation extends React.Component {
                 autoComplete="off"
                 >
                     <div className="personalInformation">
-                        <div>
-                            <Avatar id="avatar" sx={{height: 80, width: 80}}>JO</Avatar>
-                        </div>
+                        
                         
                         
                         <TextField
