@@ -10,6 +10,9 @@ import { getUser } from "../../actions/user";
 import { checkSession } from "../../actions/user";
 import { getOtherUser } from "../../actions/user";
 import ComponentParamsWrapper from "../ParamsWrapper";
+import { addUserImage } from "../../actions/image";
+import { Input } from "@material-ui/core";
+import { getUserImageById } from "../../actions/image"
 
 class PersonalInformation extends React.Component {
     constructor(props) {
@@ -33,7 +36,9 @@ class PersonalInformation extends React.Component {
             isComplained: false,
             message: null,
             userId: "",
-            admin: false
+            admin: false,
+            image: null,
+            message: { type: "error", body: "11111" },
         }
         this.handleEdit.bind(this);
         this.handleComplaint.bind(this);
@@ -73,6 +78,10 @@ class PersonalInformation extends React.Component {
         getOtherUser(this)
     }
 
+    getImage = () =>{
+        getUserImageById(this, this.state.userId)
+    }
+
     componentDidMount() {
         if (this.props.isRead) {
             this.setState({
@@ -82,7 +91,7 @@ class PersonalInformation extends React.Component {
         } else {
             this.setState(this.fetchPersonalInformation)
         }
-        checkSession(this); // sees if a user is logged in
+        checkSession(this, this.getImage); // sees if a user is logged in & set current avatar
     }
     updateUserInfo = (e) => {
         const field = e.target
@@ -95,6 +104,12 @@ class PersonalInformation extends React.Component {
         });
         console.log(this.state)
     };
+
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+        console.log("submitted")
+        addUserImage(e.target, this, this.state.userId);
+    }
 
     render() {
         const {
@@ -112,17 +127,42 @@ class PersonalInformation extends React.Component {
         console.log(isAdmin)
         return(
             <div>
+                {this.state.userId ?
+                        <form id="user-image-form" onSubmit={this.handleFormSubmit}>
+                                {this.state.image?
+                                <Avatar id="avatar" src={this.state.image.image_url}
+                                        sx={{height: 80, width: 80}}>
+                                </Avatar>
+                                :
+                                <Avatar id="avatar" 
+                                        sx={{height: 80, width: 80}}>U
+                                </Avatar>}
+
+                                <div class="image-form__field">
+                                    <label>Image:</label>
+                                    <input name="image" type="file" />
+                                </div>
+
+                                <Button size="small" type="submit" 
+                                    variant="contained">
+                                    Upload
+                                </Button>
+                        </form>
+                        :null}
+                    <p className={`image-form__message--${this.state.message.type}`}>
+                                {this.state.message.body}
+                            </p>
+
                 <Box component="form"
                 sx={{ display: 'flex', flexWrap: 'wrap', '& .MuiTextField-root': { m: 1.5 }}}
                 noValidate
                 autoComplete="off"
                 >
                     <div className="personalInformation">
-                        <div>
+                        {/* <div>
                             <Avatar id="avatar" sx={{height: 80, width: 80}}>JO</Avatar>
-                        </div>
-                        
-                        
+                        </div> */}
+
                         <TextField
                         className="inputFieldId"
                         label="Username"
