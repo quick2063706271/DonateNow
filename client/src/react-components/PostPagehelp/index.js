@@ -56,11 +56,10 @@ class PostPageHelp extends React.Component {
         image: null
     }
 
-    // componentDidMount() {
-    //     console.log(this.props.post.imageSrc)
-    //     getImageById(this, this.props.post.imageSrc)
-    //     console.log(this.state.post)
-    // }
+    componentDidMount() {
+        console.log(this.props.post.imageSrc)
+        getImageById(this, this.props.post.imageSrc)
+    }
 
     render() {
         return (
@@ -73,10 +72,12 @@ class PostPageHelp extends React.Component {
 
                 <div className="postImageArea">
                     <div id="postpageImageDiv" >
-                        <CardMedia
+                        {this.state.image ? 
+                        <img
                             className="image__card-media"
-                            // image={this.state.image.image_url}
-                        />
+                            src={this.state.image.image_url}
+                            id="postImage" alt="postImage"
+                        /> : null}
                     </div>
                 </div>
                 <div className="postContentArea">

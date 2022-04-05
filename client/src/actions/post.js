@@ -1,10 +1,11 @@
 // environment configutations
 import ENV from './../config.js'
+import { getImageById } from './image'
 
 const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
   
-export const findPostByKeyword = (app, keyword) => {
+export const findPostByKeyword = (app, keyword, callback = () => {}) => {
     // console.log(ENV.api_host)
     let url = `${API_HOST}/api/filterposts?`;
     const {categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal, sortViewsVal} = app.state
@@ -26,9 +27,10 @@ export const findPostByKeyword = (app, keyword) => {
         })
         .then(json => {
             if (json) {
+                const posts = json;
                 app.setState({
-                    posts: json
-                });
+                    posts: posts
+                }, callback);
             }
         })
         .catch(error => {

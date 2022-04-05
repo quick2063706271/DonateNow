@@ -804,9 +804,11 @@ app.post("/images/user/:uid", multipartMiddleware, (req, res) => {
 // a GET route to get image by id
 app.get("/images/post/:id", (req, res) => {
     const imageId = req.params.id;
+    console.log(imageId)
 
     PostImage.findById(imageId).then(
         image => {
+            console.log(image)
             res.send( image ); // can wrap in object if want to add more properties
         },
         error => {

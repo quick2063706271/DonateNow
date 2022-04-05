@@ -8,6 +8,7 @@ import ComponentParamsWrapper from "../ParamsWrapper";
 import AdminAppBar from "../AdminAppBar";
 import {checkSession} from "../../actions/user";
 import {findPostByKeyword} from "../../actions/post"
+import {getPostsImages} from "../../actions/image"
 
 class SearchPage extends React.Component {
     state = {
@@ -25,7 +26,8 @@ class SearchPage extends React.Component {
         sortViewsBtnText: "Sort by Views: None",
         sortViewsVal: "None",
         redirect: false,
-        redirectPostId: -1
+        redirectPostId: -1,
+        images: {}
     };
 
     handleSearchButtonOnClick = () => {
@@ -97,9 +99,13 @@ class SearchPage extends React.Component {
         }
     }
 
+    fetchPostsImages = () => {
+        getPostsImages(this)
+    }
+
     fetchPosts = () => {
         const keyword = this.props.query.get("keyword") || "";
-        findPostByKeyword(this, keyword)
+        findPostByKeyword(this, keyword, this.fetchPostsImages)
     }
 
     componentDidMount() {
@@ -116,6 +122,13 @@ class SearchPage extends React.Component {
         })
     }
 
+    getImageSrc = (post) => {
+        if (this.state.images[post.imageSrc]) {
+            return this.state.images[post.imageSrc].image_url
+        }
+        return ""
+    }
+
     renderPost = (post) => {
         return (
             <div>
@@ -125,7 +138,7 @@ class SearchPage extends React.Component {
                     </a>
                     <div className="post">
                         <img 
-                            src={`..${post.imageSrc}`}
+                            src={this.getImageSrc(post)}
                             className="image"
                             alt="image"
                             onClick={this.handlePostOnClick.bind(this, post)}
