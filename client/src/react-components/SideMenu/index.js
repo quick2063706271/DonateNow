@@ -11,6 +11,7 @@ import History from '../History';
 import bottle from "../../bottle.png"
 import database from "../../database"
 import { getUser } from '../../actions/user';
+import { getOtherUser } from '../../actions/user';
 import { checkSession } from '../../actions/user';
 
 class SideMenu extends React.Component{
@@ -43,8 +44,23 @@ class SideMenu extends React.Component{
         getUser(this)
         // findPostByKeyword(this, keyword)
     }
+
+    fetchOtherUserInformation = () => {
+
+        getOtherUser(this)
+    }
+
+
     componentDidMount() {
-        checkSession(this, this.fetchPersonalInformation()); // sees if a user is logged in
+        checkSession(this); // sees if a user is logged in
+        if (this.props.isRead) {
+            this.setState({
+                userId: this.props.params.userId
+            }, this.fetchOtherUserInformation)
+            console.log(this.state)
+        } else {
+            this.setState(this.fetchPersonalInformation)
+        }
     }
 
     handleClick = (event) => {
