@@ -332,6 +332,56 @@ app.get('/api/post/wishlist/:id', mongoChecker, function(req, res) {
         }) 
 })
 
+/* add to WishList*/
+app.patch('/api/post/wishlist/:uid/:pid',mongoChecker, function(req, res){
+    const uid = req.params.uid
+    const pid = req.params.pid
+
+    if (!ObjectID.isValid(uid)) {
+		res.status(404).send('Resource not found') // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+    User.findOneAndUpdate({_id: uid}, { $push: {wishlisted: pid}},{ new: true})
+        .then((user) => {
+            if (!user) {
+                res.status(404).send('Resource not found')  // could not find this restaurant
+            } else {
+                res.status(200).send(user)
+            }
+        })
+        .catch((error) => {
+            log(error)
+            res.status(500).send('Internal Server Error')  // server error
+        })
+})
+
+/* remove from wishlist */
+app.patch('/api/post/unwishlist/:uid/:pid',mongoChecker, function(req, res){
+    const uid = req.params.uid
+    const pid = req.params.pid
+
+    if (!ObjectID.isValid(uid)) {
+		res.status(404).send('Resource not found') // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+    User.findOneAndUpdate({_id: uid}, { $pull: {wishlisted: pid}},{ new: true})
+        .then((user) => {
+            if (!user) {
+                res.status(404).send('Resource not found')  // could not find this restaurant
+            } else {
+                res.status(200).send(user)
+            }
+        })
+        .catch((error) => {
+            log(error)
+            res.status(500).send('Internal Server Error')  // server error
+        })
+})
+
+
+
 /* Increment Views*/
 app.patch('/api/post/views/:id', mongoChecker, function(req, res) {
     const id = req.params.id

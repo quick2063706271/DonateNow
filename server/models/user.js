@@ -130,6 +130,8 @@ UserSchema.statics.findByEmailPassword = function(email, password) {
 	})
 }
 
+
+
 // make a model using the User schema
 const User = mongoose.model('User', UserSchema)
 module.exports = { User }
