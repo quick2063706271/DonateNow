@@ -21,6 +21,11 @@
     left: 160px;
 }
 
+#user-input-image {
+    position: relative;
+    left: 160px;
+}
+
 .admin-button-group {
     display: flex;
 }
