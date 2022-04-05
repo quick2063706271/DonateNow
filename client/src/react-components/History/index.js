@@ -39,6 +39,7 @@ class History extends React.Component {
                             {this.state.donationPosts.map((item) => (<HistoryItem 
                                                     key={uid(item)} 
                                                     header={item.header} 
+                                                    ownerId={item.ownerId}
                                                     ownerStatus={item.ownerStatus} 
                                                     date={item.datePosted}
                                                     img={item.imageSrc}
@@ -57,8 +58,9 @@ class History extends React.Component {
             histories = <div id="history-container">
                             {this.state.transactionPosts.map((item) => (<HistoryItem 
                                                     key={uid(item)} 
-                                                    header={item.header} 
-                                                    status={item.ownerStatus} 
+                                                    header={item.header}
+                                                    ownerId={item.ownerId} 
+                                                    ownerStatus={item.ownerStatus} 
                                                     date={item.datePosted}
                                                     img={item.imageSrc}
                                                     postId={item._id}
