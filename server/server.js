@@ -19,7 +19,7 @@ const { mongoose } = require("./db/mongoose");
 // mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose model
-const { User } = require("./models/user")
+const { User, filterByAdmin, filterByAccountBlocked } = require("./models/user")
 const { Faq } = require('./models/faq')
 const { TermsConditions } = require('./models/termsconditions') 
 const { Feedbacks } = require('./models/feedbacks') 
@@ -580,7 +580,8 @@ app.patch('/api/admin/feedback/:id', mongoChecker, authenticate, checkAdmin, (re
 /*Block List Page*/
 app.get('/api/admin/blocklist', mongoChecker, authenticate, checkAdmin, (req, res) => {
     User.find().then((result) => {
-        res.send(result)
+        const filtered = filterByAdmin(result)
+        res.send(filtered)
     }).catch((error) => {
         res.status(500).send(error)
     })

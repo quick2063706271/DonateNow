@@ -38,7 +38,7 @@ class PersonalInformation extends React.Component {
             userId: "",
             admin: false,
             image: null,
-            message: { type: "error", body: "" },
+            message: { type: "", body: "" },
         }
         this.handleEdit.bind(this);
         this.handleComplaint.bind(this);

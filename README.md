@@ -1,32 +1,52 @@
 # DONATENOW.COM :heart:
 
-## Basic Commands 
+## Website 
+Heroku URL: xxxxxxx 
 
-Build Front End
+
+## Run Our App Locally After Cloning Repo 
+### Set Up 
 ```
+# install server dependencies in the root directory
+cd server 
+npm install
+
+# go back to the root directory
+cd ..
+
+# install frontend dependencies in the client directory
 cd client
 npm install
-npm run build
 ```
 
-Build Back End 
+### Development 
 ```
+# build the React app
+cd client
+npm run build
+
+# go back to the root directory
+cd ..
+
+# run the server
 cd server 
 node server.js
 ```
 
-Serve with express
-```
-cd server
-npm install
-npm start
-```
+### View from Browser 
+Proceed to http://localhost:6001 in the browser and login with the user credentials.
 
-Deploy with Docker
+
+### Deploy with Docker
 ```
 docker build -t donate-now .
 docker run -d --rm -p 5000:5000 donate-now
 ```
+
+
+## Third Party Libraries Used 
+The only third party library our team used is the Material-UI. 
+<br/>Website URL: https://v4.mui.com/ 
 
 
 ## Overview of Routes 
@@ -65,14 +85,43 @@ This route is expected to add the newly created user into the user database for 
 
 
 ### 2. Routes for Users 
-#### Get Userpage 
+#### Get Userpage (GET) 
+Request URL: http://localhost:6001/api/userpage 
+<br/>This is used for getting the current user's information from the session this user is currently in. 
+<br/>This route is expected to return a json file of user's information, which will be displayed on the user's User Information panel under My Profile Page. 
 
 #### User Page get other user (not sure) 
-#### Update Userpage 
-#### Post Feedback 
-#### Get Donated History Posts 
-#### Get Donated History Posts from Post ID 
-#### Get Transaction History Posts
+Request URL: http://localhost:6001/api/userpage/other/:id 
+
+#### Update Userpage (PATCH) 
+Request URL: http://localhost:6001/api/userpage 
+<br/>This is used for updating a user's information when the user edit his profile information on the User Information panel under My Profile page. 
+<br/>This route is expected to be sent a json file of the new version of user's information and to change the User database accordingly. 
+
+#### Post Feedback (POST) 
+Request URL: http://localhost:6001/api/userpage
+<br/>This is used for saving a user's feedback after he submit it through the Submite Feedback page. 
+<br/>This route is expected to be sent a json file containing the feedback information, which will be displayed on the admin's View Feedback page. 
+```
+{
+    "title": "HELP! My request was cancelled for no reason",
+    "content": "I noticed my request for a used computer was cancelled suddenly but I was having a successful transaction. I wonder how this occurred?",
+}
+```
+
+#### Get Donated History Posts (GET) 
+Request URL: http://localhost:6001/api/userpage/donatedHistory
+<br/>This is used for getting all the transacted history of the current user. 
+<br/>This route is expected to return a json file containing the user/donor's past history of donation, which will be displayed on the user's Donated History panel under My Profile page. 
+
+#### Get Transaction History Posts (GET) 
+Request URL: http://localhost:6001/api/userpage/transactedHistory
+<br/>This is used for getting all the donated history of the current user. 
+<br/>This route is expected to return a json file containing the user/donee's past history of transaction, which will be displayed on the user's Transaction History panel under My Profile page. 
+
+#### Get Donated History Posts from Post ID (GET) (not sure) 
+Request URL: http://localhost:6001/api/userpage/donatedHistory/:postid
+
 
 ### 3. Route for Posts 
 #### Create Post (POST) 
@@ -95,9 +144,17 @@ Request URL: http://localhost:6001/api/posts
 This route is expected to add the newly created post into the post database.
 
 #### Incrementing Post Views 
+Request URL: http://localhost:6001/api/post/views/:id
+
 #### Change Owner Status 
+Request URL: http://localhost:6001/api/post/:id
+
 #### Change Viewer Status 
+Request URL: http://localhost:6001/api/post/:id/:viewer_id
+
 #### Add Viewer Status 
+Request URL: http://localhost:6001/api/post/:id/:viewer_id 
+
 
 ### 4. Routes for Wishlist 
 
@@ -105,16 +162,21 @@ This route is expected to add the newly created post into the post database.
 Request URL: http://localhost:6001/api/posts/:id 
 <br/>This route browses through all posts and extract all items/posts wishlisted by a certain user from his User ID. 
 <br/>This route is expected to authenticate user, then return a json file of wishlist information. 
-```
-to be implemented 
-``` 
 
-#### Get Post Wishlist Count (not sure) 
-#### Add to Wishlist 
-#### Remove from Wishlist 
+
+#### Get Post Wishlist Count (GET) (not sure) 
+Request URL: http://localhost:6001/api/post/wishlist/:id 
+
+#### Add to Wishlist (PATCH) 
+Request URL: http://localhost:6001/api/post/wishlist/:uid/:pid
+
+#### Remove from Wishlist (PATCH) 
+Request URL: http://localhost:6001/api/post/unwishlist/:uid/:pid
+
 
 ### 5. Route for Search Page 
-#### Get and Filter Posts 
+#### Get and Filter Posts for Search Page 
+Request URL: http://localhost:6001/api/filterposts
 
 
 ### 6. Route for Post Page 
@@ -153,7 +215,22 @@ Request URL: http://localhost:6001/api/post/:id
 ``` 
 
 
-### 7. Route for Admin Feedback Page 
+### 7. Route for Image Uploader 
+#### Create an Image onto Posts (POST) 
+Request URL: http://localhost:6001/images/post
+
+#### Create an Image by User ID (POST) 
+Request URL: http://localhost:6001/images/user/:uid
+
+#### Get an Image by Image ID (GET)
+Request URL: http://localhost:6001/images/post/:id
+
+#### Remove an Image by Image ID (DELETE)
+Request URL: http://localhost:6001/images/:imageId
+
+
+
+### 8. Route for Admin Feedback Page 
 #### Get All Feedbacks (GET) 
 Request URL: http://localhost:6001/api/admin/feedback 
 <br/>This route extracts all the user feedbacks from the Feedback database. 
@@ -166,7 +243,7 @@ Request URL: http://localhost:6001/api/admin/feedback
 }
 ``` 
 
-### 8. Route for Admin Blocklist Page 
+### 9. Route for Admin Blocklist Page 
 #### Get All Blocklist (GET)
 Request URL: http://localhost:6001/api/admin/blocklist
 <br/>This route extracts all the user information from the User database. 
@@ -178,7 +255,7 @@ Request URL: http://localhost:6001/api/admin/blocklist
 <br/>This route is expected to authenticate user and verify the current user is admin, then extracts a specific user's information from the input User ID and changes this user's accountBlocked status. 
 
 
-### 9. Route for Terms and Conditions Page
+### 10. Route for Terms and Conditions Page
 #### Get All Terms and Conditions (GET)
 Request URL: http://localhost:6001/api/termsconditions
 <br/>This route extracts all the terms and conditions from the database. 
@@ -190,7 +267,7 @@ Request URL: http://localhost:6001/api/termsconditions
 }
 ``` 
 
-### 10. Route for FAQ Page 
+### 11. Route for FAQ Page 
 #### Get All FAQs (GET) 
 Request URL: http://localhost:6001/api/faqpage
 <br/>This route extracts all the FAQs from the database. 
