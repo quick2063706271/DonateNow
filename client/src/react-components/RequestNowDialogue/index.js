@@ -5,7 +5,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import { Link } from "react-router-dom";
+import { addViewerStatus } from '../../actions/post';
 
 class RequestNowDialogue extends React.Component {
     constructor(props) {
@@ -27,7 +28,9 @@ class RequestNowDialogue extends React.Component {
     };
 
     handleSubmit = () => {
-        this.setState({ open: false });
+        this.setState({ 
+            open: false 
+        }, () => addViewerStatus(this.props.postId, this.props.userId, "Requested"));
     }
 
     updateStatus = () => {
@@ -37,7 +40,8 @@ class RequestNowDialogue extends React.Component {
     
     render() {
         const {post} = this.props
-        // console.log(post)
+        if (post.ownerStatus === "Posted"){
+        
         return (
             <div>
                 <Button id={this.props.btnId} color="primary" onClick={this.handleClickOpen} style = {{
@@ -68,9 +72,11 @@ class RequestNowDialogue extends React.Component {
                     </Button>
                 </DialogActions>
                 </Dialog>
-      </div>
+            </div>
         );
-    }
+        }
+        
+}
 
 }
 

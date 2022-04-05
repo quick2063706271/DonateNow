@@ -410,6 +410,38 @@ app.patch('/api/post/:id/:viewer_id', mongoChecker, function(req, res) {
         })
 })
 
+/* Add Viewer Status */
+app.post('/api/post/:id/:viewer_id', mongoChecker, function(req, res) {
+    const id = req.params.id
+    const vid = req.params.viewer_id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found') // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+    const viewer = new Object({
+        viewerId: vid,
+        viewerStatus: req.body.val
+    })
+
+    Post.findOneAndUpdate({_id: id}, 
+							{   $push: {viewers: viewer}},
+							{
+								new: true
+							}
+							)
+        .then((post) => {
+            if (!post) {
+                res.status(404).send('Resource not found')  // could not find this restaurant
+            } else {
+                res.status(200).send(post)
+            }
+	    })
+        .catch((error) => {
+            log(error)
+            res.status(500).send('Internal Server Error')  // server error
+        })
+})
 /*FAQ Page*/
 app.get('/api/faqpage', mongoChecker,(req, res) => {
     Faq.find().then((result) => {
@@ -479,7 +511,6 @@ app.patch('/api/admin/feedback/:id', mongoChecker, authenticate, checkAdmin, (re
     })
 })
 
-
 /*Block List Page*/
 app.get('/api/admin/blocklist', mongoChecker, authenticate, checkAdmin, (req, res) => {
     User.find().then((result) => {
@@ -490,24 +521,10 @@ app.get('/api/admin/blocklist', mongoChecker, authenticate, checkAdmin, (req, re
 }) 
 
 app.patch('/api/admin/blocklist/:userId', mongoChecker, authenticate, checkAdmin, (req, res) => {
-    // BlockList.findOne({_id:req.params.id}).then((result) => {
-    //     let blocked = req.body.accountBlocked 
-    //     let userId = req.body.userId 
-    //     //find and update user in the blocklist 
-    //     const user = User.findById(userId)
-    //     user.accountBlocked = blocked  
-    //     result.save().then((patchedRest) => {
-    //         res.send({uId: userId, BlockList: patchedRest})
-    //     }).catch((error) => {
-    //         res.status(500).send(error)
-    //     })
-    // }).catch((error) => {
-    //     res.status(500).send(error)
-    // })
     const user_id = req.params.userId
 
-    User.findOne({userId: user_id}).then((result) => {
-        result.accountBlocked = req.body.blocked 
+    User.findById({_id: user_id}).then((result) => {
+        result.accountBlocked = req.body.accountBlocked 
         result.save().then((patchedRest) => {
             res.send({accountBlcked: patchedRest})
         }).catch((error) => {
@@ -517,10 +534,6 @@ app.patch('/api/admin/blocklist/:userId', mongoChecker, authenticate, checkAdmin
         res.status(500).send(error)
     })
 })
-
-
-
-
 
 /* User Page */
 app.get("/api/userpage", mongoChecker, authenticate, async (req, res) => {
@@ -538,7 +551,7 @@ app.get("/api/userpage", mongoChecker, authenticate, async (req, res) => {
 })
 
 /* User Page get other user */
-app.get("/api/userpage/:id", mongoChecker, authenticate, async (req, res) => {
+app.get("/api/userpage/other/:id", mongoChecker, authenticate, async (req, res) => {
   try {
     const user = await User.findById(req.params.id)
     if (!user) {

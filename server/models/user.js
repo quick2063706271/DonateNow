@@ -45,10 +45,16 @@ const UserSchema = new mongoose.Schema({
 		trim: true,
 		default: 'unspecified'
 	},
-    addresses: [{
+    address1: {
 		type: String,
-		trim: true
-	}],
+		trim: true,
+		default: null
+	},
+	address2: {
+		type: String,
+		trim: true,
+		default: null
+	},
 
 	phone: {
 		type: Number,

@@ -1,9 +1,15 @@
 import React from "react";
 import "./styles.css";
+// import PersonalInformation from "../PersonalInformation";
+// import NavigationMenu from "../NavigationMenu";
+// import HistoryItem from "../HistoryItem";
+// import Feedback from "../Feedback";
 import SideMenu from "../SideMenu";
 import AppBar from "../AppBar";
 import StickyFooter from "../StickyFooter";
 import { checkSession } from "../../actions/user";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 import ComponentParamsWrapper from "../ParamsWrapper";
 
@@ -11,7 +17,7 @@ class UserPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            userId: -1,
+            userId: "",
             admin: false
         }
     }
@@ -27,7 +33,7 @@ class UserPage extends React.Component {
     }
 
     render() {
-        if (this.getUserId() !== -1) {
+        if (this.getUserId() !== "") {
             return (
                 <div className="grid-container">
                     <div className="grid-item grid-item-1">
@@ -45,7 +51,13 @@ class UserPage extends React.Component {
                 </div>
             );
         } else {
-            return (<h1>Please log in to view this page.</h1>);
+            return (
+                <div>
+                <h1>Please log in to view this page :(</h1>
+                <Link to={'/login'}>
+                    <Button variant="outlined" >Log In Here</Button>
+                </Link>
+            </div>);
         }
     }
 

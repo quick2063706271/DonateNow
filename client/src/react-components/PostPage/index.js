@@ -8,6 +8,9 @@ import AdminAppBar from "../AdminAppBar";
 import { checkSession } from "../../actions/user";
 import { getPost, getWishlistCount, incrementView } from "../../actions/post"
 
+
+
+
 class PostPage extends React.Component {
     state = {
         postId: "",
@@ -48,6 +51,8 @@ class PostPage extends React.Component {
                     :null
                     }
 
+
+
                 {this.state.post ? <PostPageHelp
                     userId = {this.state.userId}
                     postId = {this.state.postId}
@@ -61,7 +66,7 @@ class PostPage extends React.Component {
                 </div>
 
             </div>
-        ) : <p>Post does not exist</p>;
+        ) : <h1>Post does not exist</h1>;
     }
 }
 

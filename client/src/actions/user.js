@@ -163,7 +163,6 @@ export const getUser = (app) => {
                 email: json.email,
                 dateOfBirth: json.dateOfBirth,
                 gender: json.gender,
-                address: json.address,
                 phone: json.phone,
                 email: json.email,
                 preference: json.preference,
@@ -171,6 +170,8 @@ export const getUser = (app) => {
                 complaintNum: json.complaintNum,
                 accountBlocked: json.accountBlocked,
                 admin: json.admin,
+                address1: json.address1,
+                address2: json.address2
             }) 
             console.log(json.phone)
         })
@@ -208,7 +209,8 @@ export const updateUser = (PersonalInformation) => {
         // {"op": "replace", "path": "/password", "value": PersonalInformation.state.password},
         {"op": "replace", "path": "/dateOfBirth", "value": PersonalInformation.state.dateOfBirth},
         {"op": "replace", "path": "/gender", "value": PersonalInformation.state.gender},
-        {"op": "replace", "path": "/address", "value": [PersonalInformation.state.address1, PersonalInformation.state.address2]},
+        {"op": "replace", "path": "/address1", "value": PersonalInformation.state.address1},
+        {"op": "replace", "path": "/address2", "value": PersonalInformation.state.address2},
         {"op": "replace", "path": "/phone", "value": PersonalInformation.state.phone},
         {"op": "replace", "path": "/preference", "value": PersonalInformation.state.preference},
         {"op": "replace", "path": "/bio", "value": PersonalInformation.state.bio}
