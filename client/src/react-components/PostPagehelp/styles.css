@@ -95,6 +95,18 @@
     margin-left: 4%;
 }
 
+
+.deliveryOptionArea{
+    overflow: auto;
+    float: left;
+    margin-left: 4%;
+    margin-bottom: 50px;
+    width: 35%;
+    height: 200px;
+    position: absolute;
+    top: 450px;
+}
+
 .textTitleItem{
     float: left;
     font-size: 25px;

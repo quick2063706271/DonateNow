@@ -103,7 +103,7 @@
     margin-top: 1%;
 }
 
-.deliveryOptionArea{
+.createPostDeliveryOptionArea{
     overflow: auto;
     float: left;
     margin-left: 4%;
@@ -111,8 +111,9 @@
     width: 35%;
     height: 200px;
     position: absolute;
-    top: 450px;
+    top: 500px;
 }
+
 
 .text{
     font-size: 28px;
@@ -133,3 +134,12 @@
 .deliveryOptionForm{
     margin-top: 2%;
 }
+
+.image-form__message--success {
+    color: green;
+  }
+  
+  .image-form__message--error {
+    color: red;
+  }
+  

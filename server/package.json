@@ -4,7 +4,9 @@
   "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.29.0",
     "connect-mongo": "^4.6.0",
+    "connect-multiparty": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-session": "^1.17.2",

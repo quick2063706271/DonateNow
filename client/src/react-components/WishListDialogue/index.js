@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-//import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import {findPostByWishlisted} from '../../actions/post';
 import {addWishlist, removeWishlist} from '../../actions/user';
 
@@ -77,39 +77,41 @@ class WishListDialogue extends React.Component {
     
     render() {
         const {post} = this.props
-
-        return (
-            <div>
-                <Button id={this.props.btnId} color="primary" onClick={this.handleClickOpen} style = {{
-                            backgroundColor: "#C65D7B",
-                            color: "white"
-                        }}>
-                {this.state.txt}
-                </Button>
-                <Dialog
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                    aria-labelledby="form-dialog-title"
-                >
-                <DialogTitle id="form-dialog-title">
-                    {this.state.msg}
-                </DialogTitle>
-                <DialogContent>
-                    <h2> {post.header} </h2>
-                    <div>
-                    <img className="dialogue-image" alt="dialogue" src={post.imageSrc} />
-                    </div>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={this.handleSubmit} color="primary">
-                    OK
+        if (this.state.txt){
+            return (
+                <div>
+                    <Button id={this.props.btnId} color="primary" onClick={this.handleClickOpen} style = {{
+                                backgroundColor: "#C65D7B",
+                                color: "white"
+                            }}>
+                    {this.state.txt}
                     </Button>
-                </DialogActions>
-                </Dialog>
-            </div>
-        );
+                    <Dialog
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="form-dialog-title"
+                    >
+                    <DialogTitle id="form-dialog-title">
+                        {this.state.msg}
+                    </DialogTitle>
+                    <DialogContent>
+                        <h2> {post.header} </h2>
+                        <div>
+                        <img className="dialogue-image" src={post.imageSrc} />
+                        </div>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleSubmit} color="primary">
+                        OK
+                        </Button>
+                    </DialogActions>
+                    </Dialog>
+                </div>
+            );
+        }else{
+            return null;
+        }   
     }
-    
 }
 
 export default WishListDialogue;

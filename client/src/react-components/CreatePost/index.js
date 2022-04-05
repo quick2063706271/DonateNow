@@ -13,6 +13,7 @@ import StickyFooter from "../StickyFooter";
 import { Navigate } from "react-router-dom";
 import { checkSession } from "../../actions/user";
 import { createPost } from "../../actions/post";
+import { addPostImage } from "../../actions/image";
 
 class CreatePost extends React.Component {
     constructor(props){
@@ -27,7 +28,9 @@ class CreatePost extends React.Component {
             deliveryOption: "",
             errormsg: false,
             newPostId: "",
-            redirect: false
+            redirect: false,
+            message: { type: "", body: "" },
+            imageId: ""
         };
     }
 
@@ -106,8 +109,23 @@ class CreatePost extends React.Component {
                     <div className="createPostBackground">
                         <div className="postImageArea">
                             <div id="postImageDiv" >
+                            <form className="image-form" onSubmit={(e) => {
+                                e.preventDefault();
+                                addPostImage(e.target, this, "post");
+                            }}>
                                 <img src={"./upload.png"} id="postImage" alt="postImage"/>
-                                <Button id="uploadButton">Upload</Button>
+                                <div class="image-form__field">
+                                    <label>Image:</label>
+                                    <input name="image" type="file" />
+                                </div>
+                                <Button type="submit" variant="contained" id="uploadButton">
+                                    Upload
+                                </Button>
+                            </form>
+                            <p className={`image-form__message--${this.state.message.type}`}>
+                                {this.state.message.body}
+                            </p>
+                                
                             </div>
 
                         </div>
@@ -223,7 +241,7 @@ class CreatePost extends React.Component {
                             </div>
 
                         </div>
-                        <div className="deliveryOptionArea">
+                        <div className="createPostDeliveryOptionArea">
                             <text className="text">Delivery Option:</text>
                             <FormGroup className="deliveryOptionForm">
                                 <FormControlLabel  className="deliveryOption" 

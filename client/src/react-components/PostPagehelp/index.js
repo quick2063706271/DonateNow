@@ -1,11 +1,13 @@
 import React from "react";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import CardMedia from '@material-ui/core/CardMedia';
 import Checkbox from '@mui/material/Checkbox';
 import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import './styles.css';
 import PostPageHeader from "../PostPageHeader";
+import {getImageById} from "../../actions/image"
 
 function DeliveryOptionGenerator(props){
     if (props.deliveryOption === "Pickup"){
@@ -50,6 +52,15 @@ function CategoryGenerator(props){
 
 
 class PostPageHelp extends React.Component {
+    state = {
+        image: null
+    }
+
+    // componentDidMount() {
+    //     console.log(this.props.post.imageSrc)
+    //     getImageById(this, this.props.post.imageSrc)
+    //     console.log(this.state.post)
+    // }
 
     render() {
         return (
@@ -62,8 +73,10 @@ class PostPageHelp extends React.Component {
 
                 <div className="postImageArea">
                     <div id="postpageImageDiv" >
-                            <img src={this.props.post.imageSrc} id="postpageImage" alt="postImage"/>
-                            <text id="imagelabel">[image: {this.props.post.imageSrc}]</text>
+                        <CardMedia
+                            className="image__card-media"
+                            // image={this.state.image.image_url}
+                        />
                     </div>
                 </div>
                 <div className="postContentArea">

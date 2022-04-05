@@ -35,8 +35,8 @@ const PostSchema = new mongoose.Schema({
         [ViewerStatusSchema]
     ,
     imageSrc: {
-        type: String, // change later
-        default: "/upload.png"
+        type: mongoose.Schema.Types.ObjectId, // change later
+        // default: "/upload.png"
     },
     deliveryOption: {
         type: String,

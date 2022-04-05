@@ -35,6 +35,19 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json()) // parsing JSON body
 app.use(bodyParser.urlencoded({ extended: true })); // parsing URL-encoded form data (from form POST requests)
 
+// multipart middleware: allows you to access uploaded file from req.file
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart();
+
+// cloudinary: configure using credentials found on your Cloudinary Dashboard
+// sign up for a free account here: https://cloudinary.com/users/register/free
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'dvskgtzrl',
+    api_key: '745427798474762',
+    api_secret: '9-ZCrUUDwXaLnLNem08qMvZLxyE'
+});
+
 // express-session for managing user sessions
 const session = require("express-session");
 const MongoStore = require('connect-mongo'); // to store session information on the database in production
@@ -107,6 +120,7 @@ const checkAdmin = (req, res, next) => {
     }
   }
 
+  
 
 /*** Session handling **************************************/
 // Create a session and session cookie
@@ -226,7 +240,7 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
         ownerId:  req.body.ownerId,
         ownerStatus: req.body.ownerStatus,
         viewers: [],
-        // imageSrc: req.body.imageSrc,
+        imageSrc: req.body.imageSrc,
         deliveryOption: req.body.deliveryOption,
         header: req.body.header,
         location: req.body.location,
@@ -681,7 +695,7 @@ app.get("/api/userpage/donatedHistory", async (req, res) => {
   }
 })
 
-// Get donated History Posts
+// Get Transaction History Posts
 app.get("/api/userpage/transactedHistory", async (req, res) => {
   try {
     const posts = await Post.findAllPosts()
@@ -700,6 +714,8 @@ app.get("/api/userpage/transactedHistory", async (req, res) => {
     res.status(500).send("Internal Server Error")
   }
 })
+
+// Get Donated History Posts By ID
 app.get("/api/userpage/donatedHistory/:postid", async (req, res) => {
 
   const postId = req.params.postid
@@ -724,11 +740,107 @@ app.get("/api/userpage/donatedHistory/:postid", async (req, res) => {
   }
 })
 
+/*** Routes for Image Uploader ************************************/
+
+// a POST route to *create* an image
+app.post("/images/post", multipartMiddleware, (req, res) => {
+
+    // Use uploader.upload API to upload image to cloudinary server.
+    cloudinary.uploader.upload(
+        req.files.image.path, // req.files contains uploaded files
+        function (result) {
+
+            // Create a new image using the Image mongoose model
+            
+            var img = new PostImage({
+                image_id: result.public_id, // image id on cloudinary server
+                image_url: result.url, // image url on cloudinary server
+                created_at: new Date(),
+            });
+            
+            // Save image to the database
+            img.save().then(
+                saveRes => {
+                    res.send(saveRes);
+                },
+                error => {
+                    res.status(400).send(error); // 400 for bad request
+                }
+            );
+        });
+});
 
 
-// app.get('/home', function (req, res) {
-//   res.send('Hello World')
-// })
+// a POST route to *create* an image
+app.post("/images/user/:uid", multipartMiddleware, (req, res) => {
+
+    const uid = req.params.uid
+
+    // Use uploader.upload API to upload image to cloudinary server.
+    cloudinary.uploader.upload(
+        req.files.image.path, // req.files contains uploaded files
+        function (result) {
+
+            // Create a new image using the Image mongoose model
+            
+            var img = new UserImage({
+                userId: uid,
+                image_id: result.public_id, // image id on cloudinary server
+                image_url: result.url, // image url on cloudinary server
+            });
+            
+            
+            // Save image to the database
+            img.save().then(
+                saveRes => {
+                    res.send(saveRes);
+                },
+                error => {
+                    res.status(400).send(error); // 400 for bad request
+                }
+            );
+        });
+});
+// a GET route to get image by id
+app.get("/images/post/:id", (req, res) => {
+    const imageId = req.params.id;
+
+    PostImage.findById(imageId).then(
+        image => {
+            res.send( image ); // can wrap in object if want to add more properties
+        },
+        error => {
+            res.status(500).send(error); // server error
+        }
+    );
+});
+
+/// a DELETE route to remove an image by its id.
+app.delete("/images/:imageId", (req, res) => {
+    const imageId = req.params.imageId;
+
+    // Delete an image by its id (NOT the database ID, but its id on the cloudinary server)
+    // on the cloudinary server
+    cloudinary.uploader.destroy(imageId, function (result) {
+
+        // Delete the image from the database
+        Image.findOneAndRemove({ image_id: imageId })
+            .then(img => {
+                if (!img) {
+                    res.status(404).send();
+                } else {
+                    res.send(img);
+                }
+            })
+            .catch(error => {
+                res.status(500).send(); // server error, could not delete.
+            });
+    });
+});
+
+
+
+/*** Webpage routes below **********************************/
 
 app.use(express.static(path.join(__dirname, CLIENT_DIR)));
 
@@ -744,7 +856,8 @@ for (let i = 0; i < routes.length; i++) {
     });
 }
 
-const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", "/admin/blocklist", "/userpage", "/postpage/:id", "/userpage/:id"]
+const public_routes = ["/", "/search", "/wishlist", "/termsconditions", "/admin/feedback", 
+                       "/admin/blocklist", "/userpage", "/postpage/:id", "/userpage/:id"]
 for (let i = 0; i < public_routes.length; i++) {
     let route = public_routes[i];
     app.get(route, (req, res) => {
@@ -752,6 +865,11 @@ for (let i = 0; i < public_routes.length; i++) {
         res.sendFile(path.resolve(__dirname, CLIENT_DIR, 'index.html'))
     });
 }
+
+// All routes other than above will go to index.html
+// app.get("*", (req, res) => {
+//     res.sendFile(__dirname + "/client/build/index.html");
+// });
 
 /*************************************************/
 // Express server listening...

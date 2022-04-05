@@ -5,7 +5,7 @@ const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
   
 export const findPostByKeyword = (app, keyword) => {
-    console.log(ENV.api_host)
+    // console.log(ENV.api_host)
     let url = `${API_HOST}/api/filterposts?`;
     const {categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal, sortViewsVal} = app.state
     const params = {keyword, categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal, sortViewsVal}
@@ -73,9 +73,10 @@ export const findPostByKeyword = (app, keyword) => {
 export const createPost = (app) => {
     const url = `${API_HOST}/api/posts`;
     
-    const{userId, deliveryOption, header, location, description, categories} = app.state
+    const{userId, deliveryOption, imageId, header, location, description, categories} = app.state
     // imageSrc: req.body.imageSrc
-    const data = { ownerId: userId, ownerStatus: "Posted",  deliveryOption, header, location, description, categories};
+    const data = { ownerId: userId, ownerStatus: "Posted", imageSrc: imageId,
+                    deliveryOption, header, location, description, categories};
     fetch(url, {
         method: 'POST',
         headers: {
