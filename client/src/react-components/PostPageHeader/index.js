@@ -29,10 +29,9 @@ function PostPageHeaderHelper(props){
    else if (admin){ /*if viewing as admin, show **BLOCK POST** or **User Profile*** */
         return (
             <span>
-                <Link Link to={'/admin/userpage/' + post.ownerId}>
+                <Link Link to={'/userpage/' + post.ownerId}>
                     <Button id="requestNowButton" variant="outlined" >User Profile</Button>
                 </Link>
-                <Button id="saveButton" variant="outlined">Block Post</Button>
             </span>
         )
     }
