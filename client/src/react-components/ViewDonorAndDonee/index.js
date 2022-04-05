@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { getOtherUser } from "../../actions/user";
+import { Link } from "react-router-dom";
 
 class ViewDonorAndDonee extends React.Component{
     constructor() {
@@ -17,7 +18,8 @@ class ViewDonorAndDonee extends React.Component{
             email: "json.email",
             phone: "json.phone",
             address1: "json.address1",
-            address2: "json.address2"
+            address2: "json.address2",
+            thisUserId: ""
         }
     }
 
@@ -67,7 +69,7 @@ class ViewDonorAndDonee extends React.Component{
                 >
                 <DialogTitle id="form-dialog-title">Viewer Your {type}</DialogTitle>
                 <DialogContent>
-                    <h3>Username: {this.state.username}</h3>
+                    <Link to={'../userpage/' + this.state.thisUserId.toString()} target="_blank" >{this.state.username}  </Link>
                     <p>email: {this.state.email}</p>
                     <p>phone: {this.state.phone}</p>
                     <p>Address1: {this.state.address1}</p>

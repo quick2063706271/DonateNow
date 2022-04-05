@@ -203,7 +203,8 @@ export const getOtherUser = (app) => {
                 complaintNum: json.complaintNum,
                 accountBlocked: json.accountBlocked,
                 address1: json.address1,
-                address2: json.address2
+                address2: json.address2,
+                thisUserId: json._id
             }) 
             console.log(json.phone)
         })
@@ -347,7 +348,7 @@ export const addFeedback = (Feedback) => {
 };
 
 // A function to find user profile of a user
-export const getDonationHistory = (app) => {
+export const getDonationHistory = (app, callback = () => {}) => {
     const url = `${API_HOST}/api/userpage/donatedHistory`
 
     fetch(url)
@@ -362,7 +363,12 @@ export const getDonationHistory = (app) => {
             console.log(json)
             app.setState({
                 donationPosts: json
-            }) 
+            },
+            () => {
+                if (callback instanceof Function) {
+                    callback();
+                }
+            })
         })
         .catch(error => {
             console.log(error)
@@ -370,7 +376,7 @@ export const getDonationHistory = (app) => {
         })
 };
 
-export const getTransactionHistory = (app) => {
+export const getTransactionHistory = (app, callback = () => {}) => {
     const url = `${API_HOST}/api/userpage/transactedHistory`
 
     fetch(url)
@@ -386,7 +392,12 @@ export const getTransactionHistory = (app) => {
             console.log(json)
             app.setState({
                 transactionPosts: json
-            }) 
+            },
+            () => {
+                if (callback instanceof Function) {
+                    callback();
+                }
+            })
         })
         .catch(error => {
             console.log(error)

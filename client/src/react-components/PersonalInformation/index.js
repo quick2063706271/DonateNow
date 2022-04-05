@@ -86,12 +86,14 @@ class PersonalInformation extends React.Component {
         if (this.props.isRead) {
             this.setState({
                 userId: this.props.userId
-            }, this.fetchOtherUserInformation)
+            }, this.fetchOtherUserInformation, this.getImage)
             console.log(this.state)
+            checkSession(this)
         } else {
             this.setState(this.fetchPersonalInformation)
+            checkSession(this, this.getImage)
         }
-        checkSession(this, this.getImage); // sees if a user is logged in & set current avatar
+         // sees if a user is logged in & set current avatar
     }
     updateUserInfo = (e) => {
         const field = e.target
@@ -137,19 +139,22 @@ class PersonalInformation extends React.Component {
                                 <Avatar id="avatar" 
                                         sx={{height: 80, width: 80}}>U
                                 </Avatar>}
+                                {isRead === false || isAdmin ? 
                                 <div id="user-upload-button-group">
-                                    <div class="image-form__field">
-                                        <label>Avatar:</label>
-                                        <input name="image" type="file" />
-                                    </div>
-
-                                    <Button size="small" type="submit" 
-                                        variant="contained" style={{
-                                            backgroundColor: "transparent",
-                                        }}>
-                                        Upload
-                                    </Button>
+                                <div class="image-form__field">
+                                    <label>Avatar:</label>
+                                    <input name="image" type="file" />
                                 </div>
+
+                                <Button size="small" type="submit" 
+                                    variant="contained" style={{
+                                        backgroundColor: "transparent",
+                                    }}>
+                                    Upload
+                                </Button>
+                                </div>
+                                :null}
+                                
                                 <p className={`image-form__message--${this.state.message.type}`}>
                                     {this.state.message.body}
                                 </p>
