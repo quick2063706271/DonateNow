@@ -4,7 +4,6 @@ const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
 
 export const getBlocklist = (app) => {
-    console.log(app.state)
     const request = new Request(`${API_HOST}/api/admin/blocklist`, {
         method: "GET",
         headers: {
@@ -20,10 +19,9 @@ export const getBlocklist = (app) => {
         })
         .then(json => {
             if (json) {
-                console.log(json)
                 app.setState({
                     users: json
-                }, () => { console.log(app.state) });
+                });
             }
         })
         .catch(error => {
@@ -32,8 +30,6 @@ export const getBlocklist = (app) => {
 }
 
 export const updateBlocklist = (app, value) => {
-    console.log(app.state)
-    console.log(value)
     const request = new Request(`${API_HOST}/api/admin/blocklist/${value._id}`, {
         method: "PATCH",
         headers: {
@@ -50,7 +46,6 @@ export const updateBlocklist = (app, value) => {
         })
         .then(json => {
             if (json) {
-                console.log(json)
                 getBlocklist(app)
             }
         })

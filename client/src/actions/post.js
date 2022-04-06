@@ -3,10 +3,8 @@ import ENV from './../config.js'
 import { getImageById } from './image'
 
 const API_HOST = ENV.api_host
-// console.log('Current environment:', ENV.env)
   
 export const findPostByKeyword = (app, keyword, callback = () => {}) => {
-    // console.log(ENV.api_host)
     let url = `${API_HOST}/api/filterposts?`;
     const {categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal, sortViewsVal} = app.state
     const params = {keyword, categoryVal, locationVal, deliveryOptionVal,sortDatePostedVal, sortViewsVal}
@@ -40,7 +38,6 @@ export const findPostByKeyword = (app, keyword, callback = () => {}) => {
   }
 
   export const findPostByWishlisted = (app, callback = () => {}) => {
-    // console.log(app.state)
     const request = new Request(`${API_HOST}/api/posts/${app.state.userId}`, {
         method: "GET",
         headers: {
@@ -56,7 +53,6 @@ export const findPostByKeyword = (app, keyword, callback = () => {}) => {
         })
         .then(json => {
             if (json) {
-                // console.log(json)
                 app.setState({
                     posts: json
                 }, () => {
@@ -125,7 +121,6 @@ export const getPost = function (app) {
         })
         .then(json => {
             if (json) {
-                console.log(json)
                 app.setState({
                     post: json
                 });

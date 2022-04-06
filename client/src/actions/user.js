@@ -83,7 +83,6 @@ export const updateLoginForm = (loginComp, field) => {
 // A function to send a POST request with the user to be logged in
 export const login = (app) => {
     // Create our request constructor with all the parameters we need
-    console.log(app.state)
     const request = new Request(`${API_HOST}/login`, {
         method: "post",
         body: JSON.stringify({
@@ -98,7 +97,6 @@ export const login = (app) => {
     fetch(request)
         .then(res => res.json())
         .then(json => {
-            console.log(json)
             if (json && json.success) {
                 app.setState({
                     countdown: 2,
@@ -173,7 +171,6 @@ export const getUser = (app) => {
                 address1: json.address1,
                 address2: json.address2
             }) 
-            console.log(json.phone)
         })
         .catch(error => {
             console.log(error)
@@ -207,7 +204,6 @@ export const getOtherUser = (app) => {
                 address2: json.address2,
                 thisUserId: json._id
             }) 
-            console.log(json.phone)
         })
         .catch(error => {
             console.log(error)
@@ -219,13 +215,9 @@ export const getOtherUser = (app) => {
 export const updateUserForm = (PersonalInformation, field) => {
     const value = field.value;
     const name = field.name;
-    console.log(value)
-    console.log(name)
     PersonalInformation.setState({
         [name]: value
     });
-    console.log(PersonalInformation[name])
-    console.log(PersonalInformation)
 };
 // [
     // 	{"op": "replace", "path": "/username", "value": "test1"}, 
@@ -237,7 +229,6 @@ export const updateUser = (PersonalInformation) => {
     });
 
     const url = `${API_HOST}/api/userpage`
-    console.log(PersonalInformation.state)
     const patchData = [
         {"op": "replace", "path": "/username", "value": PersonalInformation.state.username},
         {"op": "replace", "path": "/dateOfBirth", "value": PersonalInformation.state.dateOfBirth},
@@ -248,18 +239,14 @@ export const updateUser = (PersonalInformation) => {
         {"op": "replace", "path": "/preference", "value": PersonalInformation.state.preference},
         {"op": "replace", "path": "/bio", "value": PersonalInformation.state.bio}
     ]
-    console.log(patchData)
     const request = new Request(url, {
         method: "PATCH",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(patchData)
     })
-    console.log(JSON.stringify(patchData))
-    console.log(request)
     // Send the request with fetch()
     fetch(request)
         .then(function (res) {
-            console.log(1)
             // Handle response we get from the API.
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
@@ -295,7 +282,6 @@ export const addFeedback = (Feedback) => {
 
     // The data we are going to send in our request
     if (Feedback.state.title === "" || Feedback.state.content === "") {
-        console.log("error: empty feedback")
         Feedback.setState({
             message: {
                 body: "Error: You must fill in all entries to submit!",
@@ -361,7 +347,6 @@ export const getDonationHistory = (app, callback = () => {}) => {
             }
         })
         .then(json => {
-            console.log(json)
             app.setState({
                 donationPosts: json
             },
@@ -373,7 +358,6 @@ export const getDonationHistory = (app, callback = () => {}) => {
         })
         .catch(error => {
             console.log(error)
-            alert("Could not set State")
         })
 };
 
@@ -389,8 +373,6 @@ export const getTransactionHistory = (app, callback = () => {}) => {
             }
         })
         .then(json => {
-            console.log("transaction history user.js")
-            console.log(json)
             app.setState({
                 transactionPosts: json
             },
@@ -402,7 +384,6 @@ export const getTransactionHistory = (app, callback = () => {}) => {
         })
         .catch(error => {
             console.log(error)
-            alert("Could not set State")
         })
 };
 
@@ -419,16 +400,12 @@ export const getDoneeInformation = (app) => {
             }
         })
         .then(json => {
-            console.log("All donees")
-            console.log(app.state.postId)
-            console.log(json)
             app.setState({
                 donees: json
             }) 
         })
         .catch(error => {
             console.log(error)
-            alert("Could not set State")
         })
 }
 
@@ -486,7 +463,6 @@ export const getUserByEmail = (app, email, callback = () => {}) => {
             }
         })
         .then(json => {
-            console.log(json)
             app.setState({
                 profileUser: json
             }, () => {

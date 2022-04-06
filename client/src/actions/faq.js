@@ -4,7 +4,6 @@ const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
 
 export const getFaqs = (app) => {
-    console.log(app.state)
     const request = new Request(`${API_HOST}/api/faqpage`, {
         method: "GET",
         headers: {
@@ -21,10 +20,9 @@ export const getFaqs = (app) => {
         })
         .then(json => {
             if (json) {
-                console.log(json)
                 app.setState({
                     faqs: json
-                }, () => { console.log(app.state) });
+                });
             }
         })
         .catch(error => {

@@ -4,7 +4,6 @@ const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
 
 export const getTermsConditions = (app) => {
-    console.log(app.state)
     const request = new Request(`${API_HOST}/api/termsconditions`, {
         method: "GET",
         headers: {
@@ -20,10 +19,9 @@ export const getTermsConditions = (app) => {
         })
         .then(json => {
             if (json) {
-                console.log(json)
                 app.setState({
                     terms: json
-                }, () => { console.log(app.state) });
+                });
             }
         })
         .catch(error => {

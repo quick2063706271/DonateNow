@@ -45,7 +45,6 @@ export const addPostImage = (form, app) => {
             }
         }).then(json => {
             if (json){
-                console.log(json)
                 app.setState(
                     {imageId: json._id.toString()}
                 )
@@ -65,7 +64,6 @@ export const addUserImage = (form, app, userId) => {
 
     // The data we are going to send in our request
     const imageData = new FormData(form);
-    console.log(url)
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
         method: "POST",
@@ -84,7 +82,7 @@ export const addUserImage = (form, app, userId) => {
                         body: "Success: Added an image.",
                         type: "success"
                     }
-                }, console.log(app.state.message));
+                });
                 return res.json()
             } else {
                 // If server couldn't add the image, tell the user.
@@ -94,16 +92,15 @@ export const addUserImage = (form, app, userId) => {
                         body: "Error: Could not add image.",
                         type: "error"
                     }
-                }, console.log(app.state.message))
+                })
                 ;return null;
             }
         })
         .then(json => {
             if (json){
-                console.log(json)
                 app.setState(
                     {image: json}
-                ,console.log(app.state.image))
+                )
             }
         })
         .catch(error => {
@@ -133,7 +130,7 @@ export const getPostsImages = (app) => {
                 images[json._id] = json
                 app.setState({
                     images: images
-                }, () => {console.log(app.state)})
+                })
             })
             .catch(error => {
                 console.log(error)
@@ -163,7 +160,7 @@ export const getHistoryPostsImages = (app) => {
                 images[json._id] = json
                 app.setState({
                     images: images
-                }, () => {console.log(app.state)})
+                })
             })
             .catch(error => {
                 console.log(error)
@@ -189,7 +186,7 @@ export const getHistoryPostsImages = (app) => {
                 images[json._id] = json
                 app.setState({
                     images: images
-                }, () => {console.log(app.state)})
+                })
             })
             .catch(error => {
                 console.log(error)
@@ -215,10 +212,9 @@ export const getImageById = (app, imageId) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
-            console.log(json)
             app.setState({ 
                 image:json}
-            , () => {console.log(app.state.image)});
+            );
         })
         .catch(error => {
             console.log(error);
@@ -243,10 +239,9 @@ export const getUserImageById = (app, userId) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
-            console.log(json)
-            app.setState({ 
-                image:json}
-            , () => {console.log(app.state.image)});
+            app.setState(
+                { image:json }
+            );
         })
         .catch(error => {
             console.log(error);

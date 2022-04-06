@@ -4,7 +4,6 @@ const API_HOST = ENV.api_host
 // console.log('Current environment:', ENV.env)
 
 export const getFeedbacks = (app) => {
-    console.log(app.state)
     const request = new Request(`${API_HOST}/api/admin/feedback`, {
         method: "GET",
         headers: {
@@ -20,10 +19,9 @@ export const getFeedbacks = (app) => {
         })
         .then(json => {
             if (json) {
-                console.log(json)
                 app.setState({
                     feedbacks: json
-                }, () => { console.log(app.state) });
+                });
             }
         })
         .catch(error => {
