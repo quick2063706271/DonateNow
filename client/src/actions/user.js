@@ -138,7 +138,6 @@ export const logout = (app) => {
         .then(res => {
             app.setState({
                 userId: null,
-                message: { type: "", body: "" }
             });
         })
         .catch(error => {

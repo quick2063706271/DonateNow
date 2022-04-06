@@ -11,7 +11,8 @@
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "mongoose": "^6.2.9",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "morgan": "^1.10.0"
   },
   "main": "server.js",
   "scripts": {

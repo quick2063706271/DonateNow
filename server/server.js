@@ -10,6 +10,9 @@ const express = require('express')
 const path = require('path')
 const app = express()
 
+const morgan = require('morgan')
+app.use(morgan('combined'))
+
 // enable CORS if in development, for React local development server to connect to the web server.
 const cors = require('cors')
 if (env !== 'production') { app.use(cors()) }
@@ -77,7 +80,6 @@ app.use(
 const mongoChecker = (req, res, next) => {
   // check mongoose connection established.
   if (mongoose.connection.readyState != 1) {
-      log('Issue with mongoose connection')
       res.status(500).send('Internal server error')
       return;
   } else {
@@ -145,7 +147,6 @@ app.post("/login", (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    // log(email, password);
     // Use the static method on the User model to find a user
     // by their email and password
     User.findByEmailPassword(email, password)
@@ -156,12 +157,8 @@ app.post("/login", (req, res) => {
             req.session.email = user.email; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
             req.session.admin = user.admin;
             req.session.save((err) => {
-                if (!err) {
-                    log(req.session)
-                    console.log('token is saved!')
-                } else {
-                    throw err;
-                }
+                if (!err) {}
+                else { err; }
             });
             if (user.accountBlocked) {
                 res.status(400).send({ success: false, message: "This account is blocked. Please contact the admin."})
@@ -188,7 +185,6 @@ app.get("/logout", (req, res) => {
 
 // A route to check if a user is logged in on the session
 app.get("/check-session", (req, res) => {
-    console.log(req.session)
     if (req.session.user) {
         res.send({
             userId: req.session.user,
@@ -204,8 +200,6 @@ app.get("/check-session", (req, res) => {
 /*** API Routes below ************************************/
 /* Create Account */
 app.post('/api/createanaccount', mongoChecker, async (req, res) => {
-    log(req.body)
-
     // Create a new user
     const user = new User({
         email: req.body.email,
@@ -237,8 +231,6 @@ app.post('/api/createanaccount', mongoChecker, async (req, res) => {
 
 /* Create Post */
 app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
-    log(req.body)
-
     // Create a new post
     const post = new Post({
         ownerId:  req.body.ownerId,
@@ -254,7 +246,6 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
 
     post.save()
         .then((newPost) => {
-            log(newPost)
             res.status(200).send(newPost)
         })
         .catch(error => {
@@ -262,7 +253,6 @@ app.post('/api/posts', mongoChecker, /*authenticate,*/ async (req, res) => {
                 res.status(500).send("Internal server error")
             }
             else {
-                log(error)
                 return res.status(400).send(error);
             }
         })
@@ -292,7 +282,6 @@ app.get('/api/posts/:id', mongoChecker, authenticate, function(req, res) {
 
 /* Search Page  */
 app.get('/api/filterposts', mongoChecker, function(req, res) {
-    console.log(req.query)
     Post.findAllPosts()
         .then((result) => {
             const filtered = filterPostsByParams(
@@ -320,7 +309,6 @@ app.get('/api/post/:id', mongoChecker, function(req, res) {
 		}
 	})
     .catch((error) => {
-		log(error)
 		res.status(500).send('Internal Server Error')  // server error
 	})
 })
@@ -371,7 +359,6 @@ app.patch('/api/post/wishlist/:uid/:pid',mongoChecker, function(req, res){
             }
         })
         .catch((error) => {
-            log(error)
             res.status(500).send('Internal Server Error')  // server error
         })
 })
@@ -395,7 +382,6 @@ app.patch('/api/post/unwishlist/:uid/:pid',mongoChecker, function(req, res){
             }
         })
         .catch((error) => {
-            log(error)
             res.status(500).send('Internal Server Error')  // server error
         })
 })
@@ -421,7 +407,6 @@ app.patch('/api/post/views/:id', mongoChecker, function(req, res) {
             }
 	    })
         .catch((error) => {
-            log(error)
             res.status(500).send('Internal Server Error')  // server error
         })
 })
@@ -445,7 +430,6 @@ app.patch('/api/post/:id', mongoChecker, function(req, res) {
             }
 	    })
         .catch((error) => {
-            log(error)
             res.status(500).send('Internal Server Error')  // server error
         })
 })
@@ -475,7 +459,6 @@ app.patch('/api/post/:id/:viewer_id', mongoChecker, function(req, res) {
             }
 	    })
         .catch((error) => {
-            log(error)
             res.status(500).send('Internal Server Error')  // server error
         })
 })
@@ -508,7 +491,6 @@ app.post('/api/post/:id/:viewer_id', mongoChecker, function(req, res) {
             }
 	    })
         .catch((error) => {
-            log(error)
             res.status(500).send('Internal Server Error')  // server error
         })
 })
@@ -523,8 +505,6 @@ app.get('/api/faqpage', mongoChecker,(req, res) => {
 
 /* Create Terms and Conditions */
 app.post('/api/termsconditions', mongoChecker, async (req, res) => {
-    log(req.body)
-
     // Create a new post
     const termsConditions = new TermsConditions({
         header: req.body.header,
@@ -626,7 +606,6 @@ app.get("/api/userpage", mongoChecker, authenticate, async (req, res) => {
       res.send(user)
     }
   } catch(error) {
-    log(error)
     res.status(500).send("Internal Server Error")
   }
 })
@@ -641,7 +620,6 @@ app.get("/api/userpage/other/:id", mongoChecker, authenticate, async (req, res) 
       res.send(user)
     }
   } catch(error) {
-    log(error)
     res.status(500).send("Internal Server Error")
   }
 })
@@ -655,7 +633,6 @@ app.get("/api/userpage/other/:id", mongoChecker, authenticate, async (req, res) 
 
 app.patch("/api/userpage", mongoChecker, authenticate, async (req, res) => {
   const fieldsToUpdate = {}
-  console.log(req.body)
   req.body.map((change) => {
     const propertyToChange = change.path.substr(1)
     fieldsToUpdate[propertyToChange] = change.value
@@ -668,7 +645,6 @@ app.patch("/api/userpage", mongoChecker, authenticate, async (req, res) => {
       res.send(user)
     }
   } catch(error) {
-    log(error)
 		if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
 			res.status(500).send('Internal server error')
 		} else {
@@ -705,7 +681,6 @@ app.get("/api/userpage/donatedHistory", async (req, res) => {
       res.send(filtered)
     }
   } catch(error) {
-    log(error)
     res.status(500).send("Internal Server Error")
   }
 })
@@ -721,11 +696,9 @@ app.get("/api/userpage/transactedHistory", async (req, res) => {
     if (!filtered) {
       res.status(404).send("Filtered not found")
     } else {
-      console.log(filtered)
       res.send(filtered)
     }
   } catch(error) {
-    log(error)
     res.status(500).send("Internal Server Error")
   }
 })
@@ -734,8 +707,6 @@ app.get("/api/userpage/transactedHistory", async (req, res) => {
 app.get("/api/userpage/donatedHistory/:postid", async (req, res) => {
 
   const postId = req.params.postid
-  console.log("postid:")
-  console.log(postId)
   try{
     const post = await Post.findById(postId)
     if(!post) {
@@ -746,11 +717,9 @@ app.get("/api/userpage/donatedHistory/:postid", async (req, res) => {
     if(!viewers) {
       res.status(404).send("Viewers not found")
     } else {
-      console.log(viewers)
       res.send(viewers)
     }
   } catch(error) {
-    log(error)
     res.status(500).send("Internal Server Error")
   }
 })
@@ -787,46 +756,40 @@ app.post("/images/post", multipartMiddleware, (req, res) => {
 
 // a POST route to *create* a user image
 app.post("/images/user/:uid", multipartMiddleware, (req, res) => {
-
     const uid = req.params.uid
 
     UserImage.deleteMany({"userId": uid})
-        .then(
-        images => {
-            console.log("removed", images)// can wrap in object if want to add more properties
+        .then(images => {
+            // Use uploader.upload API to upload image to cloudinary server.
+            cloudinary.uploader.upload(
+                req.files.image.path, // req.files contains uploaded files
+                function (result) {
+                    // Create a new image using the Image mongoose model
+                    
+                    var img = new UserImage({
+                        userId: uid,
+                        image_id: result.public_id, // image id on cloudinary server
+                        image_url: result.url, // image url on cloudinary server
+                    });
+                    
+                    // Save image to the database
+                    img.save().then(
+                        saveRes => {
+                            res.send(saveRes);
+                        },
+                        error => {
+                            res.status(400).send(error); // 400 for bad request
+                        }
+                    );
+                });
         })
-
-    // Use uploader.upload API to upload image to cloudinary server.
-    cloudinary.uploader.upload(
-        req.files.image.path, // req.files contains uploaded files
-        function (result) {
-            // Create a new image using the Image mongoose model
-            
-            var img = new UserImage({
-                userId: uid,
-                image_id: result.public_id, // image id on cloudinary server
-                image_url: result.url, // image url on cloudinary server
-            });
-            
-            // Save image to the database
-            img.save().then(
-                saveRes => {
-                    res.send(saveRes);
-                },
-                error => {
-                    res.status(400).send(error); // 400 for bad request
-                }
-            );
-        });
 });
 // a GET route to get post image by id
 app.get("/images/post/:id", (req, res) => {
     const imageId = req.params.id;
-    console.log(imageId)
 
     PostImage.findById(imageId).then(
         image => {
-            console.log(image)
             res.send( image ); // can wrap in object if want to add more properties
         },
         error => {
@@ -841,7 +804,6 @@ app.get("/images/user/:uid", (req, res) => {
 
     UserImage.findOne({userId: uid}).then(
         image => {
-            console.log(image)
             res.send( image ); // can wrap in object if want to add more properties
         },
         error => {
@@ -896,7 +858,6 @@ const public_routes = ["/", "/search", "/wishlist", "/createpost","/termsconditi
 for (let i = 0; i < public_routes.length; i++) {
     let route = public_routes[i];
     app.get(route, (req, res) => {
-        log("hello")
         res.sendFile(path.resolve(__dirname, CLIENT_DIR, 'index.html'))
     });
 }
@@ -912,5 +873,3 @@ const port = process.env.PORT || 6001;
 app.listen(port, () => {
     log(`Listening on port ${port}...`);
 });
-
-
