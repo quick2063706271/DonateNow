@@ -101,14 +101,15 @@ export const login = (app) => {
             console.log(json)
             if (json && json.success) {
                 app.setState({
-                    countdown: 2,
-                    error: true,
-                    errorMsg: ""
+                    countdown: 10,
+                    initialState: false,
+                    error: false,
+                    message: ""
                 }, () => {
                     const countdown = setInterval(() => {
                         app.setState({
                             countdown: app.state.countdown - 1,
-                            errorMsg: `Successfully signed in. Redirecting in ${app.state.countdown - 1} seconds`
+                            message: `Successfully signed in. Redirecting in ${app.state.countdown - 1} seconds`
                         });
                         if (app.state.countdown <= 0) {
                             window.location.href = "/search?keyword=";
@@ -118,8 +119,9 @@ export const login = (app) => {
                 )
             } else {
                 app.setState({
+                    initialState: false,
                     error: true,
-                    errorMsg: json.message
+                    message: json.message
                 })
             }
         })
