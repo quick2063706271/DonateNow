@@ -167,7 +167,7 @@ app.post("/login", (req, res) => {
             }
         })
         .catch(error => {
-            res.status(400).send({ success: false, message: "Fail to log in."})
+            res.status(400).send({ success: false, message: "Failed to log in."})
         });
 });
 
