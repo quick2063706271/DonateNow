@@ -43,3 +43,7 @@
 .button-group {
     display: flex;
 }
+
+#failCompleteButtonInHistory {
+    color: black
+}
