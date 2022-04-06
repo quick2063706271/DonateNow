@@ -2,13 +2,7 @@ import React from 'react';
 import "./styles.css";
 import { Button } from '@mui/material';
 import PersonalInformation from '../PersonalInformation';
-//import Feedback from '../Feedback';
 import History from '../History';
-// import monitor from '../../monitor.png'
-// import toys from "../../toys.png"
-// import toys from "/toys.png"
-// import marker from "./marker.png"
-import bottle from "../../bottle.png"
 import database from "../../database"
 
 class AdminSideMenu extends React.Component{

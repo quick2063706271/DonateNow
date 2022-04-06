@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-// import database from '../../database';
 import AppBar from "../AppBar";
 import StickyFooter from '../StickyFooter';
 import { getTermsConditions } from "../../actions/termsconditions";
@@ -17,11 +16,7 @@ class TermsConditions extends React.Component {
     componentDidMount() {
         getTermsConditions(this)
     }
-
-    // renderTermsConditions(header, description) {
-    //     const content = []
-    // }
-
+    
     render() {
 
         function Term(props) {

@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-//import database from '../../database';
 import AppBar from "../AppBar";
 import StickyFooter from '../StickyFooter';
 import { getFaqs } from "../../actions/faq";

@@ -135,7 +135,6 @@ class PostPageHeader extends React.Component {
                     <WithNavigate/>
                     <br></br>
                     <br></br>
-                    {/* <h1 id="postHeader"> {this.props.post.header} </h1> */}
                     <text id="postHeader">{this.props.post.header}</text>
                     <br></br>
                     <br></br>

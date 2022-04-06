@@ -21,7 +21,6 @@ class PostPage extends React.Component {
     };
 
     componentDidMount() {
-        // console.log(this.props.params.id)
         checkSession(this)
         this.setState({
             postId: this.props.params.id
@@ -29,7 +28,6 @@ class PostPage extends React.Component {
     }
 
     fetchPost = () => {
-        // console.log("this", this.state.postId)
         getPost(this)
         getWishlistCount(this)
         incrementView(this)
