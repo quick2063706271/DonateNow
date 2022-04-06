@@ -47,10 +47,10 @@
     position: relative;
     top: 350px;
     left: 250px
-}
+}*/
 
 .block-button {
     position: relative;
-    top: 313.5px;
-    left: 20px
-} */
+    margin-left: 79%;
+    margin-bottom: 20px;
+}

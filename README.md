@@ -117,9 +117,6 @@ Request URL: http://localhost:6001/api/userpage
 <br/>This is used for getting the current user's information from the session this user is currently in. 
 <br/>This route is expected to return a json file of user's information, which will be displayed on the user's User Information panel under My Profile Page. 
 
-#### User Page get other user (not sure) 
-Request URL: http://localhost:6001/api/userpage/other/:id 
-
 #### Update Userpage (PATCH) 
 Request URL: http://localhost:6001/api/userpage 
 <br/>This is used for updating a user's information when the user edit his profile information on the User Information panel under My Profile page. 
@@ -138,19 +135,17 @@ Request URL: http://localhost:6001/api/userpage
 
 #### Get Donated History Posts (GET) 
 Request URL: http://localhost:6001/api/userpage/donatedHistory
-<br/>This is used for getting all the transacted history of the current user. 
+<br/>This is used for getting all the donated history of the current user. 
 <br/>This route is expected to return a json file containing the user/donor's past history of donation, which will be displayed on the user's Donated History panel under My Profile page. 
 
 #### Get Transaction History Posts (GET) 
 Request URL: http://localhost:6001/api/userpage/transactedHistory
-<br/>This is used for getting all the donated history of the current user. 
-<br/>This route is expected to return a json file containing the user/donee's past history of transaction, which will be displayed on the user's Transaction History panel under My Profile page. 
+<br/>This is used for getting all the transacted history of the current user. 
+<br/>This route is expected to return a json file containing the user/donee's past history of transaction, which will be displayed on the user's Transaction History panel under My Profile page.    
 
-#### Get Donated History Posts from Post ID (GET) (not sure) 
-Request URL: http://localhost:6001/api/userpage/donatedHistory/:postid  
 
 &nbsp;   
-### 3. Route for Posts 
+### 3. Routes for Posts 
 #### Create Post (POST) 
 Request URL: http://localhost:6001/api/posts 
 <br/>This route is for an user to create and publish a post after filling in all required fields of information on the DONATE NOW page. 
@@ -198,9 +193,10 @@ Request URL: http://localhost:6001/api/posts/:id
 <br/>This route browses through all posts and extract all items/posts wishlisted by a certain user from his User ID. 
 <br/>This route is expected to authenticate user, then return a json file of wishlist information. 
 
-
-#### Get Post Wishlist Count (GET) (not sure) 
+#### Get Post Wishlist Count (GET)  
 Request URL: http://localhost:6001/api/post/wishlist/:id 
+<br/>This route counts the number of times a post is wishlisted by users. 
+<br/>This route is expected to browse through all users and count the number of times a Post ID appears in user's wishlists. It then returns this number to be displayed on the post's Post Page as the Saved property. 
 
 #### Add to Wishlist (PATCH) 
 Request URL: http://localhost:6001/api/post/wishlist/:uid/:pid
@@ -258,7 +254,7 @@ Request URL: http://localhost:6001/api/post/:id
 ```    
 &nbsp;
 
-### 7. Route for Image Uploader 
+### 7. Routes for Image Uploader 
 #### Create an Image onto Posts (POST) 
 Request URL: http://localhost:6001/images/post
 <br/>This route addes the new image into the database after it is uploaded by a user while creating a new post. 
@@ -309,7 +305,7 @@ Request URL: http://localhost:6001/api/admin/feedback
 
 &nbsp;
 
-### 9. Route for Admin Blocklist Page 
+### 9. Routes for Admin Blocklist Page 
 #### Get All Blocklist (GET)
 Request URL: http://localhost:6001/api/admin/blocklist
 <br/>This route extracts all the user information from the User database. 
@@ -338,7 +334,7 @@ Request URL: http://localhost:6001/api/termsconditions
 ### 11. Route for FAQ Page 
 #### Get All FAQs (GET) 
 Request URL: http://localhost:6001/api/faqpage
-<br/>This route extracts all the FAQs from the database. 
+<br/>This route extracts all the faqs from the database.
 <br/>This route is expected to return a json file of FAQ information to be displayed on the FAQ page: 
 ```
 {
@@ -434,10 +430,36 @@ Request URL: http://localhost:6001/api/faqpage
 
 4. Click on BLOCK LIST to find a list of all users 
     <br/> -  Click on each User ID under the Username column to have a brief view of basic user information. 
-    <br/> -  Click on the BLOCK/UNBLOCK button under the Action column to block or unblock a specific user. 
+    <br/> -  Click on the BLOCK/UNBLOCK button under the Action column to block or unblock a specific user.    
+&nbsp;   
 
-    
 
+## Mapping of Post Status to Owner and Viewer Interactions 
+The status on each post displays different information depending on the user viewing it and the state of the transaction. This section outlines how the status of a post changes in accordance to the interaction between doner and donee(s). 
+
+
+### As an Owner/Doner of the Post 
+As the owner of the post, the user might see four types of post status: "Posted", "Donation Matched", "Completed", or "Failed".    
+
+#### "Owner Status: Posted"
+
+#### "Owner Status: Donation Matched"
+
+#### "Owner Status: Completed" 
+
+#### "Owner Status: Failed" 
+
+
+### Asn a Viewer/Donee of the Post 
+As the viewer of the post, the user might see four types of post status: "Requested", "Request Accepted", "Completed", or "Failed".    
+
+#### "Viewer Status: Requested"
+
+#### "Viewer Status: Request Accepted"
+
+#### "Viewer Status: Completed" 
+
+#### "Viewer Status: Failed" 
 
 
 
