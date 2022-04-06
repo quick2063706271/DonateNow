@@ -434,8 +434,12 @@ Request URL: http://localhost:6001/api/faqpage
 &nbsp;      
 &nbsp; 
 
+
+
 ## Mapping of Post Status to Owner and Viewer Interactions 
 The status on each post displays different information depending on the user viewing it and the state of the transaction. This section outlines how the status of a post changes in accordance to the interaction between doner and donee(s). 
+
+<img src="README_Post_Status.png" alt="post_status" width="800"/>
 
 
 ### As an Owner/Doner of the Post 
