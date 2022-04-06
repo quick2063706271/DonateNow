@@ -69,7 +69,7 @@ function PostPageHeaderHelper(props){
                         <span>
                             <text className="statusMsg">Owner Status: {post.ownerStatus}</text>
                             <br></br>
-                            <ViewDonorAndDonee btnId={"viewDonorDoneeButton"} userId={userId} type="donor"/>
+                            <ViewDonorAndDonee btnId={"viewDonorDoneeButton"} userId={userId} type="donee"/>
                             <Button id="failCompleteButton"
                                     onClick={ () => changeOwnerStatus(postId, "Failed")}
                                     >Failed</Button>
@@ -95,7 +95,7 @@ function PostPageHeaderHelper(props){
                     <span>
                         <text className="statusMsg">Viewer Status: {viewer.viewerStatus}</text>
                         <br></br>
-                            <ViewDonorAndDonee btnId={"viewDonorDoneeButton"} userId={viewer.viewerId} type="donee"/>
+                            <ViewDonorAndDonee btnId={"viewDonorDoneeButton"} userId={viewer.viewerId} type="donor"/>
                             <Button id="failCompleteButton"
                                     onClick={ () => changeViewerStatus(postId, userId, "Failed")}
                                     >Failed</Button>
