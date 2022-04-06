@@ -10,7 +10,7 @@ import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import StickyFooter from "../StickyFooter";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { checkSession } from "../../actions/user";
 import { createPost } from "../../actions/post";
 import { addPostImage } from "../../actions/image";
