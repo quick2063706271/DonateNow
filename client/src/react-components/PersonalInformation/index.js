@@ -123,7 +123,7 @@ class PersonalInformation extends React.Component {
         const isAdmin = this.state.admin;
         let block;
         if (isAdmin) {
-            block = <Button variant="contained" display="inline-block" onClick={this.handleBlock}>
+            block = <Button id="block-button" variant="contained" display="inline-block" onClick={this.handleBlock}>
                 {this.state.accountBlocked ? "Unblock" : "Block"}
             </Button>
         } else {
