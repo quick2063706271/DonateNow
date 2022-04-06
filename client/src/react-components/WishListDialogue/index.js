@@ -5,7 +5,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Navigate } from 'react-router-dom';
 import {findPostByWishlisted} from '../../actions/post';
 import {addWishlist, removeWishlist} from '../../actions/user';
 
@@ -13,7 +12,6 @@ class WishListDialogue extends React.Component {
 
     constructor(props) {
         super(props);
-        // console.log(props)
         this.state = {
             open: false,
             posts: [],
@@ -56,17 +54,14 @@ class WishListDialogue extends React.Component {
     }
 
     checkWishlisted = () => {
-        console.log(this.state.posts)
         const lst = this.state.posts.filter(post => post._id.toString() === this.props.postId)
         if (lst.length > 0){
-            console.log("11111")
             this.setState({
                 wishlist: true,
                 txt: "Remove from WishList",
                 msg: "Successfully Removed From wishlist."
             })
         }else{
-            console.log("22222")
             this.setState({
                 wishlist: false,
                 txt: "Add to WishList",

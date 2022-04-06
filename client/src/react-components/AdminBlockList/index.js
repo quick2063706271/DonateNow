@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css";
 //import database from '../../database'
 import AdminAppBar from "../AdminAppBar";
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import StickyFooter from "../StickyFooter";
 import { checkSession } from "../../actions/user";
 import { getBlocklist, updateBlocklist } from "../../actions/blocklist";

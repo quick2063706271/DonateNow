@@ -48,8 +48,6 @@ class Home extends React.Component {
                 }
                 
                 <div id="home" ><img src={home_pic} id='home_pic' alt="home_pic"/></div>
-                {/* <br></br> */}
-
                 <div> <StickyFooter/> </div>
             </div>
         );

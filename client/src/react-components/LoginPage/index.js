@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from './logo.png';
 import loginImage from './LoginPageImage.jpeg';
 import { updateLoginForm, login, checkSession } from "../../actions/user";

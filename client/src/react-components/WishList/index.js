@@ -53,11 +53,9 @@ class WishList extends React.Component {
     loopThroughPosts = () => {
         const components = []
         for (const [ , value] of Object.entries(this.state.posts)) {
-            //for (const [k, v] of Object.entries(value)) {
                 components.push (
                     <div>
                         <div className="block">
-                            {/*<a className="title" href={`postpage/${value.postId}`}><b><u>{value.header}</u></b></a>*/}
                             <a className="title" onClick={this.handlePostOnClick.bind(this, value)}><b><u>{value.header}</u></b></a>
                             <Button onClick={() => removeWishlist(this.state.userId, value._id.toString(), true)} 
                                     style = {{backgroundColor: "#C65D7B", color: "white", fontSize: "16px", right: "5%", position: "absolute"}}>
@@ -83,7 +81,6 @@ class WishList extends React.Component {
                                     <ul>
                                         <li><b>Views: </b>{value.views}</li>
                                         <li><b>Requests: </b>{value.viewers.length}</li>
-                                        {/* <li><b>Saved: </b>{value.saved}</li> */}
                                     </ul>
                                 </div>
                             </div>

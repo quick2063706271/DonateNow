@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-//import database from '../../database';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 

@@ -42,14 +42,12 @@ class CreatePost extends React.Component {
         const target = event.target
         const value = target.value
         const name = target.name
-        // console.log(name, value)
         this.setState({
             [name]: value
         })
     }
 
     handleDeliveryInputChange = (checkedItem) => {
-        // console.log(checkedItem)
         this.setState({
             deliveryOption: checkedItem
         })
@@ -89,7 +87,7 @@ class CreatePost extends React.Component {
     }
 
     render() {
-        // if (this.state.userId != "") {
+        if (this.state.userId != "") {
             return (
                 <div>
                     <AppBar/>
@@ -265,16 +263,16 @@ class CreatePost extends React.Component {
                 </div>
             );
         }
-        // else {
-        //     return (
-        //     <div>
-        //         <h1>Please log in to create your post :(</h1>
-        //         <Link to={'/login'}>
-        //             <Button variant="outlined" >Log In Here</Button>
-        //         </Link>
-        //     </div>)
-        // }
-// }
+        else {
+            return (
+            <div>
+                <h1>Please log in to create your post :(</h1>
+                <Link to={'/login'}>
+                    <Button variant="outlined" >Log In Here</Button>
+                </Link>
+            </div>)
+        }
+}
 
 }
 
