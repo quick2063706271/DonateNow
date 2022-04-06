@@ -431,8 +431,8 @@ Request URL: http://localhost:6001/api/faqpage
 4. Click on BLOCK LIST to find a list of all users 
     <br/> -  Click on each User ID under the Username column to have a brief view of basic user information. 
     <br/> -  Click on the BLOCK/UNBLOCK button under the Action column to block or unblock a specific user.    
-&nbsp;   
-
+&nbsp;      
+&nbsp; 
 
 ## Mapping of Post Status to Owner and Viewer Interactions 
 The status on each post displays different information depending on the user viewing it and the state of the transaction. This section outlines how the status of a post changes in accordance to the interaction between doner and donee(s). 
@@ -442,26 +442,38 @@ The status on each post displays different information depending on the user vie
 As the owner of the post, the user might see four types of post status: "Posted", "Donation Matched", "Completed", or "Failed".    
 
 #### "Owner Status: Posted"
+This status appears after the user publishes this post of donation on the DONATE NOW page. 
+If this post has been requested by one or more viewers, the user can clicking on CHOOSE YOUR DONEE on the post page to choose one user as the donee from the popup window. 
 
 #### "Owner Status: Donation Matched"
+This status appears after the user has chosen one user as the donee from a list of users who requested this post. The user has now become the donor of the chosen donee. The user can now view the chosen donee's personal information by clicking VIEW DONEE INFORMATION button. 
+<br/>After the transaction, the user can also click on COMPLETED or FAILED button to mark this transaction as successful or unsuccessful. 
 
 #### "Owner Status: Completed" 
+This status appears if the user marks the transaction as completed by clicking the COMPLETED button on top the post page. Synchronously, the donee of the post will now see a status of "Viewer Status: Completed" when viewing this post. 
 
 #### "Owner Status: Failed" 
+This status appears if the user marks the transaction as failed by clicking the FAILED button on top the post page. Synchronously, the donee of the post will now see a status of "Viewer Status: Failed" when viewing this post. 
 
-
-### Asn a Viewer/Donee of the Post 
+      
+&nbsp;  
+### As an Viewer/Donee of the Post 
 As the viewer of the post, the user might see four types of post status: "Requested", "Request Accepted", "Completed", or "Failed".    
 
 #### "Viewer Status: Requested"
+This status appears after the user has requested the item on this post by clicking the REQUEST NOW button. The donor of the post will then have the option to accept or decline this user as the donee. 
 
 #### "Viewer Status: Request Accepted"
+This status appears if the user's request has been accepted by the donor. The user has now become the chosen donee of the donor. The user can now view the chosen donor's personal information by clicking VIEW DONOR INFORMATION button. 
+<br/>After the transaction, the user can also click on COMPLETED or FAILED button to mark this transaction as successful or unsuccessful. 
 
 #### "Viewer Status: Completed" 
+This status appears if the user marks the transaction as completed by clicking the COMPLETED button on top the post page. Synchronously, the donor of the post will now see a status of "Owner Status: Completed" when viewing this post. 
 
 #### "Viewer Status: Failed" 
-
-
+This status appears if one of the following two cases occurs: 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - The user's request has been declined by the donor. 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - This status appears if the user marks the transaction as failed by clicking the FAILED button on top the post page. Synchronously, the donor of the post will now see a status of "Viewer Status: Failed" when viewing this post. 
 
 
 
