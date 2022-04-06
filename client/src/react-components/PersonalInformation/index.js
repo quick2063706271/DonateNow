@@ -9,9 +9,7 @@ import { updateUser } from "../../actions/user";
 import { getUser } from "../../actions/user";
 import { checkSession } from "../../actions/user";
 import { getOtherUser, getUserByEmail } from "../../actions/user";
-import ComponentParamsWrapper from "../ParamsWrapper";
 import { addUserImage } from "../../actions/image";
-import { Input } from "@material-ui/core";
 import { getUserImageById } from "../../actions/image";
 import { updateBlocklist } from "../../actions/blocklist";
 
@@ -60,7 +58,6 @@ class PersonalInformation extends React.Component {
             isComplained: !this.state.isComplained
         });
         this.props.complaintNum++;
-        // this.changeButtonText();
         console.log(this.state.isComplained);
     }
     handleBlock = event => {
@@ -70,11 +67,9 @@ class PersonalInformation extends React.Component {
             accountBlocked: !this.state.accountBlocked
         }, ()=> { console.log("After: ", this.state) });
         this.props.accountBlocked = true;
-        // this.changeButtonText();
     }
     fetchPersonalInformation = () => {
         getUser(this)
-        // findPostByKeyword(this, keyword)
     }
     fetchOtherUserInformation = () => {
 
@@ -171,10 +166,6 @@ class PersonalInformation extends React.Component {
                 autoComplete="off"
                 >
                     <div className="personalInformation">
-                        {/* <div>
-                            <Avatar id="avatar" sx={{height: 80, width: 80}}>JO</Avatar>
-                        </div> */}
-
                         <TextField
                         className="inputFieldId"
                         label="Username"
