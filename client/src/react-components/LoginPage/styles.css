@@ -63,7 +63,12 @@
   .login-form-error {
       font-size: small;
       color: red;
-    }
+  }
+
+  .login-form-success {
+    font-size: small;
+    color: green;
+}
   
   .login-form-create {
     font-size: small;

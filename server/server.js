@@ -160,10 +160,14 @@ app.post("/login", (req, res) => {
                 if (!err) {}
                 else { err; }
             });
-            res.status(200).send({ success: true, message: "Successfully Logged in" });
+            if (user.accountBlocked) {
+                res.status(400).send({ success: false, message: "This account is blocked. Please contact the admin."})
+            } else {
+                res.status(200).send({ success: true, message: "Successfully Logged in." });
+            }
         })
         .catch(error => {
-            res.status(400).send({ success: false, message: "Fail to log in."})
+            res.status(400).send({ success: false, message: "Failed to log in."})
         });
 });
 
