@@ -871,5 +871,5 @@ for (let i = 0; i < public_routes.length; i++) {
 // Express server listening...
 const port = process.env.PORT || 6001;
 app.listen(port, () => {
-    log(`Listening on port ${port}...`);
+    log(`Running ${env}. Listening on port ${port}...`);
 });
