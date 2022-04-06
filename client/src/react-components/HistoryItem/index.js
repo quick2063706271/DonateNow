@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-// import monitorImg from "./monitor.png"
 import { Button } from "@mui/material";
 import ChooseDonee from "../ChooseDonee";
 import { checkSession } from "../../actions/user";
@@ -8,8 +7,7 @@ import { changeOwnerStatus } from "../../actions/post";
 import { changeViewerStatus } from "../../actions/post";
 import { Navigate } from "react-router-dom";
 import ViewDonorAndDonee from "../ViewDonorAndDonee"
-import { getPostsImages } from "../../actions/image";
-import { getHistoryPostsImages } from "../../actions/image";
+
 
 class HistoryItem extends React.Component{
     constructor() {
@@ -44,7 +42,6 @@ class HistoryItem extends React.Component{
         let chooseDoneeButton
         if (ownerStatus === "Posted" && category === "donation") {
             chooseDoneeButton = <div> 
-                                    {/* <ChooseDonee /> */}
                                     <ChooseDonee class="" btnId="" 
                                     userId={this.props.userId}  postId={this.props.postId}/>
                                 </div>

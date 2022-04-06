@@ -5,7 +5,6 @@ import HistoryItem from "../HistoryItem";
 import { getDonationHistory } from "../../actions/user";
 import { getTransactionHistory } from "../../actions/user";
 import { checkSession } from "../../actions/user";
-import { getPostsImages } from "../../actions/image";
 import { getHistoryPostsImages } from "../../actions/image";
 
 class History extends React.Component {

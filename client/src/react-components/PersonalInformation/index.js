@@ -142,7 +142,7 @@ class PersonalInformation extends React.Component {
                                 <Avatar id="avatar" 
                                         sx={{height: 80, width: 80}}>U
                                 </Avatar>}
-                                {isRead === false || isAdmin ? 
+                                {isRead === false && !isAdmin ? 
                                 <div id="user-upload-button-group">
                                 <div class="image-form__field">
                                     <label>Avatar:</label>
