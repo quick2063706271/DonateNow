@@ -12,8 +12,9 @@ class LoginPage extends React.Component {
         this.state = {
             email: "",
             password: "",
-            error: false,
-            errorMsg: "",
+            initialState: true,
+            error: true,
+            message: "",
             countdown: -1
         };
     }
@@ -49,7 +50,7 @@ class LoginPage extends React.Component {
                     <div>
                         <input id="submit" type="submit" name="submit" className="login-form-submit" onClick={() => login(this)}/>
                     </div>
-                    {this.state.error ? <div className="login-form-error">{this.state.errorMsg}</div> : null}
+                    {this.state.initialState ? <div></div> : this.state.error ? <div className="login-form-error">{this.state.message}</div> : <div className="login-form-success">{this.state.message}</div>}
 
                     <Link to={'/createanaccount'}>
                         <div className="login-form-create"><u>Create an Account</u></div>

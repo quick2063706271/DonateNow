@@ -71,7 +71,6 @@ class ChooseDonee extends React.Component {
     }
 
     fetchDoneeInformation = () => {
-        // getUser(this) // to-do
         getDoneeInformation(this)
     }
     componentDidMount() {
