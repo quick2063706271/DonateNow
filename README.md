@@ -1,5 +1,8 @@
 # DONATENOW.COM :heart:
 
+## Notes about changes after submission deadline
+We made some changes to server/server.js session part to resolve deployment issue on Heroku (specifically line 136). Thanks for your understanding.
+
 ## Website 
 Heroku URL: https://donate-now-team02.herokuapp.com/   
 &nbsp;
