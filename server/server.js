@@ -134,7 +134,8 @@ app.use(
       saveUninitialized: false,
       cookie: {
           expires: 6000000,
-          secure: false
+          secure: false,
+          proxy : true,
       },
       // store the sessions on the database in production
       store: env === 'production' ? MongoStore.create({
