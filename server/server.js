@@ -126,6 +126,7 @@ const checkAdmin = (req, res, next) => {
 
 /*** Session handling **************************************/
 // Create a session and session cookie
+app.set('trust proxy', 1)
 app.use(
   session({
       secret: process.env.SESSION_SECRET || "odsfsdfds", // make a SESSION_SECRET environment variable when deploying (for example, on heroku)
@@ -133,8 +134,7 @@ app.use(
       saveUninitialized: false,
       cookie: {
           expires: 6000000,
-          secure: false,
-          sameSite: 'none'
+          secure: false
       },
       // store the sessions on the database in production
       store: env === 'production' ? MongoStore.create({
