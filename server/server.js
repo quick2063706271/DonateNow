@@ -133,7 +133,7 @@ app.use(
       resave: false,
       saveUninitialized: false,
       cookie: {
-          expires: 6000000,
+          expires: new Date(Date.now() + 6000000),
           secure: false,
           proxy : true,
       },
